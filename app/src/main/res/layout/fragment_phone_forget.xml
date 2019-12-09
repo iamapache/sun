@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@mipmap/login_layout_back"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="80dp"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginLeft="@dimen/d_8dp"
+                android:id="@+id/tv_addresscode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="+86"
+                android:maxLines="1"
+                android:gravity="center"
+                android:drawableRight="@mipmap/icon_down"
+                android:textColor="@color/colorCutOffSide"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/input_phone"
+            android:inputType="number"
+            android:layout_marginLeft="@dimen/d_8dp"
+            android:maxLength="20"
+            android:layout_weight="1"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/img_clear"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="8dp"
+            android:visibility="invisible"
+            android:src="@mipmap/icon_clear"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        style="@style/CrossCutOffSideStyle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/title_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_8dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/pwd_hint_login"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="14sp"/>
+
+        <ImageView
+            android:id="@+id/img_switch_pwd"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="8dp"
+            android:src="@mipmap/denglu_by"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view2"
+        style="@style/CrossCutOffSideStyle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/entrycardid"
+            android:maxLength="20"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:layout_marginLeft="@dimen/d_8dp"
+            android:textSize="14sp"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view3"
+        style="@style/CrossCutOffSideStyle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/input_msg_code"
+            android:inputType="number"
+            android:maxLength="6"
+            android:layout_marginLeft="@dimen/d_8dp"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="14sp"/>
+
+        <com.madaex.exchange.common.view.TimerText
+            android:id="@+id/getcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/code_shape"
+            android:padding="7dp"
+            app:default_text="@string/get_code"
+            android:layout_marginRight="@dimen/d_8dp"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/view4"
+        style="@style/CrossCutOffSideStyle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+    <Button
+        android:id="@+id/btn_regist"
+        style="@style/ButtonStyle"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/replapws"/>
+
+</LinearLayout>

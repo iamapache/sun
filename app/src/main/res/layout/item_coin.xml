@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_height="70dp">
+
+    <ImageView
+        android:id="@+id/coinimg"
+        android:layout_width="@dimen/d_26dp"
+        android:layout_height="@dimen/d_26dp"/>
+
+    <TextView
+        android:id="@+id/coinname"
+        android:layout_marginTop="@dimen/d_7dp"
+        android:text=""
+        android:textSize="@dimen/d_13dp"
+        android:textColor="@color/common_text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

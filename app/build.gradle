@@ -1,0 +1,193 @@
+apply plugin: 'com.android.application'
+apply plugin: 'bugly'
+bugly {
+    appId = '7712b9a33b'
+    appKey = '9857bee2-1b89-4a98-bd60-e73c377f480c'
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion rootProject.ext.android2.buildToolsVersion
+            }
+        }
+    }
+}
+android {
+    compileSdkVersion rootProject.ext.android2.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.android2.applicationId
+        minSdkVersion rootProject.ext.android2.minSdkVersion
+        targetSdkVersion rootProject.ext.android2.targetSdkVersion
+        versionCode rootProject.ext.android2.versionCode
+        versionName rootProject.ext.android2.versionName
+        multiDexEnabled true
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_name"]
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86'
+//, 'armeabi-v7a'//, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+
+    }
+
+    signingConfigs {//签名配置
+
+        release {//发布版签名配置
+            v1SigningEnabled true
+            v2SigningEnabled true
+            storeFile file('sign.jks')
+            storePassword "12345678"
+            keyAlias "12345678"
+            keyPassword "12345678"
+        }
+        debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
+            storeFile file('sign.jks')
+            storePassword "12345678"
+            keyAlias "12345678"
+            keyPassword "12345678"
+        }
+    }
+    buildTypes {
+        release {
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            signingConfig signingConfigs.release
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+        debug {
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            signingConfig signingConfigs.debug
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def fileName
+            def date = new Date()
+            def formattedDate = date.format('yyyy-MM-dd')
+            if (variant.buildType.name.equals('release')) {
+                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
+            } else if (variant.buildType.name.equals('debug')) {
+                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
+            }
+            outputFileName = fileName;
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        sun {}
+    }
+
+    //批量配置
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude('META-INF/rxjava.properties')
+        exclude('META-INF/rxjava.properties')
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar','*.so'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation rootProject.ext.dependencies2["appcompat-v7"]
+    implementation rootProject.ext.dependencies2["design"]
+    implementation rootProject.ext.dependencies2["recyclerview-v7"]
+    implementation rootProject.ext.dependencies2["cardview-v7"]
+    implementation rootProject.ext.dependencies2["greendao"]
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    //内存泄漏
+    debugImplementation rootProject.ext.dependencies2["leakcanary-android"]
+    releaseImplementation rootProject.ext.dependencies2["leakcanary-android-no-op"]
+    testImplementation rootProject.ext.dependencies2["leakcanary-android-no-op"]
+    annotationProcessor rootProject.ext.dependencies2["butterknife-compiler"]
+    implementation rootProject.ext.dependencies2["butterknife"]
+    implementation rootProject.ext.dependencies2["multidex"]
+    //rx
+    implementation rootProject.ext.dependencies2["rxjava"]
+    implementation rootProject.ext.dependencies2["rxandroid"]
+    //network
+    implementation rootProject.ext.dependencies2["gson"]
+    implementation rootProject.ext.dependencies2["retrofit"]
+    implementation rootProject.ext.dependencies2["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies2["retrofit-adapter-rxjava2"]
+    implementation rootProject.ext.dependencies2["okhttp"]
+    implementation rootProject.ext.dependencies2["okhttp-logging-interceptor"]
+    implementation rootProject.ext.dependencies2["glide"]
+    implementation rootProject.ext.dependencies2["systembartint"]
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
+    implementation 'com.orhanobut:logger:1.15'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+    implementation 'com.google.dagger:dagger:2.7'
+    implementation 'me.imid.swipebacklayout.lib:library:1.0.0'
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+    implementation 'com.github.MrWangChong:IosDialog:1.0.8'
+    implementation 'commons-codec:commons-codec:1.11'
+    implementation 'com.github.zyyoona7:EasyPopup:1.1.2'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.alibaba:fastjson:1.2.49'
+    implementation  'com.dhh:websocket2:2.1.4'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.0.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
+//    implementation 'me.jessyan:autosize:1.1.0'
+    implementation 'com.zzti.fengyongge:imagepicker:1.3.0'
+    implementation 'com.contrarywind:wheelview:4.0.9'
+    implementation project(':dialog')
+    implementation project(':MPChartLib')
+    implementation project(':versionchecklib')
+    implementation files('libs/NoCaptchaSDK-5.4.18.jar')
+    implementation files('libs/SecurityBodySDK-5.4.42.jar')
+    implementation files('libs/SecurityGuardSDK-5.4.67.jar')
+    implementation files('libs/verificationsdklib-1.3.2.3417747-3ND-SMS-NC.jar')
+    implementation files('libs/lib-ios-dialog-release.aar')
+}

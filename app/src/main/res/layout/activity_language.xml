@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:right_tv_text="@string/compelect"
+        app:right_tv_visible="true"
+        app:title_text="@string/mine_language"
+        app:title_visible="true"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_followsytem"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_followsystem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/setting_simplified_chinese"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_followsystem"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/regist_select"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#e5e5e5" />
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/rl_simplified_chinese"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_simplified_chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/setting_language_english"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/iv_simplified_chinese"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:src="@mipmap/regist_select"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</LinearLayout>

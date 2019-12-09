@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/common_bg"
+
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/appeal"
+        app:title_visible="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <CheckBox
+            android:id="@+id/cb_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/check_addr_selector"
+            android:checked="false"
+            android:gravity="center_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Problem1"
+                android:textColor="@color/common_text_2"
+                android:textSize="14sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/nopay"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="@dimen/d_16dp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <CheckBox
+            android:id="@+id/cb_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/check_addr_selector"
+            android:checked="false"
+            android:gravity="center_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Problem2"
+                android:textColor="@color/common_text_2"
+                android:textSize="14sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/moneyerror"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="@dimen/d_16dp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <CheckBox
+            android:id="@+id/cb_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:background="@android:color/transparent"
+            android:button="@drawable/check_addr_selector"
+            android:checked="false"
+            android:gravity="center_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Problem3"
+                android:textColor="@color/common_text_2"
+                android:textSize="14sp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/Otherquestions"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="@dimen/d_16dp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/d_15dp"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:text="@string/ProblemDescription"
+        android:textColor="@color/common_text_1"
+        android:textColorHint="@color/colorCutOffSide"
+        android:textSize="@dimen/d_16dp"/>
+
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:gravity="start"/>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/Confirm"/>
+</LinearLayout>

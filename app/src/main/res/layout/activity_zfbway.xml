@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/Alipaycollection"
+        app:title_visible="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:text="@string/accountinformation"
+        android:textColor="@color/common_text_2"
+        android:textSize="14sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+
+        <EditText
+            android:id="@+id/et_zfb"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/alipayaccount"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:text="@string/QRcode"
+        android:textColor="@color/common_text_2"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/zfbinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/d_5dp"
+        android:textColor="@color/common_text_2"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:text="@string/Uploadalipay"
+        android:textColor="@color/common_text_1"
+        android:textSize="14sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="150dp"
+
+            android:layout_height="220dp"
+            android:background="@mipmap/selectpbg"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/submit"/>
+    <LinearLayout
+        android:id="@+id/ll_del"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/common_button_shape"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/d_30dp"
+            android:textColor="@color/white"
+            android:text="@string/delete"/>
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/common_button_shape"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/d_30dp"
+            android:textColor="@color/white"
+            android:text="修改"/>
+
+
+    </LinearLayout>
+</LinearLayout>

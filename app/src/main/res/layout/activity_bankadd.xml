@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/Bankcardcollection"
+        app:title_visible="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/depositbank"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:maxLength="64"
+            android:gravity="center_vertical"
+            android:hint="@string/Selectopeningbank"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdbb"
+        android:drawableLeft="@mipmap/kgf"
+        android:drawablePadding="@dimen/d_5dp"
+        android:padding="@dimen/d_8dp"
+        android:text="@string/youname"
+        android:textColor="#ff7632"
+        android:textSize="@dimen/d_12dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/branch"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/nick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/branchinformation"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/accountnames"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/accountname"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/account"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:inputType="number"
+            android:hint="@string/bankid"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/Confirma"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:maxLines="1"
+            android:hint="@string/aiganbankid"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/Confirm"
+        style="@style/ButtonStyle"/>
+</LinearLayout>

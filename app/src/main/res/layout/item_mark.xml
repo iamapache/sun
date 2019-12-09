@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:background="@color/backGroundColor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_65dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_bank"
+            android:layout_width="@dimen/d_30dp"
+            android:layout_height="@dimen/d_30dp"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/coinname"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|bottom"
+        android:maxLines="1"
+        android:textColor="@color/common_text_1"
+        android:textSize="@dimen/d_15dp"
+        tools:text="ETH"
+        />
+    <TextView
+        android:id="@+id/endname"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|bottom"
+        android:maxLines="1"
+        android:textColor="@color/common_text_6"
+        android:layout_marginLeft="@dimen/d_2dp"
+        android:textSize="@dimen/d_13dp"
+        tools:text="/ETH"
+        />
+</LinearLayout>
+
+
+            <TextView
+                android:id="@+id/coinnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/common_text_6"
+                android:textSize="@dimen/d_12dp"
+                tools:text="ETH"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical|end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/coinprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/common_red"
+                android:textSize="@dimen/d_15dp"
+                tools:text="ETH"
+                />
+
+            <TextView
+                android:id="@+id/coinrmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/common_text_6"
+                android:textSize="@dimen/d_12dp"
+                tools:text="ETH"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/bili"
+            android:layout_width="@dimen/d_75dp"
+            android:layout_height="@dimen/d_33dp"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:background="@drawable/common_button_buleshape"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_12dp"
+            tools:text="ETH"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_gradient"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/maxPrice"
+                android:textColor="@color/common_text_6"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/minPrice"
+                android:textColor="@color/common_text_6"
+                android:textSize="14sp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/d_5dp">
+
+            <TextView
+                android:id="@+id/maxprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/common_text_1"
+                android:textSize="13sp"
+                tools:text="1"
+                />
+
+            <TextView
+                android:id="@+id/minprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/common_text_1"
+                android:textSize="14sp"
+                tools:text="0"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_linechart"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_34dp"
+            android:layout_marginRight="@dimen/d_34dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/d_8dp"
+                android:text="@string/onesecond"
+                android:textColor="@color/common_text_6"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/d_8dp"
+                android:text="@string/fifteen"
+                android:textColor="@color/common_text_6"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/chart_shape"
+                android:gravity="center"
+                android:padding="@dimen/d_8dp"
+                android:text="@string/onehour"
+                android:textColor="@color/common_text_1"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/d_8dp"
+                android:text="@string/oneday"
+                android:textColor="@color/common_text_6"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_time5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/d_10dp"
+                android:text="@string/oneweek"
+                android:textColor="@color/common_text_6"
+                android:textSize="13sp"
+                />
+
+        </LinearLayout>
+
+        <com.github.mikephil.charting.stockChart.view.KLineView
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginRight="@dimen/d_12dp"
+            android:layout_marginLeft="@dimen/d_12dp"
+            android:background="#ffffff"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/d_15dp"
+            android:layout_marginLeft="@dimen/d_25dp"
+            android:layout_marginRight="@dimen/d_25dp"
+            android:layout_marginTop="@dimen/d_10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_collection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:layout_weight="1"
+                android:background="@drawable/common_bg_gray_corners"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/tv_coll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/d_30dp"
+                    android:drawableLeft="@mipmap/optional_unselect"
+                    android:drawablePadding="@dimen/d_10dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/cacelfav"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="@dimen/d_12dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_transation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/common_bg_gray_corners"
+                android:gravity="center"
+                android:paddingLeft="@dimen/d_15dp"
+                android:paddingRight="@dimen/d_15dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/d_30dp"
+                    android:drawableLeft="@mipmap/transtin"
+                    android:drawablePadding="@dimen/d_10dp"
+                    android:gravity="center"
+                    android:text="@string/Trade"
+                    android:maxLines="1"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

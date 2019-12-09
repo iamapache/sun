@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="loadings">loading...</string>
+    <string name="no_data">No Data</string>
+    <string name="vol_name">turnover</string>
+    <string name="billions_shou">Billion hand</string>
+    <string name="millions_shou">All hands</string>
+    <string name="shou">hands</string>
+    <string name="billions_gu">億股</string>
+    <string name="millions_gu">萬股</string>
+    <string name="gu">股</string>
+    <string name="linekai">open:</string>
+    <string name="lineheight">height:</string>
+    <string name="linelow">low:</string>
+    <string name="lineput">put:</string>
+    <string name="linenum">num:</string>
+    <string name="transnumber">number</string>
+</resources>

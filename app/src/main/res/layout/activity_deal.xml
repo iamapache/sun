@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorTheme">
+
+        <LinearLayout
+            android:id="@+id/toolbar_left_btn_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/toolbar_left_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:background="@mipmap/icon_back"
+                />
+
+            <TextView
+                android:id="@+id/toolbar_left_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="@string/back"
+                android:textColor="@color/white"
+                android:textSize="@dimen/d_18dp"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/toolbar_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:drawableRight="@mipmap/icon_down"
+            android:drawablePadding="@dimen/d_10dp"
+            android:gravity="center"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_18dp"/>
+
+        <LinearLayout
+            android:id="@+id/toolbar_right_btn_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/toolbar_right_btn"
+                android:layout_width="@dimen/d_20dp"
+                android:layout_height="@dimen/d_20dp"
+                android:layout_marginRight="15dp"
+                android:background="@mipmap/img_collect"
+                android:gravity="center"
+                android:textColor="#fff"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/d_44dp"
+        android:orientation="vertical">
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_100dp"/>
+
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="@dimen/d_50dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_lan"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tab"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/d_40dp"
+                        android:layout_weight="1"
+                        android:background="@color/common_lan"
+                        app:tabBackground="@color/common_lan"
+                        app:tabIndicatorColor="@color/common_red"
+                        app:tabIndicatorHeight="@dimen/d_2dp"
+                        app:tabMode="scrollable"
+                        app:tabSelectedTextColor="@color/common_red"
+                        app:tabTextColor="@color/white"/>
+
+                    <ImageView
+                        android:id="@+id/fullscreen"
+                        android:layout_width="@dimen/d_20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_15dp"
+                        android:layout_marginRight="@dimen/d_15dp"
+                        android:background="@mipmap/fullscreen"/>
+                </LinearLayout>
+
+                <com.madaex.exchange.common.view.NoScrollViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="404dp"
+                    android:background="@color/white"/>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_40dp"
+                    android:background="@color/common_slan"
+                    app:tabBackground="@color/common_slan"
+                    app:tabIndicatorColor="@color/common_red"
+                    app:tabIndicatorHeight="@dimen/d_2dp"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/common_red"
+                    app:tabTextColor="@color/white"/>
+
+                <com.madaex.exchange.view.WrapContentHeightViewPager
+                    android:id="@+id/pager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_50dp"
+            android:layout_weight="1"
+            android:background="@color/common_red"
+            android:gravity="center"
+            android:text="买入MT"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_18dp"/>
+
+        <TextView
+            android:id="@+id/tv_seller"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_50dp"
+            android:layout_weight="1"
+            android:background="@color/common_green"
+            android:gravity="center"
+            android:text="卖出MT"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_18dp"/>
+    </LinearLayout>
+</RelativeLayout>

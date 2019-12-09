@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:background="@mipmap/icon_blanck_back"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/Retrieveloginpassword"
+                android:textColor="@color/common_text_333"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/id_page1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="81dp"
+                android:gravity="center"
+                android:text="@string/Mobilephoneback"
+                android:textColor="@color/common_text_333"
+                android:textSize="16dp"/>
+
+            <View
+                android:id="@+id/under_line1"
+                android:layout_width="62dp"
+                android:layout_height="3dp"
+                android:layout_below="@id/id_page1"
+                android:layout_marginLeft="79dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/title_color"/>
+
+            <TextView
+                android:id="@+id/id_page2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="81dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/Emailback"
+                android:textColor="@color/common_text_333"
+                android:textSize="16dp"/>
+
+            <View
+                android:id="@+id/under_line2"
+                android:layout_width="62dp"
+                android:layout_height="3dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/id_page2"
+                android:layout_marginRight="79dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/title_color"
+                android:visibility="invisible"/>
+
+        </RelativeLayout>
+
+        <com.madaex.exchange.common.view.NoScrollViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="22dp"
+            android:background="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

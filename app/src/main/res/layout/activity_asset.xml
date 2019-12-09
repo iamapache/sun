@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_btn_src="@mipmap/mark_list"
+        app:right_btn_visible="false"
+        app:title_color="@color/white"
+        app:title_text="@string/finance_spot_assets"
+        app:title_visible="true"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/colorTheme"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/totalAssets"
+                    android:textColor="@color/common_title_unbg"
+                    android:textSize="17dp"/>
+
+                <TextView
+                    android:id="@+id/cny"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_8dp"
+                    android:text="￥0.00"
+                    android:textColor="@color/title_color"
+                    android:textSize="25dp"/>
+
+                <TextView
+                    android:id="@+id/dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_8dp"
+                    android:text="$0.00"
+                    android:textColor="@color/title_color"
+                    android:textSize="16dp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/d_10dp"
+                android:background="@drawable/common_shape_corner"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/search_asset"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_35dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawableLeft="@mipmap/icon_search"
+                    android:drawablePadding="@dimen/d_5dp"
+                    android:hint="@string/searchAssets"
+                    android:padding="@dimen/d_5dp"
+                    android:maxLines="1"
+                    android:textColor="@color/common_text_2"
+                    android:textColorHint="@color/colorCutOffSide"
+                    android:textSize="@dimen/d_14dp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/d_10dp"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@color/common_title_unbg"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:text="@string/yingcang"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="@dimen/d_14dp"/>
+
+                <CheckBox
+                    android:id="@+id/cb_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:background="@android:color/transparent"
+                    android:button="@drawable/check_regist_selector"
+                    android:checked="false"
+                    android:gravity="center_vertical"
+                    />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

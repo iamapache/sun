@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/finance_vote"
+        app:title_visible="true"/>
+
+    <LinearLayout
+        android:id="@+id/ll_bg"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@mipmap/bg_votecoin"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/transtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_5dp"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:text="@string/finance_vote"/>
+
+        <TextView
+            android:id="@+id/transmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:text="@string/onebyone"/>
+
+        <TextView
+            android:id="@+id/transstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/d_5dp"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:textColor="@color/white"
+            android:padding="@dimen/d_5dp"
+            android:background="@drawable/common_white_unshape"
+            android:textSize="16dp"
+            android:text="@string/rule"/>
+    </LinearLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_40dp"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/title_color"
+        app:tabIndicatorHeight="@dimen/d_2dp"
+        app:tabMode="fixed"
+        app:tabBackground="@color/white"
+        app:tabSelectedTextColor="@color/title_color"
+        app:tabTextColor="@color/common_text_6"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_tv_text="@string/record"
+        app:right_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text=""
+        app:title_visible="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/AvailableBalance"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="0"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/d_16dp"/>
+
+        <TextView
+            android:id="@+id/cointype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" MT"
+            android:textColor="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/ReceivingAddress"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:text=""
+            android:hint="@string/entryreturnaddress"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/Account"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/entrureturnnumber"
+            android:inputType="numberDecimal"
+            android:maxLength="6"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/Fee"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_kgf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/icon_right"
+            android:gravity="center_vertical"
+            android:text="0%"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdbb"
+        android:drawableLeft="@mipmap/kgf"
+        android:drawablePadding="@dimen/d_5dp"
+        android:padding="@dimen/d_8dp"
+        android:text="@string/feenodata"
+        android:textColor="@color/common_text_6"
+        android:textSize="@dimen/d_12dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_neibu"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/internaltransfer"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <ToggleButton
+            android:id="@+id/togglebutton"
+            android:layout_width="@dimen/d_60dp"
+            android:layout_height="@dimen/d_40dp"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:background="@drawable/selector_butn_toggle"
+            android:checked="true"
+            android:text=""
+            android:textOff=""
+            android:textOn=""/>
+
+    </LinearLayout>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdbb"
+        android:drawableLeft="@mipmap/kgf"
+        android:drawablePadding="@dimen/d_5dp"
+        android:padding="@dimen/d_8dp"
+        android:text="@string/agreetrans"
+        android:textColor="@color/common_text_6"
+        android:textSize="@dimen/d_12dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/submit"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/oksellerbill"/>
+</LinearLayout>

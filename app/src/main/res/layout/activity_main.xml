@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:focusable="false"
+              android:focusableInTouchMode="false"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.madaex.exchange.common.view.NoScrollViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <View
+            style="@style/CrossCutOffSideStyle"
+            />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_52dp"
+            app:tabBackground="@color/white"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="@color/title_color"
+            app:tabTextAppearance="@style/tabTextSizeStyle"
+            app:tabTextColor="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

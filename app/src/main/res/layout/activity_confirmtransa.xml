@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_btn_src="@mipmap/mark_list"
+        app:right_btn_visible="false"
+        app:title_color="@color/white"
+        app:title_text="现货资产"
+        app:title_visible="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="@dimen/d_70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/number"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/title_color"
+            android:textSize="@dimen/d_16dp"/>
+
+        <TextView
+            android:id="@+id/billtype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:text=" MT"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="@dimen/d_70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/Fee"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <TextView
+            android:id="@+id/tv_fee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="@dimen/d_70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/address"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdbb"
+        android:drawableLeft="@mipmap/kgf"
+        android:drawablePadding="@dimen/d_5dp"
+        android:padding="@dimen/d_8dp"
+        android:text="@string/safevi"
+        android:textColor="@color/common_text_6"
+        android:textSize="@dimen/d_12dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_44dp"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:text="@string/transactionpass"
+                android:textColor="@color/common_text_1"
+                android:textSize="@dimen/d_16dp"/>
+
+
+            <EditText
+                android:id="@+id/tv_transpassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:background="@null"
+                android:hint="@string/entrytranspwd"
+                android:inputType="textPassword"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="@dimen/d_16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_44dp"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:background="@color/white"
+            android:gravity="center_vertical">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:text="@string/DynamicVerification"
+                android:textColor="@color/common_text_1"
+                android:textSize="@dimen/d_16dp"/>
+
+
+            <EditText
+                android:id="@+id/tv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/entryDynamicVerification"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="@dimen/d_16dp"/>
+
+            <com.madaex.exchange.common.view.TimerText
+                android:id="@+id/getcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:background="@drawable/code_shape"
+                android:padding="7dp"
+                android:text="@string/get_code"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:default_text="@string/get_code"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/ButtonStyle"
+
+            android:layout_marginTop="@dimen/d_30dp"
+            android:text="@string/oksellerbill"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:id="@+id/ll_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/statusimg"
+            android:layout_marginTop="@dimen/d_25dp"
+            android:background="@mipmap/pay_success"
+            android:layout_width="@dimen/d_70dp"
+            android:layout_height="@dimen/d_70dp"/>
+        <TextView
+            android:id="@+id/statusmsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:text="@string/sbmitsuccess"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <Button
+            android:id="@+id/gohome"
+            style="@style/ButtonStyle"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/gohome"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_44dp"
+            android:id="@+id/golist"
+           android:background="@drawable/common_button_geayshape"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/lookrecord"/>
+    </LinearLayout>
+</LinearLayout>

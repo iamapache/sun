@@ -1,0 +1,1346 @@
+ [
+    {
+      "englishName": "Afghanistan",
+      "chineseName": "阿富汗",
+      "abbreviation": "AF",
+      "phoneCode": "93",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Albania",
+      "chineseName": "阿尔巴尼亚 ",
+      "abbreviation": "AL",
+      "phoneCode": "355",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Algeria",
+      "chineseName": "阿尔及利亚",
+      "abbreviation": "DZ",
+      "phoneCode": "213",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Andorra",
+      "chineseName": "安道尔共和国",
+      "abbreviation": "AD",
+      "phoneCode": "376",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Angola",
+      "chineseName": "安哥拉",
+      "abbreviation": "AO",
+      "phoneCode": "244",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Anguilla",
+      "chineseName": "安圭拉岛",
+      "abbreviation": "AI",
+      "phoneCode": "1264",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Antigua and Barbuda",
+      "chineseName": "安提瓜和巴布达",
+      "abbreviation": "AG",
+      "phoneCode": "1268",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Argentina",
+      "chineseName": "阿根廷",
+      "abbreviation": "AR",
+      "phoneCode": "54",
+      "torontoDiff": 2
+    },
+    {
+      "englishName": "Armenia",
+      "chineseName": "亚美尼亚",
+      "abbreviation": "AM",
+      "phoneCode": "374",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Ascension",
+      "chineseName": "阿森松",
+      "abbreviation": "　",
+      "phoneCode": "247",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Australia",
+      "chineseName": "澳大利亚",
+      "abbreviation": "AU",
+      "phoneCode": "61",
+      "torontoDiff": 15
+    },
+    {
+      "englishName": "Austria",
+      "chineseName": "奥地利",
+      "abbreviation": "AT",
+      "phoneCode": "43",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Azerbaijan",
+      "chineseName": "阿塞拜疆",
+      "abbreviation": "AZ",
+      "phoneCode": "994",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Bahamas",
+      "chineseName": "巴哈马",
+      "abbreviation": "BS",
+      "phoneCode": "1242",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Bahrain",
+      "chineseName": "巴林",
+      "abbreviation": "BH",
+      "phoneCode": "973",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Bangladesh",
+      "chineseName": "孟加拉国",
+      "abbreviation": "BD",
+      "phoneCode": "880",
+      "torontoDiff": 11
+    },
+    {
+      "englishName": "Barbados",
+      "chineseName": "巴巴多斯",
+      "abbreviation": "BB",
+      "phoneCode": "1246",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Belarus",
+      "chineseName": "白俄罗斯",
+      "abbreviation": "BY",
+      "phoneCode": "375",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Belgium",
+      "chineseName": "比利时",
+      "abbreviation": "BE",
+      "phoneCode": "32",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Belize",
+      "chineseName": "伯利兹",
+      "abbreviation": "BZ",
+      "phoneCode": "501",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Benin",
+      "chineseName": "贝宁",
+      "abbreviation": "BJ",
+      "phoneCode": "229",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "BermudaIs.",
+      "chineseName": "百慕大群岛",
+      "abbreviation": "BM",
+      "phoneCode": "1441",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Bolivia",
+      "chineseName": "玻利维亚",
+      "abbreviation": "BO",
+      "phoneCode": "591",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Botswana",
+      "chineseName": "博茨瓦纳",
+      "abbreviation": "BW",
+      "phoneCode": "267",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Brazil",
+      "chineseName": "巴西",
+      "abbreviation": "BR",
+      "phoneCode": "55",
+      "torontoDiff": 2
+    },
+    {
+      "englishName": "Brunei",
+      "chineseName": "文莱",
+      "abbreviation": "BN",
+      "phoneCode": "673",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Bulgaria",
+      "chineseName": "保加利亚",
+      "abbreviation": "BG",
+      "phoneCode": "359",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Burkina-faso",
+      "chineseName": "布基纳法索",
+      "abbreviation": "BF",
+      "phoneCode": "226",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Burma",
+      "chineseName": "缅甸",
+      "abbreviation": "MM",
+      "phoneCode": "95",
+      "torontoDiff": 12
+    },
+    {
+      "englishName": "Burundi",
+      "chineseName": "布隆迪",
+      "abbreviation": "BI",
+      "phoneCode": "257",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Cameroon",
+      "chineseName": "喀麦隆",
+      "abbreviation": "CM",
+      "phoneCode": "237",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Canada",
+      "chineseName": "加拿大",
+      "abbreviation": "CA",
+      "phoneCode": "1",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Cayman Is.",
+      "chineseName": "开曼群岛",
+      "abbreviation": "　",
+      "phoneCode": "1345",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Central African Republic",
+      "chineseName": "中非共和国 ",
+      "abbreviation": "CF",
+      "phoneCode": "236",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Chad",
+      "chineseName": "乍得",
+      "abbreviation": "TD",
+      "phoneCode": "235",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Chile",
+      "chineseName": "智利",
+      "abbreviation": "CL",
+      "phoneCode": "56",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "China",
+      "chineseName": "中国",
+      "abbreviation": "CN",
+      "phoneCode": "86",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Colombia",
+      "chineseName": "哥伦比亚",
+      "abbreviation": "CO",
+      "phoneCode": "57",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Congo",
+      "chineseName": "刚果",
+      "abbreviation": "CG",
+      "phoneCode": "242",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Cook Is.",
+      "chineseName": "库克群岛",
+      "abbreviation": "CK",
+      "phoneCode": "682",
+      "torontoDiff": -5
+    },
+    {
+      "englishName": "Costa Rica",
+      "chineseName": "哥斯达黎加",
+      "abbreviation": "CR",
+      "phoneCode": "506",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Cuba",
+      "chineseName": "古巴",
+      "abbreviation": "CU",
+      "phoneCode": "53",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Cyprus",
+      "chineseName": "塞浦路斯",
+      "abbreviation": "CY",
+      "phoneCode": "357",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Czech Republic",
+      "chineseName": "捷克",
+      "abbreviation": "CZ",
+      "phoneCode": "420",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Denmark",
+      "chineseName": "丹麦",
+      "abbreviation": "DK",
+      "phoneCode": "45",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Djibouti",
+      "chineseName": "吉布提",
+      "abbreviation": "DJ",
+      "phoneCode": "253",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Dominica Rep.",
+      "chineseName": "多米尼加共和国",
+      "abbreviation": "DO",
+      "phoneCode": "1890",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Ecuador",
+      "chineseName": "厄瓜多尔",
+      "abbreviation": "EC",
+      "phoneCode": "593",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Egypt",
+      "chineseName": "埃及",
+      "abbreviation": "EG",
+      "phoneCode": "20",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "EISalvador",
+      "chineseName": "萨尔瓦多",
+      "abbreviation": "SV",
+      "phoneCode": "503",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Estonia",
+      "chineseName": "爱沙尼亚",
+      "abbreviation": "EE",
+      "phoneCode": "372",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Ethiopia",
+      "chineseName": "埃塞俄比亚",
+      "abbreviation": "ET",
+      "phoneCode": "251",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Fiji",
+      "chineseName": "斐济",
+      "abbreviation": "FJ",
+      "phoneCode": "679",
+      "torontoDiff": 17
+    },
+    {
+      "englishName": "Finland",
+      "chineseName": "芬兰",
+      "abbreviation": "FI",
+      "phoneCode": "358",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "France",
+      "chineseName": "法国",
+      "abbreviation": "FR",
+      "phoneCode": "33",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "French Guiana",
+      "chineseName": "法属圭亚那",
+      "abbreviation": "GF",
+      "phoneCode": "594",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "French Polynesia",
+      "chineseName": "法属玻利尼西亚",
+      "abbreviation": "PF",
+      "phoneCode": "689",
+      "torontoDiff": 16
+    },
+    {
+      "englishName": "Gabon",
+      "chineseName": "加蓬",
+      "abbreviation": "GA",
+      "phoneCode": "241",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Gambia",
+      "chineseName": "冈比亚",
+      "abbreviation": "GM",
+      "phoneCode": "220",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Georgia",
+      "chineseName": "格鲁吉亚",
+      "abbreviation": "GE",
+      "phoneCode": "995",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Germany",
+      "chineseName": "德国",
+      "abbreviation": "DE",
+      "phoneCode": "49",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Ghana",
+      "chineseName": "加纳",
+      "abbreviation": "GH",
+      "phoneCode": "233",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Gibraltar",
+      "chineseName": "直布罗陀",
+      "abbreviation": "GI",
+      "phoneCode": "350",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Greece",
+      "chineseName": "希腊",
+      "abbreviation": "GR",
+      "phoneCode": "30",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Grenada",
+      "chineseName": "格林纳达",
+      "abbreviation": "GD",
+      "phoneCode": "1809",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Guam",
+      "chineseName": "关岛",
+      "abbreviation": "GU",
+      "phoneCode": "1671",
+      "torontoDiff": 15
+    },
+    {
+      "englishName": "Guatemala",
+      "chineseName": "危地马拉",
+      "abbreviation": "GT",
+      "phoneCode": "502",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Guinea",
+      "chineseName": "几内亚",
+      "abbreviation": "GN",
+      "phoneCode": "224",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Guyana",
+      "chineseName": "圭亚那",
+      "abbreviation": "GY",
+      "phoneCode": "592",
+      "torontoDiff": 2
+    },
+    {
+      "englishName": "Haiti",
+      "chineseName": "海地",
+      "abbreviation": "HT",
+      "phoneCode": "509",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Honduras",
+      "chineseName": "洪都拉斯",
+      "abbreviation": "HN",
+      "phoneCode": "504",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Hongkong",
+      "chineseName": "香港",
+      "abbreviation": "HK",
+      "phoneCode": "852",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Hungary",
+      "chineseName": "匈牙利",
+      "abbreviation": "HU",
+      "phoneCode": "36",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Iceland",
+      "chineseName": "冰岛",
+      "abbreviation": "IS",
+      "phoneCode": "354",
+      "torontoDiff": 4
+    },
+    {
+      "englishName": "India",
+      "chineseName": "印度",
+      "abbreviation": "IN",
+      "phoneCode": "91",
+      "torontoDiff": 11
+    },
+    {
+      "englishName": "Indonesia",
+      "chineseName": "印度尼西亚",
+      "abbreviation": "ID",
+      "phoneCode": "62",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Iran",
+      "chineseName": "伊朗",
+      "abbreviation": "IR",
+      "phoneCode": "98",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Iraq",
+      "chineseName": "伊拉克",
+      "abbreviation": "IQ",
+      "phoneCode": "964",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Ireland",
+      "chineseName": "爱尔兰",
+      "abbreviation": "IE",
+      "phoneCode": "353",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Israel",
+      "chineseName": "以色列",
+      "abbreviation": "IL",
+      "phoneCode": "972",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Italy",
+      "chineseName": "意大利",
+      "abbreviation": "IT",
+      "phoneCode": "39",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "IvoryCoast",
+      "chineseName": "科特迪瓦",
+      "abbreviation": "　",
+      "phoneCode": "225",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Jamaica",
+      "chineseName": "牙买加",
+      "abbreviation": "JM",
+      "phoneCode": "1876",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Japan",
+      "chineseName": "日本",
+      "abbreviation": "JP",
+      "phoneCode": "81",
+      "torontoDiff": 14
+    },
+    {
+      "englishName": "Jordan",
+      "chineseName": "约旦",
+      "abbreviation": "JO",
+      "phoneCode": "962",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Kampuchea (Cambodia )",
+      "chineseName": "柬埔寨",
+      "abbreviation": "KH",
+      "phoneCode": "855",
+      "torontoDiff": 12
+    },
+    {
+      "englishName": "Kazakstan",
+      "chineseName": "哈萨克斯坦 ",
+      "abbreviation": "KZ",
+      "phoneCode": "327",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Kenya",
+      "chineseName": "肯尼亚",
+      "abbreviation": "KE",
+      "phoneCode": "254",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Korea",
+      "chineseName": "韩国",
+      "abbreviation": "KR",
+      "phoneCode": "82",
+      "torontoDiff": 14
+    },
+    {
+      "englishName": "Kuwait",
+      "chineseName": "科威特",
+      "abbreviation": "KW",
+      "phoneCode": "965",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Kyrgyzstan",
+      "chineseName": "吉尔吉斯坦 ",
+      "abbreviation": "KG",
+      "phoneCode": "331",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Laos",
+      "chineseName": "老挝",
+      "abbreviation": "LA",
+      "phoneCode": "856",
+      "torontoDiff": 12
+    },
+    {
+      "englishName": "Latvia",
+      "chineseName": "拉脱维亚",
+      "abbreviation": "LV",
+      "phoneCode": "371",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Lebanon",
+      "chineseName": "黎巴嫩",
+      "abbreviation": "LB",
+      "phoneCode": "961",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Lesotho",
+      "chineseName": "莱索托",
+      "abbreviation": "LS",
+      "phoneCode": "266",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Liberia",
+      "chineseName": "利比里亚",
+      "abbreviation": "LR",
+      "phoneCode": "231",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Libya",
+      "chineseName": "利比亚",
+      "abbreviation": "LY",
+      "phoneCode": "218",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Liechtenstein",
+      "chineseName": "列支敦士登",
+      "abbreviation": "LI",
+      "phoneCode": "423",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Lithuania",
+      "chineseName": "立陶宛",
+      "abbreviation": "LT",
+      "phoneCode": "370",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Luxembourg",
+      "chineseName": "卢森堡",
+      "abbreviation": "LU",
+      "phoneCode": "352",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Macao",
+      "chineseName": "澳门",
+      "abbreviation": "MO",
+      "phoneCode": "853",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Madagascar",
+      "chineseName": "马达加斯加",
+      "abbreviation": "MG",
+      "phoneCode": "261",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Malawi",
+      "chineseName": "马拉维",
+      "abbreviation": "MW",
+      "phoneCode": "265",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Malaysia",
+      "chineseName": "马来西亚",
+      "abbreviation": "MY",
+      "phoneCode": "60",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Maldives",
+      "chineseName": "马尔代夫",
+      "abbreviation": "MV",
+      "phoneCode": "960",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Mali",
+      "chineseName": "马里",
+      "abbreviation": "ML",
+      "phoneCode": "223",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Malta",
+      "chineseName": "马耳他",
+      "abbreviation": "MT",
+      "phoneCode": "356",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Mariana Is",
+      "chineseName": "马里亚那群岛",
+      "abbreviation": "　",
+      "phoneCode": "1670",
+      "torontoDiff": 14
+    },
+    {
+      "englishName": "Martinique",
+      "chineseName": "马提尼克",
+      "abbreviation": "　",
+      "phoneCode": "596",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Mauritius",
+      "chineseName": "毛里求斯",
+      "abbreviation": "MU",
+      "phoneCode": "230",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Mexico",
+      "chineseName": "墨西哥",
+      "abbreviation": "MX",
+      "phoneCode": "52",
+      "torontoDiff": -2
+    },
+    {
+      "englishName": "Moldova, Republic of",
+      "chineseName": "摩尔多瓦",
+      "abbreviation": "MD",
+      "phoneCode": "373",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Monaco",
+      "chineseName": "摩纳哥",
+      "abbreviation": "MC",
+      "phoneCode": "377",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Mongolia",
+      "chineseName": "蒙古",
+      "abbreviation": "MN",
+      "phoneCode": "976",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Montserrat Is",
+      "chineseName": "蒙特塞拉特岛",
+      "abbreviation": "MS",
+      "phoneCode": "1664",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Morocco",
+      "chineseName": "摩洛哥",
+      "abbreviation": "MA",
+      "phoneCode": "212",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Mozambique",
+      "chineseName": "莫桑比克",
+      "abbreviation": "MZ",
+      "phoneCode": "258",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Namibia",
+      "chineseName": "纳米比亚",
+      "abbreviation": "NA",
+      "phoneCode": "264",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Nauru",
+      "chineseName": "瑙鲁",
+      "abbreviation": "NR",
+      "phoneCode": "674",
+      "torontoDiff": 17
+    },
+    {
+      "englishName": "Nepal",
+      "chineseName": "尼泊尔",
+      "abbreviation": "NP",
+      "phoneCode": "977",
+      "torontoDiff": 11
+    },
+    {
+      "englishName": "Netheriands Antilles",
+      "chineseName": "荷属安的列斯",
+      "abbreviation": "　",
+      "phoneCode": "599",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Netherlands ",
+      "chineseName": "荷兰",
+      "abbreviation": "NL",
+      "phoneCode": "31",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "NewZealand",
+      "chineseName": "新西兰",
+      "abbreviation": "NZ",
+      "phoneCode": "64",
+      "torontoDiff": 17
+    },
+    {
+      "englishName": "Nicaragua",
+      "chineseName": "尼加拉瓜",
+      "abbreviation": "NI",
+      "phoneCode": "505",
+      "torontoDiff": -1
+    },
+    {
+      "englishName": "Niger",
+      "chineseName": "尼日尔",
+      "abbreviation": "NE",
+      "phoneCode": "227",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Nigeria",
+      "chineseName": "尼日利亚",
+      "abbreviation": "NG",
+      "phoneCode": "234",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "North Korea",
+      "chineseName": "朝鲜",
+      "abbreviation": "KP",
+      "phoneCode": "850",
+      "torontoDiff": 14
+    },
+    {
+      "englishName": "Norway",
+      "chineseName": "挪威",
+      "abbreviation": "NO",
+      "phoneCode": "47",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Oman",
+      "chineseName": "阿曼",
+      "abbreviation": "OM",
+      "phoneCode": "968",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Pakistan",
+      "chineseName": "巴基斯坦",
+      "abbreviation": "PK",
+      "phoneCode": "92",
+      "torontoDiff": 11
+    },
+    {
+      "englishName": "Panama",
+      "chineseName": "巴拿马",
+      "abbreviation": "PA",
+      "phoneCode": "507",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Papua New Cuinea",
+      "chineseName": "巴布亚新几内亚",
+      "abbreviation": "PG",
+      "phoneCode": "675",
+      "torontoDiff": 15
+    },
+    {
+      "englishName": "Paraguay",
+      "chineseName": "巴拉圭",
+      "abbreviation": "PY",
+      "phoneCode": "595",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Peru",
+      "chineseName": "秘鲁",
+      "abbreviation": "PE",
+      "phoneCode": "51",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Philippines ",
+      "chineseName": "菲律宾",
+      "abbreviation": "PH",
+      "phoneCode": "63",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Poland",
+      "chineseName": "波兰",
+      "abbreviation": "PL",
+      "phoneCode": "48",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Portugal",
+      "chineseName": "葡萄牙",
+      "abbreviation": "PT",
+      "phoneCode": "351",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "PuertoRico",
+      "chineseName": "波多黎各",
+      "abbreviation": "PR",
+      "phoneCode": "1787",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Qatar",
+      "chineseName": "卡塔尔",
+      "abbreviation": "QA",
+      "phoneCode": "974",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Reunion",
+      "chineseName": "留尼旺",
+      "abbreviation": "　",
+      "phoneCode": "262",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Romania",
+      "chineseName": "罗马尼亚",
+      "abbreviation": "RO",
+      "phoneCode": "40",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Russia",
+      "chineseName": "俄罗斯",
+      "abbreviation": "RU",
+      "phoneCode": "7",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Saint Lueia",
+      "chineseName": "圣卢西亚",
+      "abbreviation": "LC",
+      "phoneCode": "1758",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Saint Vincent",
+      "chineseName": "圣文森特岛 ",
+      "abbreviation": "VC",
+      "phoneCode": "1784",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Samoa Eastern",
+      "chineseName": "东萨摩亚(美)",
+      "abbreviation": "　",
+      "phoneCode": "684",
+      "torontoDiff": -6
+    },
+    {
+      "englishName": "Samoa Western",
+      "chineseName": "西萨摩亚",
+      "abbreviation": "　",
+      "phoneCode": "685",
+      "torontoDiff": -6
+    },
+    {
+      "englishName": "San Marino",
+      "chineseName": "圣马力诺",
+      "abbreviation": "SM",
+      "phoneCode": "378",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Sao Tome and Principe",
+      "chineseName": "圣多美和普林西比",
+      "abbreviation": "ST",
+      "phoneCode": "239",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Saudi Arabia",
+      "chineseName": "沙特阿拉伯",
+      "abbreviation": "SA",
+      "phoneCode": "966",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Senegal",
+      "chineseName": "塞内加尔",
+      "abbreviation": "SN",
+      "phoneCode": "221",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Seychelles",
+      "chineseName": "塞舌尔",
+      "abbreviation": "SC",
+      "phoneCode": "248",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "Sierra Leone",
+      "chineseName": "塞拉利昂",
+      "abbreviation": "SL",
+      "phoneCode": "232",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Singapore",
+      "chineseName": "新加坡",
+      "abbreviation": "SG",
+      "phoneCode": "65",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Slovakia",
+      "chineseName": "斯洛伐克",
+      "abbreviation": "SK",
+      "phoneCode": "421",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Slovenia",
+      "chineseName": "斯洛文尼亚 ",
+      "abbreviation": "SI",
+      "phoneCode": "386",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Solomon Is",
+      "chineseName": "所罗门群岛",
+      "abbreviation": "SB",
+      "phoneCode": "677",
+      "torontoDiff": 16
+    },
+    {
+      "englishName": "Somali",
+      "chineseName": "索马里",
+      "abbreviation": "SO",
+      "phoneCode": "252",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "South Africa",
+      "chineseName": "南非",
+      "abbreviation": "ZA",
+      "phoneCode": "27",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Spain",
+      "chineseName": "西班牙",
+      "abbreviation": "ES",
+      "phoneCode": "34",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Sri Lanka",
+      "chineseName": "斯里兰卡",
+      "abbreviation": "LK",
+      "phoneCode": "94",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "St.Lucia",
+      "chineseName": "圣卢西亚",
+      "abbreviation": "LC",
+      "phoneCode": "1758",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "St.Vincent",
+      "chineseName": "圣文森特",
+      "abbreviation": "VC",
+      "phoneCode": "1784",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Sudan",
+      "chineseName": "苏丹",
+      "abbreviation": "SD",
+      "phoneCode": "249",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Suriname",
+      "chineseName": "苏里南",
+      "abbreviation": "SR",
+      "phoneCode": "597",
+      "torontoDiff": 2
+    },
+    {
+      "englishName": "Swaziland",
+      "chineseName": "斯威士兰",
+      "abbreviation": "SZ",
+      "phoneCode": "268",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Sweden",
+      "chineseName": "瑞典",
+      "abbreviation": "SE",
+      "phoneCode": "46",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Switzerland ",
+      "chineseName": "瑞士",
+      "abbreviation": "CH",
+      "phoneCode": "41",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Syria",
+      "chineseName": "叙利亚",
+      "abbreviation": "SY",
+      "phoneCode": "963",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Taiwan",
+      "chineseName": "台湾省",
+      "abbreviation": "TW",
+      "phoneCode": "886",
+      "torontoDiff": 13
+    },
+    {
+      "englishName": "Tajikstan",
+      "chineseName": "塔吉克斯坦 ",
+      "abbreviation": "TJ",
+      "phoneCode": "992",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Tanzania",
+      "chineseName": "坦桑尼亚",
+      "abbreviation": "TZ",
+      "phoneCode": "255",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Thailand",
+      "chineseName": "泰国",
+      "abbreviation": "TH",
+      "phoneCode": "66",
+      "torontoDiff": 12
+    },
+    {
+      "englishName": "Togo",
+      "chineseName": "多哥",
+      "abbreviation": "TG",
+      "phoneCode": "228",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "Tonga",
+      "chineseName": "汤加",
+      "abbreviation": "TO",
+      "phoneCode": "676",
+      "torontoDiff": 17
+    },
+    {
+      "englishName": "Trinidad and Tobago",
+      "chineseName": "特立尼达和多巴哥",
+      "abbreviation": "TT",
+      "phoneCode": "1809",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Tunisia",
+      "chineseName": "突尼斯",
+      "abbreviation": "TN",
+      "phoneCode": "216",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Turkey",
+      "chineseName": "土耳其",
+      "abbreviation": "TR",
+      "phoneCode": "90",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Turkmenistan",
+      "chineseName": "土库曼斯坦 ",
+      "abbreviation": "TM",
+      "phoneCode": "993",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Uganda",
+      "chineseName": "乌干达",
+      "abbreviation": "UG",
+      "phoneCode": "256",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Ukraine",
+      "chineseName": "乌克兰",
+      "abbreviation": "UA",
+      "phoneCode": "380",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "United Arab Emirates",
+      "chineseName": "阿拉伯联合酋长国",
+      "abbreviation": "AE",
+      "phoneCode": "971",
+      "torontoDiff": 9
+    },
+    {
+      "englishName": "United Kiongdom",
+      "chineseName": "英国",
+      "abbreviation": "GB",
+      "phoneCode": "44",
+      "torontoDiff": 5
+    },
+    {
+      "englishName": "United States of America",
+      "chineseName": "美国",
+      "abbreviation": "US",
+      "phoneCode": "1",
+      "torontoDiff": 0
+    },
+    {
+      "englishName": "Uruguay",
+      "chineseName": "乌拉圭",
+      "abbreviation": "UY",
+      "phoneCode": "598",
+      "torontoDiff": 3
+    },
+    {
+      "englishName": "Uzbekistan",
+      "chineseName": "乌兹别克斯坦",
+      "abbreviation": "UZ",
+      "phoneCode": "233",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Venezuela",
+      "chineseName": "委内瑞拉",
+      "abbreviation": "VE",
+      "phoneCode": "58",
+      "torontoDiff": 1
+    },
+    {
+      "englishName": "Vietnam",
+      "chineseName": "越南",
+      "abbreviation": "VN",
+      "phoneCode": "84",
+      "torontoDiff": 12
+    },
+    {
+      "englishName": "Yemen",
+      "chineseName": "也门",
+      "abbreviation": "YE",
+      "phoneCode": "967",
+      "torontoDiff": 8
+    },
+    {
+      "englishName": "Yugoslavia",
+      "chineseName": "南斯拉夫",
+      "abbreviation": "YU",
+      "phoneCode": "381",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Zaire",
+      "chineseName": "扎伊尔",
+      "abbreviation": "ZR",
+      "phoneCode": "243",
+      "torontoDiff": 6
+    },
+    {
+      "englishName": "Zambia",
+      "chineseName": "赞比亚",
+      "abbreviation": "ZM",
+      "phoneCode": "260",
+      "torontoDiff": 7
+    },
+    {
+      "englishName": "Zimbabwe",
+      "chineseName": "津巴布韦",
+      "abbreviation": "ZW",
+      "phoneCode": "263",
+      "torontoDiff": 7
+    }
+  ]

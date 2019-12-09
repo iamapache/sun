@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tl="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_marginTop="@dimen/d_15dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:gravity="center_vertical">
+
+                <com.madaex.exchange.common.view.SegmentView
+                    android:id="@+id/segmentview"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+
+                    android:id="@+id/ll_pop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/d_35dp"
+                    android:background="@drawable/common_bg_gray_corners"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_5dp"
+                        android:layout_marginRight="@dimen/d_10dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@mipmap/icon_down"
+                        android:gravity="center"
+                        android:text="@string/time"
+                        android:textColor="@color/common_text_6"
+                        android:textSize="@dimen/d_12dp"/>
+
+                    <View
+                        android:layout_width="@dimen/d_1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d_5dp"
+                        android:layout_marginBottom="@dimen/d_5dp"
+                        android:background="@color/common_edbg"/>
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_5dp"
+                        android:layout_marginRight="@dimen/d_10dp"
+                        android:layout_weight="1"
+                        android:drawableRight="@mipmap/icon_down"
+                        android:gravity="center"
+                        android:text="@string/pricepx"
+                        android:textColor="@color/common_text_6"
+                        android:textSize="@dimen/d_12dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="@dimen/d_10dp"
+        android:background="@drawable/common_button_shape"
+        android:text="@string/Applywt"
+        android:visibility="gone"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text=""
+        app:title_visible="true"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/address"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/addr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:maxLength="64"
+            android:hint="@string/entryaddress"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/label"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/ususer"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/transactionpass"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:hint="@string/entrytranspw"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/DynamicVerification"
+            android:maxLines="1"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:maxLines="1"
+            android:hint="@string/dynamicverificationcode"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+        <com.madaex.exchange.common.view.TimerText
+            android:id="@+id/getcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:background="@drawable/code_shape"
+            android:padding="7dp"
+            android:text="@string/get_code"
+            app:default_text="@string/get_code"
+            android:textColor="@color/white"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/Confirm"
+        style="@style/ButtonStyle"/>
+</LinearLayout>

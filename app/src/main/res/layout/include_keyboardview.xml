@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.madaex.exchange.ui.market.view.MyKeyBoardView
+    android:id="@+id/keyboard_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:keyBackground="@drawable/keyboard_key"
+    android:keyPreviewOffset="0dp"
+    android:keyTextColor="#000"
+    android:shadowColor="#fff"
+    android:background="@color/white"
+    android:padding="@dimen/d_5dp"
+    android:shadowRadius="0.0"/>

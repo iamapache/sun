@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_tv_text="@string/record"
+        app:right_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text=""
+        app:title_visible="true"/>
+
+    <LinearLayout
+        android:id="@+id/ll_addr"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:maxLines="1"
+            android:text="@string/ReceivingAddress"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <TextView
+            android:id="@+id/billaddr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:drawableRight="@mipmap/icon_right"
+            android:maxLines="2"
+            android:text=" "
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:maxLines="1"
+            android:text="@string/Turnsaddress"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/entryreturnaddress"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:maxLines="1"
+            android:text="@string/Account"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/entrureturnnumber"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="8"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fffdbb"
+        android:drawableLeft="@mipmap/kgf"
+        android:drawablePadding="@dimen/d_5dp"
+        android:padding="@dimen/d_8dp"
+        android:text="@string/okconfirm"
+        android:textColor="#ff7632"
+        android:textSize="@dimen/d_12dp"/>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="@dimen/d_30dp"
+        android:text="@string/oksubmit"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:id="@+id/ll_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/statusimg"
+            android:layout_marginTop="@dimen/d_25dp"
+            android:background="@mipmap/pay_success"
+            android:layout_width="@dimen/d_70dp"
+            android:layout_height="@dimen/d_70dp"/>
+        <TextView
+            android:id="@+id/statusmsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:text="@string/sbmitsuccess"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+        <Button
+            android:id="@+id/gohome"
+            style="@style/ButtonStyle"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/gohome"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_44dp"
+            android:id="@+id/golist"
+            android:background="@drawable/common_button_geayshape"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/lookrecord"/>
+    </LinearLayout>
+</LinearLayout>

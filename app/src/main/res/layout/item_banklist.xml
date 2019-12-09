@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/d_127dp"
+              android:layout_marginTop="@dimen/d_15dp"
+              android:background="@mipmap/bg_bankcard"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/d_35dp"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/ll_delete"
+                android:layout_width="@dimen/d_14dp"
+                android:layout_height="@dimen/d_14dp"
+                android:background="@mipmap/bank_delete"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_45dp"
+            android:layout_marginRight="@dimen/d_35dp"
+            android:gravity="center_vertical"
+            >
+
+
+            <ImageView
+                android:id="@+id/bankimg"
+                android:layout_width="@dimen/d_36dp"
+                android:layout_height="@dimen/d_36dp"
+                android:background="@mipmap/bank_delete"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/bankname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/d_18dp"
+                        tools:text="xxxxx"/>
+
+                    <TextView
+                        android:id="@+id/banktype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_15dp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/d_12dp"
+                        tools:text="xxxxx"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/d_14dp"
+                    tools:text="xxxxx"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_92dp"
+            android:layout_marginRight="@dimen/d_35dp"
+            android:layout_marginTop="@dimen/d_20dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_14dp"
+            tools:text="xxxxx"/>
+    </LinearLayout>
+
+</LinearLayout>
