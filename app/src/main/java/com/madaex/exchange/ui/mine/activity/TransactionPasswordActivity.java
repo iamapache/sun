@@ -110,7 +110,7 @@ public class TransactionPasswordActivity extends BaseNetActivity<CommonPresenter
         params.put("verify_encode", verify_encode);
         params.put("type", "trade");
         params.put("password", mEtReplacepassword.getText().toString().trim());
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
 
