@@ -21,6 +21,8 @@ public class NcContract {
         void requestSuccess(PlatRecord commonBean);
         void requestSuccess(Ncrecord commonBean);
 
+
+
         void requestSuccess(CoinList commonBean);
     }
 
