@@ -4,6 +4,7 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.pay.bean.PlatRecord;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * 项目：  sunn
@@ -24,10 +25,10 @@ public class NcContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<NcContract.View> {
-        void getData(String str);
-        void getData2(String str);
-        void submit(String str);
-        void saveUserHeadImage(String str, ArrayList<String> pathList);
-        void getList(String str);
+        void getData(Map body);
+        void getData2(Map body);
+        void submit(Map body);
+        void saveUserHeadImage(Map body, ArrayList<String> pathList);
+        void getList(Map body);
     }
 }

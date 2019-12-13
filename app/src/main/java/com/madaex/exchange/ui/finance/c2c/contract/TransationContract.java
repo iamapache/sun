@@ -4,6 +4,8 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.c2c.bean.OrderFee;
 import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  TransationContract.java
@@ -22,7 +24,7 @@ public class TransationContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<TransationContract.View> {
-        void getData(String str);
-        void getView(String str);
+        void getData(Map map);
+        void getView(Map map);
     }
 }

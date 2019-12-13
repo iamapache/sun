@@ -131,7 +131,7 @@ public class LoginPasswordActivity extends BaseNetActivity<CommonPresenter> impl
         params.put("verify_encode", verify_encode);
         params.put("type", "login");
         params.put("password", mEtReplacepassword.getText().toString().trim());
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
 

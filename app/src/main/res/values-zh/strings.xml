@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">SUN</string>
+    <string name="app_name">GDC</string>
     <string name="exit_tips">再按一次退出程序</string>
-
+    <string name="item_onetran">交易</string>
+    <string name="item_home">首页</string>
     <string name="item_market">行情</string>
     <string name="item_buy">买入</string>
     <string name="item_seller">卖出</string>
-    <string name="item_finance">财务</string>
+    <string name="item_finance">资金</string>
     <string name="item_mine">个人</string>
     <string name="item_finance_cetener">财务中心</string>
     <string name="item_mine_cetener">个人中心</string>
@@ -198,7 +199,7 @@
     <string name="internaltransfer">内部转账</string>
     <string name="agreetrans">同意内部账号之间的转账不走区块链，0手续费0确认，急速到账</string>
     <string name="entrycardid">请输入您的证件号码（非必填）</string>
-    <string name="mdxieyi">我已阅读并同意《太阳系用户服务协议》</string>
+    <string name="mdxieyi">我已阅读并同意《金数云用户服务协议》</string>
     <string name="cancellations">全部撤单</string>
     <string name="close">关闭</string>
     <string name="Checkdelegate">查看委托</string>

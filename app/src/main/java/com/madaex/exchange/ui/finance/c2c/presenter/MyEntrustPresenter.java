@@ -9,7 +9,6 @@ import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.common.util.rsa;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.finance.c2c.bean.EntrusTwo;
@@ -19,6 +18,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -46,17 +46,14 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, MyEntrust>() {
                     @Override
                     public MyEntrust apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        MyEntrust commonBean = gson.fromJson(paramsStr, MyEntrust.class);
+                        MyEntrust commonBean = gson.fromJson(data, MyEntrust.class);
                         return commonBean;
                     }
                 })
@@ -74,17 +71,14 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void cancel(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void cancel(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -102,17 +96,14 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void getData2(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData2(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, EntrusTwo>() {
                     @Override
                     public EntrusTwo apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        EntrusTwo commonBean = gson.fromJson(paramsStr, EntrusTwo.class);
+                        EntrusTwo commonBean = gson.fromJson(data, EntrusTwo.class);
                         return commonBean;
                     }
                 })
@@ -130,17 +121,14 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void order_pay(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void order_pay(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -158,7 +146,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void saveUserHeadImage(String str, ArrayList<String> pathList) {
+    public void saveUserHeadImage(Map body, ArrayList<String> pathList) {
 //        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
         File file = new File(pathList.get(0));
         RequestBody requestFile =
@@ -167,7 +155,6 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
 // MultipartBody.Part  和后端约定好Key，这里的partName是用image
         MultipartBody.Part multipartBody =
                 MultipartBody.Part.createFormData(" pay_img", file.getName(), requestFile);
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
         addSubscribe((Disposable) rxApi.saveUserHeadImage(body,multipartBody)
                 .map(new Function<String, CommonBean>() {
                     @Override
@@ -194,17 +181,14 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
     }
 
     @Override
-    public void order_confirm(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void order_confirm(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })

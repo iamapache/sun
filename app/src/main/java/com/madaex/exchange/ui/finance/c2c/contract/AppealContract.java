@@ -1,7 +1,8 @@
 package com.madaex.exchange.ui.finance.c2c.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
-import com.madaex.exchange.ui.finance.c2c.bean.EntractDetail;
+
+import java.util.Map;
 
 /**
  * 项目：  sun
@@ -17,6 +18,6 @@ public class AppealContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<AppealContract.View> {
-        void getData(String str);
+        void getData(Map map);
     }
 }

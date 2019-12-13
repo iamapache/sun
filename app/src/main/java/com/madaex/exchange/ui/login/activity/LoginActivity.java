@@ -206,7 +206,7 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
                 params.put("username", mPhone.getText().toString().trim());
                 params.put("areaCode", mTvAddresscode.getText().toString().trim());
                 params.put("password", mPassword.getText().toString().trim());
-                mPresenter.getData(DataUtil.sign(params));
+                mPresenter.getData(DataUtil.sign2(params));
                 break;
 
             case VerifyActivity.VERIFY_FAILED:

@@ -2,6 +2,8 @@ package com.madaex.exchange.ui.finance.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  ConfirmTransaContract.java
@@ -19,7 +21,7 @@ public class ConfirmTransaContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<ConfirmTransaContract.View> {
-        void getData(String str);
-        void getMsgCode(String str);
+        void getData(Map body);
+        void getMsgCode(Map body);
     }
 }

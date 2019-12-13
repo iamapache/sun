@@ -4,6 +4,8 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.market.bean.EntrustDetail;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  EntrustContract.java
@@ -23,9 +25,9 @@ public class EntrustContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<EntrustContract.View> {
-        void getData(String str);
-        void delete(String str);
+        void getData(Map body);
+        void delete(Map body);
 
-        void getDataDetail(String str);
+        void getDataDetail(Map body);
     }
 }

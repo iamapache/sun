@@ -3,6 +3,8 @@ package com.madaex.exchange.ui.finance.pay.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.pay.bean.PlatRecord;
 
+import java.util.Map;
+
 /**
  * 项目：  sun
  * 类名：  PlatContrct.java
@@ -20,8 +22,8 @@ public class PlatContrct {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PlatContrct.View> {
-        void getData(String str);
-        void submit(String str);
+        void getData(Map body);
+        void submit(Map body);
 
     }
 }

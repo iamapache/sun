@@ -183,7 +183,7 @@ public class ForgetPasswordEmailFragment extends BaseNetLazyFragment<CommonPrese
         params.put("find_type", "email");
         params.put("email", mPhone.getText().toString().trim());
         params.put("password", mPassword.getText().toString().trim());
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
     /**

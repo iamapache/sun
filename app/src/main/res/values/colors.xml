@@ -12,13 +12,13 @@
     <color name="alipay">#00a5ff</color>
     <color name="gray_e5">#e5e5e5</color>
 
-    <color name="colorTheme">#001e3a</color>
+    <color name="colorTheme">#12151A</color>
     <color name="colorTheme2">#001e3a</color>
     <color name="colorTheme3">#FDF8E0</color>
     <color name="title_color">#e4a578</color>
     <color name="colorCutOffSide">#cccccc</color>
-    <color name="backGroundColor">#f2f3f4</color>
-
+    <color name="backGroundColor">#12151A</color>
+    <color name="common_black">#1B1E22</color>
     <color name="common_text_1">#111111</color>
     <color name="common_text_2">#666666</color>
     <color name="common_text_3">#a5a5a5</color>

@@ -4,6 +4,8 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.bean.SellerCoin;
 import com.madaex.exchange.ui.finance.bean.TransaList;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  SellerCoinContract.java
@@ -22,8 +24,8 @@ public class SellerCoinContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<SellerCoinContract.View> {
-        void getData(String str);
+        void getData(Map body);
 
-        void getCashCoin(String str);
+        void getCashCoin(Map body);
     }
 }

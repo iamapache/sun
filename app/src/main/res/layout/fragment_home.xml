@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:background="@color/colorTheme"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/d_44dp"
+            android:layout_height="@dimen/d_22dp"
+            android:layout_marginLeft="@dimen/d_15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="37dp"
+                android:src="@mipmap/mark_logo"/>
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:id="@+id/img_popview"
+            android:layout_width="@dimen/d_22dp"
+            android:layout_height="@dimen/d_22dp"
+            android:layout_marginLeft="@dimen/d_5dp"
+            android:layout_marginRight="@dimen/d_15dp"
+            android:src="@mipmap/mark_list"/>
+
+
+    </LinearLayout>
+
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="136dp" />
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

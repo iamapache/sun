@@ -3,6 +3,8 @@ package com.madaex.exchange.ui.market.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.market.bean.CoinDetail;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  CoinDetailContract.java
@@ -20,7 +22,7 @@ public class CoinDetailContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<CoinDetailContract.View> {
-        void getData(String str);
+        void getData(Map body);
 
     }
 }

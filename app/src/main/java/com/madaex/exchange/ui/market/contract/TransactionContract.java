@@ -4,6 +4,7 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.market.bean.TransactionList;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -23,6 +24,6 @@ public class TransactionContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<TransactionContract.View> {
-        void getData(String str);
+        void getData(Map body);
     }
 }

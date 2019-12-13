@@ -40,8 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.observers.DefaultObserver;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -405,7 +403,6 @@ public class KineAdapter extends RecyclerView.Adapter<KineAdapter.MyViewHolder> 
             params3.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL_KLINE);
             params3.put("market", item.getCurrentype().toUpperCase() + "_" + item.getExchangeType().toUpperCase());
             params3.put("type", type);
-            RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(params3));
             combinedchart.getGestureListenerCandle().setCoupleClick(new CoupleChartGestureListener.CoupleClick() {
                 @Override
                 public void singleClickListener() {
@@ -417,7 +414,7 @@ public class KineAdapter extends RecyclerView.Adapter<KineAdapter.MyViewHolder> 
                     mContext.startActivity(intent);
                 }
             });
-            RetrofitHelper.getKLineAPI().getKLineResult(body).compose(new DefaultTransformer2())
+            RetrofitHelper.getKLineAPI().getKLineResult(params3).compose(new DefaultTransformer2())
                     .subscribe(new DefaultObserver<String>() {
                         @Override
                         public void onNext(String jsonStr) {

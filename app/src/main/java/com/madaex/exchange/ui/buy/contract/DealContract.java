@@ -24,8 +24,8 @@ public class DealContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<DealContract.View> {
-        void getData(String str);
-        void getMsgInfo(String str);
+        void getData(Map str);
+        void getMsgInfo(Map str);
         void getJavaLineDetail(Map map);
     }
 }

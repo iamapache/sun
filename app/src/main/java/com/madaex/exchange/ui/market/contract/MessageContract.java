@@ -4,6 +4,7 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.bank.contract.Bank;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -22,7 +23,7 @@ public class MessageContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<MessageContract.View> {
-        void getData(String str);
+        void getData(Map body);
 
     }
 }

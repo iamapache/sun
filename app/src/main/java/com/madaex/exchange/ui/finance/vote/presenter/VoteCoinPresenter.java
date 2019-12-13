@@ -8,22 +8,19 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
 import com.madaex.exchange.ui.finance.vote.contract.VoteCoinContract;
-import com.orhanobut.logger.Logger;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -43,25 +40,21 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, VoteCoin>() {
                     @Override
                     public VoteCoin apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             VoteCoin user = new VoteCoin();
                             user.setMsg(commonBean.getData());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            VoteCoin commonBean = gson.fromJson(paramsStr, VoteCoin.class);
+                            VoteCoin commonBean = gson.fromJson(data, VoteCoin.class);
                             return commonBean;
                         }
                     }
@@ -82,17 +75,13 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     }
 
     @Override
-    public void getData2(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void getData2(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -110,17 +99,13 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     }
 
     @Override
-    public void getGRC(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getGRC(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, TransationInfo>() {
                     @Override
                     public TransationInfo apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        TransationInfo commonBean = gson.fromJson(paramsStr, TransationInfo.class);
+                        TransationInfo commonBean = gson.fromJson(data, TransationInfo.class);
                         return commonBean;
                     }
                 })

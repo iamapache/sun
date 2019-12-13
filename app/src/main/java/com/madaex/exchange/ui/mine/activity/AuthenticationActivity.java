@@ -145,7 +145,7 @@ public class AuthenticationActivity extends BaseNetActivity<CommonPresenter> imp
         params.put("address", mAddress.getText().toString().trim());
         params.put("city", mCity.getText().toString().trim());
         params.put("postalcode", mPostcode.getText().toString().trim());
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
     @Override

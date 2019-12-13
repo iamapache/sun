@@ -5,6 +5,8 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.c2c.bean.PlatformEntrust;
 import com.madaex.exchange.ui.mine.bean.User;
 
+import java.util.Map;
+
 /**
  * 项目：  sun
  * 类名：  PlatformEntrustContract.java
@@ -23,8 +25,8 @@ public class PlatformEntrustContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PlatformEntrustContract.View> {
-        void getData(String str);
+        void getData(Map map);
 
-        void load(String msg);
+        void load(Map body);
     }
 }

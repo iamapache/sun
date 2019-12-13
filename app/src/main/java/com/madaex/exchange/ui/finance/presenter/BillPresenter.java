@@ -8,19 +8,16 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.finance.bean.BillList;
 import com.madaex.exchange.ui.finance.contract.BillContract;
-import com.orhanobut.logger.Logger;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -40,17 +37,13 @@ public class BillPresenter extends RxPresenter<BillContract.View> implements Bil
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, BillList>() {
                     @Override
                     public BillList apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        BillList commonBean = gson.fromJson(paramsStr, BillList.class);
+                        BillList commonBean = gson.fromJson(data, BillList.class);
                         return commonBean;
                     }
                 })

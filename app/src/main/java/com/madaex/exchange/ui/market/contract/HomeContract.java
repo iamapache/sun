@@ -5,6 +5,7 @@ import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.market.bean.TitleBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -25,9 +26,9 @@ public class HomeContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<HomeContract.View> {
-        void getTitleData(String str);
-        void getData(String str);
+        void getTitleData(Map body);
+        void getData(Map body);
         void cancel();
-        void collection(String str);
+        void collection(Map body);
     }
 }

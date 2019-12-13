@@ -5,6 +5,7 @@ import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -23,11 +24,11 @@ public class VoteCoinContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<VoteCoinContract.View> {
-        void getData(String str);
+        void getData(Map body);
 
-        void getData2(String str);
+        void getData2(Map body);
 
 
-        void getGRC(String str);
+        void getGRC(Map body);
     }
 }

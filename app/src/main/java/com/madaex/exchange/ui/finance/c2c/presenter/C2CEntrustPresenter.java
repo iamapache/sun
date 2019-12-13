@@ -8,8 +8,6 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.finance.c2c.bean.EntractDetail;
@@ -17,13 +15,13 @@ import com.madaex.exchange.ui.finance.c2c.contract.C2CEntrustContract;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.orhanobut.logger.Logger;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -43,27 +41,24 @@ public class C2CEntrustPresenter extends RxPresenter<C2CEntrustContract.View> im
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, EntrustList>() {
                     @Override
                     public EntrustList apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
 
 
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             EntrustList user = new EntrustList();
                             user.setMsg(commonBean.getData());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            EntrustList commonBean = gson.fromJson(paramsStr, EntrustList.class);
+                            EntrustList commonBean = gson.fromJson(data, EntrustList.class);
                             return commonBean;
                         }
                     }
@@ -83,17 +78,14 @@ public class C2CEntrustPresenter extends RxPresenter<C2CEntrustContract.View> im
     }
 
     @Override
-    public void delete(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void delete(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -111,17 +103,14 @@ public class C2CEntrustPresenter extends RxPresenter<C2CEntrustContract.View> im
     }
 
     @Override
-    public void getDataDetail(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getDataDetail(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, EntractDetail>() {
                     @Override
                     public EntractDetail apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        EntractDetail commonBean = gson.fromJson(paramsStr, EntractDetail.class);
+                        EntractDetail commonBean = gson.fromJson(data, EntractDetail.class);
                         return commonBean;
                     }
                 })

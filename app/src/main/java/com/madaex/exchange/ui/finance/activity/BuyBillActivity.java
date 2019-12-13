@@ -173,7 +173,7 @@ public class BuyBillActivity extends BaseNetActivity<CommonPresenter> implements
                         params.put("recharge_addr", getIntent().getStringExtra("address"));
                         params.put("num", mTvNumber.getText().toString().trim());
                         params.put("cash_addr", mTvAddress.getText().toString().trim());
-                        mPresenter.getData(DataUtil.sign(params));
+                        mPresenter.getData(DataUtil.sign2(params));
                         dialog.dismiss();
                     }
                 }).build();

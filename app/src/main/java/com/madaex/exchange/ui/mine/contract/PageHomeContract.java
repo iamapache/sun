@@ -13,7 +13,7 @@ import java.util.Map;
  * 描述：  ${TODO}
  */
 
-public class MineContract {
+public class PageHomeContract {
     public interface View extends BaseContract.BaseView {
         void requestSuccess(User user);
         void nodata(String msg);
@@ -21,11 +21,11 @@ public class MineContract {
         void requestupdate(update bean);
     }
 
-    public interface Presenter extends BaseContract.BasePresenter<MineContract.View> {
+    public interface Presenter extends BaseContract.BasePresenter<PageHomeContract.View> {
         void getData(Map body);
 
         void update(Map body);
 
-        void load(String msg);
+        void load(Map msg);
     }
 }

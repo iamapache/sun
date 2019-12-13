@@ -8,7 +8,7 @@ ext {
     android2 = [
             compileSdkVersion: 27,
             buildToolsVersion: '27.0.0',
-            applicationId    : "com.madaex.sunexchange",
+            applicationId    : "com.madaex.gdc",
             minSdkVersion    : 16,
             targetSdkVersion : 27,
             versionCode      : 8,

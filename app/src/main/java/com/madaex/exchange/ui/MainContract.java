@@ -2,6 +2,8 @@ package com.madaex.exchange.ui;
 
 import com.madaex.exchange.common.base.BaseContract;
 
+import java.util.Map;
+
 /**
  * 项目：  frame
  * 类名：  MainContract.java
@@ -13,7 +15,7 @@ public  class MainContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<View> {
-        void getData(String map);
+        void getData(Map map);
     }
 
     public interface Model {

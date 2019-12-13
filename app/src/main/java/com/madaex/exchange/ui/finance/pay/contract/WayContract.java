@@ -4,6 +4,7 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * 项目：  sun
@@ -24,11 +25,11 @@ public class WayContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<WayContract.View> {
-        void getData(String str);
-        void submit(String str);
-        void delete(String str);
-        void getPayWay(String str);
-        void edit(String str);
-        void saveUserHeadImage(String str, ArrayList<String> pathList);
+        void getData(Map body);
+        void submit(Map body);
+        void delete(Map body);
+        void getPayWay(Map body);
+        void edit(Map body);
+        void saveUserHeadImage(Map body, ArrayList<String> pathList);
     }
 }

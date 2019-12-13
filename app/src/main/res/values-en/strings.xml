@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="welcomemt">Welcome to Sun</string>
-
-    <string name="app_name">Sun</string>
+    <string name="welcomemt">Welcome to GDC</string>
+    <string name="item_home">Home</string>
+    <string name="app_name">GDC</string>
     <string name="exit_tips">Press exit procedure again</string>
-
+    <string name="item_onetran">Trading</string>
     <string name="item_market">Market</string>
     <string name="item_buy">Buy</string>
     <string name="item_seller">Sell</string>

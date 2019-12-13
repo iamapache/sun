@@ -6,6 +6,8 @@ import com.madaex.exchange.common.ApiService;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.market.contract.HistoryDetailContract;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 /**
@@ -26,6 +28,6 @@ public class HistoryDetailPresenter extends RxPresenter<HistoryDetailContract.Vi
     }
 
     @Override
-    public void getData(String str) {
+    public void getData(Map body) {
     }
 }

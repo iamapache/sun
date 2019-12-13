@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.finance.bank.contract;
 import com.madaex.exchange.common.base.BaseContract;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -24,8 +25,8 @@ public class BankContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<BankContract.View> {
-        void getData(String str);
+        void getData(Map map);
 
-        void delete(String str);
+        void delete(Map map);
     }
 }

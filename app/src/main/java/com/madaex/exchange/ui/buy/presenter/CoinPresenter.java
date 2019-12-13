@@ -8,9 +8,6 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.contract.CoinContract;
@@ -26,8 +23,6 @@ import javax.inject.Inject;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -47,17 +42,14 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CoinList>() {
                     @Override
                     public CoinList apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CoinList commonBean = gson.fromJson(paramsStr, CoinList.class);
+                        CoinList commonBean = gson.fromJson(data, CoinList.class);
                         return commonBean;
                     }
                 })
@@ -75,17 +67,14 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
     }
 
     @Override
-    public void deal(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void deal(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -105,16 +94,13 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
 
     @Override
     public void getJavaLineDetail(Map map) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(map));
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, LineDetail>() {
                     @Override
                     public LineDetail apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:getJavaLineDetail" + paramsStr);
+                        Logger.i("<==>data:getJavaLineDetail" + data);
                         Gson gson = new Gson();
-                        LineDetail commonBean = gson.fromJson(paramsStr, LineDetail.class);
+                        LineDetail commonBean = gson.fromJson(data, LineDetail.class);
                         return commonBean;
                     }
                 })
@@ -135,26 +121,23 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
 
 
     @Override
-    public void getMsgInfo(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getMsgInfo(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, DealInfo>() {
                     @Override
                     public DealInfo apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
 
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             DealInfo user = new DealInfo();
                             user.setMsg(commonBean.getData());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            DealInfo commonBean = gson.fromJson(paramsStr, DealInfo.class);
+                            DealInfo commonBean = gson.fromJson(data, DealInfo.class);
                             return commonBean;
                         }
                     }

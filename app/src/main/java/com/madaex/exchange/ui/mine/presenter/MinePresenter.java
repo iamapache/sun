@@ -24,6 +24,7 @@ import com.madaex.exchange.ui.mine.contract.MineContract;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -54,25 +55,21 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, User>() {
                     @Override
                     public User apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             User user = new User();
                             user.setMsg(commonBean.getData());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            User commonBean = gson.fromJson(paramsStr, User.class);
+                            User commonBean = gson.fromJson(data, User.class);
                             return commonBean;
                         }
                     }
@@ -92,17 +89,13 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
     }
 
     @Override
-    public void update(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void update(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, update>() {
                     @Override
                     public update apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                            update commonBean = gson.fromJson(paramsStr, update.class);
+                            update commonBean = gson.fromJson(data, update.class);
                             return commonBean;
                     }
                 })

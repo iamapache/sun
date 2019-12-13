@@ -8,20 +8,17 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.finance.bean.SellerCoin;
 import com.madaex.exchange.ui.finance.bean.TransaList;
 import com.madaex.exchange.ui.finance.contract.SellerCoinContract;
-import com.orhanobut.logger.Logger;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -41,17 +38,13 @@ public class SellerCoinPresenter extends RxPresenter<SellerCoinContract.View> im
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, SellerCoin>() {
                     @Override
                     public SellerCoin apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        SellerCoin commonBean = gson.fromJson(paramsStr, SellerCoin.class);
+                        SellerCoin commonBean = gson.fromJson(data, SellerCoin.class);
                         return commonBean;
                     }
                 })
@@ -69,17 +62,13 @@ public class SellerCoinPresenter extends RxPresenter<SellerCoinContract.View> im
     }
 
     @Override
-    public void getCashCoin(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
+    public void getCashCoin(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, TransaList>() {
                     @Override
                     public TransaList apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        TransaList commonBean = gson.fromJson(paramsStr, TransaList.class);
+                        TransaList commonBean = gson.fromJson(data, TransaList.class);
                         return commonBean;
                     }
                 })

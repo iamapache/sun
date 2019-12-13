@@ -6,6 +6,7 @@ import com.madaex.exchange.ui.finance.c2c.bean.C2CTransationDetail;
 import com.madaex.exchange.ui.finance.c2c.bean.TransationDetail;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目：  madaexchange
@@ -26,9 +27,9 @@ public class C2CTransationContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<C2CTransationContract.View> {
-        void getData(String str);
-        void getData2(String str);
-        void getDetail(String str);
-        void getc2cDetail(String str);
+        void getData(Map map);
+        void getData2(Map map);
+        void getDetail(Map map);
+        void getc2cDetail(Map map);
     }
 }

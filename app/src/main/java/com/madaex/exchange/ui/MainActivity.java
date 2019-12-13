@@ -28,6 +28,7 @@ import com.madaex.exchange.ui.buy.fragment.DealFragment;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.fragment.FinanceFragment;
 import com.madaex.exchange.ui.market.fragment.MarketFragment;
+import com.madaex.exchange.ui.mine.fragment.HomeFragment;
 import com.madaex.exchange.ui.mine.fragment.MineFragment;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -106,18 +107,21 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     public void initFragmentList() {
         mFragments.clear();
+//        mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
+        mFragments.add(HomeFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(DealFragment.newInstance(0));
-        mFragments.add(DealFragment.newInstance(1));
-        mFragments.add(FinanceFragment.newInstance(getString(R.string.item_market)));
-        mFragments.add(MineFragment.newInstance(getString(R.string.item_market)));
+
+        mFragments.add(FinanceFragment.newInstance(getString(R.string.item_finance)));
+        mFragments.add(MineFragment.newInstance(getString(R.string.item_mine)));
     }
 
     private void initTabList() {
         mTabList.clear();
+        mTabList.add(getString(R.string.item_home));
         mTabList.add(getString(R.string.item_market));
-        mTabList.add(getString(R.string.item_buy));
-        mTabList.add(getString(R.string.item_seller));
+        mTabList.add(getString(R.string.item_onetran));
+        
         mTabList.add(getString(R.string.item_finance));
         mTabList.add(getString(R.string.item_mine));
         RxWebSocket.get(Constant.Websocket)
@@ -189,13 +193,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         ImageView tabIcon = (ImageView) customView.findViewById(R.id.iv_tab_icon);
         tabText.setTextColor(ContextCompat.getColor(mContext, R.color.title_color));
         String s = tabText.getText().toString();
-        if (getString(R.string.item_market).equals(s)) {
-            tabIcon.setImageResource(R.mipmap.icon_market_select);
-        } else if (getString(R.string.item_buy).equals(s)) {
-            tabIcon.setImageResource(R.mipmap.icon_buy_select);
-        } else if (getString(R.string.item_seller).equals(s)) {
+        if (getString(R.string.item_home).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_sell_select);
-        } else if (getString(R.string.item_finance).equals(s)) {
+        }else if (getString(R.string.item_market).equals(s)) {
+            tabIcon.setImageResource(R.mipmap.icon_market_select);
+        } else if (getString(R.string.item_onetran).equals(s)) {
+            tabIcon.setImageResource(R.mipmap.icon_buy_select);
+        }  else if (getString(R.string.item_finance).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_finance_select);
         } else if (getString(R.string.item_mine).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_mine_select);
@@ -209,12 +213,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         ImageView tabIcon = (ImageView) customView.findViewById(R.id.iv_tab_icon);
         tabText.setTextColor(ContextCompat.getColor(mContext, R.color.common_title));
         String s = tabText.getText().toString();
-        if (getString(R.string.item_market).equals(s)) {
-            tabIcon.setImageResource(R.mipmap.icon_market_unselect);
-        } else if (getString(R.string.item_buy).equals(s)) {
-            tabIcon.setImageResource(R.mipmap.icon_buy_unselect);
-        } else if (getString(R.string.item_seller).equals(s)) {
+          if (getString(R.string.item_home).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_sell_unselect);
+        }
+          else if (getString(R.string.item_market).equals(s)) {
+            tabIcon.setImageResource(R.mipmap.icon_market_unselect);
+        } else if (getString(R.string.item_onetran).equals(s)) {
+            tabIcon.setImageResource(R.mipmap.icon_buy_unselect);
         } else if (getString(R.string.item_finance).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_finance_unselect);
         } else if (getString(R.string.item_mine).equals(s)) {

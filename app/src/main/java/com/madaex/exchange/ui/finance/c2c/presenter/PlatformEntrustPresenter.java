@@ -17,6 +17,8 @@ import com.madaex.exchange.ui.finance.c2c.contract.PlatformEntrustContract;
 import com.madaex.exchange.ui.mine.bean.User;
 import com.orhanobut.logger.Logger;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
@@ -42,17 +44,13 @@ public class PlatformEntrustPresenter extends RxPresenter<PlatformEntrustContrac
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, PlatformEntrust>() {
                     @Override
                     public PlatformEntrust apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        PlatformEntrust commonBean = gson.fromJson(paramsStr, PlatformEntrust.class);
+                        PlatformEntrust commonBean = gson.fromJson(data, PlatformEntrust.class);
                         return commonBean;
                     }
                 })
@@ -70,25 +68,21 @@ public class PlatformEntrustPresenter extends RxPresenter<PlatformEntrustContrac
     }
 
     @Override
-    public void load(String msg) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), msg);
+    public void load(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, User>() {
                     @Override
                     public User apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             User user = new User();
                             user.setMsg(commonBean.getData());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            User commonBean = gson.fromJson(paramsStr, User.class);
+                            User commonBean = gson.fromJson(data, User.class);
                             return commonBean;
                         }
                     }

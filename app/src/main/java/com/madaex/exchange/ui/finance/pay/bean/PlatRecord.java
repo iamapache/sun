@@ -13,7 +13,7 @@ public class PlatRecord {
 
     /**
      * status : 1
-     * data : [{"id":"231","userid":"352","coinname":"0.05","num_a":"10.00000000","num_b":"10.00000000","num":-0.05000000000000071,"fee":"0.00000000","type":"4","name":"太阳系转入","nameid":"0","remark":"eth1557458655581942","mum_a":"10.05000000","mum_b":"10.00000000","mum":"20.05000000","move":"","addtime":"1557458655","status":"1"},{"id":"234","userid":"352","coinname":"2","num_a":"0.00000000","num_b":"0.00000000","num":-2,"fee":"0.00000000","type":"4","name":"太阳系转入","nameid":"0","remark":"23","mum_a":"2.00000000","mum_b":"0.00000000","mum":"2.00000000","move":"cny","addtime":"1557991409","status":"1"}]
+     * data : [{"id":"231","userid":"352","coinname":"0.05","num_a":"10.00000000","num_b":"10.00000000","num":-0.05000000000000071,"fee":"0.00000000","type":"4","name":"金数云转入","nameid":"0","remark":"eth1557458655581942","mum_a":"10.05000000","mum_b":"10.00000000","mum":"20.05000000","move":"","addtime":"1557458655","status":"1"},{"id":"234","userid":"352","coinname":"2","num_a":"0.00000000","num_b":"0.00000000","num":-2,"fee":"0.00000000","type":"4","name":"金数云转入","nameid":"0","remark":"23","mum_a":"2.00000000","mum_b":"0.00000000","mum":"2.00000000","move":"cny","addtime":"1557991409","status":"1"}]
      */
 
     private int status;
@@ -45,7 +45,7 @@ public class PlatRecord {
          * num : -0.05000000000000071
          * fee : 0.00000000
          * type : 4
-         * name : 太阳系转入
+         * name : 金数云转入
          * nameid : 0
          * remark : eth1557458655581942
          * mum_a : 10.05000000

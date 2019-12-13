@@ -2,6 +2,8 @@ package com.madaex.exchange.ui.common;
 
 import com.madaex.exchange.common.base.BaseContract;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  CommonContract.java
@@ -19,7 +21,7 @@ public class CommonContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<CommonContract.View> {
-        void getData(String str);
-        void getMsgCode(String str);
+        void getData(Map str);
+        void getMsgCode(Map str);
     }
 }

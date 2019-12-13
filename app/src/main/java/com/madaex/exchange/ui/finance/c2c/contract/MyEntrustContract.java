@@ -5,6 +5,7 @@ import com.madaex.exchange.ui.finance.c2c.bean.EntrusTwo;
 import com.madaex.exchange.ui.finance.c2c.bean.MyEntrust;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * 项目：  sun
@@ -25,14 +26,14 @@ public class MyEntrustContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<MyEntrustContract.View> {
-        void getData(String str);
-        void cancel(String str);
+        void getData(Map map);
+        void cancel(Map map);
 
-        void getData2(String str);
+        void getData2(Map map);
 
-        void order_pay(String str);
-        void order_confirm(String str);
+        void order_pay(Map map);
+        void order_confirm(Map map);
 
-        void saveUserHeadImage(String str, ArrayList<String> pathList);
+        void saveUserHeadImage(Map body, ArrayList<String> pathList);
     }
 }

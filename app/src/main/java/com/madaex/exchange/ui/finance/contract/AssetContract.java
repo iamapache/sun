@@ -3,6 +3,8 @@ package com.madaex.exchange.ui.finance.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.bean.Asset;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  AssetContract.java
@@ -20,6 +22,6 @@ public class AssetContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<AssetContract.View> {
-        void getData(String str);
+        void getData(Map body);
     }
 }

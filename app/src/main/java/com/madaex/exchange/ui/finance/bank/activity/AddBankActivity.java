@@ -167,7 +167,7 @@ public class AddBankActivity extends BaseNetActivity<CommonPresenter> implements
         params.put("bankcity", city);
         params.put("bankaddr", mEtBankbrash.getText().toString().trim());
         params.put("bankcard", mEtBankcardid.getText().toString().trim());
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
     @Override

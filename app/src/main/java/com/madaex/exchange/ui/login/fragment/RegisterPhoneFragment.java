@@ -336,7 +336,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
                 params.put("mobile", mPhone.getText().toString().trim());
                 params.put("password", mPassword.getText().toString().trim());
                 params.put("invit", mRecommend.getText().toString().trim());
-                mPresenter.getData(DataUtil.sign(params));
+                mPresenter.getData(DataUtil.sign2(params));
                 break;
 
             case VerifyActivity.VERIFY_FAILED:

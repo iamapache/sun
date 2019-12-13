@@ -6,7 +6,6 @@ import com.madaex.exchange.common.ApiService;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.ui.market.contract.KLineContract;
 import com.orhanobut.logger.Logger;
 
@@ -19,8 +18,6 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -41,7 +38,6 @@ public class KLinePresenter extends RxPresenter<KLineContract.View> implements K
 
     @Override
     public void getData(final Map map) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(map));
         Observable.interval(1, 60, TimeUnit.SECONDS)
                 // 参数说明：
                 // 参数1 = 第1次延迟时间；
@@ -55,7 +51,7 @@ public class KLinePresenter extends RxPresenter<KLineContract.View> implements K
                 .doOnNext(new Consumer<Long>() {
                     @Override
                     public void accept(Long integer) throws Exception {
-                        addSubscribe((Disposable) rxApi.getKLineResult(body)
+                        addSubscribe((Disposable) rxApi.getKLineResult(map)
                                 .compose(new DefaultTransformer2())
                                 .subscribeWith(new CommonSubscriber<String>(mView, true) {
                                     @Override

@@ -8,9 +8,9 @@ package com.madaex.exchange.common.net;
  */
 public class Constant {
 
-    public static final String HTTP = "http://www.suncoin.cc/";//http://192.168.2.117/appapi/
+    public static final String HTTP = "http://alsc.uoou.net/";//http://192.168.2.117/appapi/
 
-    public static final String Websocket = "ws://wss.suncoin.cc/wss";
+    public static final String Websocket = "ws://47.56.143.229:8888";
 
     public static final String JAVA_HTTP = "http://123.58.34.198/";
 

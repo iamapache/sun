@@ -50,8 +50,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  exchange
@@ -197,7 +195,6 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     }
 
     private void sendData(TreeMap params) throws Exception {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(params));
         Observable.interval(0, 7, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -211,7 +208,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
                     @Override
                     public void onNext(Long aLong) {
                         RetrofitHelper.getKLineAPI()
-                                .getTestResult(body).map(new Function<String, HomeData>() {
+                                .getTestResult(params).map(new Function<String, HomeData>() {
                             @Override
                             public HomeData apply(@NonNull String data) throws Exception {
                                 FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();

@@ -88,7 +88,7 @@ public class EditAddressActivity extends BaseNetActivity<CommonPresenter> implem
         params.put("name", mBranch.getText().toString().trim());
         params.put("addr", mTvAddr.getText().toString().trim());
         params.put(ConstantUrl.TYPE, getIntent().getStringExtra(ConstantUrl.TYPE));
-        mPresenter.getData(DataUtil.sign(params));
+        mPresenter.getData(DataUtil.sign2(params));
     }
 
     @Override

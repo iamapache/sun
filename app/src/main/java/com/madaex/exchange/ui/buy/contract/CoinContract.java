@@ -31,9 +31,9 @@ public class CoinContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<CoinContract.View> {
-        void getData(String str);
-        void deal(String str);
-        void getMsgInfo(String str);
+        void getData(Map str);
+        void deal(Map str);
+        void getMsgInfo(Map str);
 
         void getJavaLineDetail(Map map);
     }

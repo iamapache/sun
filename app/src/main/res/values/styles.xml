@@ -127,7 +127,7 @@
     </style>
 
     <style name="TextColorSizeStyle">
-        <item name="android:textColor">@color/common_text_1</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/d_14dp</item>
     </style>
 

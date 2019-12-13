@@ -17,6 +17,7 @@ import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -44,21 +45,18 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void getData(String str) {
+    public void getData(Map body) {
 
     }
 
     @Override
-    public void submit(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void submit(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, Payway>() {
                     @Override
                     public Payway apply(@NonNull String data) throws Exception {
-                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data),rsa.PUBLIC_KEY));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        Payway commonBean = gson.fromJson(paramsStr, Payway.class);
+                        Payway commonBean = gson.fromJson(data, Payway.class);
                         return commonBean;
                     }
                 })
@@ -77,16 +75,13 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void delete(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void delete(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data),rsa.PUBLIC_KEY));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -105,16 +100,13 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void getPayWay(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void getPayWay(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data),rsa.PUBLIC_KEY));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -133,16 +125,13 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void edit(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
+    public void edit(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data),rsa.PUBLIC_KEY));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -161,7 +150,7 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void saveUserHeadImage(String str, ArrayList<String> pathList) {
+    public void saveUserHeadImage(Map body, ArrayList<String> pathList) {
 //        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
         File file = new File(pathList.get(0));
         RequestBody requestFile =
@@ -170,7 +159,6 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
 // MultipartBody.Part  和后端约定好Key，这里的partName是用image
         MultipartBody.Part multipartBody =
                 MultipartBody.Part.createFormData("img", file.getName(), requestFile);
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
         addSubscribe((Disposable) rxApi.saveUserHeadImage(body,multipartBody)
                 .map(new Function<String, CommonBean>() {
                     @Override

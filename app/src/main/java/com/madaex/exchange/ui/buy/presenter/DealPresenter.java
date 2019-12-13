@@ -9,7 +9,6 @@ import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.contract.DealContract;
@@ -25,8 +24,6 @@ import javax.inject.Inject;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -46,9 +43,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
@@ -74,9 +70,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
     }
 
     @Override
-    public void getMsgInfo(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"),str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getMsgInfo(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, DealInfo>() {
                     @Override
                     public DealInfo apply(@NonNull String data) throws Exception {
@@ -111,8 +106,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
     }
     @Override
     public void getJavaLineDetail(Map map) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(map));
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+//        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), DataUtil.sign(map));
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, LineDetail>() {
                     @Override
                     public LineDetail apply(@NonNull String data) throws Exception {

@@ -26,6 +26,7 @@ import com.madaex.exchange.ui.market.fragment.CoinInfoFragment;
 import com.madaex.exchange.ui.market.fragment.EntrustCurrentFragment;
 import com.madaex.exchange.ui.market.fragment.MarketFragment;
 import com.madaex.exchange.ui.market.fragment.TransactionListFragment;
+import com.madaex.exchange.ui.mine.fragment.HomeFragment;
 import com.madaex.exchange.ui.mine.fragment.MineFragment;
 
 import dagger.Component;
@@ -87,4 +88,6 @@ public interface FragmentComponent extends ActivityComponent {
     void inject(NCOutFragment ncOutFragment);
 
     void inject(NCRecordFragment ncRecordFragment);
+
+    void inject(HomeFragment homeFragment);
 }

@@ -3,6 +3,8 @@ package com.madaex.exchange.ui.finance.c2c.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.c2c.bean.EntractDetail;
 
+import java.util.Map;
+
 /**
  * 项目：  madaexchange
  * 类名：  EntrustContract.java
@@ -21,9 +23,9 @@ public class C2CEntrustContract {
     }
 
     public interface Presenter extends BaseContract.BasePresenter<C2CEntrustContract.View> {
-        void getData(String str);
-        void delete(String str);
+        void getData(Map map);
+        void delete(Map map);
 
-        void getDataDetail(String str);
+        void getDataDetail(Map map);
     }
 }

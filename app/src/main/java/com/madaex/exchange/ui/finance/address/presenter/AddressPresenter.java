@@ -8,19 +8,17 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.finance.address.bean.WalletAddress;
 import com.madaex.exchange.ui.finance.address.contract.AddressContract;
 import com.orhanobut.logger.Logger;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * 项目：  madaexchange
@@ -40,17 +38,14 @@ public class AddressPresenter extends RxPresenter<AddressContract.View> implemen
     }
 
     @Override
-    public void getData(String str) {
-        RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), str);
-        addSubscribe((Disposable) rxApi.getTestResult(body)
+    public void getData(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
                 .map(new Function<String, WalletAddress>() {
                     @Override
                     public WalletAddress apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
+                        Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        WalletAddress commonBean = gson.fromJson(paramsStr, WalletAddress.class);
+                        WalletAddress commonBean = gson.fromJson(data, WalletAddress.class);
                         return commonBean;
                     }
                 })
