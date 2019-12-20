@@ -14,7 +14,7 @@ import java.util.Map;
 public class CommonContract {
     public interface View extends BaseContract.BaseView {
         void requestSuccess(String msg);
-
+        void requestSuccess2(CommonDataBean.DataBean data);
         void requestError(String msg);
         void nodata(String msg);
         void sendMsgSuccess(String msg);
@@ -22,6 +22,7 @@ public class CommonContract {
 
     public interface Presenter extends BaseContract.BasePresenter<CommonContract.View> {
         void getData(Map str);
+        void getData2(Map str);
         void getMsgCode(Map str);
     }
 }

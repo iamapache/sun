@@ -14,6 +14,7 @@ import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -84,6 +85,11 @@ public class AuthenticationActivity extends BaseNetActivity<CommonPresenter> imp
         event.setCode(Constants.MINE);
         EventBus.getDefault().post(event);
         finish();
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+
     }
 
     @Override

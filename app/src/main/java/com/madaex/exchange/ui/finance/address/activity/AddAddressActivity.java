@@ -14,6 +14,7 @@ import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.TimerText;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -92,6 +93,11 @@ public class AddAddressActivity extends BaseNetActivity<CommonPresenter> impleme
         ToastUtils.showToast(msg);
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+
     }
 
     @Override

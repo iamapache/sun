@@ -25,6 +25,7 @@ import com.madaex.exchange.common.util.ViewUtil;
 import com.madaex.exchange.ui.MainActivity;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -206,7 +207,7 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
                 params.put("username", mPhone.getText().toString().trim());
                 params.put("areaCode", mTvAddresscode.getText().toString().trim());
                 params.put("password", mPassword.getText().toString().trim());
-                mPresenter.getData(DataUtil.sign2(params));
+                mPresenter.getData2(DataUtil.sign2(params));
                 break;
 
             case VerifyActivity.VERIFY_FAILED:
@@ -219,9 +220,15 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
 
     @Override
     public void requestSuccess(String msg) {
-        SPUtils.putString(Constants.TOKEN, msg);
 
-        SPUtils.putString(Constants.USER_ID, msg);
+
+
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+        SPUtils.putString(Constants.TOKEN, data.getToken());
+        SPUtils.putString(Constants.USER_ID, data.getUser_id());
         Event event = new Event();
         event.setCode(Constants.LOGINSUCCESS);
         EventBus.getDefault().post(event);
@@ -230,8 +237,6 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
-
-
     }
 
     @Override

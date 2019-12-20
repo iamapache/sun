@@ -12,7 +12,7 @@ import com.madaex.exchange.ui.common.CommonBaseBean;
 public class User extends CommonBaseBean {
 
     /**
-     * data : {"username":"18320814644","name":"","has_paypassword":"0","has_bank":"0"}
+     * data : {"is_merchants":0,"username":"18320814644","name":"","has_paypassword":"0","idcardauth":0,"vip":0,"userid":"20004308","invit":""}
      */
 
     private DataBean data;
@@ -27,46 +27,35 @@ public class User extends CommonBaseBean {
 
     public static class DataBean {
         /**
+         * is_merchants : 0
          * username : 18320814644
          * name :
          * has_paypassword : 0
-         * has_bank : 0
+         * idcardauth : 0
+         * vip : 0
+         * userid : 20004308
+         * invit :
          */
 
+        private int is_merchants;
         private String username;
         private String name;
         private String has_paypassword;
-        private String has_bank;
+        private int idcardauth;
+        private int vip;
         private String userid;
-        private String activity_url;
-        private String is_merchants;
+        private String invit;
 
-        public String getIs_merchants() {
+        public int getIs_merchants() {
             return is_merchants;
         }
 
-        public void setIs_merchants(String is_merchants) {
+        public void setIs_merchants(int is_merchants) {
             this.is_merchants = is_merchants;
         }
 
         public String getUsername() {
             return username;
-        }
-
-        public String getUserid() {
-            return userid;
-        }
-
-        public void setUserid(String userid) {
-            this.userid = userid;
-        }
-
-        public String getActivity_url() {
-            return activity_url;
-        }
-
-        public void setActivity_url(String activity_url) {
-            this.activity_url = activity_url;
         }
 
         public void setUsername(String username) {
@@ -89,12 +78,36 @@ public class User extends CommonBaseBean {
             this.has_paypassword = has_paypassword;
         }
 
-        public String getHas_bank() {
-            return has_bank;
+        public int getIdcardauth() {
+            return idcardauth;
         }
 
-        public void setHas_bank(String has_bank) {
-            this.has_bank = has_bank;
+        public void setIdcardauth(int idcardauth) {
+            this.idcardauth = idcardauth;
+        }
+
+        public int getVip() {
+            return vip;
+        }
+
+        public void setVip(int vip) {
+            this.vip = vip;
+        }
+
+        public String getUserid() {
+            return userid;
+        }
+
+        public void setUserid(String userid) {
+            this.userid = userid;
+        }
+
+        public String getInvit() {
+            return invit;
+        }
+
+        public void setInvit(String invit) {
+            this.invit = invit;
         }
     }
 }

@@ -10,6 +10,7 @@ import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.ui.constant.Constants;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -85,7 +86,17 @@ public class DataUtil {
 //            e.printStackTrace();
 //        }
 
-        return map;
+        for (Map.Entry<String, String> me : set) {
+            stringBuffer.append(me.getKey());
+            stringBuffer.append("=");
+            stringBuffer.append(me.getValue());
+            stringBuffer.append("&");
+        }
+        String data="";
+        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+        Map newmap = new HashMap();
+        newmap.put("data",data);
+        return newmap;
     }
     public static Map sign2(Map map){
         Set<Map.Entry<String, String>> set = map.entrySet();
@@ -94,7 +105,7 @@ public class DataUtil {
         map.put("version",AppUtils.getVerName(BaseApplication.getInstance())+"");
         map.put("timestamp",System.currentTimeMillis()+"");
         map.put("token",SPUtils.getString(Constants.TOKEN,""));
-        map.put("port_sn","9e304d4e8df1b74cfa009913198428ab");
+        map.put("port_sn","42d6477e16393b5f47e0ad887169f807");
         int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
         if(languageType==2){
             map.put("lan","zh-cn");
@@ -103,7 +114,17 @@ public class DataUtil {
         }else {
             map.put("lan","zh-cn");
         }
-        return map;
+                for (Map.Entry<String, String> me : set) {
+            stringBuffer.append(me.getKey());
+            stringBuffer.append("=");
+            stringBuffer.append(me.getValue());
+            stringBuffer.append("&");
+        }
+        String data="";
+        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+        Map newmap = new HashMap();
+        newmap.put("data",data);
+        return newmap;
     }
     public static String thousand(String map,Context mContext){
         if(!TextUtils.isEmpty(map)){

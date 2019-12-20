@@ -285,9 +285,9 @@ public class PlatformEntrustFragment extends BaseNetLazyFragment<PlatformEntrust
     @Override
     public void requestSuccess(User user) {
         if(EmptyUtils.isNotEmpty(user.getData().getIs_merchants())){
-            if (user.getData().getIs_merchants().equals("0")) {
+            if (user.getData().getIs_merchants()==0) {
                 mDelete.setVisibility(View.GONE);
-            } else if (user.getData().getIs_merchants().equals("1")) {
+            } else if (user.getData().getIs_merchants()==1) {
                 mDelete.setVisibility(View.VISIBLE);
             }
         }

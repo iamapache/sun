@@ -30,6 +30,7 @@ import com.madaex.exchange.common.view.TimerText;
 import com.madaex.exchange.ui.MainActivity;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -187,7 +188,13 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
     @Override
     public void requestSuccess(String msg) {
 
-        SPUtils.putString(Constants.TOKEN, msg);
+
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+        SPUtils.putString(Constants.TOKEN, data.getToken());
+        SPUtils.putString(Constants.USER_ID, data.getUser_id());
         Event event = new Event();
         event.setCode(Constants.LOGINSUCCESS);
         EventBus.getDefault().post(event);
@@ -336,7 +343,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
                 params.put("mobile", mPhone.getText().toString().trim());
                 params.put("password", mPassword.getText().toString().trim());
                 params.put("invit", mRecommend.getText().toString().trim());
-                mPresenter.getData(DataUtil.sign2(params));
+                mPresenter.getData2(DataUtil.sign2(params));
                 break;
 
             case VerifyActivity.VERIFY_FAILED:

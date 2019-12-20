@@ -494,7 +494,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         } else {
             SPUtils.putBoolean(Constants.ISMOBILE, false);
         }
-        if (user.getData().getHas_bank().equals("1")) {
+        if (user.getData().getIdcardauth()==1) {
             SPUtils.putBoolean(Constants.has_bank, true);
         } else {
             SPUtils.putBoolean(Constants.has_bank, false);

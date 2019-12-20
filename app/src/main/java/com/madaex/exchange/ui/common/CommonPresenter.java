@@ -66,6 +66,34 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
     }
 
     @Override
+    public void getData2(Map str) {
+        addSubscribe((Disposable) rxApi.getTestResult2(str)
+                .map(new Function<String, CommonDataBean>() {
+                    @Override
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
+                        Logger.i("<====>paramsStr:" + data);
+                        Gson gson = new Gson();
+                        CommonDataBean commonBean = gson.fromJson(data, CommonDataBean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
+                    @Override
+                    public void onNext(CommonDataBean commonBean) {
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestError(commonBean.getData()+"");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.nodata(commonBean.getData()+"");
+                        }else {
+                            mView.requestSuccess2(commonBean.getData());
+                        }
+                    }
+                }));
+
+    }
+
+    @Override
     public void getMsgCode(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult2(body)
                 .map(new Function<String, CommonBean>() {

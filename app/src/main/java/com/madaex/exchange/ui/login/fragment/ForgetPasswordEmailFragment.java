@@ -15,6 +15,7 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.util.ViewUtil;
 import com.madaex.exchange.common.view.TimerText;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 
@@ -127,6 +128,11 @@ public class ForgetPasswordEmailFragment extends BaseNetLazyFragment<CommonPrese
 //        SPUtils.putString(Constants.TOKEN, msg);
 //        startActivity(new Intent(mContext, MainActivity.class));
         getActivity().finish();
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+
     }
 
     @Override

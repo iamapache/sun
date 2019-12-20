@@ -37,5 +37,5 @@ public class Constant {
     public static final String APP_APIS ="appapi";
 
     public static final String LOGIN ="market/getMarket";
-    public static final String IMG_BASE_URL = "";
+    public static final String IMG_BASE_URL = "http://alsc.uoou.net/";
 }

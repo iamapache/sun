@@ -24,6 +24,7 @@ import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.MainActivity;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.address.activity.AddressListActivity;
@@ -260,6 +261,11 @@ public class BuyBillActivity extends BaseNetActivity<CommonPresenter> implements
         ToastUtils.showToast(msg);
         mSubmit.setVisibility(View.GONE);
         mLlStatus.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+
     }
 
     @Override

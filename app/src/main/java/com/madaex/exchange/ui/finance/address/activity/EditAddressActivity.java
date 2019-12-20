@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * 描述：  ${TODO}
  */
 
-public class EditAddressActivity extends BaseNetActivity<CommonPresenter> implements CommonContract.View {
+public abstract class EditAddressActivity extends BaseNetActivity<CommonPresenter> implements CommonContract.View {
     @BindView(R.id.tv_addr)
     TextView mTvAddr;
     @BindView(R.id.branch)

@@ -27,10 +27,10 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_52dp"
-            app:tabBackground="@color/white"
+            app:tabBackground="@color/common_black"
             app:tabIndicatorHeight="0dp"
             app:tabSelectedTextColor="@color/title_color"
             app:tabTextAppearance="@style/tabTextSizeStyle"
-            app:tabTextColor="@color/white"/>
+            app:tabTextColor="@color/common_ggray"/>
     </LinearLayout>
 </LinearLayout>
