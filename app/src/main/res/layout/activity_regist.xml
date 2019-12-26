@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+    android:background="@color/common_black"
               android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -26,7 +26,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:gravity="center_horizontal">
 
             <TextView
@@ -34,18 +33,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:text="@string/register_user"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/white"
                 android:textSize="21dp"
                 android:textStyle="bold"
                 />
         </LinearLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff">
+            android:layout_marginTop="18dp">
 
             <TextView
                 android:id="@+id/id_page1"
@@ -55,7 +52,7 @@
                 android:layout_marginLeft="81dp"
                 android:gravity="center"
                 android:text="@string/registerphone"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/white"
                 android:textSize="16dp"/>
 
             <View
@@ -88,7 +85,7 @@
                 android:layout_below="@id/id_page2"
                 android:layout_marginRight="79dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/title_color"
+                android:background="@color/white"
                 android:visibility="invisible"/>
 
         </RelativeLayout>
@@ -97,7 +94,6 @@
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="22dp"
-            android:background="@color/white"/>
+            android:layout_marginTop="22dp"/>
     </LinearLayout>
 </LinearLayout>

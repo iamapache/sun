@@ -10,6 +10,5 @@
     android:keyPreviewOffset="0dp"
     android:keyTextColor="#000"
     android:shadowColor="#fff"
-    android:background="@color/white"
     android:padding="@dimen/d_5dp"
     android:shadowRadius="0.0"/>

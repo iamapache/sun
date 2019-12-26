@@ -23,7 +23,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical">
 
 
@@ -44,7 +43,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/d_10dp"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -68,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_34dp"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/common_text_2"
                 android:textSize="14dp"
                 tools:text="阴阳师"/>
 
@@ -95,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_34dp"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/common_text_2"
                 android:textSize="14dp"
                 tools:text="阴阳师"/>
 
@@ -119,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_34dp"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/common_text_2"
                 android:textSize="14dp"
                 tools:text="阴阳师"/>
 
@@ -144,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_34dp"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/common_text_2"
                 android:textSize="14dp"
                 tools:text="阴阳师"/>
 
@@ -169,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_34dp"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/common_text_2"
                 android:textSize="14dp"
                 tools:text="阴阳师"/>
 

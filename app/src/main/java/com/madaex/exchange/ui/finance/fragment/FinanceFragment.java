@@ -37,13 +37,11 @@ import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
-import com.madaex.exchange.ui.finance.c2c.activity.C2CListActivity;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
-import com.madaex.exchange.ui.finance.pay.activity.PlatActivity;
-import com.madaex.exchange.ui.finance.pay.activity.WayActivity;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 import com.madaex.exchange.ui.finance.transfer.activity.NcActivity;
 import com.madaex.exchange.ui.finance.transfer.activity.TransferActivity;
+import com.madaex.exchange.ui.finance.vote.activity.VoteCoinActivity;
 import com.madaex.exchange.ui.mine.activity.AccountManagerActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -66,7 +64,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
  * 描述：  ${TODO}
  */
 
-public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> implements AssetContract.View , OnChartValueSelectedListener {
+public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> implements AssetContract.View, OnChartValueSelectedListener {
 
     Unbinder unbinder;
     @BindView(R.id.cny)
@@ -153,32 +151,44 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_asset:
-                startActivityAfterLogin(new Intent(mContext, AssetActivity.class));
+                Intent intent11 = new Intent();
+                intent11.setClass(mContext, AssetActivity.class);
+                intent11.putExtra("wallet_type", "general");
+                startActivityAfterLogin(intent11);
                 break;
             case R.id.ll_bank:
 //                startActivityAfterLogin(new Intent(mContext, BankListActivity.class));
-                startActivityAfterLogin(new Intent(mContext, WayActivity.class));
+//                startActivityAfterLogin(new Intent(mContext, WayActivity.class));
+                Intent intent2 = new Intent();
+                intent2.setClass(mContext, AssetActivity.class);
+                intent2.putExtra("wallet_type", "contract");
+                startActivityAfterLogin(intent2);
                 break;
             case R.id.ll_c2ctrans:
 //                startActivityAfterLogin(new Intent(mContext, C2CTransationActivity.class));
-                startActivityAfterLogin(new Intent(mContext, C2CListActivity.class));
+//                startActivityAfterLogin(new Intent(mContext, C2CListActivity.class));
+                Intent intent3 = new Intent();
+                intent3.setClass(mContext, AssetActivity.class);
+                intent3.putExtra("wallet_type", "hedge");
+                startActivityAfterLogin(intent3);
                 break;
             case R.id.ll_otc:
-                startActivityAfterLogin(new Intent(mContext, PlatActivity.class));
+//                startActivityAfterLogin(new Intent(mContext, PlatActivity.class));
+                ToastUtils.showToast(getString(R.string.comingsoon));
                 break;
             case R.id.ll_votecoin:
-//                Intent intent = new Intent();
-//                intent.setClass(mContext, VoteCoinActivity.class);
-//                intent.putExtra("id", 1);
-//                startActivityAfterLogin(intent);
-                ToastUtils.showToast(getString(R.string.comingsoon));
+                Intent intent = new Intent();
+                intent.setClass(mContext, VoteCoinActivity.class);
+                intent.putExtra("id", 1);
+                startActivityAfterLogin(intent);
+//                ToastUtils.showToast(getString(R.string.comingsoon));
                 break;
             case R.id.ll_gongmu:
-//                Intent intent1 = new Intent();
-//                intent1.setClass(mContext, VoteCoinActivity.class);
-//                intent1.putExtra("id", 2);
-//                startActivityAfterLogin(intent1);
-                ToastUtils.showToast(getString(R.string.comingsoon));
+                Intent intent1 = new Intent();
+                intent1.setClass(mContext, VoteCoinActivity.class);
+                intent1.putExtra("id", 2);
+                startActivityAfterLogin(intent1);
+//                ToastUtils.showToast(getString(R.string.comingsoon));
                 break;
             case R.id.ll_internaltransfer:
                 startActivityAfterLogin(new Intent(mContext, TransferActivity.class));
@@ -191,36 +201,36 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 
     @Override
     public void nodata(String msg) {
-        mMoney1.setText("￥ 0.0" );
-        mMoney2.setText("￥ 0.0" );
+        mMoney1.setText("￥ 0.0");
+        mMoney2.setText("￥ 0.0");
         mMoney3.setText("￥ 0.0");
         mMoney4.setText("￥ 0.0");
         mCny.setText("￥ 0.0");
         initChart(1,
                 1,
                 1,
-                1,"",
-                "","");
+                1, "",
+                "", "");
     }
 
     @Override
     public void requestError(String msg) {
-        mMoney1.setText("￥ 0.0" );
-        mMoney2.setText("￥ 0.0" );
+        mMoney1.setText("￥ 0.0");
+        mMoney2.setText("￥ 0.0");
         mMoney3.setText("￥ 0.0");
         mMoney4.setText("￥ 0.0");
         mCny.setText("￥ 0.0");
         initChart(1,
                 1,
                 1,
-                1,"",
-                "","");
+                1, "",
+                "", "");
     }
 
     @Override
     public void requestSuccess(Asset commonBean) {
 
-        if(EmptyUtils.isNotEmpty(commonBean)&&EmptyUtils.isNotEmpty(commonBean.getData())){
+        if (EmptyUtils.isNotEmpty(commonBean) && EmptyUtils.isNotEmpty(commonBean.getData())) {
             mCny.setText("￥  " + commonBean.getData().getAssets().getCny() + "");
 //        mName1.setText(commonBean.getData().getXnb_list().get(0).getXnb_name());
 //        mName2.setText(commonBean.getData().getXnb_list().get(1).getXnb_name());
@@ -234,17 +244,16 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             mMoney2.setText("￥  " + commonBean.getData().getCoin_hot().get(1).getValue());
             mMoney3.setText("￥  " + commonBean.getData().getCoin_hot().get(2).getValue());
             mMoney4.setText("￥  " + commonBean.getData().getCoin_hot().get(3).getValue());
-            initChart( Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
+            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
                     Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
                     Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),
-                    Float.valueOf(commonBean.getData().getCoin_hot().get(3).getValue()),commonBean.getData().getCoin_hot().get(0).getName(),
-                    commonBean.getData().getCoin_hot().get(1).getName(),commonBean.getData().getCoin_hot().get(2).getName());
+                    Float.valueOf(commonBean.getData().getCoin_hot().get(3).getValue()), commonBean.getData().getCoin_hot().get(0).getName(),
+                    commonBean.getData().getCoin_hot().get(1).getName(), commonBean.getData().getCoin_hot().get(2).getName());
         }
 
     }
 
     /**
-     *
      * @param f1
      * @param f2
      * @param f3
@@ -253,12 +262,12 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
      * @param str2
      * @param str3
      */
-    private void initChart(float f1,float f2,float f3,float f4,String str1,String str2,String str3) {
-        if(f1==0&&f2==0&&f3==0&&f4==0){
-            f1=1;
-            f2=1;
-            f3=1;
-            f4=1;
+    private void initChart(float f1, float f2, float f3, float f4, String str1, String str2, String str3) {
+        if (f1 == 0 && f2 == 0 && f3 == 0 && f4 == 0) {
+            f1 = 1;
+            f2 = 1;
+            f3 = 1;
+            f4 = 1;
         }
         mPieChart.setUsePercentValues(true);
         mPieChart.getDescription().setEnabled(false);
@@ -362,9 +371,9 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     }
 
     private void getData() {
-            TreeMap params = new TreeMap<>();
-            params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
-            mPresenter.getData(DataUtil.sign(params));
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
+        mPresenter.getData(DataUtil.sign(params));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -393,6 +402,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
                 .showAsDropDown(mImgPopview, -2, 10);
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -420,6 +430,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             ToastUtils.showToast(getString(R.string.qrcode_error));
         }
     }
+
     private void openScanCode() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
         intentIntegrator.setCaptureActivity(ScanActivity.class);

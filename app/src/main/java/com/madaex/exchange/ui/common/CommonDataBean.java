@@ -10,11 +10,13 @@ public class CommonDataBean {
 
     /**
      * status : 1
-     * data : {"token":"saV1qK-npt2zfXjZfqevsIN0eGiz4KNmmn2nZLKwj5mx24mqr83Mow","user_id":"20004308"}
+     * data : {"token":"saV1qK-npt2zfXjZfqevsIN0eGiz0Mljmn2nZLKwmdyy23Wpsae2ow","user_id":20004285}
+     * message : 成功
      */
 
     private int status;
     private DataBean data;
+    private String message;
 
     public int getStatus() {
         return status;
@@ -32,10 +34,18 @@ public class CommonDataBean {
         this.data = data;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public static class DataBean {
         /**
-         * token : saV1qK-npt2zfXjZfqevsIN0eGiz4KNmmn2nZLKwj5mx24mqr83Mow
-         * user_id : 20004308
+         * token : saV1qK-npt2zfXjZfqevsIN0eGiz0Mljmn2nZLKwmdyy23Wpsae2ow
+         * user_id : 20004285
          */
 
         private String token;

@@ -211,7 +211,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         View customView = tab.getCustomView();
         TextView tabText = (TextView) customView.findViewById(R.id.tv_tab_text);
         ImageView tabIcon = (ImageView) customView.findViewById(R.id.iv_tab_icon);
-        tabText.setTextColor(ContextCompat.getColor(mContext, R.color.common_title));
+        tabText.setTextColor(ContextCompat.getColor(mContext, R.color.common_ggray));
         String s = tabText.getText().toString();
           if (getString(R.string.item_home).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_sell_unselect);

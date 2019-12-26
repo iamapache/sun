@@ -4,15 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/d_60dp"
-  android:background="@color/white"
     android:layout_marginTop="@dimen/d_15dp"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1dp"
-        android:layout_marginLeft="@dimen/d_10dp"
-        android:background="@color/common_divier"/>
 
     <LinearLayout
         android:id="@+id/ll_content"

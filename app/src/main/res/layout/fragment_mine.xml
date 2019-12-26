@@ -87,6 +87,7 @@
 
                             <TextView
                                 android:id="@+id/mark"
+                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="30dp"
@@ -207,9 +208,8 @@
                         android:layout_marginRight="20dp"
                         android:background="@mipmap/icon_right"/>
                 </LinearLayout>
-
                 <LinearLayout
-                    android:id="@+id/ll_service"
+                    android:id="@+id/ll_agreet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -227,7 +227,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_ustomer"/>
+                            android:background="@mipmap/mine_agreement"/>
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -235,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_ustomer"
+                            android:text="@string/mine_agreement"
                             />
                     </LinearLayout>
 
@@ -245,6 +245,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@mipmap/icon_right"/>
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/ll_about"
@@ -323,7 +324,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_agreet"
+                    android:id="@+id/ll_service"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -341,7 +342,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_agreement"/>
+                            android:background="@mipmap/mine_ustomer"/>
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -349,7 +350,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_agreement"
+                            android:text="@string/mine_ustomer"
                             />
                     </LinearLayout>
 

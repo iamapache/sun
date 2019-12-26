@@ -16,7 +16,6 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/d_25dp"
             android:layout_marginRight="@dimen/d_25dp"
-            android:background="@drawable/gray_shape"
             android:drawableRight="@mipmap/icon_right"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/d_15dp"

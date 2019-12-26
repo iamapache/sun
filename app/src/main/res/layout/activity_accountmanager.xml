@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_70dp"
             android:layout_marginTop="@dimen/d_5dp"
-            android:background="@color/white"
             android:gravity="center_vertical">
             <RelativeLayout
                             android:layout_width="wrap_content"
@@ -71,7 +70,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:textColor="@color/common_text_1"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
@@ -79,7 +78,7 @@
 
                     <TextView
                         android:id="@+id/loginaccount"
-                        android:textColor="@color/common_text_1"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"/>
@@ -94,12 +93,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
+                        android:textColor="@color/white"
                         android:text="@string/mine_id_confirm"/>
 
                     <TextView
                         android:id="@+id/confirm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="@dimen/d_15dp"/>
                 </LinearLayout>
             </LinearLayout>

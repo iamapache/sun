@@ -23,7 +23,7 @@ public class SegmentView extends LinearLayout {
     private TextView rightTextView;
     // 实现不同的按钮状态，不同的颜色
     ColorStateList csl = getResources().getColorStateList(R.color.common_text_2);
-    ColorStateList cs2 = getResources().getColorStateList(R.color.white);
+    ColorStateList cs2 = getResources().getColorStateList(R.color.common_ggray);
     private onSegmentViewClickListener segmentListener;
     // 这是代码加载ui必须重写的方法
     public SegmentView(Context context) {

@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -54,8 +53,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fffdbb"
-        android:drawableLeft="@mipmap/kgf"
         android:drawablePadding="@dimen/d_5dp"
         android:padding="@dimen/d_8dp"
         android:text="@string/youname"
@@ -65,7 +62,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -95,7 +91,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -126,7 +121,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -159,7 +153,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView

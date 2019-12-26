@@ -85,7 +85,7 @@
                     android:hint="@string/searchAssets"
                     android:padding="@dimen/d_5dp"
                     android:maxLines="1"
-                    android:textColor="@color/common_text_2"
+                    android:textColor="@color/white"
                     android:textColorHint="@color/colorCutOffSide"
                     android:textSize="@dimen/d_14dp"/>
 

@@ -178,6 +178,7 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     private void getData() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
+        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign(params));
     }
 

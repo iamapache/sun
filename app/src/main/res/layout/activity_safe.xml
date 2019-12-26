@@ -23,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
 
@@ -39,7 +38,7 @@
             android:drawableRight="@mipmap/icon_right"
             android:gravity="center_vertical"
             android:text="@string/loginpwdset"
-            android:textColor="@color/common_text_1"
+            android:textColor="@color/white"
             android:textSize="@dimen/d_16dp"/>
 
     </LinearLayout>
@@ -48,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_1dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
 
@@ -64,7 +62,7 @@
             android:drawableRight="@mipmap/icon_right"
             android:gravity="center_vertical"
             android:text="@string/transa_pwdset"
-            android:textColor="@color/common_text_1"
+            android:textColor="@color/white"
             android:textSize="@dimen/d_16dp"/>
 
     </LinearLayout>

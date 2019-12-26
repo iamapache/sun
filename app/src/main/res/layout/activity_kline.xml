@@ -37,7 +37,6 @@
         <com.madaex.exchange.common.view.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"/>
+            android:layout_height="match_parent"/>
 
 </LinearLayout>

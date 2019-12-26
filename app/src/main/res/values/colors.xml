@@ -19,7 +19,7 @@
     <color name="colorCutOffSide">#cccccc</color>
     <color name="backGroundColor">#12151A</color>
 
-    <color name="common_text_1">#111111</color>
+    <color name="common_text_1">#fff</color>
     <color name="common_text_2">#666666</color>
     <color name="common_text_3">#a5a5a5</color>
     <color name="common_text_4">#888888</color>

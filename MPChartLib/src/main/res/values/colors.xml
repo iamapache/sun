@@ -8,7 +8,7 @@
 
     <color name="common_red">#f43530</color>
     <color name="common_green">#25A035</color>
-    <color name="title_color">#e4a578</color>
+    <color name="title_color">#FBB03B</color>
     <color name="common_lan"> #192F47</color>
     <color name="common_slan"> #001E3A</color>
     <color name="up_color">#E9403C</color><!-- 行情UP颜色  涨-->

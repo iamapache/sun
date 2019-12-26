@@ -33,7 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@color/white"
             android:drawableLeft="@mipmap/icon_search"
             android:drawablePadding="@dimen/d_5dp"
             android:hint="@string/selectcontry"
@@ -41,7 +40,7 @@
             android:inputType="text"
             android:paddingLeft="10dp"
             android:textColor="@color/common_text_2"
-            android:textColorHint="#ff999999"
+            android:textColorHint="#fff"
             android:textSize="14sp"/>
 
     </LinearLayout>

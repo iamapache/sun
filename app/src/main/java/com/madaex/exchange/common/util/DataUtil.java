@@ -60,6 +60,7 @@ public class DataUtil {
         map.put("version",AppUtils.getVerName(BaseApplication.getInstance())+"");
         map.put("timestamp",System.currentTimeMillis()+"");
         map.put("token",SPUtils.getString(Constants.TOKEN,""));
+        map.put("user_id",SPUtils.getString(Constants.USER_ID,""));
         map.put("port_sn","9e304d4e8df1b74cfa009913198428ab");
         int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
         if(languageType==2){

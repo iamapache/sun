@@ -3,7 +3,6 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@mipmap/login_layout_back"
               android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
@@ -139,7 +138,7 @@
                     android:background="@drawable/code_shape"
                     android:gravity="center"
                     android:padding="7dp"
-                    android:textColor="@color/white"
+                    android:textColor="#FBB03B"
                     android:textSize="12sp"
                     app:default_text="@string/get_code"/>
             </LinearLayout>

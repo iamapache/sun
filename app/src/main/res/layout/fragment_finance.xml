@@ -47,7 +47,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/white"
+                android:background="@color/common_black"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_marginTop="2dp"
-                android:background="@color/white"
+                android:background="@color/common_black"
                 android:gravity="center"
                 android:padding="10dp">
 
@@ -245,7 +245,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="222dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical"
                 >
@@ -253,20 +253,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="111dp"
-                    android:background="@color/backGroundColor">
+                    android:background="@color/common_black">
 
                     <LinearLayout
                         android:id="@+id/ll_asset"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/assets"/>
 
                         <TextView
@@ -286,13 +285,12 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/bank_card"/>
 
                         <TextView
@@ -301,7 +299,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:maxLines="1"
-                            android:text="@string/payment"
+                            android:text="理财资产"
                             android:textSize="14dp"
                             />
                     </LinearLayout>
@@ -312,13 +310,12 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/c2c"/>
 
                         <TextView
@@ -327,7 +324,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:maxLines="1"
-                            android:text="@string/finance_c2c"
+                            android:text="合约资产"
                             android:textSize="14dp"
                             />
                     </LinearLayout>
@@ -342,20 +339,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:layout_marginTop="1dp"
-                    android:background="@color/backGroundColor">
+                    android:visibility="gone"
+                    android:background="@color/common_ggray">
 
                     <LinearLayout
-                        android:id="@+id/ll_otc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/otc"/>
 
                         <TextView
@@ -375,13 +371,12 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/internaltransfer"/>
 
                         <TextView
@@ -401,13 +396,12 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
                         android:layout_weight="1"
-                        android:background="@color/white"
                         android:gravity="center"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="27dp"
-                            android:layout_height="27dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:background="@mipmap/ncin"/>
 
                         <TextView
@@ -433,9 +427,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
                 android:layout_marginTop="1dp"
-                android:background="@color/backGroundColor">
+                android:background="@color/common_black">
 
+                <LinearLayout
+                    android:id="@+id/ll_otc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@mipmap/otc"/>
+
+                    <TextView
+                        style="@style/TextColorSizeStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="1"
+                        android:text="@string/finance_otc"
+                        android:textSize="14dp"
+                        />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_votecoin"
@@ -443,13 +459,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_weight="1"
-                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/vote"/>
 
                     <TextView
@@ -469,13 +484,12 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="1dp"
                     android:layout_weight="1"
-                    android:background="@color/white"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:background="@mipmap/offering"/>
 
                     <TextView
@@ -488,30 +502,7 @@
                         android:textSize="14dp"
                         />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:visibility="invisible"
-                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="27dp"
-                        android:layout_height="27dp"
-                        android:background="@mipmap/otc"/>
-
-                    <TextView
-                        style="@style/TextColorSizeStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:maxLines="1"
-                        android:text="@string/Platformtransfers"
-                        android:textSize="14dp"
-                        />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

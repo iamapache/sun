@@ -59,8 +59,17 @@
         <activity android:name=".ui.login.activity.RegisterActivity"/>
         <activity android:name=".ui.login.activity.ForgetPasswordActivity"/>
         <activity android:name=".ui.MainActivity"
-                  android:alwaysRetainTaskState="true"
-                  android:launchMode="singleTask"/>
+                  android:launchMode="singleTask">
+        <intent-filter >
+            <action android:name="com.jg.zhang.androidtasktest.SecondActivity"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.login.activity.GuideActivity"/>
         <!-- 行情 -->
         <activity android:name=".ui.market.activity.MessageListActivity"/>

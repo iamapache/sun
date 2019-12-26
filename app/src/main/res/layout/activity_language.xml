@@ -19,7 +19,6 @@
         app:title_text="@string/mine_language"
         app:title_visible="true"/>
     <RelativeLayout
-        android:background="@color/white"
         android:id="@+id/rl_followsytem"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -32,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:text="@string/setting_simplified_chinese"
+            android:textColor="@color/white"
             android:layout_marginLeft="20dp"
             android:textSize="16dp" />
 
@@ -52,7 +52,6 @@
         android:background="#e5e5e5" />
 
     <RelativeLayout
-        android:background="@color/white"
         android:id="@+id/rl_simplified_chinese"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -66,6 +65,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:text="@string/setting_language_english"
+            android:textColor="@color/white"
             android:textSize="16dp" />
 
         <ImageView

@@ -15,7 +15,6 @@
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_65dp"
-        android:background="@color/white"
         android:gravity="center_vertical">
 
         <ImageView
@@ -50,7 +49,7 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical|bottom"
         android:maxLines="1"
-        android:textColor="@color/common_text_6"
+        android:textColor="#9FA4B2"
         android:layout_marginLeft="@dimen/d_2dp"
         android:textSize="@dimen/d_13dp"
         tools:text="/ETH"
@@ -65,7 +64,7 @@
                 android:layout_marginTop="@dimen/d_5dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="@dimen/d_12dp"
                 tools:text="ETH"
                 />
@@ -96,7 +95,7 @@
                 android:layout_marginTop="@dimen/d_5dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="@dimen/d_12dp"
                 tools:text="ETH"
                 />
@@ -137,7 +136,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/maxPrice"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="13sp"
                 />
 
@@ -147,7 +146,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/minPrice"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="14sp"
                 />
 
@@ -203,7 +202,7 @@
                 android:gravity="center"
                 android:padding="@dimen/d_8dp"
                 android:text="@string/onesecond"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="13sp"
                 />
 
@@ -215,7 +214,7 @@
                 android:gravity="center"
                 android:padding="@dimen/d_8dp"
                 android:text="@string/fifteen"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="13sp"
                 />
 
@@ -240,7 +239,7 @@
                 android:gravity="center"
                 android:padding="@dimen/d_8dp"
                 android:text="@string/oneday"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="13sp"
                 />
 
@@ -252,7 +251,7 @@
                 android:gravity="center"
                 android:padding="@dimen/d_10dp"
                 android:text="@string/oneweek"
-                android:textColor="@color/common_text_6"
+                android:textColor="#9FA4B2"
                 android:textSize="13sp"
                 />
 
@@ -263,8 +262,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:layout_marginRight="@dimen/d_12dp"
-            android:layout_marginLeft="@dimen/d_12dp"
-            android:background="#ffffff"/>
+            android:layout_marginLeft="@dimen/d_12dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

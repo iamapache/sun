@@ -5,7 +5,7 @@
                                     android:id="@+id/cardView"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    app:cardBackgroundColor="#ffffff"
+                                    app:cardBackgroundColor="@color/common_black"
                                     app:cardCornerRadius="5dp"
                                     app:cardElevation="3dp"
                                     app:cardMaxElevation="7dp"
@@ -45,7 +45,7 @@
                     android:id="@+id/assets"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/common_text_1"
+                    android:textColor="@color/common_text_2"
                     android:textSize="17dp"
                     tools:text="000000000000000000"/>
             </LinearLayout>
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/common_text_5"
+                    android:textColor="@color/common_text_2"
                     android:textSize="14dp"
                     tools:text="阴阳师"/>
 
@@ -80,7 +80,6 @@
 
 
         <LinearLayout
-            android:background="#F1F2F7"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -98,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/buycoin"
                     android:text="@string/Deposit"
-                    android:textColor="@color/common_text_6"
+                    android:textColor="@color/common_text_2"
                     android:textSize="14dp"/>
             </LinearLayout>
             <View
@@ -120,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/sellercoin"
                     android:text="@string/Withdrawal"
-                    android:textColor="@color/common_text_6"
+                    android:textColor="@color/common_text_2"
                     android:textSize="14dp"/>
             </LinearLayout>
             <View
@@ -142,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/bill"
                     android:text="@string/bill"
-                    android:textColor="@color/common_text_6"
+                    android:textColor="@color/common_text_2"
                     android:textSize="14dp"/>
             </LinearLayout>
         </LinearLayout>

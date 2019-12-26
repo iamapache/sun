@@ -3,7 +3,6 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/common_bg"
 
               android:orientation="vertical">
 
@@ -24,7 +23,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -50,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Problem1"
-                android:textColor="@color/common_text_2"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 />
 
@@ -64,7 +62,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/nopay"
-                android:textColor="@color/common_text_1"
+                android:textColor="@color/white"
                 android:textColorHint="@color/colorCutOffSide"
                 android:textSize="@dimen/d_16dp"/>
 
@@ -75,7 +73,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -101,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Problem2"
-                android:textColor="@color/common_text_2"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 />
 
@@ -115,7 +112,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/moneyerror"
-                android:textColor="@color/common_text_1"
+                android:textColor="@color/white"
                 android:textColorHint="@color/colorCutOffSide"
                 android:textSize="@dimen/d_16dp"/>
 
@@ -126,7 +123,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -152,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Problem3"
-                android:textColor="@color/common_text_2"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 />
 
@@ -166,7 +162,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/Otherquestions"
-                android:textColor="@color/common_text_1"
+                android:textColor="@color/white"
                 android:textColorHint="@color/colorCutOffSide"
                 android:textSize="@dimen/d_16dp"/>
 
@@ -195,7 +191,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="10dp"
-        android:background="@color/white"
+        android:textColor="@color/common_text_1"
+        android:background="@color/common_black"
         android:gravity="start"/>
 
     <Button

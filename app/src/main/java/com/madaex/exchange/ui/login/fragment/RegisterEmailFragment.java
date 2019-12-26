@@ -147,7 +147,7 @@ public class RegisterEmailFragment extends BaseNetLazyFragment<CommonPresenter> 
         int len = mSearchKey.length();
         String temp = name.substring(0, index)
 
-                + name.substring(index, index + len) + "<font color=\"#5470e7\">"
+                + name.substring(index, index + len) + "<font color=\"#ffffff\">"
                 + name.substring(index + len, name.length()) + "</font>";
         mLlAgree.setText(Html.fromHtml(temp));
     }

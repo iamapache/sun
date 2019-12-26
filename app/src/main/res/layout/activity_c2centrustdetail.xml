@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/d_3dp"
-        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 

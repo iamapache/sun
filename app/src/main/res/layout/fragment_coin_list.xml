@@ -83,7 +83,6 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_40dp"
-            android:background="@color/white"
             app:tabBackground="@color/white"
             app:tabIndicatorColor="@color/title_color"
             app:tabIndicatorHeight="@dimen/d_2dp"

@@ -35,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_64dp"
                 android:layout_marginTop="@dimen/d_15dp"
-                android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -77,7 +76,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_44dp"
                 android:layout_marginTop="@dimen/d_15dp"
-                android:background="@color/white"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -110,7 +108,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fffdbb"
                 android:drawableLeft="@mipmap/kgf"
                 android:drawablePadding="@dimen/d_5dp"
                 android:padding="@dimen/d_8dp"
@@ -122,7 +119,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_44dp"
                 android:layout_marginTop="@dimen/d_15dp"
-                android:background="@color/white"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -154,7 +150,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_44dp"
                 android:layout_marginTop="@dimen/d_15dp"
-                android:background="@color/white"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -187,7 +182,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_44dp"
                 android:layout_marginTop="@dimen/d_15dp"
-                android:background="@color/white"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -246,8 +240,7 @@
                     android:id="@+id/img"
                     android:layout_width="150dp"
 
-                    android:layout_height="180dp"
-                    android:background="@mipmap/selectpbg"/>
+                    android:layout_height="180dp"/>
             </LinearLayout>
 
             <Button

@@ -82,7 +82,7 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                     @Override
                     public void onNext(CommonDataBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(commonBean.getData()+"");
                         }else {

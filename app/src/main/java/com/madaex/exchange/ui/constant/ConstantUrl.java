@@ -39,9 +39,9 @@ public class ConstantUrl {
     public static String TRANS_TYPE_SELLER = "2";
     public static String TYPE = "type";
     //首页菜单
-    public static String TRADE_HOME_INDEX_TOP = "Trade.home_index_top";
+    public static String TRADE_HOME_INDEX_TOP = "market.getCoinList";
     //首页列表
-    public static String TRADE_HOME_INDEX = "Trade.home_index";
+    public static String TRADE_HOME_INDEX = "market.getMartketList";
     //首页列表--交易币详情
     public static String TRADE_HOME_INDEX_DETAIL = "Trade.home_index_detail";
     //首页列表--交易币详情的K线图
@@ -131,18 +131,18 @@ public class ConstantUrl {
     //当前委托列表的委托明细
     public static String TRADE_CURRENT_ENTRUST_DETAIL = "Trade.current_entrust_detail";
     //投票上币列表
-    public static String MARKET_VOTE_LIST = "Market.vote_list";
+    public static String MARKET_VOTE_LIST = "Vote.vote_list";
     //投票上币之我参与
-    public static String MARKET_MY_VOTE_LIST = "Market.my_vote_list";
+    public static String MARKET_MY_VOTE_LIST = "Vote.my_vote_list";
     //确认投票
-    public static String MARKET_CONFIRM_VOTE = "Market.confirm_vote";
+    public static String MARKET_CONFIRM_VOTE = "Vote.confirm_vote";
 
     //参与公募列表
-    public static String MARKET_PUBLIC_OFFER_LIST = "Market.public_offer_list";
+    public static String MARKET_PUBLIC_OFFER_LIST = "Vote.public_offer_list";
     //我参与的公募列表
-    public static String MARKET_MY_PARTAKE_PUBLIC = "Market.my_partake_public";
+    public static String MARKET_MY_PARTAKE_PUBLIC = "Vote.my_partake_public";
     //确认公募
-    public static String MARKET_CONFIRM_PUBLIC = "Market.confirm_public";
+    public static String MARKET_CONFIRM_PUBLIC = "Vote.confirm_public";
 
     //收藏币种
     public static String TRADE_IS_COLLECTION = "Trade.is_collection";
