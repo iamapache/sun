@@ -41,6 +41,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.login.activity.RegisterActivity;
+import com.madaex.exchange.ui.market.activity.MessageListActivity;
 import com.madaex.exchange.ui.mine.activity.AccountManagerActivity;
 import com.madaex.exchange.ui.mine.activity.AuthenticationActivity;
 import com.madaex.exchange.ui.mine.activity.LanguageActivity;
@@ -65,6 +66,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import hlq.ImageViewBound;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
@@ -86,6 +88,8 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     RelativeLayout mRlInfo;
     @BindView(R.id.mark)
     TextView mark;
+    @BindView(R.id.img_msg)
+    ImageViewBound mImgMsg;
     private CustomPopWindow mCustomPopWindow;
 
     public static MineFragment newInstance(String string) {
@@ -111,7 +115,16 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 
     @Override
     protected void initView() {
-
+        mImgMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MessageListActivity.class);
+                intent.putExtra("market", "ada_GRC");
+                intent.putExtra("one_xnb", "ada");
+                intent.putExtra("two_xnb", "GRC");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -155,6 +168,9 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         }
         isVisible = false;
         isPrepared = false;
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.USER_NEWS_TOTAL);
+        mPresenter.getMessageCount(DataUtil.sign(params));
     }
 
 
@@ -476,7 +492,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 
     @Override
     public void requestSuccess(User user) {
-        mUsername.setText(getString(R.string.userid)+user.getData().getUserid());
+        mUsername.setText(getString(R.string.userid) + user.getData().getUserid());
         SPUtils.putString(Constants.MOBILE, user.getData().getUsername());
         mark.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -494,7 +510,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         } else {
             SPUtils.putBoolean(Constants.ISMOBILE, false);
         }
-        if (user.getData().getIdcardauth()==1) {
+        if (user.getData().getIdcardauth() == 1) {
             SPUtils.putBoolean(Constants.has_bank, true);
         } else {
             SPUtils.putBoolean(Constants.has_bank, false);
@@ -528,6 +544,11 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     @Override
     public void requestError(String msg) {
 
+    }
+
+    @Override
+    public void requestMessageCountSuccess(String msg) {
+        mImgMsg.setMessageNum(Integer.valueOf(msg));
     }
 
     @Override

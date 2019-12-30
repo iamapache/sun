@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tl="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,7 +14,8 @@
         <ImageView
             android:layout_width="@dimen/d_44dp"
             android:layout_height="@dimen/d_22dp"
-            android:layout_marginLeft="@dimen/d_15dp"/>
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:src="@mipmap/icon_sacn" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,11 +24,18 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="37dp"
-                android:src="@mipmap/mark_logo"/>
-        </LinearLayout>
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@mipmap/logo" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ALSC"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
         <ImageView
@@ -38,33 +44,152 @@
             android:layout_height="@dimen/d_22dp"
             android:layout_marginLeft="@dimen/d_5dp"
             android:layout_marginRight="@dimen/d_15dp"
-            android:src="@mipmap/mark_list"/>
+            android:src="@mipmap/mark_list" />
 
 
     </LinearLayout>
 
-<android.support.v4.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.youth.banner.Banner
-            android:id="@+id/banner"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="136dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.youth.banner.Banner
-            android:id="@+id/banner2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="136dp"
+                android:background="@color/common_black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_black"
+                android:text="新币上线,ALSC将于08.10正式发布"
+                android:textColor="#ffffffff"
+                android:textSize="12sp" />
+
+            <com.youth.banner.Banner
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_black" />
 
 
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_black"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_chongtibi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@mipmap/icon_jingangqu_chongtibi" />
+
+                    <TextView
+                        style="@style/TextColorSizeStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:text="充币提币" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_toupiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@mipmap/icon_jingangqu_toupiao" />
+
+                    <TextView
+                        style="@style/TextColorSizeStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:text="投币上票" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_gongmu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@mipmap/icon_jingangqu_gongmu" />
+
+                    <TextView
+                        style="@style/TextColorSizeStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:text="参与公募" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_heyuejiaoyi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@mipmap/icon_jingangqu_heyuejiaoyi" />
+
+                    <TextView
+                        style="@style/TextColorSizeStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:maxLines="1"
+                        android:text="合约交易" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/common_black"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

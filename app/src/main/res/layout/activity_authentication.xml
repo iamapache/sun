@@ -205,7 +205,6 @@
 
             <LinearLayout
                 android:id="@+id/ll_2"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -215,7 +214,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:background="@color/white"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -247,7 +245,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:background="@color/white"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -279,7 +276,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:background="@color/white"
                     android:gravity="center_vertical">
 
                     <TextView

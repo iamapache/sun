@@ -14,8 +14,7 @@ import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
-import com.madaex.exchange.ui.finance.bank.activity.AddBankActivity;
-import com.madaex.exchange.ui.finance.bank.contract.Bank;
+import com.madaex.exchange.ui.market.bean.Message;
 import com.madaex.exchange.ui.market.contract.MessageContract;
 import com.madaex.exchange.ui.market.presenter.MessagePresenter;
 
@@ -34,7 +33,7 @@ import butterknife.OnClick;
  */
 
 public class MessageListActivity extends BaseNetActivity<MessagePresenter> implements MessageContract.View {
-    ArrayList<Bank.DataBean> mDataBeans = new ArrayList<>();
+    ArrayList<Message.DataBean> mDataBeans = new ArrayList<>();
     BaseQuickAdapter mAdapter;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
@@ -56,17 +55,24 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new BaseQuickAdapter<Bank.DataBean, BaseViewHolder>(R.layout.item_banklist, mDataBeans) {
+        mAdapter = new BaseQuickAdapter<Message.DataBean, BaseViewHolder>(R.layout.item_message, mDataBeans) {
             @Override
-            protected void convert(BaseViewHolder helper, final Bank.DataBean item) {
-//                helper.setText(R.id.name, item.getName()).setText(R.id.bankname, item.getBank()).setText(R.id.banktype, "储蓄卡")
-//                        .setText(R.id.number, item.getBankcard()).setImageResource(R.id.bankimg, ViewUtil.setBankImageView(item.getName()));
+            protected void convert(BaseViewHolder helper, final Message.DataBean item) {
+                helper.setText(R.id.number, item.getTitle()).setText(R.id.type, item.getAdd_time());
+                TextView textView =helper.getView(R.id.time1);
+                if(item.getIs_read()==0){
+                    textView.setBackgroundResource(R.drawable.rect_rounded_red);
+                }else {
+                    textView.setBackgroundResource(R.drawable.rect_rounded_white);
+                }
             }
         };
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(mContext, AddBankActivity.class);
+                Message.DataBean dataBean = (Message.DataBean) adapter.getItem(position);
+                Intent intent = new Intent(mContext, MessageDetailActivity.class);
+                intent.putExtra("title",dataBean.getTitle() );
                 startActivityForResult(intent, CODE_REQUEST);
             }
         });
@@ -98,7 +104,7 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
 
     private void getBankList() {
         TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.FINANCE_USER_BANK_LIST);
+        params.put("act", ConstantUrl.USER_NEWS_LIST);
         mPresenter.getData(DataUtil.sign(params));
     }
 
@@ -112,13 +118,18 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
     }
 
     @Override
-    public void requestSuccess(List<Bank.DataBean> bean) {
+    public void requestSuccess(List<Message.DataBean> bean) {
         mAdapter.setNewData(bean);
     }
 
     @Override
     public void requestError(String msg) {
         ToastUtils.showToast(msg);
+    }
+
+    @Override
+    public void requestSuccess(String bean) {
+
     }
 
 }

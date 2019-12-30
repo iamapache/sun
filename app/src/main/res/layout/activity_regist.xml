@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/register_email"
-                android:textColor="@color/common_text_333"
+                android:textColor="@color/white"
                 android:textSize="16dp"/>
 
             <View

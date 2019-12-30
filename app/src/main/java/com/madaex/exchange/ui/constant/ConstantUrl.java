@@ -61,6 +61,18 @@ public class ConstantUrl {
     public static String USER_REALNAME = "User.realname";
     //用户信息状态
     public static String USER_USERINFO_STATUS = "User.userinfo_status";
+
+
+    //个人中心消息未读数
+    public static String USER_NEWS_TOTAL = "User.news_total";
+
+
+    public static String USER_NEWS_LIST = "User.news_list";
+
+    public static String USER_ADD_READ_NEWS = "User.add_read_news";
+
+
+
     //升级检测：
     public static String VERSION_CHECK = "Version.check";
     //财务
@@ -152,15 +164,6 @@ public class ConstantUrl {
 
     //详情页面的成交列表
     public static String TRADE_COIN_DEAL_LIST = "Trade.coin_deal_list";
-
-
-
-
-
-
-
-
-
 
 
 

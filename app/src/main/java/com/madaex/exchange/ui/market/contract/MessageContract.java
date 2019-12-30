@@ -1,7 +1,7 @@
 package com.madaex.exchange.ui.market.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
-import com.madaex.exchange.ui.finance.bank.contract.Bank;
+import com.madaex.exchange.ui.market.bean.Message;
 
 import java.util.List;
 import java.util.Map;
@@ -15,15 +15,15 @@ import java.util.Map;
 
 public class MessageContract {
     public interface View extends BaseContract.BaseView {
-        void requestSuccess(List<Bank.DataBean> bean);
+        void requestSuccess(List<Message.DataBean> bean);
 
         void requestError(String msg);
 
-
+        void requestSuccess(String bean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<MessageContract.View> {
         void getData(Map body);
-
+        void read(Map body);
     }
 }

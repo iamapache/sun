@@ -54,9 +54,9 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                     @Override
                     public void onNext(CommonDataBean CommonDataBean) {
                         if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(CommonDataBean.getData()+"");
+                            mView.requestError(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(CommonDataBean.getData()+"");
+                            mView.nodata(CommonDataBean.getMessage()+"");
                         }else {
                             mView.requestSuccess(CommonDataBean.getData()+"");
                         }
@@ -84,7 +84,7 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                         if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.requestError(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(CommonDataBean.getData()+"");
+                            mView.nodata(CommonDataBean.getMessage()+"");
                         }else {
                             mView.requestSuccess2(CommonDataBean.getData());
                         }
@@ -110,7 +110,7 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                     @Override
                     public void onNext(CommonDataBean CommonDataBean) {
                         if(CommonDataBean.getStatus()==0){
-                            mView.requestError(CommonDataBean.getData()+"");
+                            mView.requestError(CommonDataBean.getMessage()+"");
                         }else {
                             mView.sendMsgSuccess(CommonDataBean.getMessage());
                         }

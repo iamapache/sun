@@ -36,6 +36,7 @@ import com.madaex.exchange.ui.finance.vote.activity.RankingDetailActivity;
 import com.madaex.exchange.ui.login.activity.LoginActivity;
 import com.madaex.exchange.ui.market.activity.DealActivity;
 import com.madaex.exchange.ui.market.activity.EntrustDetailActivity;
+import com.madaex.exchange.ui.market.activity.MessageDetailActivity;
 import com.madaex.exchange.ui.market.activity.MessageListActivity;
 import com.madaex.exchange.ui.market.fragment.KLineFragment;
 import com.madaex.exchange.ui.mine.activity.AuthenticationActivity;
@@ -131,4 +132,6 @@ public interface ActivityComponent {
     void inject(NcActivity ncActivity);
 
     void inject(NcListActivity ncListActivity);
+
+    void inject(MessageDetailActivity messageDetailActivity);
 }

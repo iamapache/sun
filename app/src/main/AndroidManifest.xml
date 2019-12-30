@@ -73,6 +73,7 @@
         <activity android:name=".ui.login.activity.GuideActivity"/>
         <!-- 行情 -->
         <activity android:name=".ui.market.activity.MessageListActivity"/>
+        <activity android:name=".ui.market.activity.MessageDetailActivity"/>
         <activity android:name=".ui.market.activity.DealActivity"
             />
 

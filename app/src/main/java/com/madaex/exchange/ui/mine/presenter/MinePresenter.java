@@ -13,15 +13,13 @@ import com.madaex.exchange.common.progress.UpgradeUtil;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.mine.bean.User;
 import com.madaex.exchange.ui.mine.bean.update;
 import com.madaex.exchange.ui.mine.contract.MineContract;
-import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.util.Map;
@@ -33,8 +31,6 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
@@ -83,6 +79,31 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                             mView.nodata(commonBean.getData()+"");
                         }else {
                             mView.requestSuccess(commonBean);
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getMessageCount(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonDataBean>() {
+                    @Override
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        CommonDataBean commonBaseBean = gson.fromJson(data, CommonDataBean.class);
+                            return commonBaseBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView) {
+                    @Override
+                    public void onNext(CommonDataBean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.nodata(commonBean.getMessage()+"");
+                        }else {
+                            mView.requestMessageCountSuccess(commonBean.getMessage());
                         }
                     }
                 }));

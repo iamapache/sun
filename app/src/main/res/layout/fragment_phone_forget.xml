@@ -157,7 +157,7 @@
             android:padding="7dp"
             app:default_text="@string/get_code"
             android:layout_marginRight="@dimen/d_8dp"
-            android:textColor="@color/white"
+            android:textColor="#FBB03B"
             android:textSize="12sp" />
     </LinearLayout>
 

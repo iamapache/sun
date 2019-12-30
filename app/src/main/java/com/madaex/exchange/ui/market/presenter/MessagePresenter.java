@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.madaex.exchange.common.ApiService;
+import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.market.bean.Message;
 import com.madaex.exchange.ui.market.contract.MessageContract;
 
@@ -50,11 +52,35 @@ public class MessagePresenter extends RxPresenter<MessageContract.View> implemen
                 .subscribeWith(new CommonSubscriber<Message>(mView) {
                     @Override
                     public void onNext(Message commonBean) {
-//                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-//                            mView.requestError("");
-//                        } else {
-//                            mView.requestSuccess(commonBean.getData());
-//                        }
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMessage());
+                        } else {
+                            mView.requestSuccess(commonBean.getData());
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void read(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonDataBean>() {
+                    @Override
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        CommonDataBean commonBean = gson.fromJson(data, CommonDataBean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView) {
+                    @Override
+                    public void onNext(CommonDataBean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else {
+                            mView.requestSuccess(commonBean.getMessage());
+                        }
                     }
                 }));
     }

@@ -18,12 +18,13 @@ public class MineContract {
         void requestSuccess(User user);
         void nodata(String msg);
         void requestError(String msg);
+        void requestMessageCountSuccess(String msg);
         void requestupdate(update bean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<MineContract.View> {
         void getData(Map body);
-
+        void getMessageCount(Map body);
         void update(Map body);
 
         void load(String msg);
