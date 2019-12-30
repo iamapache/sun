@@ -23,10 +23,8 @@ import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.ClipboardUtil;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
-import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
-import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.address.activity.AddressListActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.finance.bean.SellerCoin;
@@ -76,7 +74,8 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     private boolean isCheck = true;
     private double zc_min = 0;
     private double zc_max = 10000;
-
+    @BindView(R.id.tv_transpassword)
+    EditText mTvTranspassword;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_sellercoin;
@@ -109,6 +108,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     protected void initDatas() {
         String str = getIntent().getStringExtra("xnb");
         String xnb_name = getIntent().getStringExtra("xnb_name");
+        String wallet_type = getIntent().getStringExtra("wallet_type");
         mTitleView.setText(getString(R.string.fu) + xnb_name);
         mCointype.setText(xnb_name);
         if (!xnb_name.equals("GRC")) {
@@ -118,6 +118,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CASH_COIN);
         params.put("xnb", str);
+        params.put("wallet_type", wallet_type);
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,22 +171,27 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         if (TextUtils.isEmpty(mTvNumber.getText().toString().trim())) {
             ToastUtils.showToast(getString(R.string.entrureturnnumber));
             return;
-        } if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+        }
+//        if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
+//        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
+//        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
+        if (TextUtils.isEmpty(mTvTranspassword.getText().toString())) {
+            ToastUtils.showToast(getString(R.string.entrytranspwd));
             return;
         }
-        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-            return;
-        }
-        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-            return;
-        }
-        if (!SPUtils.getBoolean(Constants.has_paypassword, false)) {
-            ToastUtils.showToast(getString(R.string.passwordfirst));
-            return;
-        }
+//        if (!SPUtils.getBoolean(Constants.has_paypassword, false)) {
+//            ToastUtils.showToast(getString(R.string.passwordfirst));
+//            return;
+//        }
         String xnb_name = getIntent().getStringExtra("xnb_name");
         Dialog dialog = new IosDialog.Builder(this).setTitle(getString(R.string.oksellerbill) + "?").setTitleColor(ContextCompat.getColor(mContext, R.color.common_text_1)).setTitleSize(20)
                 .setMessage(getString(R.string.money) + xnb_name + mTvNumber.getText().toString().trim()).setMessageColor(ContextCompat.getColor(mContext, R.color.common_red)).setMessageSize(14)
@@ -206,7 +212,8 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
                         intent.setClass(mContext, ConfirmTransaActivity.class);
                         intent.putExtra("number", mTvNumber.getText().toString().trim());
                         intent.putExtra("address", mTvAddress.getText().toString().trim());
-                        intent.putExtra("fee", mTvKgf.getText().toString().trim());
+                        intent.putExtra("pass", mTvTranspassword.getText().toString().trim());
+//                        intent.putExtra("fee", mTvKgf.getText().toString().trim());
                         intent.putExtra("isCheck", isCheck);
                         startActivity(intent);
                         dialog.dismiss();

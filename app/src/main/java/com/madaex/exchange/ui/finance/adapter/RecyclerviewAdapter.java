@@ -40,11 +40,12 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     private List<Asset.DataBean.XnbListBean> data;
     private List<Asset.DataBean.XnbListBean> mFilterList = new ArrayList<>();
     private boolean isshow;
-
-    public RecyclerviewAdapter(Context context, List<Asset.DataBean.XnbListBean> data) {
+    String wallet_type ="";
+    public RecyclerviewAdapter(Context context, List<Asset.DataBean.XnbListBean> data, String wallet_type ) {
         this.mContext = context;
         this.data = data;
         this.mFilterList = data;
+        this.wallet_type  =wallet_type;
     }
 
 
@@ -71,6 +72,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     intent.putExtra("address", item.getAddress());
                     intent.putExtra("xnb", item.getXnb());
                     intent.putExtra("xnb_name", item.getXnb_name());
+                    intent.putExtra("wallet_type", wallet_type);
                     mContext.startActivity(intent);
                 } else if (item.getIs_recharge() == 0) {
                     ToastUtils.showToast("该币暂时不能充值");
@@ -86,16 +88,16 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         holder.mLlSellercoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ("1".equals(item.getIs_support_cash())) {
+                if (item.getIs_support_cash()==1) {
                     Intent intent = new Intent();
                     intent.setClass(mContext, SellerCoinActivity.class);
                     intent.putExtra("xnb", item.getXnb());
                     intent.putExtra("xnb_name", item.getXnb_name());
+                    intent.putExtra("wallet_type", wallet_type);
                     mContext.startActivity(intent);
-                } else if ("2".equals(item.getIs_support_cash())) {
+                } else if (item.getIs_support_cash()==2) {
                     ToastUtils.showToast(R.string.comingsoon);
-                } else if (item.getIs_support_cash() == null) {
-                    ToastUtils.showToast(R.string.comingsoon);
+
                 }
 
             }

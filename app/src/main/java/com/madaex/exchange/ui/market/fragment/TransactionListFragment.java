@@ -164,7 +164,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
         }
         isVisible = false;
         isPrepared = false;
-        getData();
+//        getData();
 
     }
 

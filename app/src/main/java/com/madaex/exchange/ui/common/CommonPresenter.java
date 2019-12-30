@@ -38,27 +38,27 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
     @Override
     public void getData(Map str) {
         addSubscribe((Disposable) rxApi.getTestResult2(str)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, CommonDataBean>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
 //                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
 //                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data),rsa.PUBLIC_KEY));
                         Logger.i("<====>paramsStr:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
-                        return commonBean;
+                        CommonDataBean CommonDataBean = gson.fromJson(data, CommonDataBean.class);
+                        return CommonDataBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
-                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(commonBean.getData()+"");
+                    public void onNext(CommonDataBean CommonDataBean) {
+                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestError(CommonDataBean.getData()+"");
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.nodata(CommonDataBean.getData()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(CommonDataBean.getData()+"");
                         }
                     }
                 }));
@@ -73,20 +73,20 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                     public CommonDataBean apply(@NonNull String data) throws Exception {
                         Logger.i("<====>paramsStr:" + data);
                         Gson gson = new Gson();
-                        CommonDataBean commonBean = gson.fromJson(data, CommonDataBean.class);
-                        return commonBean;
+                        CommonDataBean CommonDataBean = gson.fromJson(data, CommonDataBean.class);
+                        return CommonDataBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
                 .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
-                    public void onNext(CommonDataBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getMessage()+"");
-                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(commonBean.getData()+"");
+                    public void onNext(CommonDataBean CommonDataBean) {
+                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestError(CommonDataBean.getMessage()+"");
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.nodata(CommonDataBean.getData()+"");
                         }else {
-                            mView.requestSuccess2(commonBean.getData());
+                            mView.requestSuccess2(CommonDataBean.getData());
                         }
                     }
                 }));
@@ -96,23 +96,23 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
     @Override
     public void getMsgCode(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult2(body)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, CommonDataBean>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
                         Logger.i("<==>data:" + data);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
-                        return commonBean;
+                        CommonDataBean CommonDataBean = gson.fromJson(data, CommonDataBean.class);
+                        return CommonDataBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
-                        if(commonBean.getStatus()==0){
-                            mView.requestError(commonBean.getData()+"");
+                    public void onNext(CommonDataBean CommonDataBean) {
+                        if(CommonDataBean.getStatus()==0){
+                            mView.requestError(CommonDataBean.getData()+"");
                         }else {
-                            mView.sendMsgSuccess(commonBean.getData());
+                            mView.sendMsgSuccess(CommonDataBean.getMessage());
                         }
                     }
                 }));

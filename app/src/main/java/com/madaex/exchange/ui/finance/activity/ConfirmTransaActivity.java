@@ -2,7 +2,6 @@ package com.madaex.exchange.ui.finance.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,8 +42,7 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
     TextView mTvAmount;
     @BindView(R.id.billtype)
     TextView mBilltype;
-    @BindView(R.id.tv_transpassword)
-    EditText mTvTranspassword;
+
     @BindView(R.id.tv_code)
     EditText mTvCode;
     @BindView(R.id.tv_fee)
@@ -147,24 +145,22 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
     }
 
     private void validate() {
-        if (TextUtils.isEmpty(mTvTranspassword.getText().toString())) {
-            ToastUtils.showToast(getString(R.string.entrytranspwd));
-            return;
-        }
-        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
-            ToastUtils.showToast(getString(R.string.input_msg_code));
-            return;
-        }
+
+//        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
+//            ToastUtils.showToast(getString(R.string.input_msg_code));
+//            return;
+//        }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CONFIRM_CASH);
-        params.put("verify_code", mTvCode.getText().toString().trim());
-        params.put("verify_encode", verify_encode);
+//        params.put("verify_code", mTvCode.getText().toString().trim());
+//        params.put("verify_encode", verify_encode);
         params.put("xnb", getIntent().getStringExtra("xnb"));
-        params.put("paypassword", mTvTranspassword.getText().toString());
+        params.put("paypassword", getIntent().getStringExtra("pass"));
+        params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         params.put("addr", getIntent().getStringExtra("address"));
         params.put("num", getIntent().getStringExtra("number"));
-        params.put("fee", getIntent().getStringExtra("fee"));
-        params.put("is_inside", getIntent().getBooleanExtra("isCheck", true) == false ? 0 + "" : 1 + "");
+//        params.put("fee", getIntent().getStringExtra("fee"));
+//        params.put("is_inside", getIntent().getBooleanExtra("isCheck", true) == false ? 0 + "" : 1 + "");
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setClickable(false);
         mSubmit.setBackgroundResource(R.drawable.code_shape);

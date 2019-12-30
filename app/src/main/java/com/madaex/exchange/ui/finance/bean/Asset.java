@@ -14,10 +14,12 @@ import java.util.List;
 public class Asset extends CommonBaseBean {
 
     /**
-     * data : {"assets":{"cny":"243942.31","dollar":"35873.87"},"xnb_list":[{"frozen":"0.00","assets":"9988.70","avail":"9988.70","xnb":"GRC","xnb_name":"GRC","address":"8867999552a4a2ba923bb485ceabf983","type":"rmb"},{"frozen":"0.0000","assets":"222800.00","avail":"5.0000","xnb":"ETH","xnb_name":"ETH","address":"ETH1","type":"qbb"},{"frozen":"0.0000","assets":"8321.77","avail":"5.7000","xnb":"eth","xnb_name":"ETH","address":"eth1","type":"qbb"},{"frozen":"0.0000","assets":"2831.84","avail":"8.0000","xnb":"ltc","xnb_name":"LTC","address":"ltc1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"eos","xnb_name":"EOS","address":"eos1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"qtum","xnb_name":"QTUM","address":"qtum1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xrp","xnb_name":"XRP","address":"9faeabd8ab4f25da1c4f08dd1839ab5b","type":"rgb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"dash","xnb_name":"DASH","address":"dash1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"bat","xnb_name":"BAT","address":"bat1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"doge","xnb_name":"DOGE","address":"doge1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"neo","xnb_name":"NEO","address":"neo1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"omg","xnb_name":"OMG","address":"omg1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"snt","xnb_name":"SNT","address":"snt1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"ae","xnb_name":"AE","address":"ae1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"icx","xnb_name":"ICX","address":"icx1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"zrx","xnb_name":"ZRX","address":"zrx1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xlm","xnb_name":"XLM","address":"xlm1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"etc","xnb_name":"ETC","address":"etc1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"gnt","xnb_name":"GNT","address":"gnt1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xem","xnb_name":"XEM","address":"xem1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"ada","xnb_name":"ADA","address":"ada1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"syngy","xnb_name":"SYNGY","address":"","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"rmcc","xnb_name":"RMCC","address":"","type":"qbb"}],"coin_hot":[{"value":"222800.00","name":"ETH"},{"value":"8321.77","name":"ETH"},{"value":"9988.70","name":"GRC"},{"value":"2831.84","name":"其他"}]}
+     * data : {"assets":{"usdt":"0.00","dollar":"--"},"xnb_list":[{"frozen":"0.000000","assets":"0.00","avail":"0.00","xnb":"usdt","coin_id":10,"xnb_name":"USDT","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"alsc","coin_id":12,"xnb_name":"ALSC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"eth","coin_id":3,"xnb_name":"ETH","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":1,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"bat","coin_id":4,"xnb_name":"BAT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"omg","coin_id":5,"xnb_name":"OMG","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"snt","coin_id":6,"xnb_name":"SNT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"icx","coin_id":7,"xnb_name":"ICX","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"zrx","coin_id":8,"xnb_name":"ZRX","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"gnt","coin_id":9,"xnb_name":"GNT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":1,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"btc","coin_id":11,"xnb_name":"BTC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"qtum","coin_id":13,"xnb_name":"QTUM","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"alsc","coin_id":12,"xnb_name":"ALSC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"}],"coin_hot":[{"value":"0.00","name":"ALSC"},{"value":"0.00","name":"ETH"},{"value":"0.00","name":"BAT"},{"value":"0.00","name":"其他"}],"exchange_coin":"usdt"}
+     * message : 操作成功
      */
 
     private DataBean data;
+    private String message;
 
     public DataBean getData() {
         return data;
@@ -27,14 +29,24 @@ public class Asset extends CommonBaseBean {
         this.data = data;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public static class DataBean {
         /**
-         * assets : {"cny":"243942.31","dollar":"35873.87"}
-         * xnb_list : [{"frozen":"0.00","assets":"9988.70","avail":"9988.70","xnb":"GRC","xnb_name":"GRC","address":"8867999552a4a2ba923bb485ceabf983","type":"rmb"},{"frozen":"0.0000","assets":"222800.00","avail":"5.0000","xnb":"ETH","xnb_name":"ETH","address":"ETH1","type":"qbb"},{"frozen":"0.0000","assets":"8321.77","avail":"5.7000","xnb":"eth","xnb_name":"ETH","address":"eth1","type":"qbb"},{"frozen":"0.0000","assets":"2831.84","avail":"8.0000","xnb":"ltc","xnb_name":"LTC","address":"ltc1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"eos","xnb_name":"EOS","address":"eos1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"qtum","xnb_name":"QTUM","address":"qtum1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xrp","xnb_name":"XRP","address":"9faeabd8ab4f25da1c4f08dd1839ab5b","type":"rgb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"dash","xnb_name":"DASH","address":"dash1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"bat","xnb_name":"BAT","address":"bat1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"doge","xnb_name":"DOGE","address":"doge1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"neo","xnb_name":"NEO","address":"neo1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"omg","xnb_name":"OMG","address":"omg1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"snt","xnb_name":"SNT","address":"snt1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"ae","xnb_name":"AE","address":"ae1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"icx","xnb_name":"ICX","address":"icx1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"zrx","xnb_name":"ZRX","address":"zrx1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xlm","xnb_name":"XLM","address":"xlm1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"etc","xnb_name":"ETC","address":"etc1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"gnt","xnb_name":"GNT","address":"gnt1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"xem","xnb_name":"XEM","address":"xem1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"ada","xnb_name":"ADA","address":"ada1","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"syngy","xnb_name":"SYNGY","address":"","type":"qbb"},{"frozen":"0.0000","assets":"0.00","avail":"0.0000","xnb":"rmcc","xnb_name":"RMCC","address":"","type":"qbb"}]
-         * coin_hot : [{"value":"222800.00","name":"ETH"},{"value":"8321.77","name":"ETH"},{"value":"9988.70","name":"GRC"},{"value":"2831.84","name":"其他"}]
+         * assets : {"usdt":"0.00","dollar":"--"}
+         * xnb_list : [{"frozen":"0.000000","assets":"0.00","avail":"0.00","xnb":"usdt","coin_id":10,"xnb_name":"USDT","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"alsc","coin_id":12,"xnb_name":"ALSC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"eth","coin_id":3,"xnb_name":"ETH","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":1,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"bat","coin_id":4,"xnb_name":"BAT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"omg","coin_id":5,"xnb_name":"OMG","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"snt","coin_id":6,"xnb_name":"SNT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"icx","coin_id":7,"xnb_name":"ICX","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"zrx","coin_id":8,"xnb_name":"ZRX","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"gnt","coin_id":9,"xnb_name":"GNT","address":"0x7f4cadf0fed98361f451d15bdf7843e6bb3da69f","is_recharge":1,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"btc","coin_id":11,"xnb_name":"BTC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"qtum","coin_id":13,"xnb_name":"QTUM","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"},{"frozen":"0.000000","assets":"0.00","avail":"0.000000","xnb":"alsc","coin_id":12,"xnb_name":"ALSC","address":"0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56","is_recharge":0,"is_support_cash":1,"type":"qbb"}]
+         * coin_hot : [{"value":"0.00","name":"ALSC"},{"value":"0.00","name":"ETH"},{"value":"0.00","name":"BAT"},{"value":"0.00","name":"其他"}]
+         * exchange_coin : usdt
          */
 
         private AssetsBean assets;
+        private String exchange_coin;
         private List<XnbListBean> xnb_list;
         private List<CoinHotBean> coin_hot;
 
@@ -44,6 +56,14 @@ public class Asset extends CommonBaseBean {
 
         public void setAssets(AssetsBean assets) {
             this.assets = assets;
+        }
+
+        public String getExchange_coin() {
+            return exchange_coin;
+        }
+
+        public void setExchange_coin(String exchange_coin) {
+            this.exchange_coin = exchange_coin;
         }
 
         public List<XnbListBean> getXnb_list() {
@@ -64,19 +84,19 @@ public class Asset extends CommonBaseBean {
 
         public static class AssetsBean {
             /**
-             * cny : 243942.31
-             * dollar : 35873.87
+             * usdt : 0.00
+             * dollar : --
              */
 
-            private String cny;
+            private String usdt;
             private String dollar;
 
-            public String getCny() {
-                return cny;
+            public String getUsdt() {
+                return usdt;
             }
 
-            public void setCny(String cny) {
-                this.cny = cny;
+            public void setUsdt(String usdt) {
+                this.usdt = usdt;
             }
 
             public String getDollar() {
@@ -90,38 +110,28 @@ public class Asset extends CommonBaseBean {
 
         public static class XnbListBean {
             /**
-             * frozen : 0.00
-             * assets : 9988.70
-             * avail : 9988.70
-             * xnb : GRC
-             * xnb_name : GRC
-             * address : 8867999552a4a2ba923bb485ceabf983
-             * type : rmb
+             * frozen : 0.000000
+             * assets : 0.00
+             * avail : 0.00
+             * xnb : usdt
+             * coin_id : 10
+             * xnb_name : USDT
+             * address : 0xfa2B3E25e1A0Cf6E5cAef3Cb9E33657B3A7cbe56
+             * is_recharge : 0
+             * is_support_cash : 1
+             * type : qbb
              */
-            private int is_recharge;
+
             private String frozen;
             private String assets;
             private String avail;
             private String xnb;
+            private int coin_id;
             private String xnb_name;
             private String address;
+            private int is_recharge;
+            private int is_support_cash;
             private String type;
-            private String is_support_cash;
-            public int getIs_recharge() {
-                return is_recharge;
-            }
-
-            public String getIs_support_cash() {
-                return is_support_cash;
-            }
-
-            public void setIs_support_cash(String is_support_cash) {
-                this.is_support_cash = is_support_cash;
-            }
-
-            public void setIs_recharge(int is_recharge) {
-                this.is_recharge = is_recharge;
-            }
 
             public String getFrozen() {
                 return frozen;
@@ -155,6 +165,14 @@ public class Asset extends CommonBaseBean {
                 this.xnb = xnb;
             }
 
+            public int getCoin_id() {
+                return coin_id;
+            }
+
+            public void setCoin_id(int coin_id) {
+                this.coin_id = coin_id;
+            }
+
             public String getXnb_name() {
                 return xnb_name;
             }
@@ -171,6 +189,22 @@ public class Asset extends CommonBaseBean {
                 this.address = address;
             }
 
+            public int getIs_recharge() {
+                return is_recharge;
+            }
+
+            public void setIs_recharge(int is_recharge) {
+                this.is_recharge = is_recharge;
+            }
+
+            public int getIs_support_cash() {
+                return is_support_cash;
+            }
+
+            public void setIs_support_cash(int is_support_cash) {
+                this.is_support_cash = is_support_cash;
+            }
+
             public String getType() {
                 return type;
             }
@@ -182,8 +216,8 @@ public class Asset extends CommonBaseBean {
 
         public static class CoinHotBean {
             /**
-             * value : 222800.00
-             * name : ETH
+             * value : 0.00
+             * name : ALSC
              */
 
             private String value;

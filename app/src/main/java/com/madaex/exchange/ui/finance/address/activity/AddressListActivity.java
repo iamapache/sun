@@ -116,6 +116,7 @@ public class AddressListActivity extends BaseNetActivity<AddressPresenter> imple
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_COIN_ADDRESS_LIST);
         params.put("xnb", getIntent().getStringExtra("xnb"));
+        params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         params.put(ConstantUrl.TYPE, getIntent().getStringExtra(ConstantUrl.TYPE));
         mPresenter.getData(DataUtil.sign(params));
     }

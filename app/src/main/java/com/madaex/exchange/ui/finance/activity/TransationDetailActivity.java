@@ -74,11 +74,13 @@ public class TransationDetailActivity extends BaseNetActivity<C2CTransationPrese
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_CASH_INFO);
             params.put("id", getIntent().getStringExtra("id"));
+            params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
             mPresenter.getDetail(DataUtil.sign(params));
         } else {
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_RECHARGE_INFO);
             params.put("id", getIntent().getStringExtra("id"));
+            params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
             mPresenter.getDetail(DataUtil.sign(params));
         }
 

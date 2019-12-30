@@ -104,11 +104,13 @@ public class TransaListActivity extends BaseNetActivity <TransaPreaenter> implem
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_CASH_LIST);
             params.put("xnb", getIntent().getStringExtra("xnb"));
+            params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
             mPresenter.getData(DataUtil.sign(params));
         }else {
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_RECHARGE_LIST);
             params.put("xnb", getIntent().getStringExtra("xnb"));
+            params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
             mPresenter.getData(DataUtil.sign(params));
         }
 

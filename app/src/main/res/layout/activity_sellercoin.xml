@@ -140,24 +140,42 @@
             android:layout_marginLeft="@dimen/d_15dp"
             android:layout_marginRight="@dimen/d_15dp"
             android:layout_weight="1"
-            android:drawableRight="@mipmap/icon_right"
             android:gravity="center_vertical"
             android:text="0%"
             android:textColor="@color/common_text_1"
             android:textSize="@dimen/d_16dp"/>
 
     </LinearLayout>
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fffdbb"
-        android:drawableLeft="@mipmap/kgf"
-        android:drawablePadding="@dimen/d_5dp"
-        android:padding="@dimen/d_8dp"
-        android:text="@string/feenodata"
-        android:textColor="@color/common_text_6"
-        android:textSize="@dimen/d_12dp"/>
+        android:layout_height="@dimen/d_44dp"
+        android:layout_marginTop="@dimen/d_15dp"
+        android:gravity="center_vertical">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:text="@string/transactionpass"
+            android:textColor="@color/common_text_1"
+            android:textSize="@dimen/d_16dp"/>
+
+
+        <EditText
+            android:id="@+id/tv_transpassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@null"
+            android:hint="@string/entrytranspwd"
+            android:inputType="textPassword"
+            android:textColor="@color/common_text_1"
+            android:textColorHint="@color/colorCutOffSide"
+            android:textSize="@dimen/d_16dp"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_neibu"
@@ -167,11 +185,10 @@
 
 
     <LinearLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
-        android:background="@color/white"
+        android:background="@color/common_black"
         android:gravity="center_vertical">
 
         <TextView
@@ -180,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/d_15dp"
             android:text="@string/internaltransfer"
-            android:textColor="@color/common_text_1"
+            android:textColor="@color/white"
             android:textSize="@dimen/d_16dp"/>
 
         <ToggleButton
@@ -195,7 +212,16 @@
             android:textOn=""/>
 
     </LinearLayout>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fffdbb"
+            android:drawableLeft="@mipmap/kgf"
+            android:drawablePadding="@dimen/d_5dp"
+            android:padding="@dimen/d_8dp"
+            android:text="@string/agreetrans"
+            android:textColor="@color/common_text_6"
+            android:textSize="@dimen/d_12dp"/>
     <TextView
         android:visibility="gone"
         android:layout_width="match_parent"

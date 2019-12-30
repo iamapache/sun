@@ -63,7 +63,7 @@ public class BuyCoinActivity extends BaseNetActivity<AssetPresenter> implements 
         String str = getIntent().getStringExtra("xnb");
         String xnb_name = getIntent().getStringExtra("xnb_name");
         walletaddress = getIntent().getStringExtra("address");
-        mTitleView.setText(getString(R.string.shou) + xnb_name);
+//        mTitleView.setText(getString(R.string.shou) + xnb_name);
 
         QrCode qrCode = new QrCode();
         qrCode.setAddress(walletaddress);

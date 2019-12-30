@@ -231,7 +231,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     public void requestSuccess(Asset commonBean) {
 
         if (EmptyUtils.isNotEmpty(commonBean) && EmptyUtils.isNotEmpty(commonBean.getData())) {
-            mCny.setText("￥  " + commonBean.getData().getAssets().getCny() + "");
+            mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
 //        mName1.setText(commonBean.getData().getXnb_list().get(0).getXnb_name());
 //        mName2.setText(commonBean.getData().getXnb_list().get(1).getXnb_name());
 //        mName3.setText(commonBean.getData().getXnb_list().get(2).getXnb_name());
@@ -276,6 +276,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
         mPieChart.setDragDecelerationFrictionCoef(0.95f);
         mPieChart.getLegend().setEnabled(false);
         mPieChart.setDrawHoleEnabled(true);
+        mPieChart.setBackgroundColor(getResources().getColor(R.color.common_black));
         mPieChart.setHoleColor(Color.WHITE);
 //
         mPieChart.setTransparentCircleColor(Color.WHITE);

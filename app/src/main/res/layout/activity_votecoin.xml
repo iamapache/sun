@@ -65,7 +65,7 @@
         app:tabIndicatorColor="@color/title_color"
         app:tabIndicatorHeight="@dimen/d_2dp"
         app:tabMode="fixed"
-        app:tabBackground="@color/white"
+        app:tabBackground="@color/common_black"
         app:tabSelectedTextColor="@color/title_color"
         app:tabTextColor="@color/common_text_6"/>
 

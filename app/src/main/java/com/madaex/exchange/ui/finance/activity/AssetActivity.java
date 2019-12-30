@@ -71,7 +71,8 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
-        mAdapter = new RecyclerviewAdapter(this,testBeans);
+      String wallet_type = getIntent().getStringExtra("wallet_type");
+        mAdapter = new RecyclerviewAdapter(this,testBeans,wallet_type);
         mRecyclerview.setAdapter(mAdapter);
 //        mAdapter = new BaseQuickAdapter<Asset.DataBean.XnbListBean, BaseViewHolder>(R.layout.item_asset, testBeans) {
 //            @Override
@@ -178,7 +179,7 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     private void getData() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
-        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
+//        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign(params));
     }
 
@@ -221,7 +222,7 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         testBeans.clear();
         testBeans.addAll(commonBean.getData().getXnb_list());
         mAdapter.notifyDataSetChanged();
-        mCny.setText("￥  " + commonBean.getData().getAssets().getCny() + "");
+        mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
         mDollar.setText("$  " + commonBean.getData().getAssets().getDollar() + "");
     }
 }

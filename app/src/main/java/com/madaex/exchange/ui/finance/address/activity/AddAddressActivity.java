@@ -162,6 +162,7 @@ public class AddAddressActivity extends BaseNetActivity<CommonPresenter> impleme
         params.put("verify_encode", verify_encode);
         params.put(ConstantUrl.TYPE, getIntent().getStringExtra(ConstantUrl.TYPE));
         params.put("paypassword", mPassword.getText().toString().trim());
+        params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign2(params));
     }
 

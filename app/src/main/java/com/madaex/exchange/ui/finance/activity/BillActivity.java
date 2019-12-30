@@ -111,6 +111,7 @@ getActivityComponent().inject(this);
         params.put("act", ConstantUrl.TRADE_BILL_LIST);
         params.put("xnb", getIntent().getStringExtra("xnb"));
         params.put("curPage", pageNum + "");
+        params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign(params));
     }
 
