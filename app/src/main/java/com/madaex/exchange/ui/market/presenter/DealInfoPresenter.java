@@ -51,7 +51,7 @@ public class DealInfoPresenter extends RxPresenter<DealInfoContract.View> implem
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             CoinList user = new CoinList();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

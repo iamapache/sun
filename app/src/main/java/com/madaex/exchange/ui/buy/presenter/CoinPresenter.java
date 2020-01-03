@@ -85,7 +85,7 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
                             mView.requestError(commonBean.getData()+"");
                         }else {
-                            mView.sendDealSuccess(commonBean.getData());
+                            mView.sendDealSuccess(commonBean.getMessage());
                         }
                     }
                 }));
@@ -133,7 +133,7 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             DealInfo user = new DealInfo();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

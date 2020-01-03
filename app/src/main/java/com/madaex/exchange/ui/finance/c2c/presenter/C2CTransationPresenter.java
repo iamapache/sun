@@ -55,7 +55,7 @@ public class C2CTransationPresenter extends RxPresenter<C2CTransationContract.Vi
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             C2CTransation user = new C2CTransation();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
@@ -90,7 +90,7 @@ public class C2CTransationPresenter extends RxPresenter<C2CTransationContract.Vi
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             C2CTransation user = new C2CTransation();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
@@ -154,7 +154,7 @@ public class C2CTransationPresenter extends RxPresenter<C2CTransationContract.Vi
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(map, CommonBean.class);
                             C2CTransationDetail user = new C2CTransationDetail();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

@@ -94,6 +94,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     intent.putExtra("xnb", item.getXnb());
                     intent.putExtra("xnb_name", item.getXnb_name());
                     intent.putExtra("wallet_type", wallet_type);
+                    intent.putExtra("coin_id", item.getCoin_id());
                     mContext.startActivity(intent);
                 } else if (item.getIs_support_cash()==2) {
                     ToastUtils.showToast(R.string.comingsoon);

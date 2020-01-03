@@ -89,7 +89,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
                             mView.requestError(commonBean.getData()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData());
+                            mView.requestSuccess(commonBean.getMessage());
                         }
                     }
                 }));
@@ -139,7 +139,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
                             mView.requestError(commonBean.getData()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData());
+                            mView.requestSuccess(commonBean.getMessage());
                         }
                     }
                 }));
@@ -199,7 +199,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
                             mView.requestError(commonBean.getData()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData());
+                            mView.requestSuccess(commonBean.getMessage());
                         }
                     }
                 }));

@@ -26,27 +26,31 @@ import retrofit2.http.Url;
 public interface ApiService {
     @POST(Constant.APP_APIS)
     @FormUrlEncoded
-    Observable<String> getTestResult(@FieldMap Map<String,String> map);
+    Observable<String> getTestResult(@FieldMap Map<String, String> map);
+
     @POST(Constant.APP_APIS)
     @FormUrlEncoded
-    Observable<String> getTestResult2(@FieldMap Map<String,String> map);
+    Observable<String> getTestResult2(@FieldMap Map<String, String> map);
+
 //    @Multipart
 //    @POST(Constant.APP_APIS)
 //    Observable<String> getKLineResult(@Part("data") RequestBody body);
 //@Multipart
 //@POST(Constant.APP_APIS)
 //Observable<String> getTestResult(@Part("data") RequestBody body);
-@POST(Constant.APP_APIS)
-@FormUrlEncoded
-Observable<String> getKLineResult(@FieldMap Map<String,String> map);
+
+    @POST(Constant.APP_APIS)
+    @FormUrlEncoded
+    Observable<String> getKLineResult(@FieldMap Map<String, String> map);
 
 
-//    @Multipart
+    //    @Multipart
 //    @POST(Constant.APP_APIS)
 //    Observable<String> saveUserHeadImage(@Part("data") RequestBody bodys, @Part MultipartBody.Part file);
     @POST(Constant.APP_APIS)
     @Multipart
-    Observable<String> saveUserHeadImage(@FieldMap Map<String,String> map, @Part MultipartBody.Part file);
+    Observable<String> saveUserHeadImage(@FieldMap Map<String, String> map, @Part MultipartBody.Part file);
+
     @Streaming
     @GET
     Observable<ResponseBody> download(@Url String url);

@@ -52,7 +52,7 @@ public class EntrustPresenter extends RxPresenter<EntrustContract.View> implemen
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             EntrustList user = new EntrustList();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

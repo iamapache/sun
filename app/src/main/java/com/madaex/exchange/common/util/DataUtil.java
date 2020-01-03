@@ -8,6 +8,7 @@ import com.madaex.exchange.common.base.BaseApplication;
 import com.madaex.exchange.common.languagelib.LanguageType;
 import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.ui.constant.Constants;
+import com.orhanobut.logger.Logger;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -97,6 +98,7 @@ public class DataUtil {
         data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         Map newmap = new HashMap();
         newmap.put("data",data);
+        Logger.i("<==>:" + data);
         return newmap;
     }
     public static Map sign2(Map map){
@@ -125,6 +127,7 @@ public class DataUtil {
         data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         Map newmap = new HashMap();
         newmap.put("data",data);
+        Logger.i("<==>:" + data);
         return newmap;
     }
     public static String thousand(String map,Context mContext){

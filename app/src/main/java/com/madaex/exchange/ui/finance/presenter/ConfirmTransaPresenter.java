@@ -80,7 +80,7 @@ public class ConfirmTransaPresenter extends RxPresenter<ConfirmTransaContract.Vi
                         if(commonBean.getStatus()==0){
                             mView.requestMsgError(commonBean.getData()+"");
                         }else {
-                            mView.sendMsgSuccess(commonBean.getData());
+                            mView.sendMsgSuccess(commonBean.getMessage());
                         }
                     }
                 }));

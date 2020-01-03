@@ -49,7 +49,7 @@ public class TransaPreaenter extends RxPresenter<TransaContract.View> implements
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             TransaList user = new TransaList();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

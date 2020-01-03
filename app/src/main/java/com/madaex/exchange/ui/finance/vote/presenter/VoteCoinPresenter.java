@@ -50,7 +50,7 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
                             CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             VoteCoin user = new VoteCoin();
-                            user.setMsg(commonBean.getData());
+                            user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {

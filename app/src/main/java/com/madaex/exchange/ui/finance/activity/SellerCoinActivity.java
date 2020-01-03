@@ -119,6 +119,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         params.put("act", ConstantUrl.TRADE_CASH_COIN);
         params.put("xnb", str);
         params.put("wallet_type", wallet_type);
+        params.put("coin_id", getIntent().getIntExtra("coin_id",0));
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
