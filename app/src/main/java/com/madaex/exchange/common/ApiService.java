@@ -39,6 +39,9 @@ public interface ApiService {
 //@POST(Constant.APP_APIS)
 //Observable<String> getTestResult(@Part("data") RequestBody body);
 
+
+
+
     @POST(Constant.APP_APIS)
     @FormUrlEncoded
     Observable<String> getKLineResult(@FieldMap Map<String, String> map);
