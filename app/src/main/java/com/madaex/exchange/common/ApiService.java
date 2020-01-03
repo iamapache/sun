@@ -35,6 +35,8 @@ public interface ApiService {
 //    @Multipart
 //    @POST(Constant.APP_APIS)
 //    Observable<String> getKLineResult(@Part("data") RequestBody body);
+
+
 //@Multipart
 //@POST(Constant.APP_APIS)
 //Observable<String> getTestResult(@Part("data") RequestBody body);
