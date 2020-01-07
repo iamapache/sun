@@ -117,9 +117,9 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CASH_COIN);
-        params.put("xnb", str);
+//        params.put("xnb", str);
         params.put("wallet_type", wallet_type);
-        params.put("coin_id", getIntent().getIntExtra("coin_id",0));
+        params.put("coin_id", getIntent().getStringExtra("coin_id"));
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,18 +173,18 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
             ToastUtils.showToast(getString(R.string.entrureturnnumber));
             return;
         }
-//        if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
-//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-//            return;
-//        }
-//        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
-//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-//            return;
-//        }
-//        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
-//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-//            return;
-//        }
+        if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
+            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+            return;
+        }
+        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
+            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+            return;
+        }
+        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
+            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+            return;
+        }
         if (TextUtils.isEmpty(mTvTranspassword.getText().toString())) {
             ToastUtils.showToast(getString(R.string.entrytranspwd));
             return;
@@ -214,7 +214,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
                         intent.putExtra("number", mTvNumber.getText().toString().trim());
                         intent.putExtra("address", mTvAddress.getText().toString().trim());
                         intent.putExtra("pass", mTvTranspassword.getText().toString().trim());
-//                        intent.putExtra("fee", mTvKgf.getText().toString().trim());
+                        intent.putExtra("fee", mTvKgf.getText().toString().trim());
                         intent.putExtra("isCheck", isCheck);
                         startActivity(intent);
                         dialog.dismiss();

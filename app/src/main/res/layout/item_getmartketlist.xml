@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/common_black"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_65dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/img_bank"
+            android:layout_width="@dimen/d_30dp"
+            android:layout_height="@dimen/d_30dp"
+            android:layout_marginLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/coinname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|bottom"
+                    android:maxLines="1"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="@dimen/d_15dp"
+                    tools:text="ETH"
+                    />
+                <TextView
+                    android:id="@+id/endname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|bottom"
+                    android:maxLines="1"
+                    android:textColor="#9FA4B2"
+                    android:layout_marginLeft="@dimen/d_2dp"
+                    android:textSize="@dimen/d_13dp"
+                    tools:text="/ETH"
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/coinnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="#9FA4B2"
+                android:textSize="@dimen/d_12dp"
+                tools:text="ETH"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical|end"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/coinprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/common_red"
+                android:textSize="@dimen/d_15dp"
+                tools:text="ETH"
+                />
+
+            <TextView
+                android:id="@+id/coinrmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="#9FA4B2"
+                android:textSize="@dimen/d_12dp"
+                tools:text="ETH"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/bili"
+            android:layout_width="@dimen/d_75dp"
+            android:layout_height="@dimen/d_33dp"
+            android:layout_marginLeft="@dimen/d_10dp"
+            android:layout_marginRight="@dimen/d_10dp"
+            android:background="@drawable/common_button_buleshape"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/d_12dp"
+            tools:text="ETH"
+            />
+    </LinearLayout>
+</LinearLayout>

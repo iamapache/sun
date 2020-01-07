@@ -87,7 +87,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
                             mView.requestSuccess(commonBean.getMessage());
                         }
@@ -137,7 +137,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
                             mView.requestSuccess(commonBean.getMessage());
                         }
@@ -171,10 +171,10 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -197,7 +197,7 @@ public class MyEntrustPresenter extends RxPresenter<MyEntrustContract.View> impl
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
                             mView.requestSuccess(commonBean.getMessage());
                         }

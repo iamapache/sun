@@ -42,8 +42,8 @@ public class HistoryDetail extends BaseSocket {
 
         private String amount;
         private String price;
-        private int tid;
-        private long date;
+        private Long tid;
+        private String date;
         private String type;
         private String trade_type;
 
@@ -63,19 +63,19 @@ public class HistoryDetail extends BaseSocket {
             this.price = price;
         }
 
-        public int getTid() {
+        public Long getTid() {
             return tid;
         }
 
-        public void setTid(int tid) {
+        public void setTid(Long tid) {
             this.tid = tid;
         }
 
-        public long getDate() {
+        public String getDate() {
             return date;
         }
 
-        public void setDate(long date) {
+        public void setDate(String date) {
             this.date = date;
         }
 

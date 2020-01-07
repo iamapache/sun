@@ -137,6 +137,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     private String trans_type;
     private String one_xnb = "";
     private String two_xnb = "";
+    private String market_type = "0";
     private CustomPopWindow mCustomPopWindow;
     Home baseBean = new Home();
     String mString = "";
@@ -170,7 +171,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
         trans_type = getArguments().getString(Constants.ARGS);
         one_xnb = getArguments().getString(Constants.ONE_XNB);
         two_xnb = getArguments().getString(Constants.TWO_XNB);
-
+        market_type = getActivity().getIntent().getStringExtra("market_type");
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
         mPriceType.setText(two_xnb);
         mNumberType.setText(one_xnb);
@@ -255,7 +256,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 
                     @Override
                     protected void onMessage(String message) {
-                        if (TextUtils.isEmpty(message)) {
+                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
                             return;
                         }
                         if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
@@ -345,6 +346,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
         params.put("act", ConstantUrl.TRADE_TRADE);
         params.put("one_xnb", one_xnb);
         params.put("two_xnb", two_xnb);
+        params.put("market_type", market_type);
         mPresenter.getMsgInfo(DataUtil.sign(params));
     }
 
@@ -524,6 +526,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
             mToolbarTitleTv.setText(coin);
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
+            market_type= event.getHeyue();
             sendSocket();
         }
     }
@@ -535,18 +538,21 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
-        socketBean.setChannel(one_xnb.toLowerCase() + "qc" + "_depth");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth");
         Log.d("<==>", new Gson().toJson(socketBean));
-        channel = one_xnb.toLowerCase() + "qc" + "_depth";
+        channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
         RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
         TreeMap params2 = new TreeMap<>();
         params2.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL);
         params2.put("market", one_xnb + "_" + two_xnb);
-        mPresenter.getJavaLineDetail(params2);
+        params2.put("market_type", market_type);
+        mPresenter.getJavaLineDetail(DataUtil.sign(params2));
         SocketBean socketBean2 = new SocketBean();
         socketBean2.setEvent("addChannel");
-        socketBean2.setChannel(one_xnb.toLowerCase() + "qc" + "_ticker");
-        channel2 = one_xnb.toLowerCase() + "qc" + "_ticker";
+        socketBean2.setMarket_type(market_type);
+        socketBean2.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker");
+        channel2 = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker";
         RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
     }
 
@@ -564,7 +570,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                 dismiss();
                 break;
             case R.id.look_entrust:
-                Intent intent = new Intent();
+                Intent intent = getActivity().getIntent();
                 intent.setClass(mContext, EntrustActivity.class);
                 intent.putExtra(Constants.ONE_XNB, one_xnb);
                 intent.putExtra(Constants.TWO_XNB, two_xnb);
@@ -702,6 +708,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                         params.put("paypassword", passContent);
                         params.put("type", trans_type);
                         params.put("source", "android");
+                        params.put("market_type", market_type);
                         mPresenter.deal(DataUtil.sign(params));
                     }
 

@@ -25,6 +25,7 @@ import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CListActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CTransationDetailActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CTransationListActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankAddActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankEditActivity;
 import com.madaex.exchange.ui.finance.pay.activity.WXActivity;
@@ -134,4 +135,6 @@ public interface ActivityComponent {
     void inject(NcListActivity ncListActivity);
 
     void inject(MessageDetailActivity messageDetailActivity);
+
+    void inject(ContractActivity contractActivity);
 }

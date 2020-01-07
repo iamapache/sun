@@ -134,7 +134,7 @@ public class CoinListFrament extends BaseNetDialogFragment<CoinPresenter> implem
         for (int j = 0; j < data.getData().size(); j++) {
             CoinList.DataBean dataBean= data.getData().get(j);
             mTitleList.add(dataBean.getTitle());
-            CoinFragment fragment3 = CoinFragment.newInstance(j,type,dataBean.getList());
+            CoinFragment fragment3 = CoinFragment.newInstance(dataBean.getTitle(),j,type,dataBean.getList());
             fragment3.setCoinLister(this);
             mViewList.add(fragment3);
         }

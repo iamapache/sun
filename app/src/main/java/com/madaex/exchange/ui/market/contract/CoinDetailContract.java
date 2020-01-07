@@ -2,6 +2,7 @@ package com.madaex.exchange.ui.market.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.market.bean.CoinDetail;
+import com.madaex.exchange.ui.market.bean.HistoryDetail;
 
 import java.util.Map;
 
@@ -19,10 +20,11 @@ public class CoinDetailContract {
         void requestError(String msg);
 
 
+        void requestSuccess(HistoryDetail commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<CoinDetailContract.View> {
         void getData(Map body);
-
+        void HistoryDetail(Map body);
     }
 }

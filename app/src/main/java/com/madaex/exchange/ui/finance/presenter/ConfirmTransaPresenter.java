@@ -78,9 +78,9 @@ public class ConfirmTransaPresenter extends RxPresenter<ConfirmTransaContract.Vi
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()==0){
-                            mView.requestMsgError(commonBean.getData()+"");
+                            mView.requestMsgError(commonBean.getMessage()+"");
                         }else {
-                            mView.sendMsgSuccess(commonBean.getMessage());
+                            mView.sendMsgSuccess(commonBean.getData().getToken());
                         }
                     }
                 }));

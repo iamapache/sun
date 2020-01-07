@@ -6,6 +6,7 @@
 
 
     <LinearLayout
+        android:id="@+id/img_scan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:background="@color/colorTheme"
@@ -17,6 +18,7 @@
             android:layout_marginLeft="@dimen/d_15dp"
             android:src="@mipmap/icon_sacn" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,17 +28,17 @@
             <ImageView
                 android:layout_width="27dp"
                 android:layout_height="27dp"
-                android:src="@mipmap/logo" />
+                android:src="@mipmap/applogo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="ALSC"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
 
         <ImageView
             android:id="@+id/img_popview"
@@ -62,25 +64,27 @@
             <com.youth.banner.Banner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="136dp"
+                android:layout_height="144dp"
                 android:background="@color/common_black" />
 
             <TextView
+                android:id="@+id/notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/common_black"
+                android:padding="10dp"
                 android:text="新币上线,ALSC将于08.10正式发布"
                 android:textColor="#ffffffff"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
-            <com.youth.banner.Banner
-                android:id="@+id/banner2"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/hotcoinview"
                 android:layout_marginTop="10dp"
-                android:background="@color/common_black" />
-
+                android:layout_width="match_parent"
+                android:background="@color/common_black"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,9 +187,9 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@color/common_black"
                 android:nestedScrollingEnabled="false" />
 

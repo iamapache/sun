@@ -92,9 +92,9 @@ public class EntrustPresenter extends RxPresenter<EntrustContract.View> implemen
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.deleteError(commonBean.getData()+"");
+                            mView.deleteError(commonBean.getMessage()+"");
                         }else {
-                            mView.deleteSuccess(commonBean.getData()+"");
+                            mView.deleteSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

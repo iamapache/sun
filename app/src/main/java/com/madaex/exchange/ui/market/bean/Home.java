@@ -41,7 +41,16 @@ public boolean isShow=false;
         private int collection;
         private String riseRate;
         private String sellRmb;
+    private int market_type;
     private int status=3;
+
+    public int getMarket_type() {
+        return market_type;
+    }
+
+    public void setMarket_type(int market_type) {
+        this.market_type = market_type;
+    }
 
     public int getStatus() {
         return status;
@@ -153,6 +162,7 @@ public boolean isShow=false;
         dest.writeString(this.currentPrice);
         dest.writeString(this.exchangeType);
         dest.writeInt(this.collection);
+        dest.writeInt(this.market_type);
         dest.writeString(this.riseRate);
         dest.writeString(this.sellRmb);
     }
@@ -167,6 +177,7 @@ public boolean isShow=false;
         this.currentPrice = in.readString();
         this.exchangeType = in.readString();
         this.collection = in.readInt();
+        this.market_type = in.readInt();
         this.riseRate = in.readString();
         this.sellRmb = in.readString();
     }

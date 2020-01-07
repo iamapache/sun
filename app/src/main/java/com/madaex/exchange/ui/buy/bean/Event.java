@@ -9,9 +9,17 @@ public class Event<T extends Object> {
     private int code = 0;
     private T data = null;
     private String msg = "";
-
+    private String heyue = "0";
     public int getCode() {
         return code;
+    }
+
+    public String getHeyue() {
+        return heyue;
+    }
+
+    public void setHeyue(String heyue) {
+        this.heyue = heyue;
     }
 
     public void setCode(int code) {

@@ -96,9 +96,9 @@ public class BankPresenter extends RxPresenter<BankContract.View> implements Ban
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.deleteError(commonBean.getData()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(commonBean.getData()+"");
+                            mView.nodata(commonBean.getMessage()+"");
                         }else {
-                            mView.deleteSuccess(commonBean.getData()+"");
+                            mView.deleteSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

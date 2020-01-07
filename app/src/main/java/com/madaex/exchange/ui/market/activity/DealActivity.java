@@ -42,7 +42,6 @@ import com.madaex.exchange.ui.market.manager.CustomLrcPagerAdapter;
 import com.madaex.exchange.ui.market.presenter.DealInfoPresenter;
 import com.madaex.exchange.view.WrapContentHeightViewPager;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -82,14 +81,26 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
     TextView mTvSeller;
     @BindView(R.id.toolbar_right_btn)
     ImageView mToolbarRightBtn;
-    @BindView(R.id.vp_detail)
-    ViewPager mVpDetail;
 
+    @BindView(R.id.currentype)
+    TextView mCurrentype;
+    @BindView(R.id.exchangeType)
+    TextView mExchangeType;
+    @BindView(R.id.sellRmb)
+    TextView mSellRmb;
+    @BindView(R.id.rate)
+    TextView mRate;
+    @BindView(R.id.hight)
+    TextView mHight;
+    @BindView(R.id.volume)
+    TextView mVolume;
+    @BindView(R.id.low)
+    TextView mLow;
     CustomLrcPagerAdapter adapter;
 
-    private String one_xnb = "ETH";
-    private String two_xnb = "GRC";
-
+    private String one_xnb = "BAT";
+    private String two_xnb = "ETH";
+    private String market_type="0";
     private List<String> mTitleList = new ArrayList<>();
     private List<Fragment> mViewList = new ArrayList<>();
 
@@ -115,6 +126,7 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
     protected void initView() {
         one_xnb = getIntent().getStringExtra("one_xnb");
         two_xnb = getIntent().getStringExtra("two_xnb");
+        market_type =getIntent().getStringExtra("market_type");
         parentposition = getIntent().getIntExtra(Constants.INFO,0);
         childposition = getIntent().getIntExtra(Constants.INFO_CHILD,0);
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
@@ -205,6 +217,7 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
         CoinDetailFragment fragment1 = CoinDetailFragment.newInstance(one_xnb);
         TransFragment fragment2 = TransFragment.newInstance(one_xnb, two_xnb);
         HistoryDetailFragment fragment3 = HistoryDetailFragment.newInstance(one_xnb, two_xnb);
+
         mViewList2.clear();
         mTitleList2.clear();
         mViewList2.add(fragment1);
@@ -289,10 +302,14 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
     protected void initDatas() {
 
 
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_COIN_LIST);
-        mPresenter.getData(DataUtil.sign(params));
-
+//        TreeMap params = new TreeMap<>();
+//        params.put("act", ConstantUrl.TRADE_COIN_LIST);
+//        mPresenter.getData(DataUtil.sign(params));
+        TreeMap params2 = new TreeMap<>();
+        params2.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL);
+        params2.put("market", one_xnb + "_" + two_xnb);
+        params2.put("market_type", getIntent().getStringExtra("market_type"));
+        mPresenter.getJavaLineDetail(DataUtil.sign(params2));
 
         RxWebSocket.get(Constant.Websocket)
                 .subscribe(new WebSocketSubscriber() {
@@ -392,59 +409,74 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
 
     @Override
     public void sendMsgSuccess(final CoinList data) {
-        for (CoinList.DataBean dataBean : data.getData()) {
-
-        }
-        mTitleInfoList.clear();
-        mViewInfoList.clear();
-        for (int i = 0; i < data.getData().size(); i++) {
-            if(parentposition==i){
-               CoinList.DataBean  dataBean = data.getData().get(i);
-                for (int k = 0; k < dataBean.getList().size(); k++) {
-                    CoinList.DataBean.ListBean bean =dataBean.getList().get(k);
-                    mTitleInfoList.add(bean.getName());
-                    CoinInfoFragment fragment3 = CoinInfoFragment.newInstance(bean.getName());
-                    mViewInfoList.add(fragment3);
-
-                }
-            }
-        }
-        adapter = new CustomLrcPagerAdapter(getSupportFragmentManager()
-                , mTitleInfoList);
-        mVpDetail.setAdapter(adapter);
-        mVpDetail.setCurrentItem(childposition);
-        adapter.updateData(mTitleInfoList);
-        mVpDetail.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                String coin = mTitleInfoList.get(position);
-                mToolbarTitleTv.setText(coin);
-                one_xnb = coin.split("/")[0];
-                two_xnb = coin.split("/")[1];
-                mTvBuy.setText(getString(R.string.item_buy) + " " + one_xnb);
-                mTvSeller.setText(getString(R.string.item_seller) + " " + one_xnb);
-                Event event = new Event();
-                event.setCode(Constants.change);
-                event.setMsg(coin);
-                EventBus.getDefault().post(event);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+//        for (CoinList.DataBean dataBean : data.getData()) {
+//
+//        }
+//        mTitleInfoList.clear();
+//        mViewInfoList.clear();
+//        for (int i = 0; i < data.getData().size(); i++) {
+//            if(parentposition==i){
+//               CoinList.DataBean  dataBean = data.getData().get(i);
+//                for (int k = 0; k < dataBean.getList().size(); k++) {
+//                    CoinList.DataBean.ListBean bean =dataBean.getList().get(k);
+//                    mTitleInfoList.add(bean.getName());
+//                    CoinInfoFragment fragment3 = CoinInfoFragment.newInstance(bean.getName());
+//                    mViewInfoList.add(fragment3);
+//
+//                }
+//            }
+//        }
+//        adapter = new CustomLrcPagerAdapter(getSupportFragmentManager()
+//                , mTitleInfoList);
+//        mVpDetail.setAdapter(adapter);
+//        mVpDetail.setCurrentItem(childposition);
+//        adapter.updateData(mTitleInfoList);
+//        mVpDetail.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                String coin = mTitleInfoList.get(position);
+//                mToolbarTitleTv.setText(coin);
+//                one_xnb = coin.split("/")[0];
+//                two_xnb = coin.split("/")[1];
+//                mTvBuy.setText(getString(R.string.item_buy) + " " + one_xnb);
+//                mTvSeller.setText(getString(R.string.item_seller) + " " + one_xnb);
+//                Event event = new Event();
+//                event.setCode(Constants.change);
+//                event.setMsg(coin);
+//                EventBus.getDefault().post(event);
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
+        mCurrentype.setText(baseBean.getCurrentype().toUpperCase() + "  " + getString(R.string.currentprice));
+        mExchangeType.setText( "GRC  " + baseBean.getCurrentPrice());
+        mSellRmb.setText("￥" + baseBean.getSellRmb());
+        mRate.setText(baseBean.getRiseRate());
+        mHight.setText(baseBean.getHigh() + "");
+        mVolume.setText(baseBean.getVolumn().toString() + "");
+        mLow.setText(baseBean.getLow() + "");
+        if (baseBean.getRiseRate().contains("-")) {
+            mExchangeType.setTextColor(mContext.getResources().getColor(R.color.common_green));
+            mSellRmb.setTextColor(mContext.getResources().getColor(R.color.common_green));
+            mRate.setTextColor(mContext.getResources().getColor(R.color.common_green));
+        } else {
+            mExchangeType.setTextColor(mContext.getResources().getColor(R.color.common_red));
+            mSellRmb.setTextColor(mContext.getResources().getColor(R.color.common_red));
+            mRate.setTextColor(mContext.getResources().getColor(R.color.common_red));
+        }
     }
-
     @Override
     public void process(int collection) {
         item =collection;

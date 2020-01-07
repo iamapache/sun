@@ -39,9 +39,35 @@ public class DealInfo extends CommonBaseBean {
         private String one_xnbd;
         private String two_xnb;
         private String two_xnbd;
-
+        private String trade_sell_fee;
+        private String trade_buy_fee;
+        private String rise_once;
         public String getOne_xnb() {
             return one_xnb;
+        }
+
+        public String getRise_once() {
+            return rise_once;
+        }
+
+        public void setRise_once(String rise_once) {
+            this.rise_once = rise_once;
+        }
+
+        public String getTrade_sell_fee() {
+            return trade_sell_fee;
+        }
+
+        public void setTrade_sell_fee(String trade_sell_fee) {
+            this.trade_sell_fee = trade_sell_fee;
+        }
+
+        public String getTrade_buy_fee() {
+            return trade_buy_fee;
+        }
+
+        public void setTrade_buy_fee(String trade_buy_fee) {
+            this.trade_buy_fee = trade_buy_fee;
         }
 
         public void setOne_xnb(String one_xnb) {

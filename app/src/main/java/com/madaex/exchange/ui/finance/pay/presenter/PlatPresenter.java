@@ -77,10 +77,10 @@ public class PlatPresenter extends RxPresenter<PlatContrct.View> implements Plat
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

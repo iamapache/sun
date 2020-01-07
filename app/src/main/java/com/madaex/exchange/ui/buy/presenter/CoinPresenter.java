@@ -83,7 +83,7 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
                             mView.sendDealSuccess(commonBean.getMessage());
                         }

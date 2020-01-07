@@ -162,9 +162,9 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestSuccess(commonBean.getData() + "");
+                            mView.requestSuccess(commonBean.getMessage() + "");
                         } else {
-                            mView.requestError(commonBean.getData() + "");
+                            mView.requestError(commonBean.getMessage() + "");
                         }
                     }
                 }));

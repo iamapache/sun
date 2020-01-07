@@ -10,6 +10,7 @@ import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
+import com.madaex.exchange.ui.common.SBData;
 import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
 import com.madaex.exchange.ui.finance.vote.contract.VoteCoinContract;
@@ -77,22 +78,22 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     @Override
     public void getData2(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, SBData>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
+                    public SBData apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                        SBData commonBean = gson.fromJson(data, SBData.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<SBData>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                    public void onNext(SBData commonBean) {
+                        if(commonBean.getCode()== Constant.RESPONSE_ERROR){
+                            mView.requestError(commonBean.getMsg()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMsg()+"");
                         }
                     }
                 }));

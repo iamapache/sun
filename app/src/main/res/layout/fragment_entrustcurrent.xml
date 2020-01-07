@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/d_5dp"
                         android:layout_marginTop="@dimen/d_5dp"
-                        android:background="@color/common_edbg"/>
+                        android:background="@color/common_text_2"/>
 
                     <TextView
                         android:id="@+id/tv_price"

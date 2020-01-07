@@ -475,7 +475,7 @@
                 <View
                     android:layout_width="@dimen/d_1dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/common_edbg"/>
+                    android:background="@color/common_text_2"/>
 
                 <LinearLayout
                     android:id="@+id/ll_depth"

@@ -58,7 +58,7 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(CommonDataBean.getMessage()+"");
                         }else {
-                            mView.requestSuccess(CommonDataBean.getData()+"");
+                            mView.requestSuccess(CommonDataBean.getMessage()+"");
                         }
                     }
                 }));
@@ -112,7 +112,7 @@ public class CommonPresenter extends RxPresenter<CommonContract.View> implements
                         if(CommonDataBean.getStatus()==0){
                             mView.requestError(CommonDataBean.getMessage()+"");
                         }else {
-                            mView.sendMsgSuccess(CommonDataBean.getMessage());
+                            mView.sendMsgSuccess(CommonDataBean.getData().getToken());
                         }
                     }
                 }));

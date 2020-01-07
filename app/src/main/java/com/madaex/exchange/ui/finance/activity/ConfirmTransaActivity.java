@@ -2,6 +2,7 @@ package com.madaex.exchange.ui.finance.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -146,30 +147,30 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
 
     private void validate() {
 
-//        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
-//            ToastUtils.showToast(getString(R.string.input_msg_code));
-//            return;
-//        }
+        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
+            ToastUtils.showToast(getString(R.string.input_msg_code));
+            return;
+        }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CONFIRM_CASH);
-//        params.put("verify_code", mTvCode.getText().toString().trim());
-//        params.put("verify_encode", verify_encode);
+        params.put("verify_code", mTvCode.getText().toString().trim());
+        params.put("verify_encode", verify_encode);
         params.put("xnb", getIntent().getStringExtra("xnb"));
         params.put("paypassword", getIntent().getStringExtra("pass"));
         params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         params.put("addr", getIntent().getStringExtra("address"));
         params.put("num", getIntent().getStringExtra("number"));
 //        params.put("fee", getIntent().getStringExtra("fee"));
-//        params.put("is_inside", getIntent().getBooleanExtra("isCheck", true) == false ? 0 + "" : 1 + "");
+        params.put("is_platform", getIntent().getBooleanExtra("isCheck", true) == false ? 0 + "" : 1 + "");
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setClickable(false);
-        mSubmit.setBackgroundResource(R.drawable.code_shape);
+        mSubmit.setBackgroundResource(R.drawable.common_button_shape);
     }
 
     @Override
     public void requestSuccess(String msg) {
 //        ToastUtils.showToast(msg);
-        mLlContent.setVisibility(View.GONE);
+        mSubmit.setVisibility(View.GONE);
         mLlStatus.setVisibility(View.VISIBLE);
         mSubmit.setClickable(true);
         mSubmit.setBackgroundResource(R.drawable.common_button_shape);

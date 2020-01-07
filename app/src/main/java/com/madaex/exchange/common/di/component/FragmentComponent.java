@@ -24,6 +24,7 @@ import com.madaex.exchange.ui.login.fragment.RegisterPhoneFragment;
 import com.madaex.exchange.ui.market.fragment.CoinDetailFragment;
 import com.madaex.exchange.ui.market.fragment.CoinInfoFragment;
 import com.madaex.exchange.ui.market.fragment.EntrustCurrentFragment;
+import com.madaex.exchange.ui.market.fragment.HistoryDetailFragment;
 import com.madaex.exchange.ui.market.fragment.MarketFragment;
 import com.madaex.exchange.ui.market.fragment.TransactionListFragment;
 import com.madaex.exchange.ui.mine.fragment.HomeFragment;
@@ -90,4 +91,6 @@ public interface FragmentComponent extends ActivityComponent {
     void inject(NCRecordFragment ncRecordFragment);
 
     void inject(HomeFragment homeFragment);
+
+    void inject(HistoryDetailFragment historyDetailFragment);
 }

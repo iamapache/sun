@@ -90,10 +90,10 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -115,10 +115,10 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestPayWaySuccess(commonBean.getData()+"");
+                            mView.requestPayWaySuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -140,10 +140,10 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -175,10 +175,10 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

@@ -166,13 +166,7 @@ public class EntrustOneFragment extends BaseNetFragment<MyEntrustPresenter> impl
             }
         };
         mRecyclerview.setAdapter(mAdapter);
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                isRefresh =false;
-                getData();
-            }
-        }, mRecyclerview);
+
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -191,6 +185,13 @@ public class EntrustOneFragment extends BaseNetFragment<MyEntrustPresenter> impl
                 getData();
             }
         });
+        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                isRefresh =false;
+                getData();
+            }
+        }, mRecyclerview);
     }
 
 

@@ -12,9 +12,17 @@ import java.io.Serializable;
 public class SocketBean implements Serializable {
     private String event;
     private String channel;
-
+    private String market_type;
     public String getEvent() {
         return event;
+    }
+
+    public String getMarket_type() {
+        return market_type;
+    }
+
+    public void setMarket_type(String market_type) {
+        this.market_type = market_type;
     }
 
     public void setEvent(String event) {

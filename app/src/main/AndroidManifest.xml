@@ -60,15 +60,6 @@
         <activity android:name=".ui.login.activity.ForgetPasswordActivity"/>
         <activity android:name=".ui.MainActivity"
                   android:launchMode="singleTask">
-        <intent-filter >
-            <action android:name="com.jg.zhang.androidtasktest.SecondActivity"/>
-            <category android:name="android.intent.category.DEFAULT"/>
-        </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".ui.login.activity.GuideActivity"/>
         <!-- 行情 -->
@@ -110,6 +101,19 @@
         <activity android:name=".ui.finance.transfer.activity.TransferActivity"/>
         <activity android:name=".ui.finance.transfer.activity.NcActivity"/>
         <activity android:name=".ui.finance.transfer.activity.NcListActivity"/>
+
+
+
+
+        <activity android:name=".ui.finance.contracts.activity.ContractActivity"/>
+
+
+
+
+
+
+
+
         <!-- 银行卡 -->
         <activity android:name=".ui.finance.bank.activity.AddBankActivity"/>
         <activity android:name=".ui.finance.bank.activity.BankListActivity"/>

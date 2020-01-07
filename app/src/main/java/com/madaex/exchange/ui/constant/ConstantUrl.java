@@ -43,9 +43,9 @@ public class ConstantUrl {
     //首页列表
     public static String TRADE_HOME_INDEX = "market.getMartketList";
     //首页列表--交易币详情
-    public static String TRADE_HOME_INDEX_DETAIL = "Trade.home_index_detail";
+    public static String TRADE_HOME_INDEX_DETAIL = "market.home_index_detail";
     //首页列表--交易币详情的K线图
-    public static String TRADE_HOME_INDEX_DETAIL_KLINE = "Trade.home_index_detail_kline";
+    public static String TRADE_HOME_INDEX_DETAIL_KLINE = "market.home_index_detail_kline";
 
     //用户
     public static String VERIFY_SEND_CODE = "Verify.send_code";
@@ -62,7 +62,7 @@ public class ConstantUrl {
     //用户信息状态
     public static String USER_USERINFO_STATUS = "User.userinfo_status";
 
-
+    public static String MARKET_GETHOTCOIN = "market.getHotCoin";
     //个人中心消息未读数
     public static String USER_NEWS_TOTAL = "User.news_total";
 
@@ -125,23 +125,29 @@ public class ConstantUrl {
     //充币详情
     public static String TRADE_RECHARGE_INFO = "Trade.recharge_info";
     //币的列表
-    public static String TRADE_COIN_LIST = "Trade.coin_list";
+    public static String TRADE_COIN_LIST = "market.getFavCoinList";
     //交易的买入、卖出功能
     public static String TRADE_UPTRADE = "Trade.upTrade";
+    public static String Contract_UPTRADE = "Contract.upTrade";
     //币的详情页面的简介
     public static String TRADE_INTRODUCE = "Trade.introduce";
-
+    public static String TRADE_coin_deal_list = "Trade.coin_deal_list";
     //交易的买入、卖出界面的左下角数据
     public static String TRADE_TRADE = "Trade.trade";
-
+    public static String Contract_contractAssets = "Contract.contractAssets";
     //当前委托列表
     public static String TRADE_CURRENT_ENTRUST = "Trade.current_entrust";
+
+    public static String Contract_CURRENT_ENTRUST = "Contract.current_entrust";
     //当前委托的撤销功能
     public static String TRADE_REVOKE = "Trade.revoke";
+    public static String Contract_REVOKE = "Contract.revoke";
     //历史委托列表
     public static String TRADE_HISTORY_ENTRUST = "Trade.history_entrust";
+    public static String Contract_HISTORY_ENTRUST = "Contract.history_entrust";
     //当前委托列表的委托明细
     public static String TRADE_CURRENT_ENTRUST_DETAIL = "Trade.current_entrust_detail";
+    public static String Contract_CURRENT_ENTRUST_DETAIL = "Contract.current_entrust_detail";
     //投票上币列表
     public static String MARKET_VOTE_LIST = "Vote.vote_list";
     //投票上币之我参与
@@ -157,7 +163,7 @@ public class ConstantUrl {
     public static String MARKET_CONFIRM_PUBLIC = "Vote.confirm_public";
 
     //收藏币种
-    public static String TRADE_IS_COLLECTION = "Trade.is_collection";
+    public static String TRADE_IS_COLLECTION = "market.setCollection";
 
     //详情页面的挂单
     public static String TRADE_DESIGNATES = "Trade.designates";

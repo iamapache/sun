@@ -513,4 +513,6 @@
     <string name="branchinformation">Please enter branch information</string>
     <string name="branch"> branch</string>
     <string name="remark">remark</string>
+    <string name="Introduction">Introduction</string>
+    <string name="contract">contract</string>
 </resources>

@@ -30,6 +30,7 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.CustomPopWindow;
 import com.madaex.exchange.ui.buy.bean.Event;
@@ -48,6 +49,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -63,7 +65,7 @@ import butterknife.Unbinder;
  */
 
 public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter> implements EntrustContract.View {
-    ArrayList<EntrustList.DataBean> mDataBeans = new ArrayList<>();
+
     BaseQuickAdapter mAdapter;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
@@ -103,20 +105,46 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         if (!isPrepared || !isVisible) {
             return;
         }
-    }
-
-    private void getdata() {
-        TreeMap params = new TreeMap<>();
-        if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-            params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST);
-        } else {
-            params.put("act", ConstantUrl.TRADE_HISTORY_ENTRUST);
+        isVisible = false;
+        isPrepared = false;
+        if(getActivity().getIntent().hasExtra("market_type")){
+            market_type = getActivity().getIntent().getStringExtra("market_type");
+        }else {
+            market_type =  SPUtils.getString("market_type","0");
         }
 
-        params.put("one_xnb", one_xnb);
-        params.put("two_xnb", two_xnb);
-        params.put("status", status);
-        mPresenter.getData(DataUtil.sign(params));
+        getdata();
+    }
+    int pageNum = 1;
+    private void getdata() {
+        if(market_type.equals("0")){
+            TreeMap params = new TreeMap<>();
+            if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
+                params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST);
+            } else {
+                params.put("act", ConstantUrl.TRADE_HISTORY_ENTRUST);
+            }
+
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            params.put("status", status);
+            params.put("curPage", pageNum+"");
+            mPresenter.getData(DataUtil.sign(params));
+        }else {
+            TreeMap params = new TreeMap<>();
+            if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
+                params.put("act", ConstantUrl.Contract_CURRENT_ENTRUST);
+            } else {
+                params.put("act", ConstantUrl.Contract_HISTORY_ENTRUST);
+            }
+
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            params.put("status", status);
+            params.put("curPage", pageNum+"");
+            mPresenter.getData(DataUtil.sign(params));
+        }
+
     }
 
     @Override
@@ -144,7 +172,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust, mDataBeans) {
+        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString()).
@@ -223,12 +251,22 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                                             @Override
                                             public void onClick(IosDialog dialog, View v) {
                                                 dialog.dismiss();
-                                                TreeMap params = new TreeMap<>();
-                                                params.put("act", ConstantUrl.TRADE_REVOKE);
-                                                params.put("one_xnb", item.getOne_xnb());
-                                                params.put("two_xnb", item.getTwo_xnb());
-                                                params.put("id", item.getId());
-                                                mPresenter.delete(DataUtil.sign(params));
+                                                if(market_type.equals("0")){
+                                                    TreeMap params = new TreeMap<>();
+                                                    params.put("act", ConstantUrl.TRADE_REVOKE);
+                                                    params.put("one_xnb", item.getOne_xnb());
+                                                    params.put("two_xnb", item.getTwo_xnb());
+                                                    params.put("id", item.getId());
+                                                    mPresenter.delete(DataUtil.sign(params));
+                                                }else {
+                                                    TreeMap params = new TreeMap<>();
+                                                    params.put("act", ConstantUrl.Contract_UPTRADE);
+                                                    params.put("one_xnb", item.getOne_xnb());
+                                                    params.put("two_xnb", item.getTwo_xnb());
+                                                    params.put("id", item.getId());
+                                                    mPresenter.delete(DataUtil.sign(params));
+                                                }
+
                                             }
                                         }).build();
                                 dialog.show();
@@ -246,6 +284,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     Intent intent = new Intent();
                     intent.setClass(mContext, EntrustDetailActivity.class);
                     intent.putExtra("bean", item);
+                    intent.putExtra("market_type", market_type);
                     if (item.getType().equals("1")) {
                         intent.putExtra("type", 1);
                     } else if (item.getType().equals("2")) {
@@ -256,20 +295,26 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             }
         });
         mSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
             public void onRefresh() {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getdata();
-                    }
-                }, 2000);
+                pageNum = 1;
+                isRefresh =true;
+                getdata();
             }
         });
+        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                isRefresh =false;
+                getdata();
+            }
+        }, mRecyclerview);
         mRecyclerview.setAdapter(mAdapter);
         mAdapter.setEmptyView(R.layout.view_empty_data, (ViewGroup) mRecyclerview.getParent());
         mLlDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ArrayList<EntrustList.DataBean> mDataBeans = (ArrayList<EntrustList.DataBean>) mAdapter.getData();
                 if (!EmptyUtils.isEmpty(mDataBeans)) {
                     final StringBuffer stringBuffer = new StringBuffer();
                     for (EntrustList.DataBean dataBean : mDataBeans) {
@@ -278,10 +323,17 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     }
                     final String str = stringBuffer.toString().substring(0, stringBuffer.toString().length() - 1);
                     TreeMap params = new TreeMap<>();
-                    params.put("act", ConstantUrl.TRADE_REVOKE);
-                    params.put("one_xnb", one_xnb);
-                    params.put("two_xnb", two_xnb);
-                    params.put("id", str);
+                    if(market_type.equals("0")){
+                        params.put("act", ConstantUrl.TRADE_REVOKE);
+                        params.put("one_xnb", one_xnb);
+                        params.put("two_xnb", two_xnb);
+                        params.put("id", str);
+                    }else {
+                        params.put("act", ConstantUrl.Contract_UPTRADE);
+                        params.put("one_xnb", one_xnb);
+                        params.put("two_xnb", two_xnb);
+                        params.put("id", str);
+                    }
                     mPresenter.delete(DataUtil.sign(params));
                 }
             }
@@ -319,6 +371,8 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK
                 && requestCode == 250) {
+            pageNum = 1;
+            isRefresh =true;
             getdata();
         }
 
@@ -326,35 +380,62 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
 
     @Override
     protected void initDatas() {
-        isVisible = false;
-        isPrepared = false;
 
-        getdata();
     }
-
+    private String market_type = "0";
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         if (event != null && event.getCode() == Constants.DEAL) {
             String coin = event.getMsg();
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
+            market_type= event.getHeyue();
+            pageNum = 1;
+            isRefresh =true;
             getdata();
         }
 
         if (event != null && event.getCode() == Constants.ENTRUST) {
+            pageNum = 1;
+            isRefresh =true;
+            pageNum = 1;
+            isRefresh =true;
             getdata();
         }
     }
 
-
+    boolean isRefresh = true;
     @Override
     public void requestSuccess(EntrustList bean) {
+
         mSwiperefreshlayout.setRefreshing(false);
-        mAdapter.setNewData(bean.getData());
-        mDataBeans.addAll(bean.getData());
+        if (bean != null) {
+            setData(isRefresh, bean.getData());
 
+        } else {
+            mAdapter.setEnableLoadMore(true);
+        }
     }
+    private void setData(boolean isRefresh, List data) {
+        pageNum++;
+        final int size = data == null ? 0 : data.size();
+        if (isRefresh) {
+            mAdapter.setEnableLoadMore(true);
+            mAdapter.setNewData(data);
 
+        } else {
+            if (size > 0) {
+                mAdapter.addData(data);
+
+            }
+        }
+        if (size < 6) {
+            //第一页如果不够一页就不显示没有更多数据布局
+            mAdapter.loadMoreEnd(isRefresh);
+        } else {
+            mAdapter.loadMoreComplete();
+        }
+    }
     @Override
     public void nodata(String msg) {
         mSwiperefreshlayout.setRefreshing(false);
@@ -369,6 +450,8 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
     @Override
     public void deleteSuccess(String msg) {
         ToastUtils.showToast(msg);
+        pageNum = 1;
+        isRefresh =true;
         getdata();
     }
 
@@ -435,6 +518,8 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                 }
                 switch (v.getId()) {
                     case R.id.ll_item1:
+                        pageNum = 1;
+                        isRefresh =true;
                         getdata();
                         break;
                 }
@@ -473,16 +558,22 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     case R.id.ll_item1:
                         status = "0";
                         mTvAll.setText(getString(R.string.all));
+                        pageNum = 1;
+                        isRefresh =true;
                         getdata();
                         break;
                     case R.id.ll_item2:
                         status = "1";
                         mTvAll.setText(getString(R.string.item_buy));
+                        pageNum = 1;
+                        isRefresh =true;
                         getdata();
                         break;
                     case R.id.ll_item3:
                         status = "2";
                         mTvAll.setText(getString(R.string.item_seller));
+                        pageNum = 1;
+                        isRefresh =true;
                         getdata();
                         break;
                 }

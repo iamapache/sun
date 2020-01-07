@@ -17,10 +17,8 @@ import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.net.ResponeThrowable;
 import com.madaex.exchange.common.net.RetrofitHelper;
 import com.madaex.exchange.common.rx.DefaultSubscriber;
-import com.madaex.exchange.common.util.Base64Utils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.buy.bean.Event;
@@ -32,13 +30,13 @@ import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.market.bean.TitleBean;
 import com.madaex.exchange.ui.market.contract.HomeContract;
 import com.madaex.exchange.ui.market.presenter.HomePresenter;
-import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
@@ -164,7 +162,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
         }
         isVisible = false;
         isPrepared = false;
-//        getData();
+        getData();
 
     }
 
@@ -177,7 +175,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
             if (str.equalsIgnoreCase(getString(R.string.favorites))) {
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     try {
-                        sendData(params);
+                        sendData(DataUtil.sign(params));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -186,7 +184,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
 //            mPresenter.getData(DataUtil.sign(params));
 
                 try {
-                    sendData(params);
+                    sendData(DataUtil.sign(params));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -194,8 +192,8 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
         }
     }
 
-    private void sendData(TreeMap params) throws Exception {
-        Observable.interval(0, 7, TimeUnit.SECONDS)
+    private void sendData(Map params) throws Exception {
+        Observable.interval(0, 47, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())
@@ -211,11 +209,8 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
                                 .getTestResult(params).map(new Function<String, HomeData>() {
                             @Override
                             public HomeData apply(@NonNull String data) throws Exception {
-                                FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                                String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                                Logger.i("<==>data:HomeData" + paramsStr);
                                 Gson gson = new Gson();
-                                HomeData commonBean = gson.fromJson(paramsStr, HomeData.class);
+                                HomeData commonBean = gson.fromJson(data, HomeData.class);
                                 return commonBean;
                             }
                         })

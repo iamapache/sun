@@ -225,7 +225,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                     @Override
                     protected void onMessage(String message) {
 
-                        if (TextUtils.isEmpty(message)) {
+                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
                             return;
                         }
                         Log.i("MainActivity", message);
@@ -253,7 +253,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                         Log.d("MainActivity", "重连");
                     }
                 });
-        sendSocket();
+
     }
 
     private WebSocket mWebSocket;
@@ -266,30 +266,35 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
 
     private void sendSocket() {
+        market_type =  SPUtils.getString("market_type","0");
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
-        socketBean.setChannel(one_xnb.toLowerCase() + "qc" + "_depth");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase()+ "_depth");
 
         SocketBean socketBean2 = new SocketBean();
         socketBean2.setEvent("addChannel");
-        socketBean2.setChannel(one_xnb.toLowerCase() + "qc" + "_ticker");
+        socketBean2.setMarket_type(market_type);
+        socketBean2.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker");
         Log.d("<==>", new Gson().toJson(socketBean));
 //        mServerConnection.sendMessage(new Gson().toJson(socketBean));
         channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
         channel2 = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker";
 
-
+        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
+        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
     }
 
     private void linedetail() {
         TreeMap params2 = new TreeMap<>();
         params2.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL);
         params2.put("market", one_xnb + "_" + two_xnb);
-        mPresenter.getJavaLineDetail(params2);
+        mPresenter.getJavaLineDetail(DataUtil.sign(params2));
     }
 
 
     private void initview() {
+        market_type =  SPUtils.getString("market_type","0");
         getMsgInfo();
 
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
@@ -320,18 +325,27 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     }
 
     private void getMsgInfo() {
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_TRADE);
-        params.put("one_xnb", one_xnb);
-        params.put("two_xnb", two_xnb);
-        mPresenter.getMsgInfo(DataUtil.sign(params));
+        if(market_type.equals("0")){
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.TRADE_TRADE);
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            mPresenter.getMsgInfo(DataUtil.sign(params));
+        }else {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.Contract_contractAssets);
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            mPresenter.getMsgInfo(DataUtil.sign(params));
+        }
+
     }
 
 
     @Override
     public void onResume() {
         super.onResume();
-        getMsgInfo();
+        sendSocket();
     }
 
     @Override
@@ -368,7 +382,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                         double number = Double.valueOf(mEtNumber.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
                         mEtAccount.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
-                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
 
@@ -404,7 +418,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                         double number = Double.valueOf(mEtPrice.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
                         mEtAccount.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
-                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
             }
@@ -425,7 +439,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         }
         mEtPrice.setFilters(new InputFilter[]{new EditInputFilter(500000)});
         mEtNumber.setFilters(new InputFilter[]{new EditInputFilter(100000)});
-        Observable.interval(0, 7, TimeUnit.SECONDS)
+        Observable.interval(0, 45, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())
@@ -481,15 +495,28 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                 .setPayClickListener(new PayPassView.OnPayClickListener() {
                     @Override
                     public void onPassFinish(String passContent) {
-                        TreeMap params = new TreeMap<>();
-                        params.put("act", ConstantUrl.TRADE_UPTRADE);
-                        params.put("market", one_xnb + "_" + two_xnb);
-                        params.put("price", mEtPrice.getText().toString().trim());
-                        params.put("num", mEtNumber.getText().toString().trim());
-                        params.put("type", type);
-                        params.put("paypassword", passContent);
-                        params.put("source", "android");
-                        mPresenter.getData(DataUtil.sign(params));
+                        if(market_type.equals("0")){
+                            TreeMap params = new TreeMap<>();
+                            params.put("act", ConstantUrl.TRADE_UPTRADE);
+                            params.put("market", one_xnb + "_" + two_xnb);
+                            params.put("price", mEtPrice.getText().toString().trim());
+                            params.put("num", mEtNumber.getText().toString().trim());
+                            params.put("type", type);
+                            params.put("paypassword", passContent);
+                            params.put("source", "android");
+                            mPresenter.getData(DataUtil.sign(params));
+                        }else {
+                            TreeMap params = new TreeMap<>();
+                            params.put("act", ConstantUrl.TRADE_UPTRADE);
+                            params.put("market", one_xnb + "_" + two_xnb);
+                            params.put("price", mEtPrice.getText().toString().trim());
+                            params.put("num", mEtNumber.getText().toString().trim());
+                            params.put("type", type);
+                            params.put("paypassword", passContent);
+                            params.put("source", "android");
+                            mPresenter.getData(DataUtil.sign(params));
+                        }
+
                     }
 
                     @Override
@@ -532,6 +559,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     public void sendMsgSuccess(DealInfo data) {
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
             mOneXnb.setText(data.getData().getTwo_xnb());
+            mOrderBuyFee.setText(data.getData().getTrade_buy_fee());
 //            mOneXnbd.setText(data.getData().getOne_xnbd());
             mTwoXnb.setText(data.getData().getOne_xnb());
             mTwoXnbd.setText(data.getData().getTwo_xnbd());
@@ -540,6 +568,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 //            mOneXnbd.setText(data.getData().getTwo_xnbd());
             mTwoXnb.setText(data.getData().getTwo_xnb());
             mTwoXnbd.setText(data.getData().getOne_xnbd());
+            mOrderBuyFee.setText(data.getData().getTrade_sell_fee());
         }
     }
 
@@ -768,6 +797,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             String coin = event.getMsg();
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
+
             mEtPrice.setText("");
             mEtNumber.setText("");
 //            mOneXnbd.setText("0");
@@ -784,7 +814,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             getMsgInfo();
         }
     }
-
+    private String market_type = "0";
     private int stutas = 50;
 
 }

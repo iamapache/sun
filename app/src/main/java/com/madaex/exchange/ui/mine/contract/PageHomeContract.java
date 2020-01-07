@@ -1,8 +1,10 @@
 package com.madaex.exchange.ui.mine.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
-import com.madaex.exchange.ui.mine.bean.User;
-import com.madaex.exchange.ui.mine.bean.update;
+import com.madaex.exchange.ui.market.bean.HomeData;
+import com.madaex.exchange.ui.mine.bean.BannerData;
+import com.madaex.exchange.ui.mine.bean.HotCoin;
+import com.madaex.exchange.ui.mine.bean.NoticeData;
 
 import java.util.Map;
 
@@ -15,10 +17,13 @@ import java.util.Map;
 
 public class PageHomeContract {
     public interface View extends BaseContract.BaseView {
-        void requestSuccess(User user);
+        void requestSuccess(BannerData user);
         void nodata(String msg);
         void requestError(String msg);
-        void requestupdate(update bean);
+        void requestupdate(NoticeData bean);
+        void requestHotcoin(HotCoin bean);
+
+        void requestHotcoin(HomeData commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PageHomeContract.View> {
@@ -27,5 +32,6 @@ public class PageHomeContract {
         void update(Map body);
 
         void load(Map msg);
+        void getMartketList(Map msg);
     }
 }

@@ -11,6 +11,7 @@ import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.common.CommonContract;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 
@@ -27,7 +28,7 @@ import butterknife.OnClick;
  * 描述：  ${TODO}
  */
 
-public abstract class EditAddressActivity extends BaseNetActivity<CommonPresenter> implements CommonContract.View {
+public  class EditAddressActivity extends BaseNetActivity<CommonPresenter> implements CommonContract.View {
     @BindView(R.id.tv_addr)
     TextView mTvAddr;
     @BindView(R.id.branch)
@@ -96,6 +97,11 @@ public abstract class EditAddressActivity extends BaseNetActivity<CommonPresente
         ToastUtils.showToast(msg);
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void requestSuccess2(CommonDataBean.DataBean data) {
+
     }
 
     @Override

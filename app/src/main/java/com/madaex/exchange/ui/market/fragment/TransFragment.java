@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.net.Constant;
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.ui.buy.bean.DealBean;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.bean.SocketBean;
@@ -48,7 +49,7 @@ public class TransFragment extends BaseNetLazyFragment {
     Unbinder unbinder;
 
     TransBuyAdapter mBuyAdapter;
-
+    private String market_type = "0";
     TransSellerAdapter mSellerAdapter;
 
     @Override
@@ -74,6 +75,7 @@ public class TransFragment extends BaseNetLazyFragment {
     private WebSocket mWebSocket;
     @Override
     protected void initView() {
+        market_type =  SPUtils.getString("market_type","0");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mBuyrecyclerview.setLayoutManager(linearLayoutManager);
@@ -97,7 +99,8 @@ public class TransFragment extends BaseNetLazyFragment {
                     }
                     @Override
                     protected void onMessage(String message) {
-                        if (TextUtils.isEmpty(message)) {
+                        Log.d("MainActivity", message);
+                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
                             return;
                         }
 
@@ -110,9 +113,13 @@ public class TransFragment extends BaseNetLazyFragment {
                                 if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
                                     if (mDesignates.getAsks().size() >= 20) {
                                         mBuyAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
+                                    }else {
+                                        mBuyAdapter.setNewData(mDesignates.getAsks());
                                     }
                                     if (mDesignates.getBids().size() >= 20) {
                                         mSellerAdapter.setNewData(mDesignates.getBids().subList(0, 20));
+                                    }else {
+                                        mSellerAdapter.setNewData(mDesignates.getBids());
                                     }
 
                                 }
@@ -156,6 +163,7 @@ public class TransFragment extends BaseNetLazyFragment {
         isPrepared = false;
         String one_xnb = getArguments().getString("one_xnb");
         String two_xnb = getArguments().getString("two_xnb");
+        market_type =getActivity().getIntent().getStringExtra("market_type");
         getData(one_xnb, two_xnb);
     }
     private String channel = "";
@@ -163,9 +171,10 @@ public class TransFragment extends BaseNetLazyFragment {
     private void getData(String one_xnb, String two_xnb) {
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
-        socketBean.setChannel(one_xnb.toLowerCase() + "qc" + "_depth");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth");
         Log.d("<==>", new Gson().toJson(socketBean));
-        channel = one_xnb.toLowerCase() + "qc" + "_depth";
+        channel = one_xnb.toLowerCase() +  two_xnb.toLowerCase() + "_depth";
         RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
     }
 
@@ -176,6 +185,7 @@ public class TransFragment extends BaseNetLazyFragment {
                 String coin = event.getMsg();
                 String one_xnb = coin.split("/")[0];
                 String two_xnb = coin.split("/")[1];
+                market_type= event.getHeyue();
                 getData(one_xnb, two_xnb);
             }
 
@@ -191,6 +201,6 @@ public class TransFragment extends BaseNetLazyFragment {
     private String two_xnb = "";
     private long currentBackPressedTime = 0;
     // 退出间隔
-    private static final int BACK_PRESSED_INTERVAL = 14;
+    private static final int BACK_PRESSED_INTERVAL = 4;
 
 }

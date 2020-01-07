@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.allenliu.versionchecklib.v2.AllenVersionChecker;
 import com.dhh.websocket.RxWebSocket;
 import com.dhh.websocket.WebSocketSubscriber;
-import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.BaseApplication;
 import com.madaex.exchange.common.base.activity.BaseActivity;
@@ -23,7 +22,6 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.NoScrollViewPager;
 import com.madaex.exchange.ui.adapter.TabLayoutFragmentAdapter;
 import com.madaex.exchange.ui.buy.bean.Event;
-import com.madaex.exchange.ui.buy.bean.SocketBean;
 import com.madaex.exchange.ui.buy.fragment.DealFragment;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.fragment.FinanceFragment;
@@ -134,19 +132,20 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                     public void onOpen(@NonNull WebSocket webSocket) {
                         Log.d("MainActivity", "onOpen1:");
                         mWebSocket = webSocket;
-                        sendSocket();
+
                     }
                     @Override
                     protected void onReconnect() {
                         Log.d("MainActivity", "重连");
                     }
                 });
+        sendSocket();
     }
 
     @Override
     protected void initDatas() {
-        one_xnb = SPUtils.getString(Constants.ONE_XNB, "SNRC");
-        two_xnb = SPUtils.getString(Constants.TWO_XNB, "GRC");
+        one_xnb = SPUtils.getString(Constants.ONE_XNB, "BAT");
+        two_xnb = SPUtils.getString(Constants.TWO_XNB, "ETH");
 
     }
 
@@ -241,16 +240,17 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     private void sendSocket() {
 
-        SocketBean socketBean = new SocketBean();
-        socketBean.setEvent("addChannel");
-        socketBean.setChannel(one_xnb.toLowerCase() + "qc" + "_depth");
+//        SocketBean socketBean = new SocketBean();
+//        socketBean.setEvent("addChannel");
+//        socketBean.setMarket_type("0");
+//        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depthxx");
+//
+//        SocketBean socketBean2 = new SocketBean();
+//        socketBean2.setEvent("addChannel");
+//        socketBean2.setMarket_type("0");
+//        socketBean2.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase()+ "_ticker");
+//        Log.d("<==>", new Gson().toJson(socketBean));
 
-        SocketBean socketBean2 = new SocketBean();
-        socketBean2.setEvent("addChannel");
-        socketBean2.setChannel(one_xnb.toLowerCase() + "qc" + "_ticker");
-        Log.d("<==>", new Gson().toJson(socketBean));
-        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
-        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
 
     }
     private WebSocket mWebSocket;

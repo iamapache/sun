@@ -88,12 +88,21 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
     protected void initView() {
 
     }
-
     @Override
-    protected void initDatas() {
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible) {
+            return;
+        }
+        isVisible = false;
+        isPrepared = false;
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_HOME_INDEX_TOP);
         mPresenter.getTitleData(DataUtil.sign(params));
+
+    }
+    @Override
+    protected void initDatas() {
+
     }
 
     @Override
@@ -175,15 +184,6 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
         startActivityAfterLogin(new Intent(mContext, AccountManagerActivity.class));
     }
 
-    @Override
-    protected void lazyLoad() {
-        if (!isPrepared || !isVisible) {
-            return;
-        }
-        isVisible = false;
-        isPrepared = false;
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -231,6 +231,7 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
     @Override
     public void SuccessTitle(TitleBean msg) {
         mTitleList.addAll(msg.getData());
+        mTitleList.add(0,getString(R.string.favorites));
         for (int j = 0; j < mTitleList.size(); j++) {
             mFragments.add(TransactionListFragment.newInstance(j,mTitleList.get(j)));
         }

@@ -89,22 +89,22 @@ public class Asset extends CommonBaseBean {
              */
 
             private String usdt;
-            private String dollar;
+            private String rmb;
 
             public String getUsdt() {
                 return usdt;
             }
 
+            public String getRmb() {
+                return rmb;
+            }
+
+            public void setRmb(String rmb) {
+                this.rmb = rmb;
+            }
+
             public void setUsdt(String usdt) {
                 this.usdt = usdt;
-            }
-
-            public String getDollar() {
-                return dollar;
-            }
-
-            public void setDollar(String dollar) {
-                this.dollar = dollar;
             }
         }
 

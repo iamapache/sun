@@ -82,8 +82,8 @@ public class DealFragment extends BaseNetLazyFragment<CoinPresenter> implements 
         isVisible = false;
         isPrepared = false;
 
-        one_xnb = SPUtils.getString(Constants.ONE_XNB, "SNRC");
-        two_xnb = SPUtils.getString(Constants.TWO_XNB, "GRC");
+        one_xnb = SPUtils.getString(Constants.ONE_XNB, "BAT");
+        two_xnb = SPUtils.getString(Constants.TWO_XNB, "ETH");
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
         int str = (int) getArguments().get(Constants.ARGS);
         BuyFragment fragment1 = BuyFragment.newInstance(ConstantUrl.TRANS_TYPE_BUY, one_xnb, two_xnb);

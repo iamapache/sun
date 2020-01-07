@@ -19,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/d_10dp"
             android:text="@string/jiaPrice"
-            android:textColor="@color/common_text_1"
             android:textSize="@dimen/d_14dp"
             />
 

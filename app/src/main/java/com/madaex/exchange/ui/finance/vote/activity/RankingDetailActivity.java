@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
-import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
@@ -88,9 +86,9 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     }
 
     private void getData() {
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.FINANCE_C2C_VIEW);
-        mPresenter.getGRC(DataUtil.sign(params));
+//        TreeMap params = new TreeMap<>();
+//        params.put("act", ConstantUrl.FINANCE_C2C_VIEW);
+//        mPresenter.getGRC(DataUtil.sign(params));
     }
 
     @Override
@@ -211,14 +209,14 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
 
     @Override
     public void sendViewSuccess(TransationInfo msg) {
-        mCount.setText(msg.getData().getCny() + "GRC");
-        if (EmptyUtils.isNotEmpty(mResultBean)) {
-            if (mType == 1 && Double.valueOf(mResultBean.getAssumnum())!=0) {
-                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getAssumnum())), 2) + "");
-                mName.setText("GRC");
-            } else if (Double.valueOf(mResultBean.getIssue_price())!=0) {
-                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getIssue_price())), 2) + mResultBean.getCoinname());
-            }
-        }
+//        mCount.setText(msg.getData().getCny() + "GRC");
+//        if (EmptyUtils.isNotEmpty(mResultBean)) {
+//            if (mType == 1 && Double.valueOf(mResultBean.getAssumnum())!=0) {
+//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getAssumnum())), 2) + "");
+//                mName.setText("GRC");
+//            } else if (Double.valueOf(mResultBean.getIssue_price())!=0) {
+//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getIssue_price())), 2) + mResultBean.getCoinname());
+//            }
+//        }
     }
 }

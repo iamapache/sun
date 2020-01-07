@@ -41,7 +41,7 @@ public class HistoryBuyAdapter extends  RecyclerView.Adapter<HistoryBuyAdapter.M
     public void onBindViewHolder(MyViewHolder holder,  int position) {
         holder.price.setText( mDatas.get(position).getPrice());
         holder.number.setText( mDatas.get(position).getAmount());
-        holder.time.setText(DataTimeUtil.secToDate3(mDatas.get(position).getDate()));
+        holder.time.setText(DataTimeUtil.secToDate3(Long.valueOf(mDatas.get(position).getDate())));
         if(mDatas.get(position).getType().equals("sell")){
             holder.time.setTextColor(mContext.getResources().getColor(R.color.green));
             holder.price.setTextColor(mContext.getResources().getColor(R.color.green));

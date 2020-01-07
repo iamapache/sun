@@ -46,7 +46,7 @@ public class CoinFragment extends BaseNetLazyFragment {
         mCoinLister = coinLister;
     }
 
-    public static CoinFragment newInstance(int parentposition,int type,ArrayList<CoinList.DataBean.ListBean> string) {
+    public static CoinFragment newInstance(String title,int parentposition,int type,ArrayList<CoinList.DataBean.ListBean> string) {
         CoinFragment fragment = null;
         if (fragment == null) {
             fragment = new CoinFragment();
@@ -54,6 +54,7 @@ public class CoinFragment extends BaseNetLazyFragment {
         Bundle bundle = new Bundle();
         bundle.putInt("parentposition", parentposition);
         bundle.putInt("type", type);
+        bundle.putString("title", title);
         bundle.putParcelableArrayList(Constants.ARGS, string);
         fragment.setArguments(bundle);
         return fragment;
@@ -85,9 +86,17 @@ public class CoinFragment extends BaseNetLazyFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 CoinList.DataBean.ListBean listBean = (CoinList.DataBean.ListBean) adapter.getItem(position);
+
                 Event event = new Event();
                 event.setMsg(listBean.getName());
                 event.setCode(type);
+                if(getArguments().getString("title").equals("合约")){
+                    event.setHeyue(1+"");
+                    SPUtils.putString("market_type",1+"");
+                }else {
+                    event.setHeyue(0+"");
+                    SPUtils.putString("market_type",0+"");
+                }
 
                 Position bean  = new Position();
                 bean.setParent(parentposition);

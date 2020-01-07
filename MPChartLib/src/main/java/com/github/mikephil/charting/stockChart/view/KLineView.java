@@ -118,13 +118,13 @@ public class KLineView extends BaseView implements View.OnClickListener {
         this.ischange = ischange;
         //蜡烛图
 //        candleChart.clear();
-        candleChart.setDrawBorders(true);
+        candleChart.setDrawBorders(false);
         candleChart.setBorderWidth(0.7f);
         if (landscape) {
             candleChart.setBorderColor(ContextCompat.getColor(mContext, R.color.border_color));
-            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.border_color));
+            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
         } else {
-            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
+            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
         }
         candleChart.setDragEnabled(landscape);
         candleChart.setScaleYEnabled(false);
@@ -135,6 +135,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
         candleChart.setDragDecelerationFrictionCoef(0.6f);//0.92持续滚动时的速度快慢，[0,1) 0代表立即停止。
         candleChart.setDoubleTapToZoomEnabled(false);
         candleChart.setNoDataText(getResources().getString(R.string.loadings));
+
         if (!landscape) {
             barChart.setVisibility(View.GONE);
             ll_tab.setVisibility(View.GONE);

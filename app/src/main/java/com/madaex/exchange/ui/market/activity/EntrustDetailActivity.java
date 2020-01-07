@@ -85,9 +85,11 @@ public class EntrustDetailActivity extends BaseNetActivity<EntrustPresenter> imp
     }
 
     int type = 1;
+    private String market_type = "0";
 
     @Override
     protected void initDatas() {
+        market_type = getIntent().getStringExtra("market_type");
         EntrustList.DataBean bean = getIntent().getParcelableExtra("bean");
         type = getIntent().getIntExtra("type", 1);
         mQuantitynumber.setText(bean.getOne_xnb() + bean.getNum());
@@ -99,12 +101,21 @@ public class EntrustDetailActivity extends BaseNetActivity<EntrustPresenter> imp
         mImgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TreeMap params = new TreeMap<>();
-                params.put("act", ConstantUrl.TRADE_REVOKE);
-                params.put("one_xnb", bean.getOne_xnb());
-                params.put("two_xnb", bean.getTwo_xnb());
-                params.put("id", bean.getId());
-                mPresenter.delete(DataUtil.sign(params));
+                if (market_type.equals("0")) {
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", ConstantUrl.TRADE_REVOKE);
+                    params.put("one_xnb", bean.getOne_xnb());
+                    params.put("two_xnb", bean.getTwo_xnb());
+                    params.put("id", bean.getId());
+                    mPresenter.delete(DataUtil.sign(params));
+                } else {
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", ConstantUrl.Contract_REVOKE);
+                    params.put("one_xnb", bean.getOne_xnb());
+                    params.put("two_xnb", bean.getTwo_xnb());
+                    params.put("id", bean.getId());
+                    mPresenter.delete(DataUtil.sign(params));
+                }
             }
         });
 
@@ -149,10 +160,18 @@ public class EntrustDetailActivity extends BaseNetActivity<EntrustPresenter> imp
 
     private void getDataDetail() {
         EntrustList.DataBean bean = getIntent().getParcelableExtra("bean");
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST_DETAIL);
-        params.put("id", bean.getId());
-        mPresenter.getDataDetail(DataUtil.sign(params));
+        if (market_type.equals("0")) {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST_DETAIL);
+            params.put("id", bean.getId());
+            mPresenter.getDataDetail(DataUtil.sign(params));
+
+        } else {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.Contract_CURRENT_ENTRUST_DETAIL);
+            params.put("id", bean.getId());
+            mPresenter.getDataDetail(DataUtil.sign(params));
+        }
     }
 
     @Override

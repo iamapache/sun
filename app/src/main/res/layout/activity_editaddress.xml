@@ -27,6 +27,7 @@
         android:textSize="@dimen/d_16dp"/>
 
     <LinearLayout
+        android:background="@color/common_black"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
@@ -56,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
+        android:background="@color/common_black"
         android:gravity="center_vertical">
 
 

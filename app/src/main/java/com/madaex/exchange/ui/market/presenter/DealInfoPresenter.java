@@ -123,10 +123,10 @@ public class DealInfoPresenter extends RxPresenter<DealInfoContract.View> implem
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestError(commonBean.getData() + "");
+                            mView.requestError(commonBean.getMessage() + "");
                         } else {
 
-                            mView.requestSuccess(commonBean.getData() + "");
+                            mView.requestSuccess(commonBean.getMessage() + "");
                         }
                     }
                 }));

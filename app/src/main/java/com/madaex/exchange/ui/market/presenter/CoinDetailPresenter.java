@@ -9,6 +9,7 @@ import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.market.bean.CoinDetail;
+import com.madaex.exchange.ui.market.bean.HistoryDetail;
 import com.madaex.exchange.ui.market.contract.CoinDetailContract;
 
 import java.util.Map;
@@ -56,6 +57,30 @@ public class CoinDetailPresenter extends RxPresenter<CoinDetailContract.View> im
                         } else {
                             mView.requestSuccess(commonBean);
                         }
+                    }
+                }));
+    }
+
+    @Override
+    public void HistoryDetail(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, HistoryDetail>() {
+                    @Override
+                    public HistoryDetail apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        HistoryDetail commonBean = gson.fromJson(data, HistoryDetail.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<HistoryDetail>(mView) {
+                    @Override
+                    public void onNext(HistoryDetail commonBean) {
+//                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+//                            mView.requestError("");
+//                        } else {
+                            mView.requestSuccess(commonBean);
+//                        }
                     }
                 }));
     }

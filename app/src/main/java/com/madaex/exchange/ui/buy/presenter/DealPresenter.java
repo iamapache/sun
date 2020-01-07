@@ -8,14 +8,11 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.contract.DealContract;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.market.bean.LineDetail;
-import com.orhanobut.logger.Logger;
 
 import java.util.Map;
 
@@ -48,11 +45,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                 .map(new Function<String, CommonBean>() {
                     @Override
                     public CommonBean apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
@@ -61,9 +55,9 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -75,20 +69,17 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                 .map(new Function<String, DealInfo>() {
                     @Override
                     public DealInfo apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:" + paramsStr);
                         Gson gson = new Gson();
 
-                        CommonBaseBean commonBaseBean = gson.fromJson(paramsStr, CommonBaseBean.class);
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
                         if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
-                            CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                             DealInfo user = new DealInfo();
                             user.setMsg(commonBean.getMessage());
                             user.setStatus(commonBean.getStatus());
                             return user;
                         } else {
-                            DealInfo commonBean = gson.fromJson(paramsStr, DealInfo.class);
+                            DealInfo commonBean = gson.fromJson(data, DealInfo.class);
                             return commonBean;
                         }
                     }
@@ -111,11 +102,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                 .map(new Function<String, LineDetail>() {
                     @Override
                     public LineDetail apply(@NonNull String data) throws Exception {
-                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                        String paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(data)));
-                        Logger.i("<==>data:getJavaLineDetail" + paramsStr);
                         Gson gson = new Gson();
-                        LineDetail commonBean = gson.fromJson(paramsStr, LineDetail.class);
+                        LineDetail commonBean = gson.fromJson(data, LineDetail.class);
                         return commonBean;
                     }
                 })

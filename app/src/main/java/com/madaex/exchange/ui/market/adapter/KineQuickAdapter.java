@@ -15,9 +15,7 @@ import com.github.mikephil.charting.stockChart.view.KLineView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.net.RetrofitHelper;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
-import com.madaex.exchange.common.util.Base64Utils;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.util.FileEncryptionManager;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -225,6 +223,7 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
                 intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
                 intent.putExtra("collect", item.getCollection());
                 intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
+                intent.putExtra("market_type", item.getMarket_type()+"");
                 intent.putExtra(Constants.INFO, parentposition);
                 intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
                 mContext.startActivity(intent);
@@ -397,8 +396,10 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
             combinedchart.initChart(true, false);
             HashMap params3 = new HashMap<>();
             params3.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL_KLINE);
-            params3.put("market", item.getCurrentype().toUpperCase() + "_" + "qc");
+            params3.put("market", item.getCurrentype().toUpperCase() + "_" + item.getExchangeType().toUpperCase());
             params3.put("type", type);
+            params3.put("size", 1000+"");
+            params3.put("market_type", item.getMarket_type()+"");
             combinedchart.getGestureListenerCandle().setCoupleClick(new CoupleChartGestureListener.CoupleClick() {
                 @Override
                 public void singleClickListener() {
@@ -407,27 +408,24 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
                     intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
                     intent.putExtra("collect", item.getCollection());
                     intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
+                    intent.putExtra("market_type", item.getMarket_type()+"");
                     intent.putExtra(Constants.INFO, parentposition);
                     intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
                     mContext.startActivity(intent);
                 }
             });
-            RetrofitHelper.getKLineAPI().getKLineResult(params3).compose(new DefaultTransformer2())
+            RetrofitHelper.getKLineAPI().getKLineResult(DataUtil.sign(params3)).compose(new DefaultTransformer2())
                     .subscribe(new DefaultObserver<String>() {
                         @Override
                         public void onNext(String jsonStr) {
                             //{"moneyType":"GRC","symbol":"eth","data":[[1535468400000,1948.21,1949.59,1938.95,1946.07,19893.112],
                             JSONObject object = null;
                             try {
-                                FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-                                String paramsStr = null;
                                 try {
-                                    paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(jsonStr)));
-                                    Logger.i("<==>data:kLineData" + paramsStr);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                object = new JSONObject(paramsStr);
+                                object = new JSONObject(jsonStr);
                                 kLineData.parseKlineData(object, "000001.IDX.SH", false);
                                 combinedchart.setDataToChart(kLineData);
                             } catch (JSONException e) {

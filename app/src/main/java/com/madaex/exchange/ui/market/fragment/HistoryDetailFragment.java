@@ -20,7 +20,10 @@ import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.bean.SocketBean;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.adapter.HistoryBuyAdapter;
+import com.madaex.exchange.ui.market.bean.CoinDetail;
 import com.madaex.exchange.ui.market.bean.HistoryDetail;
+import com.madaex.exchange.ui.market.contract.CoinDetailContract;
+import com.madaex.exchange.ui.market.presenter.CoinDetailPresenter;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -41,13 +44,13 @@ import okhttp3.WebSocket;
  * 描述：  ${TODO}
  */
 
-public class HistoryDetailFragment extends BaseNetLazyFragment {
+public class HistoryDetailFragment extends BaseNetLazyFragment<CoinDetailPresenter> implements CoinDetailContract.View {
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
     Unbinder unbinder;
     HistoryBuyAdapter mBuyAdapter;
     ArrayList<HistoryDetail.DataBean> testBeans1 = new ArrayList<>();
-
+    private String market_type = "0";
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_historydetail;
@@ -66,7 +69,7 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
     }
 
     @Override
-    public void initInjector() {
+    public void initInjector() {getFragmentComponent().inject(this);
     }
 
     private WebSocket mWebSocket;
@@ -90,7 +93,8 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
                     }
                     @Override
                     protected void onMessage(String message) {
-                        if (TextUtils.isEmpty(message)) {
+                        Log.d("MainActivity", message);
+                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
                             return;
                         }
                         if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
@@ -138,6 +142,7 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
         isPrepared = false;
         String one_xnb = getArguments().getString("one_xnb");
         String two_xnb = getArguments().getString("two_xnb");
+        market_type =getActivity().getIntent().getStringExtra("market_type");
         getData(one_xnb, two_xnb);
     }
 
@@ -146,10 +151,18 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
     private void getData( String one_xnb, String two_xnb) {
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
-        socketBean.setChannel(one_xnb.toLowerCase()+"qc"+"_trades");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase()+two_xnb.toLowerCase()+"_trades");
         Log.d("<==>",new Gson().toJson(socketBean));
-        channel = one_xnb.toLowerCase()+"qc"+"_trades";
+        channel = one_xnb.toLowerCase()+two_xnb.toLowerCase()+"_trades";
         RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
+
+//        TreeMap params = new TreeMap<>();
+//        params.put("act", ConstantUrl.TRADE_coin_deal_list);
+//        params.put("one_xnb", getArguments().getString("one_xnb"));
+//        params.put("two_xnb", getArguments().getString("two_xnb"));
+//        params.put("market_type", market_type);
+//        mPresenter.HistoryDetail(DataUtil.sign(params));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -159,6 +172,7 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
                 String coin = event.getMsg();
                  one_xnb = coin.split("/")[0];
                  two_xnb = coin.split("/")[1];
+                market_type= event.getHeyue();
                 getData(one_xnb, two_xnb);
             }
 
@@ -173,5 +187,20 @@ public class HistoryDetailFragment extends BaseNetLazyFragment {
     private String two_xnb = "";
     private long currentBackPressedTime = 0;
     // 退出间隔
-    private static final int BACK_PRESSED_INTERVAL = 14;
+    private static final int BACK_PRESSED_INTERVAL = 5;
+
+    @Override
+    public void requestSuccess(CoinDetail bean) {
+
+    }
+
+    @Override
+    public void requestError(String msg) {
+
+    }
+
+    @Override
+    public void requestSuccess(HistoryDetail commonBean) {
+
+    }
 }

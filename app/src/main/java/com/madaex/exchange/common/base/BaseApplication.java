@@ -26,6 +26,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -87,9 +88,16 @@ public class BaseApplication extends Application {
 //            startService(intent);
 //        }
         Config config = new Config.Builder()
-                .setShowLog(true)           //show  log
+                .setShowLog(true)
+                .setClient(new OkHttpClient.Builder()
+                        .pingInterval(4, TimeUnit.SECONDS) // 设置心跳间隔，这个是3秒检测一次
+                        .build())
+                .setShowLog(true, "RxWebSocket")
+                .setReconnectInterval(4, TimeUnit.SECONDS)//show  log
                 .build();
         RxWebSocket.setConfig(config);
+
+
         MultiLanguageUtil.init(this);
         SPUtils.init(getApplicationContext());
         initApplicationComponent();

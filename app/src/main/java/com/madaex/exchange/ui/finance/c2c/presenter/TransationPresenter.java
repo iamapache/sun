@@ -55,9 +55,9 @@ public class TransationPresenter  extends RxPresenter<TransationContract.View> i
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.requestError(commonBean.getData()+"");
                         }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(commonBean.getData()+"");
+                            mView.nodata(commonBean.getMessage()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getData()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

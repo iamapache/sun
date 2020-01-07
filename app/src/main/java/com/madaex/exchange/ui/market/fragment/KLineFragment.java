@@ -7,8 +7,7 @@ import com.github.mikephil.charting.stockChart.data.KLineDataManage;
 import com.github.mikephil.charting.stockChart.view.KLineView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.FileEncryptionManager;
+import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -63,7 +62,7 @@ public class KLineFragment extends BaseNetLazyFragment<KLinePresenter> implement
         isPrepared = false;
         //?market=ada_GRC&type=1min&size=1000
         String one_xnb = getActivity().getIntent().getStringExtra("one_xnb");
-        String two_xnb = "qc";
+        String two_xnb = getActivity().getIntent().getStringExtra("two_xnb");
         getData(one_xnb, two_xnb);
     }
 
@@ -74,7 +73,8 @@ public class KLineFragment extends BaseNetLazyFragment<KLinePresenter> implement
         params3.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL_KLINE);
         params3.put("market", market);
         params3.put("type", mType);
-        mPresenter.getData(params3);
+        params3.put("market_type", getActivity().getIntent().getStringExtra("market_type"));
+        mPresenter.getData(DataUtil.sign(params3));
         Logger.i("one_xnb" );
     }
 
@@ -159,17 +159,9 @@ public class KLineFragment extends BaseNetLazyFragment<KLinePresenter> implement
 
     @Override
     public void requestSuccess(String jsonStr) {
-        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
-        String paramsStr = "";
         try {
-            paramsStr = new String(mFileEncryptionManager.decryptByPublicKey(Base64Utils.decode(jsonStr)));
-            Logger.i("<==>data:KLineFragment" + paramsStr);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            if (!TextUtils.isEmpty(paramsStr)) {
-                object = new JSONObject(paramsStr);
+            if (!TextUtils.isEmpty(jsonStr)) {
+                object = new JSONObject(jsonStr);
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -55,9 +55,9 @@ public class AppealPresenter extends RxPresenter<AppealContract.View> implements
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getData()+"");
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
-                            mView.deleteSuccess(commonBean.getData()+"");
+                            mView.deleteSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

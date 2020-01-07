@@ -21,6 +21,7 @@
         app:title_visible="true"/>
 
     <LinearLayout
+        android:background="@color/common_black"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
         android:layout_marginTop="@dimen/d_15dp"
@@ -57,7 +58,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_44dp"
+        android:layout_height="@dimen/d_44dp" android:background="@color/common_black"
         android:layout_marginTop="@dimen/d_15dp"
         android:gravity="center_vertical">
 
@@ -89,7 +90,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:layout_marginTop="@dimen/d_15dp"
+        android:layout_marginTop="@dimen/d_15dp" android:background="@color/common_black"
         android:gravity="center_vertical">
 
         <TextView
@@ -120,7 +121,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:layout_marginTop="@dimen/d_15dp"
+        android:layout_marginTop="@dimen/d_15dp" android:background="@color/common_black"
         android:gravity="center_vertical">
 
         <TextView
@@ -149,7 +150,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:layout_marginTop="@dimen/d_15dp"
+        android:layout_marginTop="@dimen/d_15dp" android:background="@color/common_black"
         android:gravity="center_vertical">
 
         <TextView

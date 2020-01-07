@@ -83,13 +83,13 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/d_40dp"
-            app:tabBackground="@color/white"
+            app:tabBackground="@color/common_black"
             app:tabIndicatorColor="@color/title_color"
             app:tabIndicatorHeight="@dimen/d_2dp"
-            app:tabMode="scrollable"
-            app:tabGravity="center"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
             app:tabSelectedTextColor="@color/title_color"
-            app:tabTextColor="@color/common_text_6"/>
+            app:tabTextColor="@color/white"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"

@@ -103,7 +103,7 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                         } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(commonBean.getMessage()+"");
                         }else {
-                            mView.requestMessageCountSuccess(commonBean.getMessage());
+                            mView.requestMessageCountSuccess(commonBean.getData().getTotal()+"");
                         }
                     }
                 }));

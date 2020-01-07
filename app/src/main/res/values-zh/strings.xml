@@ -512,4 +512,6 @@
     <string name="branchinformation">请输入支行信息</string>
     <string name="branch">支行名称</string>
     <string name="remark">备注码</string>
+    <string name="Introduction">简介</string>
+    <string name="contract">合约资产</string>
 </resources>

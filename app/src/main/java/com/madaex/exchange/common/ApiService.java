@@ -36,7 +36,13 @@ public interface ApiService {
 //    @POST(Constant.APP_APIS)
 //    Observable<String> getKLineResult(@Part("data") RequestBody body);
 
+    @POST(Constant.APP_APIS+"/index/banner")
+    @FormUrlEncoded
+    Observable<String> getbanner(@FieldMap Map<String, String> map);
 
+    @POST(Constant.APP_APIS+"/index/notice")
+    @FormUrlEncoded
+    Observable<String> getnotice(@FieldMap Map<String, String> map);
 //@Multipart
 //@POST(Constant.APP_APIS)
 //Observable<String> getTestResult(@Part("data") RequestBody body);

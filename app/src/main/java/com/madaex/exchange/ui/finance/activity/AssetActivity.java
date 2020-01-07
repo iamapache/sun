@@ -223,6 +223,6 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         testBeans.addAll(commonBean.getData().getXnb_list());
         mAdapter.notifyDataSetChanged();
         mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
-        mDollar.setText("$  " + commonBean.getData().getAssets().getDollar() + "");
+        mDollar.setText("$  " + commonBean.getData().getAssets().getRmb() + "");
     }
 }

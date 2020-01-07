@@ -48,6 +48,7 @@
     <string name="mine_id_confirm">实名认证</string>
     <string name="mine_ustomer">客服中心</string>
     <string name="mine_brief">平台简介</string>
+
     <string name="mine_language">语言切换</string>
     <string name="mine_agreement">协议声明</string>
     <string name="mine_edition">版本更新</string>
@@ -511,4 +512,6 @@
     <string name="branchinformation">请输入支行信息</string>
     <string name="branch">支行名称</string>
     <string name="remark">备注码</string>
+    <string name="Introduction">简介</string>
+    <string name="contract">合约资产</string>
 </resources>

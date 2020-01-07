@@ -50,9 +50,17 @@ public class CommonDataBean {
 
         private String token;
         private String user_id;
-
+        private int total;
         public String getToken() {
             return token;
+        }
+
+        public int getTotal() {
+            return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
         }
 
         public void setToken(String token) {

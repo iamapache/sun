@@ -26,5 +26,7 @@ public interface BaseContract {
         void stateLoading();
 
         void stateMain();
+
+
     }
 }

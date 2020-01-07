@@ -15,6 +15,7 @@ import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.bean.CoinDetail;
+import com.madaex.exchange.ui.market.bean.HistoryDetail;
 import com.madaex.exchange.ui.market.contract.CoinDetailContract;
 import com.madaex.exchange.ui.market.presenter.CoinDetailPresenter;
 
@@ -78,7 +79,7 @@ public class CoinDetailFragment extends BaseNetLazyFragment<CoinDetailPresenter>
 
     @Override
     public void requestSuccess(CoinDetail bean) {
-        mInfo.setText(Html.fromHtml(bean.getData()));
+        mInfo.setText(Html.fromHtml(bean.getData().getJs_sm()));
 //        mWebview.loadData( "" , "text/html", "UTF-8" ) ;
 //        String html = "<html>"  + bean.getData() + "</body></html>";
 //        mWebview.loadData(html, "text/html", "uft-8");
@@ -92,6 +93,11 @@ public class CoinDetailFragment extends BaseNetLazyFragment<CoinDetailPresenter>
 
     }
 
+    @Override
+    public void requestSuccess(HistoryDetail commonBean) {
+
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         if (event != null && event.getCode() == Constants.MARK) {
@@ -99,6 +105,7 @@ public class CoinDetailFragment extends BaseNetLazyFragment<CoinDetailPresenter>
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_INTRODUCE);
             params.put("one_xnb", coin.split("/")[0]);
+            params.put("market_type", getActivity().getIntent().getStringExtra("market_type"));
             mPresenter.getData(DataUtil.sign(params));
         }else if (event != null && event.getCode() == Constants.change) {
 
@@ -107,6 +114,7 @@ public class CoinDetailFragment extends BaseNetLazyFragment<CoinDetailPresenter>
                 TreeMap params = new TreeMap<>();
                 params.put("act", ConstantUrl.TRADE_INTRODUCE);
                 params.put("one_xnb", coin.split("/")[0]);
+                params.put("market_type", getActivity().getIntent().getStringExtra("market_type"));
                 mPresenter.getData(DataUtil.sign(params));
             }
         }

@@ -3,7 +3,7 @@
     <!--默认颜色-->
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="@color/colorCutOffSide" />
+            <solid android:color="@color/common_ggray" />
         </shape>
     </item>
     <!--进度颜色-->

@@ -394,7 +394,9 @@ public class LinkWebViewActivity extends BaseActivity {
             } else {
                 mWebview.loadUrl(mUrl + "?lang=" + str + "&type=" + intent.getIntExtra("type", 1));
             }
-        } else {
+        } else  if (intent.getIntExtra("type",3)==3) {
+            mWebview.loadUrl(mUrl );
+        }else {
             if (status == 0) {
                 mWebview.loadUrl(mUrl + "?lang=" + str);
             } else {

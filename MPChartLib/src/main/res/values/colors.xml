@@ -5,7 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#ffffff</color>
-
+    <color name="common_ggray">#9FA4B2</color>
+    <color name="common_black">#1B1E22</color>
     <color name="common_red">#f43530</color>
     <color name="common_green">#25A035</color>
     <color name="title_color">#FBB03B</color>

@@ -108,10 +108,10 @@ public class NcPresenter extends RxPresenter<NcContract.View> implements NcContr
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestError(commonBean.getData() + "");
+                            mView.requestError(commonBean.getMessage() + "");
                         } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                         } else {
-                            mView.requestSuccess(commonBean.getData() + "");
+                            mView.requestSuccess(commonBean.getMessage() + "");
                         }
                     }
                 }));
@@ -141,10 +141,10 @@ public class NcPresenter extends RxPresenter<NcContract.View> implements NcContr
                     @Override
                     public void onNext(CommonBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestError(commonBean.getData() + "");
+                            mView.requestError(commonBean.getMessage() + "");
                         } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                         } else {
-                            mView.requestSuccess(commonBean.getData() + "");
+                            mView.requestSuccess(commonBean.getMessage() + "");
                         }
                     }
                 }));

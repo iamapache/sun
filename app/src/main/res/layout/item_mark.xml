@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/common_black"
     android:orientation="vertical">
 
     <View
@@ -280,7 +281,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/d_10dp"
                 android:layout_weight="1"
-                android:background="@drawable/common_bg_gray_corners"
+                android:background="@drawable/common_bg_white_corners"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -294,7 +295,7 @@
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@string/cacelfav"
-                    android:textColor="@color/common_text_1"
+                    android:textColor="@color/common_title"
                     android:textSize="@dimen/d_12dp"
                     />
             </LinearLayout>
@@ -304,7 +305,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/common_bg_gray_corners"
+                android:background="@drawable/common_bg_white_corners"
                 android:gravity="center"
                 android:paddingLeft="@dimen/d_15dp"
                 android:paddingRight="@dimen/d_15dp">
@@ -318,7 +319,7 @@
                     android:gravity="center"
                     android:text="@string/Trade"
                     android:maxLines="1"
-                    android:textColor="@color/common_text_1"
+                    android:textColor="@color/common_title"
                     android:textSize="12sp"
                     />
             </LinearLayout>
