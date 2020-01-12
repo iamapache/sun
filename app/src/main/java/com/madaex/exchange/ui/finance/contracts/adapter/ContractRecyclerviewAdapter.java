@@ -143,7 +143,6 @@ public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRe
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mFilterList = (List<ContractAsset.DataBean.XnbListBean>) filterResults.values;
-                Logger.i(mFilterList.size() + "");
                 notifyDataSetChanged();
             }
         };

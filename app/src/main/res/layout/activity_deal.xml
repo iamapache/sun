@@ -281,11 +281,10 @@
                         android:layout_weight="1"
                         android:background="@color/common_black"
                         app:tabBackground="@color/common_black"
-                        app:tabIndicatorColor="@color/common_black"
-                        app:tabIndicatorHeight="@dimen/d_2dp"
                         app:tabMode="scrollable"
-                        app:tabSelectedTextColor="@color/common_black"
-                        app:tabTextColor="@color/white"/>
+                        app:tabSelectedTextColor="@color/white"
+                        app:tabTextColor="@color/common_ggray"/>
+
 
                     <ImageView
                         android:id="@+id/fullscreen"
@@ -307,10 +306,10 @@
                     android:layout_height="@dimen/d_40dp"
                     android:background="@color/common_black"
                     app:tabBackground="@color/common_black"
-                    app:tabIndicatorColor="@color/common_red"
+                    app:tabIndicatorColor="@color/title_color"
                     app:tabIndicatorHeight="@dimen/d_2dp"
                     app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/common_red"
+                    app:tabSelectedTextColor="@color/title_color"
                     app:tabTextColor="@color/white"/>
 
                 <com.madaex.exchange.view.WrapContentHeightViewPager

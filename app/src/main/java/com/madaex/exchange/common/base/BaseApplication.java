@@ -45,7 +45,6 @@ import okhttp3.OkHttpClient;
 public class BaseApplication extends Application {
     private static Stack<Activity> activityStack;
     private static BaseApplication instance;
-    private final String BUGLY_APP_ID = "7712b9a33b";
     private static Context sContext;
 
     public static synchronized BaseApplication getInstance() {
@@ -74,7 +73,7 @@ public class BaseApplication extends Application {
 
     private void init() {
         Glide.get(this).register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(setCertificates(new OkHttpClient.Builder()).build()));
-        CrashReport.initCrashReport(getApplicationContext(), "7712b9a33b", true);
+        CrashReport.initCrashReport(getApplicationContext(), "dbd9e14990", true);
 //        配置 WebSocket，必须在 WebSocket 服务启动前设置
 //        WebSocketSetting.setConnectUrl(Constant.Websocket);//必选
 //

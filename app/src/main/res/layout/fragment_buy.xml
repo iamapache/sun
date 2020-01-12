@@ -41,8 +41,8 @@
                         android:maxLength="4"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/d_5dp"
-                        android:textColor="@color/common_text_1"
-                        android:textColorHint="@color/colorCutOffSide"
+                        android:textColor="@color/common_ggray"
+                        android:textColorHint="@color/common_ggray"
                         android:textSize="@dimen/d_16dp"/>
 
                     <TextView
@@ -105,8 +105,8 @@
                         android:maxLength="6"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/d_5dp"
-                        android:textColor="@color/common_text_1"
-                        android:textColorHint="@color/colorCutOffSide"
+                        android:textColor="@color/common_ggray"
+                        android:textColorHint="@color/common_ggray"
                         android:textSize="@dimen/d_16dp"/>
 
                     <TextView
@@ -137,9 +137,9 @@
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:hint="@string/Totalmoney"
-                        android:textColorHint="@color/common_text_1"
+                        android:textColorHint="@color/common_ggray"
                         android:paddingLeft="@dimen/d_5dp"
-                        android:textColor="@color/common_text_1"
+                        android:textColor="@color/common_ggray"
                         android:textSize="@dimen/d_16dp"/>
 
                     <TextView
@@ -168,7 +168,7 @@
                         android:layout_marginLeft="@dimen/d_5dp"
                         android:text="@string/fee"
 
-                        android:textColor="@color/common_text_1"
+                        android:textColor="@color/common_ggray"
                         android:textSize="@dimen/d_16dp"/>
 
                     <TextView
@@ -203,7 +203,7 @@
                     android:background="@drawable/common_bg_green_corners"
                     android:gravity="center"
                     android:text="@string/item_seller"
-                    android:textColor="@color/common_green"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/d_16dp"/>
 
                 <View
@@ -417,7 +417,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/d_15dp"
-                    android:background="@mipmap/qiehuan"/>
+                    android:background="@mipmap/icon_sphuansuan"/>
             </LinearLayout>
 
             <View

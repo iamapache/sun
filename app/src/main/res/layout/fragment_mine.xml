@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 <ImageView
                     android:layout_width="@dimen/d_22dp"
                     android:layout_height="@dimen/d_22dp"
-                    android:layout_marginRight="@dimen/d_15dp"/>
+                    android:layout_marginRight="@dimen/d_15dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
                     android:gravity="center"
                     android:text="@string/item_mine_cetener"
                     android:textColor="@color/white"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
 
                 <hlq.ImageViewBound
                     android:id="@+id/img_msg"
@@ -46,15 +46,14 @@
                     android:layout_height="@dimen/d_30dp"
                     android:layout_marginLeft="@dimen/d_5dp"
                     android:layout_marginRight="@dimen/d_15dp"
-                    android:src="@mipmap/mark_list"/>
+                    android:src="@mipmap/mark_list" />
             </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/ll_userinfo"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/common_black"
-                >
+                android:background="@color/common_black">
 
                 <RelativeLayout
                     android:id="@+id/rl_info"
@@ -67,7 +66,7 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="26dp"
-                        android:background="@mipmap/logo"/>
+                        android:background="@mipmap/logo" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -89,12 +88,11 @@
                                 android:maxLines="1"
                                 android:text="@string/loginregister"
                                 android:textColor="#fff"
-                                android:textSize="16dp"/>
+                                android:textSize="16dp" />
 
 
                             <TextView
                                 android:id="@+id/mark"
-                                android:visibility="gone"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="30dp"
@@ -102,7 +100,8 @@
                                 android:maxLines="1"
                                 android:text="复制"
                                 android:textColor="#111"
-                                android:textSize="13dp"/>
+                                android:textSize="13dp"
+                                android:visibility="gone" />
 
 
                         </LinearLayout>
@@ -115,8 +114,7 @@
                             android:maxLines="1"
                             android:text="@string/regularmembers"
                             android:textColor="@color/white"
-                            android:textSize="12dp"
-                            />
+                            android:textSize="12dp" />
 
 
                     </LinearLayout>
@@ -130,22 +128,21 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="26dp"
-                    android:background="@mipmap/icon_right"/>
+                    android:background="@mipmap/icon_right" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_safe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@color/common_black"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -160,7 +157,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_safe"/>
+                            android:background="@mipmap/mine_safe" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -168,23 +165,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_safe"
-                            />
+                            android:text="@string/mine_safe" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backGroundColor" />
 
                 <LinearLayout
                     android:id="@+id/ll_authentication"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@color/common_black"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -199,7 +200,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_confirm"/>
+                            android:background="@mipmap/mine_confirm" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -207,22 +208,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_id_confirm"
-                            />
+                            android:text="@string/mine_id_confirm" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backGroundColor" />
+
                 <LinearLayout
                     android:id="@+id/ll_agreet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@color/common_black"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -236,7 +242,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_agreement"/>
+                            android:background="@mipmap/mine_agreement" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -244,24 +250,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_agreement"
-                            />
+                            android:text="@string/mine_agreement" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backGroundColor" />
 
                 <LinearLayout
                     android:id="@+id/ll_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:background="@color/common_black"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -275,7 +284,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_brief"/>
+                            android:background="@mipmap/mine_brief" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -283,17 +292,19 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_brief"
-                            />
+                            android:text="@string/mine_brief" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backGroundColor"/>
                 <LinearLayout
                     android:id="@+id/ll_lua"
                     android:layout_width="match_parent"
@@ -313,7 +324,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_language"/>
+                            android:background="@mipmap/mine_language" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -321,17 +332,19 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_language"
-                            />
+                            android:text="@string/mine_language" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/backGroundColor"/>
                 <LinearLayout
                     android:id="@+id/ll_service"
                     android:layout_width="match_parent"
@@ -351,7 +364,7 @@
                             android:layout_width="27dp"
                             android:layout_height="27dp"
                             android:layout_marginLeft="20dp"
-                            android:background="@mipmap/mine_ustomer"/>
+                            android:background="@mipmap/mine_ustomer" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -359,19 +372,21 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:maxLines="1"
-                            android:text="@string/mine_ustomer"
-                            />
+                            android:text="@string/mine_ustomer" />
                     </LinearLayout>
 
                     <ImageView
                         android:layout_width="14dp"
                         android:layout_height="22dp"
                         android:layout_marginRight="20dp"
-                        android:background="@mipmap/icon_right"/>
+                        android:background="@mipmap/icon_right" />
                 </LinearLayout>
 
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backGroundColor"/>
             <LinearLayout
                 android:id="@+id/ll_update"
                 android:layout_width="match_parent"
@@ -392,7 +407,7 @@
                         android:layout_width="27dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="20dp"
-                        android:background="@mipmap/mine_edition"/>
+                        android:background="@mipmap/mine_edition" />
 
                     <TextView
                         style="@style/TextColorSizeStyle"
@@ -400,23 +415,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:maxLines="1"
-                        android:text="@string/mine_edition"
-                        />
+                        android:text="@string/mine_edition" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="22dp"
                     android:layout_marginRight="20dp"
-                    android:background="@mipmap/icon_right"/>
+                    android:background="@mipmap/icon_right" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backGroundColor"/>
             <LinearLayout
                 android:id="@+id/ll_huod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:background="@color/common_black"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -430,7 +447,7 @@
                         android:layout_width="27dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="20dp"
-                        android:background="@mipmap/mine_huod"/>
+                        android:background="@mipmap/mine_huod" />
 
                     <TextView
                         style="@style/TextColorSizeStyle"
@@ -438,17 +455,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:maxLines="1"
-                        android:text="@string/mine_huod"
-                        />
+                        android:text="@string/mine_huod" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="22dp"
                     android:layout_marginRight="20dp"
-                    android:background="@mipmap/icon_right"/>
+                    android:background="@mipmap/icon_right" />
             </LinearLayout>
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/backGroundColor"/>
             <LinearLayout
                 android:id="@+id/ll_invitation"
                 android:layout_width="match_parent"
@@ -468,7 +487,7 @@
                         android:layout_width="27dp"
                         android:layout_height="27dp"
                         android:layout_marginLeft="20dp"
-                        android:background="@mipmap/mine_invitation"/>
+                        android:background="@mipmap/mine_invitation" />
 
                     <TextView
                         style="@style/TextColorSizeStyle"
@@ -476,15 +495,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:maxLines="1"
-                        android:text="@string/mine_invitation"
-                        />
+                        android:text="@string/mine_invitation" />
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="14dp"
                     android:layout_height="22dp"
                     android:layout_marginRight="20dp"
-                    android:background="@mipmap/icon_right"/>
+                    android:background="@mipmap/icon_right" />
             </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

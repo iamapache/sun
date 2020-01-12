@@ -278,7 +278,10 @@
                             android:text="@string/finance_spot_assets"
                             android:textSize="14dp"/>
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/backGroundColor"/>
                     <LinearLayout
                         android:id="@+id/ll_bank"
                         android:layout_width="match_parent"
@@ -303,7 +306,10 @@
                             android:textSize="14dp"
                             />
                     </LinearLayout>
-
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/backGroundColor"/>
                     <LinearLayout
                         android:id="@+id/ll_c2ctrans"
                         android:layout_width="match_parent"
@@ -332,7 +338,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/d_1dp"
                     android:background="@color/backGroundColor"/>
 
                 <LinearLayout
@@ -452,7 +458,10 @@
                         android:textSize="14dp"
                         />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/backGroundColor"/>
                 <LinearLayout
                     android:id="@+id/ll_votecoin"
                     android:layout_width="match_parent"
@@ -477,7 +486,10 @@
                         android:textSize="14dp"
                         />
                 </LinearLayout>
-
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/backGroundColor"/>
                 <LinearLayout
                     android:id="@+id/ll_gongmu"
                     android:layout_width="match_parent"

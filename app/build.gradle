@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'bugly'
 bugly {
-    appId = '7712b9a33b'
-    appKey = '9857bee2-1b89-4a98-bd60-e73c377f480c'
+    appId = 'dbd9e14990'
+    appKey = '08eb10c1-0f24-47f4-ba56-8ffee2a9546b'
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->

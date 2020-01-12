@@ -537,7 +537,12 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     private String channel2;
 
     private void sendSocket() {
+        if(market_type.equals("0")){
+            mEtPrice.setEnabled(true);
 
+        }else {
+            mEtPrice.setEnabled(false);
+        }
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
         socketBean.setMarket_type(market_type);

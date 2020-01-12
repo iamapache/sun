@@ -186,6 +186,7 @@
                 android:layout_marginTop="6dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
+                android:maxLength="9"
                 android:textColor="@color/common_text_6"
                 android:textSize="14sp"
                 tools:text="ETH--"

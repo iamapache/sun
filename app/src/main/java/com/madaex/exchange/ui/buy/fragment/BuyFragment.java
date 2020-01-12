@@ -296,12 +296,17 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     private void initview() {
         market_type =  SPUtils.getString("market_type","0");
         getMsgInfo();
+if(market_type.equals("0")){
+    mEtPrice.setEnabled(true);
 
+}else {
+    mEtPrice.setEnabled(false);
+}
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
             mLlFee.setVisibility(View.VISIBLE);
             mTvDeal.setBackgroundResource(R.drawable.common_bg_red_corners);
             mTvDeal.setText(getString(R.string.item_buy) + " " + one_xnb);
-            mTvDeal.setTextColor(getResources().getColor(R.color.common_red));
+            mTvDeal.setTextColor(getResources().getColor(R.color.white));
             mTvOne.setText(getString(R.string.Available) + " " + two_xnb);
             mTvTwo.setText(getString(R.string.kebuy) + " " + one_xnb);
             mTvThree.setText(getString(R.string.Available) + " " + one_xnb);
@@ -310,7 +315,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             mLlFee.setVisibility(View.VISIBLE);
             mTvDeal.setBackgroundResource(R.drawable.common_bg_green_corners);
             mTvDeal.setText(getString(R.string.item_seller) + " " + one_xnb);
-            mTvDeal.setTextColor(getResources().getColor(R.color.common_green));
+            mTvDeal.setTextColor(getResources().getColor(R.color.white));
             mTvOne.setText(getString(R.string.Available) + " " + one_xnb);
 
             mTvTwo.setText(getString(R.string.exchange) + " " +two_xnb  + "");
