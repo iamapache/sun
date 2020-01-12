@@ -25,7 +25,13 @@ import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CListActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CTransationDetailActivity;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CTransationListActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.AllHistoryActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.HuaActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.HuaRecordActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.OpenContractActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.OtherTransferActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.TransferActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankAddActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankEditActivity;
 import com.madaex.exchange.ui.finance.pay.activity.WXActivity;
@@ -137,4 +143,16 @@ public interface ActivityComponent {
     void inject(MessageDetailActivity messageDetailActivity);
 
     void inject(ContractActivity contractActivity);
+
+    void inject(TransferActivity transferActivity);
+
+    void inject(OtherTransferActivity otherTransferActivity);
+
+    void inject(AllHistoryActivity allHistoryActivity);
+
+    void inject(OpenContractActivity openContractActivity);
+
+    void inject(HuaActivity huaActivity);
+
+    void inject(HuaRecordActivity huaRecordActivity);
 }

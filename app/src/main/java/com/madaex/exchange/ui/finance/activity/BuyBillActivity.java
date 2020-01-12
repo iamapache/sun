@@ -170,6 +170,7 @@ public class BuyBillActivity extends BaseNetActivity<CommonPresenter> implements
                     public void onClick(IosDialog dialog, View v) {
                         TreeMap params = new TreeMap<>();
                         params.put("act", ConstantUrl.TRADE_CONFIRM_RECHARGE);
+                        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
                         params.put("xnb", getIntent().getStringExtra("xnb"));
                         params.put("recharge_addr", getIntent().getStringExtra("address"));
                         params.put("num", mTvNumber.getText().toString().trim());

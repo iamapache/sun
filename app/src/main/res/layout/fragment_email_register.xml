@@ -183,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14dp"
-            android:textColor="@color/common_text_333"
+            android:textColor="@color/white"
             android:text="@string/mdxieyi"/>
     </LinearLayout>
 

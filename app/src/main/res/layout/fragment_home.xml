@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="ALSC"
+                android:text="GDC"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -67,28 +67,51 @@
                 android:layout_height="144dp"
                 android:background="@color/common_black" />
 
-            <TextView
-                android:id="@+id/notice"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/common_black"
-                android:padding="10dp"
-                android:text="新币上线,ALSC将于08.10正式发布"
-                android:textColor="#ffffffff"
-                android:textSize="13sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
+                <LinearLayout
+                    android:layout_width="37dp"
+                    android:layout_height="18dp"
+                    android:background="@mipmap/gonggao"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notice"
+                        android:textColor="#ffffffff"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/common_black"
+
+                    android:text="新币上线,ALSC将于08.10正式发布"
+                    android:textColor="#ffffffff"
+                    android:textSize="13sp" />
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/hotcoinview"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:background="@color/common_black"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/common_black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/common_black"
                 android:gravity="center"
@@ -113,7 +136,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
-                        android:text="充币提币" />
+                        android:text="@string/Wallet"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -135,7 +159,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
-                        android:text="投币上票" />
+                        android:text="@string/finance_vote"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -157,7 +182,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
-                        android:text="参与公募" />
+                        android:text="@string/finance_offering"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -179,11 +205,70 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:maxLines="1"
-                        android:text="合约交易" />
+                        android:text="@string/Contract"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="@string/bbmarket"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="15dp"
+
+                    android:drawableRight="@mipmap/icon_right"
+                    android:drawablePadding="5dp"
+                    android:textSize="16dp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_44dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:text="@string/Market"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/newPrice"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@string/Charge"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"

@@ -18,13 +18,14 @@
         app:title_text="@string/contract"
         app:title_visible="true" />
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
@@ -48,11 +49,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="合约账户"
+                        android:text="@string/ContractAssets"
                         android:textColor="@color/common_title_unbg"
                         android:textSize="14dp" />
 
                     <ImageView
+                        android:id="@+id/gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
@@ -64,23 +66,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/totalAssets"
+                    android:text="@string/Value"
                     android:textColor="@color/common_title_unbg"
-                    android:textSize="17dp" />
+                    android:textSize="12dp" />
 
                 <TextView
+                    android:id="@+id/usdt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
-                    android:text="@string/totalAssets"
+                    android:text="0"
                     android:textColor="@color/title_color"
                     android:textSize="20dp" />
 
                 <TextView
+                    android:id="@+id/rmb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11dp"
-                    android:text="合约账户"
+                    android:text="≈ ¥0.00 "
                     android:textColor="@color/common_title_unbg"
                     android:textSize="14dp" />
             </LinearLayout>
@@ -138,11 +142,11 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:nestedScrollingEnabled="false"
-                android:layout_height="match_parent"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

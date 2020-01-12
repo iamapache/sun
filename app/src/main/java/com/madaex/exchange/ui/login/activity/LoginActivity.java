@@ -102,7 +102,7 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
                     if (editable.toString().contains("@")) {
                         mLlCode.setVisibility(View.GONE);
                     }else {
-                        mLlCode.setVisibility(View.VISIBLE);
+                        mLlCode.setVisibility(View.GONE);
                     }
                 }
             }

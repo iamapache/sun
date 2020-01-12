@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.adapter.RecyclerviewAdapter;
@@ -55,7 +56,8 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     private Handler handler = new Handler();
     private RecyclerviewAdapter mAdapter;
     private boolean isshow =false;
-
+    @BindView(R.id.toolbar_title_tv)
+    TextView mTitleView;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_asset;
@@ -68,6 +70,8 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
 
     @Override
     protected void initView() {
+        String xnb_name = getIntent().getStringExtra("title");
+        mTitleView.setText( xnb_name);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
@@ -179,7 +183,7 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     private void getData() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
-//        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
+        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign(params));
     }
 
@@ -222,7 +226,10 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         testBeans.clear();
         testBeans.addAll(commonBean.getData().getXnb_list());
         mAdapter.notifyDataSetChanged();
-        mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
-        mDollar.setText("$  " + commonBean.getData().getAssets().getRmb() + "");
+        if(EmptyUtils.isNotEmpty(commonBean.getData().getAssets())){
+            mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
+            mDollar.setText("$  " + commonBean.getData().getAssets().getRmb() + "");
+        }
+
     }
 }

@@ -89,6 +89,7 @@ public  class EditAddressActivity extends BaseNetActivity<CommonPresenter> imple
         params.put("name", mBranch.getText().toString().trim());
         params.put("addr", mTvAddr.getText().toString().trim());
         params.put(ConstantUrl.TYPE, getIntent().getStringExtra(ConstantUrl.TYPE));
+        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign2(params));
     }
 

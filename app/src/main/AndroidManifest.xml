@@ -106,13 +106,13 @@
 
 
         <activity android:name=".ui.finance.contracts.activity.ContractActivity"/>
+        <activity android:name=".ui.finance.contracts.activity.TransferActivity"/>
+        <activity android:name=".ui.finance.contracts.activity.OtherTransferActivity"/>
+        <activity android:name=".ui.finance.contracts.activity.AllHistoryActivity"/>
+        <activity android:name=".ui.finance.contracts.activity.OpenContractActivity"/>
+        <activity android:name=".ui.finance.contracts.activity.HuaActivity"/>
 
-
-
-
-
-
-
+        <activity android:name=".ui.finance.contracts.activity.HuaRecordActivity"/>
 
         <!-- 银行卡 -->
         <activity android:name=".ui.finance.bank.activity.AddBankActivity"/>

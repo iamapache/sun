@@ -35,15 +35,15 @@
 
                 <hlq.ImageViewBound
                     android:id="@+id/img_msg"
-                    android:layout_width="@dimen/d_33dp"
-                    android:layout_height="@dimen/d_33dp"
+                    android:layout_width="@dimen/d_30dp"
+                    android:layout_height="@dimen/d_30dp"
                     android:layout_marginRight="@dimen/d_5dp"
                     android:src="@mipmap/mark_message" />
 
                 <ImageView
                     android:id="@+id/img"
-                    android:layout_width="@dimen/d_33dp"
-                    android:layout_height="@dimen/d_33dp"
+                    android:layout_width="@dimen/d_30dp"
+                    android:layout_height="@dimen/d_30dp"
                     android:layout_marginLeft="@dimen/d_5dp"
                     android:layout_marginRight="@dimen/d_15dp"
                     android:src="@mipmap/mark_list"/>

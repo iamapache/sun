@@ -58,6 +58,11 @@
                 android:layout_marginTop="50dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
+                <ImageView
+                    android:src="@mipmap/icon_dengluye_zhanghu"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"/>
                 <LinearLayout
                     android:visibility="gone"
                     android:id="@+id/ll_code"
@@ -77,9 +82,10 @@
                         android:textSize="14sp"/>
                 </LinearLayout>
                 <EditText
-                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
                     android:id="@+id/phone"
                     android:layout_weight="1"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
@@ -113,9 +119,13 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
+                <ImageView
+                    android:src="@mipmap/icon_dengluye_mima"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"/>
                 <EditText
                     android:id="@+id/password"
+                    android:layout_marginLeft="@dimen/d_10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

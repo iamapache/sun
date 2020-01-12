@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_btn_src="@mipmap/icon_record"
+        app:right_btn_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/finance_spot_assets"
+        app:title_visible="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="start"
+                        android:text="@string/From"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+
+                    <TextView
+                        android:id="@+id/Coin"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:text="@string/Coin"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:gravity="start"
+                        android:text="@string/To"
+                        android:textColor="@color/white"
+                        android:textSize="14dp" />
+
+
+                    <TextView
+                        android:id="@+id/Contract"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:text="@string/Contracthy"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/d_25dp"
+                android:layout_height="@dimen/d_25dp"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_marginRight="@dimen/d_15dp"
+                android:src="@mipmap/icon_huansuan" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_44dp"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:maxLines="1"
+                android:text="@string/Transferaccounts"
+                android:textColor="@color/common_text_1"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/accounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/d_15dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/pTransferaccounts"
+                android:textColor="@color/common_text_1"
+                android:textColorHint="@color/colorCutOffSide"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/all"
+                android:layout_width="33dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="@string/all"
+                android:textColor="#fffbb30b"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"   android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/d_15dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/UsableBalance"
+                android:textColor="@color/common_text_1"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/usablebalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="0"
+                android:textColor="@color/common_text_1"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:text="@string/Transferh" />
+
+    </LinearLayout>
+</RelativeLayout>

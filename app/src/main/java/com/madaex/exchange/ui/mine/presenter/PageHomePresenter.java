@@ -8,6 +8,7 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
+import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.mine.bean.BannerData;
 import com.madaex.exchange.ui.mine.bean.HotCoin;
@@ -130,6 +131,30 @@ public class PageHomePresenter extends RxPresenter<PageHomeContract.View> implem
 //                            mView.nodata(commonBean.getMessage()+"");
                         }else {
                             mView.requestHotcoin(commonBean);
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void collection(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonBean>() {
+                    @Override
+                    public CommonBean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                    @Override
+                    public void onNext(CommonBean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestSuccess(commonBean.getMessage() + "");
+                        } else {
+                            mView.requestError(commonBean.getMessage() + "");
                         }
                     }
                 }));

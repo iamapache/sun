@@ -265,7 +265,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/common_lan"
+                android:background="@color/common_black"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -279,12 +279,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/d_40dp"
                         android:layout_weight="1"
-                        android:background="@color/common_lan"
-                        app:tabBackground="@color/common_lan"
-                        app:tabIndicatorColor="@color/common_red"
+                        android:background="@color/common_black"
+                        app:tabBackground="@color/common_black"
+                        app:tabIndicatorColor="@color/common_black"
                         app:tabIndicatorHeight="@dimen/d_2dp"
                         app:tabMode="scrollable"
-                        app:tabSelectedTextColor="@color/common_red"
+                        app:tabSelectedTextColor="@color/common_black"
                         app:tabTextColor="@color/white"/>
 
                     <ImageView
@@ -305,8 +305,8 @@
                     android:id="@+id/tab_layout2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_40dp"
-                    android:background="@color/common_slan"
-                    app:tabBackground="@color/common_slan"
+                    android:background="@color/common_black"
+                    app:tabBackground="@color/common_black"
                     app:tabIndicatorColor="@color/common_red"
                     app:tabIndicatorHeight="@dimen/d_2dp"
                     app:tabMode="fixed"

@@ -96,7 +96,6 @@ public class ConstantUrl {
     public static String FINANCE_C2C_LIST = "Finance.c2c_list";
     //交易明细里的付款信息
     public static String FINANCE_PAYMENT_INFORMATION = "Finance.payment_information";
-
     //资产
     //资产列表
     public static String TRADE_ASSETS_LIST = "Trade.assets_list";
@@ -243,4 +242,17 @@ public class ConstantUrl {
     public static String COIN_COIN_CZ_ADD = "Coin.coin_cz_add";
 
     public static String COIN_COIN_CZ_LIST = "Coin.coin_cz_list";
+
+
+
+    //合约
+    public static String Trade_contract_coin_info = "Trade.contract_coin_info";
+    public static String Trade_transfer_wallet_info = "Trade.transfer_wallet_info";
+    public static String Trade_contract_bills = "Trade.contract_bills";
+    public static String Trade_is_open_contract_trade = "Trade.is_open_contract_trade";
+
+    public static String Trade_contract_transfer = "Trade.contract_transfer";
+    public static String Userlevel_add = "Userlevel.add";
+
+    public static String Trade_transfer_bills = "Trade.transfer_bills";
 }

@@ -38,6 +38,7 @@ import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
+import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 import com.madaex.exchange.ui.finance.transfer.activity.NcActivity;
 import com.madaex.exchange.ui.finance.transfer.activity.TransferActivity;
@@ -154,6 +155,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
                 Intent intent11 = new Intent();
                 intent11.setClass(mContext, AssetActivity.class);
                 intent11.putExtra("wallet_type", "general");
+                intent11.putExtra("title", getString(R.string.finance_spot_assets));
                 startActivityAfterLogin(intent11);
                 break;
             case R.id.ll_bank:
@@ -161,15 +163,17 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 //                startActivityAfterLogin(new Intent(mContext, WayActivity.class));
                 Intent intent2 = new Intent();
                 intent2.setClass(mContext, AssetActivity.class);
-                intent2.putExtra("wallet_type", "contract");
+                intent2.putExtra("wallet_type", "hedge");
+                intent2.putExtra("title", getString(R.string.SpotAssets));
                 startActivityAfterLogin(intent2);
                 break;
             case R.id.ll_c2ctrans:
 //                startActivityAfterLogin(new Intent(mContext, C2CTransationActivity.class));
 //                startActivityAfterLogin(new Intent(mContext, C2CListActivity.class));
                 Intent intent3 = new Intent();
-                intent3.setClass(mContext, AssetActivity.class);
-                intent3.putExtra("wallet_type", "hedge");
+                intent3.setClass(mContext, ContractActivity.class);
+                intent3.putExtra("wallet_type", "contract");
+                intent3.putExtra("title", getString(R.string.contract));
                 startActivityAfterLogin(intent3);
                 break;
             case R.id.ll_otc:

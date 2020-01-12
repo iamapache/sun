@@ -428,12 +428,14 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                 mString = editable.toString();
 
                 if(!TextUtils.isEmpty(mCurrentnumber.getText().toString())){
-                    mSeekbar.setClickable(true);
-                    mSeekbar.setEnabled(true);
-                    mSeekbar.setSelected(true);
-                    mSeekbar.setFocusable(true);
-                    int sb = (int) ArithUtil.round(ArithUtil.div(Double.valueOf(mCurrentnumber.getText().toString()), Double.valueOf(editable.toString())), 1);
-                    mSeekbar.setMax(sb);
+                    if (!mCurrentnumber.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")&& !mCurrentnumber.getText().toString().equals("0")) {
+                        mSeekbar.setClickable(true);
+                        mSeekbar.setEnabled(true);
+                        mSeekbar.setSelected(true);
+                        mSeekbar.setFocusable(true);
+                        int sb = (int) ArithUtil.round(ArithUtil.div(Double.valueOf(mCurrentnumber.getText().toString()), Double.valueOf(editable.toString())), 1);
+                        mSeekbar.setMax(sb);
+                    }
                 }
 
 

@@ -15,7 +15,7 @@
         app:left_tv_text="@string/back"
         app:left_tv_visible="true"
         app:title_color="@color/white"
-        app:title_text="接受地址"
+        app:title_text="@string/ReceivingAddress"
         app:title_visible="true"/>
 
 

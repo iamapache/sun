@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="0"
         android:textColor="@color/common_ggray"
-        android:textSize="16dp" />
+        android:textSize="13dp" />
 
     <TextView
         android:id="@+id/time"
@@ -24,7 +24,7 @@
         android:gravity="center"
         android:text="0"
         android:textColor="@color/common_red"
-        android:textSize="14dp" />
+        android:textSize="16dp" />
 
 
     <TextView
@@ -37,7 +37,7 @@
         android:gravity="center"
         android:text="0"
         android:textColor="@color/common_red"
-        android:textSize="14dp" />
+        android:textSize="13dp" />
 
 
 </LinearLayout>

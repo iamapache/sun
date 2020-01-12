@@ -24,6 +24,8 @@ public class PageHomeContract {
         void requestHotcoin(HotCoin bean);
 
         void requestHotcoin(HomeData commonBean);
+
+        void requestSuccess(String s);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PageHomeContract.View> {
@@ -33,5 +35,7 @@ public class PageHomeContract {
 
         void load(Map msg);
         void getMartketList(Map msg);
+
+        void collection(Map body);
     }
 }

@@ -20,11 +20,16 @@ import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
+import com.madaex.exchange.ui.finance.vote.activity.VoteCoinActivity;
 import com.madaex.exchange.ui.login.activity.RegisterActivity;
+import com.madaex.exchange.ui.market.adapter.KineQuickAdapter;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.mine.activity.AccountManagerActivity;
@@ -35,17 +40,18 @@ import com.madaex.exchange.ui.mine.bean.HotCoin;
 import com.madaex.exchange.ui.mine.bean.NoticeData;
 import com.madaex.exchange.ui.mine.contract.PageHomeContract;
 import com.madaex.exchange.ui.mine.presenter.PageHomePresenter;
-import com.madaex.exchange.view.GlideImgManager;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
@@ -57,7 +63,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
  * 描述：  ${TODO}
  */
 
-public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> implements PageHomeContract.View {
+public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> implements PageHomeContract.View, KineQuickAdapter.OnclikCallBack  {
     ArrayList<HotCoin.DataBean> testBeans = new ArrayList<>();
     BaseQuickAdapter mAdapter;
     Unbinder unbinder;
@@ -72,7 +78,8 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
 
 
     ArrayList<Home> mHomeArrayList = new ArrayList<>();
-    BaseQuickAdapter mAdapter2;
+//    BaseQuickAdapter mAdapter2;
+    KineQuickAdapter mKineQuickAdapter;
     @BindView(R.id.img_scan)
     LinearLayout mImgScan;
     @BindView(R.id.img_popview)
@@ -130,36 +137,39 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(mContext);
         linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager2);
+        mKineQuickAdapter = new KineQuickAdapter(0);
+        mRecyclerview.setAdapter(mKineQuickAdapter);
 
-        mAdapter2 = new BaseQuickAdapter<Home, BaseViewHolder>(R.layout.item_getmartketlist, mHomeArrayList) {
-            @Override
-            protected void convert(BaseViewHolder helper, final Home item) {
-                helper.setText(R.id.endname, "/" + item.getExchangeType().toUpperCase());
-                helper.setVisible(R.id.endname, true);
-                helper.setText(R.id.coinname, item.getCurrentype().toUpperCase());
-                helper.setText(R.id.coinnumber, mContext.getString(R.string.vol) + " " + DataUtil.thousand(item.getVolumn(), mContext))
-                        .setText(R.id.coinprice, "" + item.getCurrentPrice()).
-                        setText(R.id.coinrmb, "￥" + item.getSellRmb()).setText(R.id.bili, item.getRiseRate());
-                GlideImgManager.loadImage(mContext, item.getCoinImageUrl(), (ImageView) helper.getView(R.id.img_bank));
-
-
-                if (item.getRiseRate().contains("-")) {
-                    helper.setText(R.id.bili, item.getRiseRate());
-                    helper.setBackgroundRes(R.id.bili, R.drawable.common_button_buleshape);
-                    helper.setTextColor(R.id.coinprice, mContext.getResources().getColor(R.color.common_green));
-                } else {
-                    helper.setText(R.id.bili, "+" + item.getRiseRate());
-                    helper.setBackgroundRes(R.id.bili, R.drawable.common_button_redshape);
-                    helper.setTextColor(R.id.coinprice, mContext.getResources().getColor(R.color.common_red));
-                }
-            }
-        };
-        mAdapter2.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-            }
-        });
-        mRecyclerview.setAdapter(mAdapter2);
+        mKineQuickAdapter.setCallBack(this);
+//        mAdapter2 = new BaseQuickAdapter<Home, BaseViewHolder>(R.layout.item_getmartketlist, mHomeArrayList) {
+//            @Override
+//            protected void convert(BaseViewHolder helper, final Home item) {
+//                helper.setText(R.id.endname, "/" + item.getExchangeType().toUpperCase());
+//                helper.setVisible(R.id.endname, true);
+//                helper.setText(R.id.coinname, item.getCurrentype().toUpperCase());
+//                helper.setText(R.id.coinnumber, mContext.getString(R.string.vol) + " " + DataUtil.thousand(item.getVolumn(), mContext))
+//                        .setText(R.id.coinprice, "" + item.getCurrentPrice()).
+//                        setText(R.id.coinrmb, "￥" + item.getSellRmb()).setText(R.id.bili, item.getRiseRate());
+//                GlideImgManager.loadImage(mContext, item.getCoinImageUrl(), (ImageView) helper.getView(R.id.img_bank));
+//
+//
+//                if (item.getRiseRate().contains("-")) {
+//                    helper.setText(R.id.bili, item.getRiseRate());
+//                    helper.setBackgroundRes(R.id.bili, R.drawable.common_button_buleshape);
+//                    helper.setTextColor(R.id.coinprice, mContext.getResources().getColor(R.color.common_green));
+//                } else {
+//                    helper.setText(R.id.bili, "+" + item.getRiseRate());
+//                    helper.setBackgroundRes(R.id.bili, R.drawable.common_button_redshape);
+//                    helper.setTextColor(R.id.coinprice, mContext.getResources().getColor(R.color.common_red));
+//                }
+//            }
+//        };
+//        mAdapter2.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//            }
+//        });
+//        mRecyclerview.setAdapter(mAdapter2);
 
         mImgScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -266,7 +276,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     @Override
     public void requestSuccess(BannerData user) {
         //设置banner样式
-        banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE);
+        banner.setBannerStyle(BannerConfig.CENTER);
         //设置图片加载器
         banner.setImageLoader(new GlideImageLoader());
         //设置图片集合
@@ -278,7 +288,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         for (BannerData.DataBean dataBean : user.getData()) {
             titles.add(dataBean.getTitle());
         }
-        banner.setBannerTitles(titles);
+//        banner.setBannerTitles(titles);
         //设置自动轮播，默认为true
         banner.isAutoPlay(true);
         //设置轮播时间
@@ -297,7 +307,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
 
     @Override
     public void requestError(String msg) {
-
+        ToastUtils.showToast(msg);
     }
 
     @Override
@@ -307,7 +317,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(mContext, LinkWebViewActivity.class);
-                intent2.putExtra(LinkWebViewActivity.WEB_TITLE, "公告");
+                intent2.putExtra(LinkWebViewActivity.WEB_TITLE, R.string.notice);
                 intent2.putExtra("type", 3);
                 intent2.putExtra(LinkWebViewActivity.WEB_URL, bean.getData().getUrl());
                 startActivity(intent2);
@@ -320,11 +330,74 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         mAdapter.setNewData(bean.getData());
 
     }
-
+    private int sort = 0;
+    private int mCurrentPosition = -1;private String searchAsset = "";
     @Override
     public void requestHotcoin(HomeData commonBean) {
-        mAdapter2.setNewData(commonBean.getData());
+//        mKineQuickAdapter.setNewData(commonBean.getData());
+        if(EmptyUtils.isNotEmpty(commonBean)){
+            for (int j = 0; j < commonBean.getData().size(); j++) {
+                if (mCurrentPosition == j) {
+                    commonBean.getData().get(j).isShow = true;
+                }
+            }
+            mKineQuickAdapter.setData(commonBean.getData());
+//        mAdapter.setNewData(msg);
+            mKineQuickAdapter.filter(searchAsset, sort, mCurrentPosition, false);
+        }
     }
 
+    @Override
+    public void requestSuccess(String s) {
+
+    }
+
+
+    @OnClick({R.id.ll_chongtibi, R.id.ll_toupiao, R.id.ll_gongmu, R.id.ll_heyuejiaoyi})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_chongtibi:
+                Intent intent11 = new Intent();
+                intent11.setClass(mContext, AssetActivity.class);
+                intent11.putExtra("wallet_type", "general");
+                intent11.putExtra("title", getString(R.string.finance_spot_assets));
+                startActivityAfterLogin(intent11);
+                break;
+            case R.id.ll_toupiao:
+                Intent intent = new Intent();
+                intent.setClass(mContext, VoteCoinActivity.class);
+                intent.putExtra("id", 1);
+                startActivityAfterLogin(intent);
+                break;
+            case R.id.ll_gongmu:
+                Intent intent1 = new Intent();
+                intent1.setClass(mContext, VoteCoinActivity.class);
+                intent1.putExtra("id", 2);
+                startActivityAfterLogin(intent1);
+                break;
+            case R.id.ll_heyuejiaoyi:
+                Intent intent3 = new Intent();
+                intent3.setClass(mContext, ContractActivity.class);
+                intent3.putExtra("wallet_type", "contract");
+                intent3.putExtra("title", getString(R.string.contract));
+                startActivityAfterLogin(intent3);
+                break;
+        }
+    }
+
+    @Override
+    public void doSomeThing(Home item) {
+        HashMap params = new HashMap<>();
+        params.put("act", ConstantUrl.TRADE_IS_COLLECTION);
+        params.put("one_xnb", item.getCurrentype());
+        params.put("two_xnb", item.getExchangeType());
+        params.put("status", item.getCollection() == 0 ? 1 + "" : 0 + "");
+        mPresenter.collection(DataUtil.sign(params));
+
+    }
+
+    @Override
+    public void doItem(int item) {mCurrentPosition = item;
+    }
 
 }

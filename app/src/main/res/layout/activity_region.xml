@@ -39,6 +39,7 @@
             android:hint="@string/selectcontry"
             android:imeOptions="actionSearch"
             android:inputType="text"
+            android:background="@null"
             android:paddingLeft="10dp"
             android:textColor="@color/common_text_2"
             android:textColorHint="#fff"

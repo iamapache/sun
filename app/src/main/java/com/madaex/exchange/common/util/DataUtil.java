@@ -3,6 +3,7 @@ package com.madaex.exchange.common.util;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.BaseApplication;
 import com.madaex.exchange.common.languagelib.LanguageType;
@@ -87,16 +88,18 @@ public class DataUtil {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-
-        for (Map.Entry<String, String> me : set) {
-            stringBuffer.append(me.getKey());
-            stringBuffer.append("=");
-            stringBuffer.append(me.getValue());
-            stringBuffer.append("&");
-        }
-        String data="";
-        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+//
+//        for (Map.Entry<String, String> me : set) {
+//            stringBuffer.append(me.getKey());
+//            stringBuffer.append("=");
+//            stringBuffer.append(me.getValue());
+//            stringBuffer.append("&");
+//        }
+//        String data="";
+//        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         Map newmap = new HashMap();
+        Gson gson = new Gson();
+        String data = gson.toJson(map);
         newmap.put("data",data);
         Logger.i("<==>:" + data);
         return newmap;
@@ -123,8 +126,10 @@ public class DataUtil {
             stringBuffer.append(me.getValue());
             stringBuffer.append("&");
         }
-        String data="";
-        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+//        String data="";
+//        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+        Gson gson = new Gson();
+        String data = gson.toJson(map);
         Map newmap = new HashMap();
         newmap.put("data",data);
         Logger.i("<==>:" + data);
