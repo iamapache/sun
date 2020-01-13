@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/item_contract"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_60dp"
+        android:layout_height="@dimen/d_60dp" android:background="@color/common_black"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

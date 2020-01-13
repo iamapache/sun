@@ -16,7 +16,7 @@
         android:id="@+id/ll_tab"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:background="@color/common_slan"
+        android:background="@color/colorTheme"
         android:orientation="horizontal">
 
         <LinearLayout

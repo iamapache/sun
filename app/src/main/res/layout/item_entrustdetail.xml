@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_1dp"
         android:layout_marginLeft="@dimen/d_10dp"
-        android:background="@color/common_divier"/>
+        android:background="@color/common_ggray"/>
 
     <LinearLayout
         android:id="@+id/ll_content"

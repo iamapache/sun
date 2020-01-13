@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
-    private List<List<String>> mDatas=new ArrayList<>();
+    private List<List<Double>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
     public BuyAdapter(Context context){
@@ -39,9 +39,9 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder,  int position) {
         holder.name.setText(mContext.getResources().getString(R.string.buy) + (position+ 1)  );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.common_red) );
-        holder.price.setText( mDatas.get(position).get(0));
-        holder.number.setText( mDatas.get(position).get(1));
-        holder.itemView.setTag(mDatas.get(position).get(0));
+        holder.price.setText( mDatas.get(position).get(0)+"");
+        holder.number.setText( mDatas.get(position).get(1)+"");
+        holder.itemView.setTag(mDatas.get(position).get(0)+"");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         return holder;
     }
 
-    public void setNewData(List<List<String>> datas) {
+    public void setNewData(List<List<Double>> datas) {
         mDatas.clear();
         this. mDatas=datas;
         notifyDataSetChanged();
@@ -79,7 +79,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
     }
     public static interface OnItemClickListener {
-        void onItemClick(List<String> list);
+        void onItemClick(List<Double> list);
         void onItemLongClick(View view);
     }
     public OnItemClickListener  mItemClickListener;

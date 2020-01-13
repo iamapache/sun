@@ -12,6 +12,7 @@
     <color name="title_color">#FBB03B</color>
     <color name="common_lan"> #192F47</color>
     <color name="common_slan"> #001E3A</color>
+    <color name="colorTheme">#12151A</color>
     <color name="up_color">#E9403C</color><!-- 行情UP颜色  涨-->
     <color name="down_color">#30A52F</color><!-- 行情DOWN颜色  跌 -->
     <color name="equal_color">#696969</color><!-- 行情Equal颜色  不变 -->
@@ -25,7 +26,7 @@
     <color name="chart_bg">#ffffff</color>
     <color name="marker_bg">#ff8c0d</color>
     <color name="marker_text_color">#FFFFFF</color>
-    <color name="border_color">#192F47</color>
+    <color name="border_color">#1B1E22</color>
     <color name="grid_color">#41464C</color>
     <color name="label_text">#FFFFFF</color>
     <color name="minute_jizhun">#7F9976</color>

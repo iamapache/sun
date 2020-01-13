@@ -34,8 +34,10 @@ import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.CustomPopWindow;
 import com.madaex.exchange.ui.buy.adapter.BuyAdapter;
+import com.madaex.exchange.ui.buy.adapter.Depth;
+import com.madaex.exchange.ui.buy.adapter.DepthView;
 import com.madaex.exchange.ui.buy.adapter.SellerAdapter;
-import com.madaex.exchange.ui.buy.bean.DealBean;
+import com.madaex.exchange.ui.buy.bean.DealBean2;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.bean.SocketBean;
@@ -56,8 +58,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
@@ -90,22 +94,22 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     @BindView(R.id.tv_deal)
     TextView mTvDeal;
     Unbinder unbinder;
-    @BindView(R.id.one_xnb)
-    TextView mOneXnb;
-    @BindView(R.id.one_xnbd)
-    TextView mOneXnbd;
-    @BindView(R.id.two_xnb)
-    TextView mTwoXnb;
-    @BindView(R.id.two_xnbd)
-    TextView mTwoXnbd;
-    @BindView(R.id.tv_one)
-    TextView mTvOne;
-    @BindView(R.id.tv_two)
-    TextView mTvTwo;
-    @BindView(R.id.tv_three)
-    TextView mTvThree;
-    @BindView(R.id.tv_four)
-    TextView mTvFour;
+    //    @BindView(R.id.one_xnb)
+//    TextView mOneXnb;
+//    @BindView(R.id.one_xnbd)
+//    TextView mOneXnbd;
+//    @BindView(R.id.two_xnb)
+//    TextView mTwoXnb;
+//    @BindView(R.id.two_xnbd)
+//    TextView mTwoXnbd;
+//    @BindView(R.id.tv_one)
+//    TextView mTvOne;
+//    @BindView(R.id.tv_two)
+//    TextView mTvTwo;
+//    @BindView(R.id.tv_three)
+//    TextView mTvThree;
+//    @BindView(R.id.tv_four)
+//    TextView mTvFour;
     @BindView(R.id.typeone)
     TextView mTypeone;
     @BindView(R.id.typetwo)
@@ -130,6 +134,8 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     LinearLayout mLlFee;
     @BindView(R.id.infomation)
     TextView mInfomation;
+    @BindView(R.id.dv_depth)
+    DepthView depthView;
     private String type;
     private String one_xnb = "";
     private String two_xnb = "";
@@ -180,7 +186,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         mBuyrecyclerview.setHasFixedSize(true);
         mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(List<String> list) {
+            public void onItemClick(List<Double> list) {
                 mEtPrice.setText(list.get(0).toString());
             }
 
@@ -197,7 +203,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         mSellerrecyclerview.setHasFixedSize(true);
         mSellerAdapter.setItemClickListener(new SellerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(List<String> list) {
+            public void onItemClick(List<Double> list) {
                 mEtPrice.setText(list.get(0).toString());
             }
 
@@ -225,7 +231,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                     @Override
                     protected void onMessage(String message) {
 
-                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
+                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
                             return;
                         }
                         Log.i("MainActivity", message);
@@ -237,7 +243,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
                                 @Override
                                 public void run() {
-                                    DealBean mDesignates = JSON.parseObject(message, DealBean.class);
+                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
                                     Message message = Message.obtain();
                                     message.obj = mDesignates;
                                     message.what = 1;
@@ -256,6 +262,82 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
     }
 
+    private void initData(double centerPrice) {
+//        //添加购买数据
+//        depthView.setBuyDataList(getBuyDepthList());
+//
+//        //添加出售数据
+//        depthView.setSellDataList(getSellDepthList());
+
+        //设置横坐标中间值
+        depthView.setAbscissaCenterPrice(centerPrice);
+
+        //设置数据详情的价钱说明
+        depthView.setDetailPriceTitle(getString(R.string.price));
+
+        //设置数据详情的数量说明
+        depthView.setDetailVolumeTitle(getString(R.string.allnum));
+
+        //设置横坐标价钱小数位精度
+        depthView.setPricePrecision(4);
+
+        //是否显示竖线
+        depthView.setShowDetailLine(true);
+
+        //手指单击松开后，数据是否继续显示
+        depthView.setShowDetailSingleClick(true);
+
+        //手指长按松开后，数据是否继续显示
+        depthView.setShowDetailLongPress(true);
+
+    }
+
+    //模拟深度数据
+    private List<Depth> getBuyDepthList() {
+        List<Depth> depthList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            depthList.add(new Depth(100 - random.nextDouble() * 10,
+                    random.nextInt(10) * random.nextInt(10) * random.nextInt(10) + random.nextDouble(), 0));
+        }
+        return depthList;
+    }
+
+    private List<Depth> getBuyDepthList2(List<List<Double>> lists) {
+        List<Depth> depthList = new ArrayList<>();
+        for (int i = 0; i < lists.size(); i++) {
+            depthList.add(new Depth(lists.get(i).get(0),
+                    lists.get(i).get(1), 0));
+        }
+        return depthList;
+    }
+
+    //模拟深度数据
+    private List<Depth> getSellDepthList() {
+        List<Depth> depthList = new ArrayList<>();
+        Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            depthList.add(new Depth(100 + random.nextDouble() * 10,
+                    random.nextInt(10) * random.nextInt(10) * random.nextInt(10) + random.nextDouble(), 1));
+        }
+        return depthList;
+    }
+
+    private List<Depth> getSellDepthList2(List<List<Double>> lists) {
+        List<Depth> depthList = new ArrayList<>();
+        for (int i = 0; i < lists.size(); i++) {
+            depthList.add(new Depth(lists.get(i).get(0),
+                    lists.get(i).get(1), 1));
+        }
+        return depthList;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        depthView.cancelCallback();
+    }
+
     private WebSocket mWebSocket;
     // 退出时间
     private long currentBackPressedTime = 0;
@@ -266,11 +348,11 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
 
     private void sendSocket() {
-        market_type =  SPUtils.getString("market_type","0");
+        market_type = SPUtils.getString("market_type", "0");
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
         socketBean.setMarket_type(market_type);
-        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase()+ "_depth");
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth");
 
         SocketBean socketBean2 = new SocketBean();
         socketBean2.setEvent("addChannel");
@@ -294,33 +376,33 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
 
     private void initview() {
-        market_type =  SPUtils.getString("market_type","0");
+        market_type = SPUtils.getString("market_type", "0");
         getMsgInfo();
-if(market_type.equals("0")){
-    mEtPrice.setEnabled(true);
+        if (market_type.equals("0")) {
+            mEtPrice.setEnabled(true);
 
-}else {
-    mEtPrice.setEnabled(false);
-}
+        } else {
+            mEtPrice.setEnabled(false);
+        }
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
             mLlFee.setVisibility(View.VISIBLE);
             mTvDeal.setBackgroundResource(R.drawable.common_bg_red_corners);
             mTvDeal.setText(getString(R.string.item_buy) + " " + one_xnb);
             mTvDeal.setTextColor(getResources().getColor(R.color.white));
-            mTvOne.setText(getString(R.string.Available) + " " + two_xnb);
-            mTvTwo.setText(getString(R.string.kebuy) + " " + one_xnb);
-            mTvThree.setText(getString(R.string.Available) + " " + one_xnb);
-            mTvFour.setText(getString(R.string.Frozen) + " " + two_xnb);
+//            mTvOne.setText(getString(R.string.Available) + " " + two_xnb);
+//            mTvTwo.setText(getString(R.string.kebuy) + " " + one_xnb);
+//            mTvThree.setText(getString(R.string.Available) + " " + one_xnb);
+//            mTvFour.setText(getString(R.string.Frozen) + " " + two_xnb);
         } else {
             mLlFee.setVisibility(View.VISIBLE);
             mTvDeal.setBackgroundResource(R.drawable.common_bg_green_corners);
             mTvDeal.setText(getString(R.string.item_seller) + " " + one_xnb);
             mTvDeal.setTextColor(getResources().getColor(R.color.white));
-            mTvOne.setText(getString(R.string.Available) + " " + one_xnb);
-
-            mTvTwo.setText(getString(R.string.exchange) + " " +two_xnb  + "");
-            mTvThree.setText(getString(R.string.Available) + " " + two_xnb);
-            mTvFour.setText(getString(R.string.Frozen) + " " + one_xnb);
+//            mTvOne.setText(getString(R.string.Available) + " " + one_xnb);
+//
+//            mTvTwo.setText(getString(R.string.exchange) + " " +two_xnb  + "");
+//            mTvThree.setText(getString(R.string.Available) + " " + two_xnb);
+//            mTvFour.setText(getString(R.string.Frozen) + " " + one_xnb);
         }
 
 
@@ -330,13 +412,13 @@ if(market_type.equals("0")){
     }
 
     private void getMsgInfo() {
-        if(market_type.equals("0")){
+        if (market_type.equals("0")) {
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.TRADE_TRADE);
             params.put("one_xnb", one_xnb);
             params.put("two_xnb", two_xnb);
             mPresenter.getMsgInfo(DataUtil.sign(params));
-        }else {
+        } else {
             TreeMap params = new TreeMap<>();
             params.put("act", ConstantUrl.Contract_contractAssets);
             params.put("one_xnb", one_xnb);
@@ -393,11 +475,11 @@ if(market_type.equals("0")){
 
                 if (!TextUtils.isEmpty(editable.toString())) {
                     if (!editable.toString().equals("0.") && Double.valueOf(editable.toString()) != 0) {
-                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString()), 2) + "").stripTrailingZeros().toPlainString());
-                        } else {
-                            mOneXnbd.setText(new BigDecimal(ArithUtil.round(ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
-                        }
+//                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+//                            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString()), 2) + "").stripTrailingZeros().toPlainString());
+//                        } else {
+//                            mOneXnbd.setText(new BigDecimal(ArithUtil.round(ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
+//                        }
                         if (baseBean != null && baseBean.getSellRmb() != null && baseBean.getCurrentPrice() != null && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
                             mCny.setText("￥" + new BigDecimal(ArithUtil.round(ArithUtil.mul(ArithUtil.div(Double.valueOf(baseBean.getSellRmb()),
                                     Double.valueOf(baseBean.getCurrentPrice()), 2), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
@@ -444,7 +526,7 @@ if(market_type.equals("0")){
         }
         mEtPrice.setFilters(new InputFilter[]{new EditInputFilter(500000)});
         mEtNumber.setFilters(new InputFilter[]{new EditInputFilter(100000)});
-        Observable.interval(0, 45, TimeUnit.SECONDS)
+        Observable.interval(0, 15, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())
@@ -500,7 +582,7 @@ if(market_type.equals("0")){
                 .setPayClickListener(new PayPassView.OnPayClickListener() {
                     @Override
                     public void onPassFinish(String passContent) {
-                        if(market_type.equals("0")){
+                        if (market_type.equals("0")) {
                             TreeMap params = new TreeMap<>();
                             params.put("act", ConstantUrl.TRADE_UPTRADE);
                             params.put("market", one_xnb + "_" + two_xnb);
@@ -510,7 +592,7 @@ if(market_type.equals("0")){
                             params.put("paypassword", passContent);
                             params.put("source", "android");
                             mPresenter.getData(DataUtil.sign(params));
-                        }else {
+                        } else {
                             TreeMap params = new TreeMap<>();
                             params.put("act", ConstantUrl.TRADE_UPTRADE);
                             params.put("market", one_xnb + "_" + two_xnb);
@@ -563,16 +645,17 @@ if(market_type.equals("0")){
     @Override
     public void sendMsgSuccess(DealInfo data) {
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-            mOneXnb.setText(data.getData().getTwo_xnb());
+
+//            mOneXnb.setText(data.getData().getTwo_xnb());
             mOrderBuyFee.setText(data.getData().getTrade_buy_fee());
 //            mOneXnbd.setText(data.getData().getOne_xnbd());
-            mTwoXnb.setText(data.getData().getOne_xnb());
-            mTwoXnbd.setText(data.getData().getTwo_xnbd());
+//            mTwoXnb.setText(data.getData().getOne_xnb());
+//            mTwoXnbd.setText(data.getData().getTwo_xnbd());
         } else {
-            mOneXnb.setText(data.getData().getOne_xnb());
+//            mOneXnb.setText(data.getData().getOne_xnb());
 //            mOneXnbd.setText(data.getData().getTwo_xnbd());
-            mTwoXnb.setText(data.getData().getTwo_xnb());
-            mTwoXnbd.setText(data.getData().getOne_xnbd());
+//            mTwoXnb.setText(data.getData().getTwo_xnb());
+//            mTwoXnbd.setText(data.getData().getOne_xnbd());
             mOrderBuyFee.setText(data.getData().getTrade_sell_fee());
         }
     }
@@ -589,12 +672,12 @@ if(market_type.equals("0")){
             mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
             mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
         }
-
-        if (type.equals(ConstantUrl.TRANS_TYPE_BUY) && EmptyUtils.isNotEmpty(mOneXnb)) {
-            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(baseBean.getCurrentPrice()), 2) + "").stripTrailingZeros().toPlainString());
-        } else {
-            mOneXnbd.setText(new BigDecimal(ArithUtil.round((ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(baseBean.getCurrentPrice()))), 2) + "").stripTrailingZeros().toPlainString());
-        }
+        initData(Double.valueOf(baseBean.getCurrentPrice()));
+//        if (type.equals(ConstantUrl.TRANS_TYPE_BUY) && EmptyUtils.isNotEmpty(mOneXnb)) {
+//            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(baseBean.getCurrentPrice()), 2) + "").stripTrailingZeros().toPlainString());
+//        } else {
+//            mOneXnbd.setText(new BigDecimal(ArithUtil.round((ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(baseBean.getCurrentPrice()))), 2) + "").stripTrailingZeros().toPlainString());
+//        }
     }
 
 
@@ -739,7 +822,7 @@ if(market_type.equals("0")){
         @Override
         public void handleMessage(Message msg) {
             // 处理从子线程发送过来的消息
-            DealBean mDesignates = (DealBean) msg.obj;
+            DealBean2 mDesignates = (DealBean2) msg.obj;
             int i = msg.what;
             if (i == 1) {
                 if (mBuyAdapter != null && mSellerAdapter != null) {
@@ -748,6 +831,7 @@ if(market_type.equals("0")){
                         if (stutas == 50) {
                             mSellerAdapter.setNewData(mDesignates.getAsks());
                             mBuyAdapter.setNewData(mDesignates.getBids());
+                            depthView.resetAllData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                         }
                         if (stutas == 20) {
                             if (mDesignates.getAsks().size() >= 20) {
@@ -819,6 +903,7 @@ if(market_type.equals("0")){
             getMsgInfo();
         }
     }
+
     private String market_type = "0";
     private int stutas = 50;
 

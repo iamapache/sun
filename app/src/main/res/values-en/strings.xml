@@ -550,4 +550,5 @@
     <string name="Market">Market</string>
     <string name="newPrice">Price</string>
     <string name="Charge">Charge</string>
+    <string name="allnum">allnum：</string>
 </resources>

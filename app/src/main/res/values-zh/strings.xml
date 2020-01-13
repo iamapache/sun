@@ -549,4 +549,5 @@
     <string name="Market">市场</string>
     <string name="newPrice">最新价</string>
     <string name="Charge">涨跌</string>
+    <string name="allnum">累积交易量：</string>
 </resources>
