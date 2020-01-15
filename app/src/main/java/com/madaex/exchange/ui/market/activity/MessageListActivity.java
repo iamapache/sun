@@ -11,12 +11,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.market.bean.Message;
 import com.madaex.exchange.ui.market.contract.MessageContract;
 import com.madaex.exchange.ui.market.presenter.MessagePresenter;
+import com.madaex.exchange.ui.mine.activity.LinkWebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +41,7 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
     RecyclerView mRecyclerview;
 
     private int CODE_REQUEST = 0x002;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_message;
@@ -59,10 +62,10 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
             @Override
             protected void convert(BaseViewHolder helper, final Message.DataBean item) {
                 helper.setText(R.id.number, item.getTitle()).setText(R.id.type, item.getAdd_time());
-                TextView textView =helper.getView(R.id.time1);
-                if(item.getIs_read()==0){
+                TextView textView = helper.getView(R.id.time1);
+                if (item.getIs_read() == 0) {
                     textView.setBackgroundResource(R.drawable.rect_rounded_red);
-                }else {
+                } else {
                     textView.setBackgroundResource(R.drawable.rect_rounded_white);
                 }
             }
@@ -71,9 +74,17 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Message.DataBean dataBean = (Message.DataBean) adapter.getItem(position);
-                Intent intent = new Intent(mContext, MessageDetailActivity.class);
-                intent.putExtra("title",dataBean.getTitle() );
-                startActivityForResult(intent, CODE_REQUEST);
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.USER_ADD_READ_NEWS);
+                params.put("news_id", dataBean.getId());
+                params.put("type", "one");
+                mPresenter.read(DataUtil.sign(params));
+
+                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, dataBean.getTitle());
+                intent0.putExtra("type", 3);
+                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.particulars + "?type=nwes&id=" + dataBean.getId());
+                startActivity(intent0);
             }
         });
 
@@ -83,7 +94,6 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
         textView.setText(R.string.nomessage);
         mAdapter.setEmptyView(top);
     }
-
 
 
     @Override
@@ -108,11 +118,19 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
         mPresenter.getData(DataUtil.sign(params));
     }
 
-    @OnClick({R.id.toolbar_left_btn_ll})
+    @OnClick({R.id.toolbar_left_btn_ll, R.id.toolbar_right_tv_ll})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.toolbar_left_btn_ll:
                 finish();
+                break;
+            case R.id.toolbar_right_tv_ll:
+
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.USER_ADD_READ_NEWS);
+                params.put("news_id", "");
+                params.put("type", "all");
+                mPresenter.read(DataUtil.sign(params));
                 break;
         }
     }
@@ -129,7 +147,10 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
 
     @Override
     public void requestSuccess(String bean) {
-
+        ToastUtils.showToast(bean);
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.USER_NEWS_LIST);
+        mPresenter.getData(DataUtil.sign(params));
     }
 
 }

@@ -99,13 +99,13 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
                     type ="contract_to_coin";
                     mCoin.setText(getString(R.string.Contracthy));
                     mContract.setText(getString(R.string.Coin));
-                    mUsablebalance.setText(commonBean.getData().getGen_wallet_id());
+                    mUsablebalance.setText(commonBean.getData().getGen_wallet_id()+"");
                 }else {
                     flag=true;
                     type ="coin_to_contract";
                     mCoin.setText(getString(R.string.Coin));
                     mContract.setText(getString(R.string.Contracthy));
-                    mUsablebalance.setText(commonBean.getData().getCon_assets());
+                    mUsablebalance.setText(commonBean.getData().getCon_assets()+"");
                 }
                 break;
             case R.id.submit:
@@ -178,7 +178,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
     @Override
     public void requestErrorcontract(String s) {
-
+        ToastUtils.showToast(s);
     }
 
     @Override

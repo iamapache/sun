@@ -134,7 +134,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
         candleChart.setDragDecelerationEnabled(true);
         candleChart.setDragDecelerationFrictionCoef(0.6f);//0.92持续滚动时的速度快慢，[0,1) 0代表立即停止。
         candleChart.setDoubleTapToZoomEnabled(false);
-        candleChart.setNoDataText(getResources().getString(R.string.loadings));
+        candleChart.setNoDataText(getResources().getString(R.string.no_data));
 
         if (!landscape) {
             barChart.setVisibility(View.GONE);
@@ -171,9 +171,9 @@ public class KLineView extends BaseView implements View.OnClickListener {
 //        xAxisK.setDrawLimitLinesBehindData(true);
 
 
-        xAxisK.setDrawGridLines(true);
+        xAxisK.setDrawGridLines(false);
         xAxisK.setDrawAxisLine(false);
-        xAxisK.setDrawLabels(true);
+        xAxisK.setDrawLabels(false);
         xAxisK.setLabelCount(landscape ? 5 : 6, true);
         xAxisK.setTextColor(landscape ? ContextCompat.getColor(mContext, R.color.label_text) : ContextCompat.getColor(mContext, R.color.equal_color));
         xAxisK.enableGridDashedLine(CommonUtil.dip2px(mContext, 4), CommonUtil.dip2px(mContext, 3), 0);
@@ -186,9 +186,9 @@ public class KLineView extends BaseView implements View.OnClickListener {
 
         //蜡烛图左Y轴
         axisLeftK = candleChart.getAxisLeft();
-        axisLeftK.setDrawGridLines(true);
+        axisLeftK.setDrawGridLines(false);
         axisLeftK.setDrawAxisLine(false);
-        axisLeftK.setDrawLabels(true);
+        axisLeftK.setDrawLabels(false);
         axisLeftK.setLabelCount(5, true);
         axisLeftK.enableGridDashedLine(CommonUtil.dip2px(mContext, 4), CommonUtil.dip2px(mContext, 3), 0);
         axisLeftK.setTextColor(landscape ? ContextCompat.getColor(mContext, R.color.label_text) : ContextCompat.getColor(mContext, R.color.equal_color));
@@ -213,7 +213,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
 
         //副图X轴
         xAxisBar = barChart.getXAxis();
-        xAxisBar.setDrawGridLines(true);
+        xAxisBar.setDrawGridLines(false);
         xAxisBar.setDrawAxisLine(false);
         xAxisBar.setDrawLabels(true);
         xAxisBar.setLabelCount(landscape ? 5 : 6, true);

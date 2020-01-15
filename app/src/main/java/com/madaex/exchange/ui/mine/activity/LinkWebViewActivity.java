@@ -149,7 +149,7 @@ public class LinkWebViewActivity extends BaseActivity {
     private void getSnapshot() {
         requestPermission();
         Bitmap bitmap = getViewBitmap(mWebview);
-       savePhotoToSDCard(bitmap, "/sdcard/file", "img");
+        savePhotoToSDCard(bitmap, "/sdcard/file", "img");
 //        try {
 //            String fileName = Environment.getExternalStorageDirectory().getPath() + "/shareImage.jpg";
 //            FileOutputStream fos = new FileOutputStream(fileName);
@@ -167,7 +167,7 @@ public class LinkWebViewActivity extends BaseActivity {
 
     }
 
-    public  void savePhotoToSDCard(Bitmap photoBitmap, String path, String photoName) {
+    public void savePhotoToSDCard(Bitmap photoBitmap, String path, String photoName) {
         if (checkSDCardAvailable()) {
             File dir = new File(path);
             if (!dir.exists()) {
@@ -394,16 +394,16 @@ public class LinkWebViewActivity extends BaseActivity {
             } else {
                 mWebview.loadUrl(mUrl + "?lang=" + str + "&type=" + intent.getIntExtra("type", 1));
             }
-        } else  if (intent.getIntExtra("type",3)==3) {
-            mWebview.loadUrl(mUrl );
-        }else {
+        } else if (intent.getIntExtra("type", 3) == 3) {
+            mWebview.loadUrl(mUrl);
+        } else {
             if (status == 0) {
                 mWebview.loadUrl(mUrl + "?lang=" + str);
             } else {
                 mWebview.loadUrl(mUrl + "&lang=" + str);
             }
         }
-
+        Log.v("OkHttp", mUrl);
     }
 
     @Override

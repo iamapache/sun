@@ -282,6 +282,8 @@
                         android:background="@color/common_black"
                         app:tabBackground="@color/common_black"
                         app:tabMode="scrollable"
+                        app:tabIndicatorColor="@color/white"
+                        app:tabIndicatorHeight="@dimen/d_2dp"
                         app:tabSelectedTextColor="@color/white"
                         app:tabTextColor="@color/common_ggray"/>
 

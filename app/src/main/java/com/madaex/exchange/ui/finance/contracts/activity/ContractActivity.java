@@ -172,12 +172,12 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
                     isgone =false;
                     mUsdt.setText(commonBean.getData().getAssetsArr().getUsdt() + "USDT");
                     mRmb.setText("≈ ¥ " + commonBean.getData().getAssetsArr().getRmb() + "");
-                    mGone.setImageResource(R.mipmap.icon_zhanghuyue_see);
+                    mGone.setImageResource(R.mipmap.denglu_zy);
                 } else {
                     isgone =true;
                     mUsdt.setText("***********");
                     mRmb.setText("***********");
-                    mGone.setImageResource(R.mipmap.icon_zhanghuyue_nosee);
+                    mGone.setImageResource(R.mipmap.denglu_by);
                 }
             }
         });

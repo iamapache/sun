@@ -35,8 +35,8 @@
 
                 <hlq.ImageViewBound
                     android:id="@+id/img_msg"
-                    android:layout_width="@dimen/d_30dp"
-                    android:layout_height="@dimen/d_30dp"
+                    android:layout_width="@dimen/d_25dp"
+                    android:layout_height="@dimen/d_25dp"
                     android:layout_marginRight="@dimen/d_5dp"
                     android:src="@mipmap/mark_message" />
 

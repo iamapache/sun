@@ -15,9 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.verificationsdk.ui.IActivityCallback;
 import com.alibaba.verificationsdk.ui.VerifyActivity;
-import com.alibaba.verificationsdk.ui.VerifyType;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.net.Constant;
@@ -301,27 +299,38 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
             ToastUtils.showToast(getString(R.string.agreetmt));
             return;
         }
-        VerifyActivity.startSimpleVerifyUI(getActivity(), VerifyType.NOCAPTCHA, "0335", null, new IActivityCallback() {
-            @Override
-            //返回按钮回调
-            public void onNotifyBackPressed() {
-//                TreeMap params = new TreeMap<>();
-//                params.put("act", ConstantUrl.USER_REGISTER);
-//                params.put("verify_code", mCode.getText().toString().trim());
-//                params.put("verify_encode", verify_encode);
-//                params.put("regtype", "mobile");
-//                params.put("areaCode",  mTvAddresscode.getText().toString().trim());
-//                params.put("mobile", mPhone.getText().toString().trim());
-//                params.put("password", mPassword.getText().toString().trim());
-//                params.put("invit", mRecommend.getText().toString().trim());
-//                mPresenter.getData(DataUtil.sign(params));
-            }
 
-            @Override
-            public void onResult(int retInt, Map code) {
-                verifyDidFinishedWithResult(retInt, code);
-            }
-        });
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.USER_REGISTER);
+        params.put("verify_code", mCode.getText().toString().trim());
+        params.put("verify_encode", verify_encode);
+        params.put("regtype", "mobile");
+        params.put("areaCode",  mTvAddresscode.getText().toString().trim());
+        params.put("mobile", mPhone.getText().toString().trim());
+        params.put("password", mPassword.getText().toString().trim());
+        params.put("invit", mRecommend.getText().toString().trim());
+        mPresenter.getData2(DataUtil.sign2(params));
+//        VerifyActivity.startSimpleVerifyUI(getActivity(), VerifyType.NOCAPTCHA, "0335", null, new IActivityCallback() {
+//            @Override
+//            //返回按钮回调
+//            public void onNotifyBackPressed() {
+////                TreeMap params = new TreeMap<>();
+////                params.put("act", ConstantUrl.USER_REGISTER);
+////                params.put("verify_code", mCode.getText().toString().trim());
+////                params.put("verify_encode", verify_encode);
+////                params.put("regtype", "mobile");
+////                params.put("areaCode",  mTvAddresscode.getText().toString().trim());
+////                params.put("mobile", mPhone.getText().toString().trim());
+////                params.put("password", mPassword.getText().toString().trim());
+////                params.put("invit", mRecommend.getText().toString().trim());
+////                mPresenter.getData(DataUtil.sign(params));
+//            }
+//
+//            @Override
+//            public void onResult(int retInt, Map code) {
+//                verifyDidFinishedWithResult(retInt, code);
+//            }
+//        });
 
     }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -39,17 +39,17 @@
         </LinearLayout>
 
 
-        <ImageView
+        <hlq.ImageViewBound
             android:id="@+id/img_msg"
-            android:layout_width="@dimen/d_22dp"
-            android:layout_height="@dimen/d_22dp"
+            android:layout_width="@dimen/d_25dp"
+            android:layout_height="@dimen/d_25dp"
             android:layout_marginRight="@dimen/d_5dp"
-            android:src="@mipmap/mark_message"/>
+            android:src="@mipmap/mark_message" />
 
         <ImageView
             android:id="@+id/img_popview"
-            android:layout_width="@dimen/d_22dp"
-            android:layout_height="@dimen/d_22dp"
+            android:layout_width="@dimen/d_25dp"
+            android:layout_height="@dimen/d_25dp"
             android:layout_marginLeft="@dimen/d_5dp"
             android:layout_marginRight="@dimen/d_15dp"
             android:src="@mipmap/mark_list"/>
@@ -57,21 +57,27 @@
 
     </LinearLayout>
 
-    <com.flyco.tablayout.SlidingTabLayout
+    <android.support.design.widget.TabLayout
         android:id="@+id/stl"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_44dp"
-        android:background="@color/colorTheme"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        tl:tl_tab_space_equal="false"
-        tl:tl_indicator_color="#09306a"
-        tl:tl_indicator_margin_left="2dp"
-        tl:tl_indicator_margin_right="2dp"
-        tl:tl_indicator_style="BLOCK"
-        tl:tl_textSelectColor="@color/white"
-        tl:tl_textUnselectColor="@color/common_title_unbg"
-        tl:tl_textsize="@dimen/d_15dp"/>
+        android:layout_height="@dimen/d_40dp"
+        android:background="@color/common_black"
+        app:tabBackground="@color/common_black"
+        app:tabIndicatorColor="@color/title_color"
+        app:tabIndicatorHeight="@dimen/d_2dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/title_color"
+        app:tabTextColor="@color/white"
+        />
+<!--        tl:tl_tab_space_equal="false"-->
+<!--        tl:tl_indicator_color="#09306a"-->
+<!--        tl:tl_indicator_margin_left="2dp"-->
+<!--        tl:tl_indicator_margin_right="2dp"-->
+<!--        tl:tl_indicator_style="BLOCK"-->
+<!--        tl:tl_textSelectColor="@color/white"-->
+<!--        tl:tl_textUnselectColor="@color/common_title_unbg"-->
+<!--        tl:tl_textsize="@dimen/d_15dp"-->
+
 
     <com.madaex.exchange.common.view.NoScrollViewPager
         android:id="@+id/vp"

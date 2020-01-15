@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -61,19 +62,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.WebSocket;
 
@@ -136,6 +131,8 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     TextView mInfomation;
     @BindView(R.id.dv_depth)
     DepthView depthView;
+    @BindView(R.id.bili)
+    TextView mBili;
     private String type;
     private String one_xnb = "";
     private String two_xnb = "";
@@ -235,23 +232,23 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                             return;
                         }
                         Log.i("MainActivity", message);
-                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
-                            currentBackPressedTime++;
-                        } else {
-                            currentBackPressedTime = 0;
-                            new Thread(new Runnable() {
-
-                                @Override
-                                public void run() {
+//                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
+//                            currentBackPressedTime++;
+//                        } else {
+//                            currentBackPressedTime = 0;
+//                            new Thread(new Runnable() {
+//
+//                                @Override
+//                                public void run() {
                                     DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
-                                    Message message = Message.obtain();
-                                    message.obj = mDesignates;
-                                    message.what = 1;
-                                    handler.sendMessage(message);//将message对象发送出去
-                                }
-                            }).start();
+                                    Message messages = Message.obtain();
+                        messages.obj = mDesignates;
+                        messages.what = 1;
+                                    handler.sendMessage(messages);//将message对象发送出去
+//                                }
+//                            }).start();
 
-                        }
+//                        }
                     }
 
                     @Override
@@ -273,62 +270,121 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         depthView.setAbscissaCenterPrice(centerPrice);
 
         //设置数据详情的价钱说明
-        depthView.setDetailPriceTitle(getString(R.string.price));
+//        depthView.setDetailPriceTitle(getString(R.string.price));
 
         //设置数据详情的数量说明
-        depthView.setDetailVolumeTitle(getString(R.string.allnum));
+//        depthView.setDetailVolumeTitle(getString(R.string.allnum));
 
         //设置横坐标价钱小数位精度
         depthView.setPricePrecision(4);
 
         //是否显示竖线
-        depthView.setShowDetailLine(true);
+        depthView.setShowDetailLine(false);
 
         //手指单击松开后，数据是否继续显示
-        depthView.setShowDetailSingleClick(true);
+        depthView.setShowDetailSingleClick(false);
 
         //手指长按松开后，数据是否继续显示
-        depthView.setShowDetailLongPress(true);
+        depthView.setShowDetailLongPress(false);
 
     }
 
-    //模拟深度数据
-    private List<Depth> getBuyDepthList() {
-        List<Depth> depthList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-            depthList.add(new Depth(100 - random.nextDouble() * 10,
-                    random.nextInt(10) * random.nextInt(10) * random.nextInt(10) + random.nextDouble(), 0));
-        }
-        return depthList;
-    }
 
     private List<Depth> getBuyDepthList2(List<List<Double>> lists) {
         List<Depth> depthList = new ArrayList<>();
-        for (int i = 0; i < lists.size(); i++) {
-            depthList.add(new Depth(lists.get(i).get(0),
-                    lists.get(i).get(1), 0));
+        if (lists.size() >= 50) {
+            List<List<Double>> listList = lists.subList(0, 50);
+            Log.v("depthList", listList.size() + "");
+            double account = 0;
+            for (int i = 0; i < listList.size(); i++) {
+                account = account + listList.get(i).get(0);
+                depthList.add(new Depth(listList.get(i).get(0),
+                        listList.get(i).get(1) * listList.get(i).get(0), 0));
+            }
+        } else {
+            for (int i = 0; i < lists.size(); i++) {
+                depthList.add(new Depth(lists.get(i).get(0),
+                        lists.get(i).get(1) * lists.get(i).get(0), 1));
+            }
         }
+
         return depthList;
     }
-
-    //模拟深度数据
-    private List<Depth> getSellDepthList() {
+    public int bs(double a ,double b){
+        return (int)((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue())*100);
+    }
+    private List<Depth> getBuyDepthList3(List<List<Double>> buy, List<List<Double>> sell) {
         List<Depth> depthList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-            depthList.add(new Depth(100 + random.nextDouble() * 10,
-                    random.nextInt(10) * random.nextInt(10) * random.nextInt(10) + random.nextDouble(), 1));
+        if (buy.size() >= 50||sell.size() >= 50) {
+            List<List<Double>> listList = buy.subList(0, 50);
+            List<List<Double>> listList2 = sell.subList(0, 50);
+            double account = 0;
+            double account2 = 0;
+            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                for (int i = 0; i < listList.size(); i++) {
+                    account = account + listList.get(i).get(0);
+                    account2 = account2 + listList.get(i).get(0);
+
+                }
+                for (int j = 0; j < listList2.size(); j++) {
+                    account = account + listList2.get(j).get(0);
+                }
+                mBili.setText(bs(account2,account)+"%");
+            } else {
+                for (int i = 0; i < listList.size(); i++) {
+                    account = account + listList.get(i).get(0);
+                }
+                for (int j = 0; j < listList2.size(); j++) {
+                    account = account + listList2.get(j).get(0);
+                    account2 = account2 + listList2.get(j).get(0);
+                }
+                mBili.setText(bs(account2,account)+"%");
+            }
+
+        } else {
+            double account = 0;
+            double account2 = 0;
+            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                for (int i = 0; i < buy.size(); i++) {
+                    account = account + buy.get(i).get(0);
+                    account2 = account2 + buy.get(i).get(0);
+
+                }
+                for (int j = 0; j < sell.size(); j++) {
+                    account = account + sell.get(j).get(0);
+                }
+                mBili.setText(bs(account2,account)+"%");
+            } else {
+                for (int i = 0; i < buy.size(); i++) {
+                    account = account + buy.get(i).get(0);
+                }
+                for (int j = 0; j < sell.size(); j++) {
+                    account = account + sell.get(j).get(0);
+                    account2 = account2 + sell.get(j).get(0);
+                }
+                mBili.setText(bs(account2,account)+"%");
+            }
         }
+
         return depthList;
     }
 
     private List<Depth> getSellDepthList2(List<List<Double>> lists) {
         List<Depth> depthList = new ArrayList<>();
-        for (int i = 0; i < lists.size(); i++) {
-            depthList.add(new Depth(lists.get(i).get(0),
-                    lists.get(i).get(1), 1));
+        if (lists.size() >= 50) {
+            List<List<Double>> listList = lists.subList(0, 50);
+            Log.v("depthList", listList.size() + "");
+            for (int i = 0; i < listList.size(); i++) {
+                depthList.add(new Depth(listList.get(i).get(0),
+                        listList.get(i).get(1) * listList.get(i).get(0), 0));
+            }
+        } else {
+            for (int i = 0; i < lists.size(); i++) {
+                depthList.add(new Depth(lists.get(i).get(0),
+                        lists.get(i).get(1) * lists.get(i).get(0), 1));
+            }
         }
+
         return depthList;
     }
 
@@ -432,7 +488,6 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     @Override
     public void onResume() {
         super.onResume();
-        sendSocket();
     }
 
     @Override
@@ -526,32 +581,33 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         }
         mEtPrice.setFilters(new InputFilter[]{new EditInputFilter(500000)});
         mEtNumber.setFilters(new InputFilter[]{new EditInputFilter(100000)});
-        Observable.interval(0, 15, TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .compose(this.bindToLifecycle())
-                .subscribe(new Observer<Long>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(Long aLong) {
-                        linedetail();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
+//        Observable.interval(0, 60, TimeUnit.SECONDS)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .compose(this.bindToLifecycle())
+//                .subscribe(new Observer<Long>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(Long aLong) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
+        linedetail();
+        sendSocket();
     }
 
 
@@ -697,11 +753,16 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
     private boolean change = true;
 
-    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change})
+    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change, R.id.shouqi})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_deal:
                 submit();
+                break;
+            case R.id.shouqi:
+                FragmentManager fm0 = getFragmentManager();
+                HistoryRecordFrament editNameDialog = HistoryRecordFrament.newInstance(Constants.MARK, one_xnb, two_xnb);
+                editNameDialog.show(fm0, "fragment_bottom_dialog");
                 break;
             case R.id.ll_gears:
                 showGearsPopMenu();
@@ -829,9 +890,13 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                     if (mDesignates != null && EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
                         Collections.reverse(mDesignates.getAsks());
                         if (stutas == 50) {
-                            mSellerAdapter.setNewData(mDesignates.getAsks());
-                            mBuyAdapter.setNewData(mDesignates.getBids());
-                            depthView.resetAllData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
+                            if (mDesignates.getAsks().size() >= 50) {
+                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 50));
+
+                            }
+                            if (mDesignates.getBids().size() >= 50) {
+                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 50));
+                            }
                         }
                         if (stutas == 20) {
                             if (mDesignates.getAsks().size() >= 20) {
@@ -860,22 +925,11 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                                 mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
                             }
                         }
+                        getBuyDepthList3(mDesignates.getBids(),mDesignates.getAsks());
+                        depthView.resetAllData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                     }
                 }
 
-                if (mDesignates != null) {
-                    if (mDesignates != null) {
-                        if (mEtPrice != null) {
-//                            if (TextUtils.isEmpty(str)) {
-//                                if (type.equals(ConstantUrl.TRANS_TYPE_BUY) && EmptyUtils.isNotEmpty(mOneXnb)) {
-//                                    mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(mDesignates.getTicker().getLast()), 2) + "").stripTrailingZeros().toPlainString());
-//                                } else {
-//                                    mOneXnbd.setText(new BigDecimal(ArithUtil.round((ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(mDesignates.getTicker().getLast()))), 2) + "").stripTrailingZeros().toPlainString());
-//                                }
-//                            }
-                        }
-                    }
-                }
             }
         }
     };

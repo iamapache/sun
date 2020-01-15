@@ -146,11 +146,11 @@ public class AuthenticationActivity extends BaseNetActivity<CommonPresenter> imp
         params.put("country", mTvLocation.getText().toString().trim());
         params.put("truename", mTvUsername.getText().toString().trim());
         params.put("idcard", mTvCardnumber.getText().toString().trim());
-        params.put("firstname", mUser.getText().toString().trim());
-        params.put("lastname", mName.getText().toString().trim());
-        params.put("address", mAddress.getText().toString().trim());
-        params.put("city", mCity.getText().toString().trim());
-        params.put("postalcode", mPostcode.getText().toString().trim());
+//        params.put("firstname", mUser.getText().toString().trim());
+//        params.put("lastname", mName.getText().toString().trim());
+//        params.put("address", mAddress.getText().toString().trim());
+//        params.put("city", mCity.getText().toString().trim());
+//        params.put("postalcode", mPostcode.getText().toString().trim());
         mPresenter.getData(DataUtil.sign2(params));
     }
 

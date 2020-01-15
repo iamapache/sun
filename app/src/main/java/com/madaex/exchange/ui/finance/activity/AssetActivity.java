@@ -223,9 +223,12 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     public void requestSuccess(Asset commonBean) {
         mSwiperefreshlayout.setRefreshing(false);
 //        mAdapter.setNewData(commonBean.getData().getXnb_list());
-        testBeans.clear();
-        testBeans.addAll(commonBean.getData().getXnb_list());
-        mAdapter.notifyDataSetChanged();
+
+        if(EmptyUtils.isNotEmpty(commonBean.getData().getXnb_list())) {
+            testBeans.clear();
+            testBeans.addAll(commonBean.getData().getXnb_list());
+            mAdapter.notifyDataSetChanged();
+        }
         if(EmptyUtils.isNotEmpty(commonBean.getData().getAssets())){
             mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
             mDollar.setText("$  " + commonBean.getData().getAssets().getRmb() + "");

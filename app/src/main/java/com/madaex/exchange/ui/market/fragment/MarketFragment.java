@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.market.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import com.flyco.tablayout.SlidingTabLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
@@ -39,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import hlq.ImageViewBound;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
@@ -52,7 +53,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implements HomeContract.View {
 
     @BindView(R.id.stl)
-    SlidingTabLayout mStl;
+    TabLayout mStl;
     @BindView(R.id.vp)
     NoScrollViewPager mVp;
     Unbinder unbinder;
@@ -61,7 +62,8 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private List<String> mTitleList = new ArrayList<>();
     private CustomPopWindow mCustomPopWindow;
-
+    @BindView(R.id.img_msg)
+    ImageViewBound mImgMsg;
 
     public static MarketFragment newInstance(String string) {
         MarketFragment fragment = null;
@@ -98,7 +100,9 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_HOME_INDEX_TOP);
         mPresenter.getTitleData(DataUtil.sign(params));
-
+        TreeMap params2 = new TreeMap<>();
+        params2.put("act", ConstantUrl.USER_NEWS_TOTAL);
+        mPresenter.getMessageCount(DataUtil.sign(params2));
     }
     @Override
     protected void initDatas() {
@@ -229,6 +233,11 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
     }
 
     @Override
+    public void requestMessageCountSuccess(String msg) {
+        mImgMsg.setMessageNum(Integer.valueOf(msg));
+    }
+
+    @Override
     public void SuccessTitle(TitleBean msg) {
         mTitleList.addAll(msg.getData());
         mTitleList.add(0,getString(R.string.favorites));
@@ -236,9 +245,15 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
             mFragments.add(TransactionListFragment.newInstance(j,mTitleList.get(j)));
         }
         TitleStatePagerAdapter mAdapter = new TitleStatePagerAdapter(getChildFragmentManager(), mFragments, mTitleList);
+//        mVp.setAdapter(mAdapter);
+//        mVp.setCurrentItem(1);
+//        mStl.setViewPager(mVp);
+
         mVp.setAdapter(mAdapter);
         mVp.setCurrentItem(1);
-        mStl.setViewPager(mVp);
+        mVp.setOffscreenPageLimit(2);
+        mStl.setupWithViewPager(mVp);
+        mStl.setTabsFromPagerAdapter(mAdapter);
     }
 
 }

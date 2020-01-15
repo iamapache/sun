@@ -28,7 +28,7 @@ public class ConstantUrl {
     public static String fundraise  = "appapi/trade/fundraise";
     public static String service  = "appapi/trade/service";
     public static String appdow   = "appapi/index/appdow ";
-
+    public static String particulars  = "appapi/index/particulars";
     public static String ENTRUSTCURRENT = "1";
 
     public static String ENTRUSTHISTORY = "2";

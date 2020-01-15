@@ -9,6 +9,7 @@ import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.common.CommonBean;
+import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.market.bean.TitleBean;
 import com.madaex.exchange.ui.market.contract.HomeContract;
@@ -165,6 +166,31 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                             mView.requestSuccess(commonBean.getMessage() + "");
                         } else {
                             mView.requestError(commonBean.getMessage() + "");
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getMessageCount(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonDataBean>() {
+                    @Override
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        CommonDataBean commonBaseBean = gson.fromJson(data, CommonDataBean.class);
+                        return commonBaseBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView) {
+                    @Override
+                    public void onNext(CommonDataBean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.requestError(commonBean.getMessage()+"");
+                        }else {
+                            mView.requestMessageCountSuccess(commonBean.getData().getTotal()+"");
                         }
                     }
                 }));

@@ -21,7 +21,7 @@ public class HomeContract {
         void requestError(String msg);
 
         void requestSuccess(String msg);
-
+        void requestMessageCountSuccess(String msg);
         void SuccessTitle(TitleBean msg);
     }
 
@@ -29,6 +29,6 @@ public class HomeContract {
         void getTitleData(Map body);
         void getData(Map body);
         void cancel();
-        void collection(Map body);
+        void collection(Map body);void getMessageCount(Map body);
     }
 }

@@ -283,6 +283,11 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     }
 
     @Override
+    public void requestMessageCountSuccess(String msg) {
+
+    }
+
+    @Override
     public void SuccessTitle(TitleBean msg) {
 
     }

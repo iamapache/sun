@@ -38,7 +38,7 @@
     <string name="MINIMUMQUANTITYs">最小起卖量</string>
     <!--财务中心-->
     <string name="finance_center">财务中心</string>
-    <string name="finance_assets">总资产折合(CNY)</string>
+    <string name="finance_assets">总资产折合(%1$s)</string>
     <string name="finance_other">其他</string>
     <string name="finance_spot_assets">现货资产</string>
     <string name="finance_bank_card">银行卡</string>
@@ -550,4 +550,5 @@
     <string name="newPrice">最新价</string>
     <string name="Charge">涨跌</string>
     <string name="allnum">累积交易量：</string>
+    <string name="Historyre">历史成交</string>
 </resources>

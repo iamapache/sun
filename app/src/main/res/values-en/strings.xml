@@ -39,7 +39,7 @@
     <string name="register_agreement">I agreed Sun Agreement</string>
 
     <!--财务中心-->
-    <string name="finance_center">Funds（CNY）</string>
+    <string name="finance_center">Funds（%1$s）</string>
     <string name="finance_assets">Total Assets</string>
     <string name="finance_other">Other</string>
     <string name="finance_spot_assets">Spot Assets</string>
@@ -551,4 +551,5 @@
     <string name="newPrice">Price</string>
     <string name="Charge">Charge</string>
     <string name="allnum">allnum：</string>
+    <string name="Historyre">History</string>
 </resources>

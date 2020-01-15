@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MPChartLib</string>
     <string name="loadings">加载中...</string>
+
     <string name="no_data">暂无数据</string>
     <string name="vol_name">成交量</string>
     <string name="billions_shou">亿手</string>

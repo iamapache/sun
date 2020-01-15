@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -96,6 +97,8 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     ImageView mImgPopview;
     @BindView(R.id.mPieChart)
     PieChart mPieChart;
+    @BindView(R.id.asset)
+    TextView mAsset;
     private CustomPopWindow mCustomPopWindow;
 
     public static FinanceFragment newInstance(String string) {
@@ -235,6 +238,9 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     public void requestSuccess(Asset commonBean) {
 
         if (EmptyUtils.isNotEmpty(commonBean) && EmptyUtils.isNotEmpty(commonBean.getData())) {
+            String sAgeFormat1 = getResources().getString(R.string.finance_assets);
+            @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String sFinal1 = String.format(sAgeFormat1, "USDT");
+            mAsset.setText(sFinal1);
             mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
 //        mName1.setText(commonBean.getData().getXnb_list().get(0).getXnb_name());
 //        mName2.setText(commonBean.getData().getXnb_list().get(1).getXnb_name());

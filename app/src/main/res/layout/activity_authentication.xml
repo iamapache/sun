@@ -208,7 +208,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
@@ -238,7 +238,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
@@ -268,7 +268,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"

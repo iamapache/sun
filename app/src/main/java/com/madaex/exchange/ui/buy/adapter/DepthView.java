@@ -184,9 +184,9 @@ public class DepthView extends View {
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DepthView);
-            buyLineCol = typedArray.getColor(R.styleable.DepthView_dvBuyLineCol, 0xff2BB8AB);
+            buyLineCol = typedArray.getColor(R.styleable.DepthView_dvBuyLineCol, 0xff25A035);
             buyLineStrokeWidth = typedArray.getInt(R.styleable.DepthView_dvBuyLineStrokeWidth, 1);
-            buyBgCol = typedArray.getColor(R.styleable.DepthView_dvBuyBgCol, 0x662BB8AB);
+            buyBgCol = typedArray.getColor(R.styleable.DepthView_dvBuyBgCol, 0xff25A035);
             sellLineCol = typedArray.getColor(R.styleable.DepthView_dvSellLineCol, 0xffFF5442);
             sellLineStrokeWidth = typedArray.getInt(R.styleable.DepthView_dvSellLineStrokeWidth, 1);
             sellBgCol = typedArray.getColor(R.styleable.DepthView_dvSellBgCol, 0x66FF5442);
@@ -629,15 +629,21 @@ public class DepthView extends View {
      */
     private String formatNum(double num) {
         if (num < 1) {
-            return setPrecision(num, 6);
+//            return setPrecision(num, 6);
+            return "";
         } else if (num < 10) {
-            return setPrecision(num, 4);
+//            return setPrecision(num, 4);
+//
+            return "";
         } else if (num < 100) {
-            return setPrecision(num, 3);
+//            return setPrecision(num, 3);
+            return "";
         } else if (num < 10000) {
-            return setPrecision(num / 1000, 1) + "K";
+//            return setPrecision(num / 1000, 1) + "K";
+            return "";
         } else {
-            return setPrecision(num / 10000, 2) + "万";
+//            return setPrecision(num / 10000, 2) + "万";
+            return "";
         }
     }
 

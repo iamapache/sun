@@ -6,6 +6,7 @@ import com.madaex.exchange.common.di.scope.FragmentScope;
 import com.madaex.exchange.ui.buy.fragment.BuyFragment;
 import com.madaex.exchange.ui.buy.fragment.CoinListFrament;
 import com.madaex.exchange.ui.buy.fragment.DealFragment;
+import com.madaex.exchange.ui.buy.fragment.HistoryRecordFrament;
 import com.madaex.exchange.ui.finance.c2c.fragment.EntrustOneFragment;
 import com.madaex.exchange.ui.finance.c2c.fragment.EntrustTwoFragment;
 import com.madaex.exchange.ui.finance.c2c.fragment.PlatformEntrustFragment;
@@ -93,4 +94,6 @@ public interface FragmentComponent extends ActivityComponent {
     void inject(HomeFragment homeFragment);
 
     void inject(HistoryDetailFragment historyDetailFragment);
+
+    void inject(HistoryRecordFrament historyRecordFrament);
 }

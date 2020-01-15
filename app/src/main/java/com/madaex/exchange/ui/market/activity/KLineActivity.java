@@ -49,58 +49,43 @@ public class KLineActivity extends BaseNetActivity {
     @Override
     protected void initView() {
         mTitleList.add(getString(R.string.onef));
-        mTitleList.add(getString(R.string.onethreef));
+//        mTitleList.add(getString(R.string.onethreef));
         mTitleList.add(getString(R.string.ONEfiveff));
         mTitleList.add(getString(R.string.onefivef));
         mTitleList.add(getString(R.string.threef));
         mTitleList.add(getString(R.string.onehours));
-        mTitleList.add(getString(R.string.twohours));
+//        mTitleList.add(getString(R.string.twohours));
         mTitleList.add(getString(R.string.fourhours));
-        mTitleList.add(getString(R.string.fivehours));
-        mTitleList.add(getString(R.string.twothhour));
+//        mTitleList.add(getString(R.string.fivehours));
+//        mTitleList.add(getString(R.string.twothhour));
         mTitleList.add(getString(R.string.onedays));
-        mTitleList.add(getString(R.string.threedays));
+//        mTitleList.add(getString(R.string.threedays));
         mTitleList.add(getString(R.string.oneweeks));
-        position = getIntent().getIntExtra("position", 5);
+        position = getIntent().getIntExtra("position", 3);
         Logger.i("<==>encode:" + position);
         for (int j = 0; j < mTitleList.size(); j++) {
             if (j == 0) {
                 KLineFragment fragment1 = KLineFragment.newInstance("1min", true);
                 mViewList.add(fragment1);
             } else if (j == 1) {
-                KLineFragment fragment1 = KLineFragment.newInstance("3min", true);
-                mViewList.add(fragment1);
-            } else if (j == 2) {
                 KLineFragment fragment1 = KLineFragment.newInstance("5min", true);
                 mViewList.add(fragment1);
-            } else if (j == 3) {
+            }else if (j == 2) {
                 KLineFragment fragment1 = KLineFragment.newInstance("15min", true);
                 mViewList.add(fragment1);
-            } else if (j == 4) {
+            }else if (j == 3) {
                 KLineFragment fragment1 = KLineFragment.newInstance("30min", true);
                 mViewList.add(fragment1);
-            } else if (j == 5) {
+            } else if (j == 4) {
                 KLineFragment fragment1 = KLineFragment.newInstance("1hour", true);
                 mViewList.add(fragment1);
-            } else if (j == 6) {
-                KLineFragment fragment1 = KLineFragment.newInstance("2hour", true);
-                mViewList.add(fragment1);
-            } else if (j == 7) {
+            } else if (j == 5) {
                 KLineFragment fragment1 = KLineFragment.newInstance("4hour", true);
                 mViewList.add(fragment1);
-            } else if (j == 8) {
-                KLineFragment fragment1 = KLineFragment.newInstance("6hour", true);
-                mViewList.add(fragment1);
-            } else if (j == 9) {
-                KLineFragment fragment1 = KLineFragment.newInstance("12hour", true);
-                mViewList.add(fragment1);
-            } else if (j == 10) {
+            } else if (j == 6) {
                 KLineFragment fragment1 = KLineFragment.newInstance("1day", true);
                 mViewList.add(fragment1);
-            } else if (j == 11) {
-                KLineFragment fragment1 = KLineFragment.newInstance("3day", true);
-                mViewList.add(fragment1);
-            } else if (j == 12) {
+            }else if (j == 7) {
                 KLineFragment fragment1 = KLineFragment.newInstance("1week", true);
                 mViewList.add(fragment1);
             }
