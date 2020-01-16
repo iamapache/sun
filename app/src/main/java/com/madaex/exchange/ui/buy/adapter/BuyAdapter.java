@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
-    private List<List<Double>> mDatas=new ArrayList<>();
+    private List<List<Float>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
     public BuyAdapter(Context context){
@@ -58,7 +58,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         return holder;
     }
 
-    public void setNewData(List<List<Double>> datas) {
+    public void setNewData(List<List<Float>> datas) {
         mDatas.clear();
         this. mDatas=datas;
         notifyDataSetChanged();
@@ -79,7 +79,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
     }
     public static interface OnItemClickListener {
-        void onItemClick(List<Double> list);
+        void onItemClick(List<Float> list);
         void onItemLongClick(View view);
     }
     public OnItemClickListener  mItemClickListener;

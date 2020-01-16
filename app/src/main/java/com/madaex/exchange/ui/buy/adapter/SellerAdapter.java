@@ -2,6 +2,7 @@ package com.madaex.exchange.ui.buy.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHolder> {
 
-    private List<List<Double>> mDatas=new ArrayList<>();
+    private List<List<Float>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
 
@@ -59,9 +60,10 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         final  SellerAdapter.MyViewHolder holder= new SellerAdapter.MyViewHolder(view);
         return holder;
     }
-    public void setNewData(List<List<Double>> datas) {
+    public void setNewData(List<List<Float>> datas) {
         mDatas.clear();
         this. mDatas=datas;
+        Log.d("MainActivity", "setNewData");
         notifyDataSetChanged();
     }
     static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -79,7 +81,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
 
     }
     public static interface OnItemClickListener {
-        void onItemClick(List<Double> list);
+        void onItemClick(List<Float> list);
         void onItemLongClick(View view);
     }
     public SellerAdapter.OnItemClickListener mItemClickListener;

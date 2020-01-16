@@ -35,8 +35,8 @@ import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.CustomPopWindow;
 import com.madaex.exchange.ui.buy.adapter.BuyAdapter;
-import com.madaex.exchange.ui.buy.adapter.Depth;
-import com.madaex.exchange.ui.buy.adapter.DepthView;
+import com.madaex.exchange.ui.buy.adapter.DepthDataBean;
+import com.madaex.exchange.ui.buy.adapter.DepthMapView;
 import com.madaex.exchange.ui.buy.adapter.SellerAdapter;
 import com.madaex.exchange.ui.buy.bean.DealBean2;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
@@ -130,7 +130,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     @BindView(R.id.infomation)
     TextView mInfomation;
     @BindView(R.id.dv_depth)
-    DepthView depthView;
+    DepthMapView depthView;
     @BindView(R.id.bili)
     TextView mBili;
     private String type;
@@ -183,7 +183,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         mBuyrecyclerview.setHasFixedSize(true);
         mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(List<Double> list) {
+            public void onItemClick(List<Float> list) {
                 mEtPrice.setText(list.get(0).toString());
             }
 
@@ -200,7 +200,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         mSellerrecyclerview.setHasFixedSize(true);
         mSellerAdapter.setItemClickListener(new SellerAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(List<Double> list) {
+            public void onItemClick(List<Float> list) {
                 mEtPrice.setText(list.get(0).toString());
             }
 
@@ -231,24 +231,24 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                         if (TextUtils.isEmpty(message) || message.equals("hello")) {
                             return;
                         }
-                        Log.i("MainActivity", message);
-//                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
-//                            currentBackPressedTime++;
-//                        } else {
-//                            currentBackPressedTime = 0;
-//                            new Thread(new Runnable() {
-//
-//                                @Override
-//                                public void run() {
+                        Log.i("BuyFragment", message);
+                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
+                            currentBackPressedTime++;
+                        } else {
+                            currentBackPressedTime = 0;
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
                                     DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
                                     Message messages = Message.obtain();
                         messages.obj = mDesignates;
                         messages.what = 1;
                                     handler.sendMessage(messages);//将message对象发送出去
-//                                }
-//                            }).start();
+                                }
+                            }).start();
 
-//                        }
+                        }
                     }
 
                     @Override
@@ -260,64 +260,44 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     }
 
     private void initData(double centerPrice) {
-//        //添加购买数据
-//        depthView.setBuyDataList(getBuyDepthList());
-//
-//        //添加出售数据
-//        depthView.setSellDataList(getSellDepthList());
-
-        //设置横坐标中间值
-        depthView.setAbscissaCenterPrice(centerPrice);
-
-        //设置数据详情的价钱说明
-//        depthView.setDetailPriceTitle(getString(R.string.price));
-
-        //设置数据详情的数量说明
-//        depthView.setDetailVolumeTitle(getString(R.string.allnum));
-
-        //设置横坐标价钱小数位精度
-        depthView.setPricePrecision(4);
-
-        //是否显示竖线
-        depthView.setShowDetailLine(false);
-
-        //手指单击松开后，数据是否继续显示
-        depthView.setShowDetailSingleClick(false);
-
-        //手指长按松开后，数据是否继续显示
-        depthView.setShowDetailLongPress(false);
 
     }
 
 
-    private List<Depth> getBuyDepthList2(List<List<Double>> lists) {
-        List<Depth> depthList = new ArrayList<>();
+    private List<DepthDataBean> getBuyDepthList2(List<List<Float>> lists) {
+        Log.v("depthList", lists.size() + "");
+        List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<Double>> listList = lists.subList(0, 50);
-            Log.v("depthList", listList.size() + "");
+            List<List<Float>> listList = lists.subList(0, 50);
+
             double account = 0;
             for (int i = 0; i < listList.size(); i++) {
                 account = account + listList.get(i).get(0);
-                depthList.add(new Depth(listList.get(i).get(0),
-                        listList.get(i).get(1) * listList.get(i).get(0), 0));
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1) ));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new Depth(lists.get(i).get(0),
-                        lists.get(i).get(1) * lists.get(i).get(0), 1));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1) ));
             }
         }
 
         return depthList;
     }
     public int bs(double a ,double b){
-        return (int)((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue())*100);
+        if(b==0){
+          return 0;
+        }else {
+            return (int)((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue())*100);
+        }
+
     }
-    private List<Depth> getBuyDepthList3(List<List<Double>> buy, List<List<Double>> sell) {
-        List<Depth> depthList = new ArrayList<>();
-        if (buy.size() >= 50||sell.size() >= 50) {
-            List<List<Double>> listList = buy.subList(0, 50);
-            List<List<Double>> listList2 = sell.subList(0, 50);
+    private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
+        List<DepthDataBean> depthList = new ArrayList<>();
+        if (buy.size() >= 50&&sell.size() >= 50) {
+            List<List<Float>> listList = buy.subList(0, 49);
+            List<List<Float>> listList2 = sell.subList(0, 49);
             double account = 0;
             double account2 = 0;
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
@@ -369,19 +349,19 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         return depthList;
     }
 
-    private List<Depth> getSellDepthList2(List<List<Double>> lists) {
-        List<Depth> depthList = new ArrayList<>();
+    private List<DepthDataBean> getSellDepthList2(List<List<Float>> lists) {
+        List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<Double>> listList = lists.subList(0, 50);
+            List<List<Float>> listList = lists.subList(0, 50);
             Log.v("depthList", listList.size() + "");
             for (int i = 0; i < listList.size(); i++) {
-                depthList.add(new Depth(listList.get(i).get(0),
-                        listList.get(i).get(1) * listList.get(i).get(0), 0));
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1) ));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new Depth(lists.get(i).get(0),
-                        lists.get(i).get(1) * lists.get(i).get(0), 1));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1) ));
             }
         }
 
@@ -391,14 +371,13 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     @Override
     public void onDestroy() {
         super.onDestroy();
-        depthView.cancelCallback();
     }
 
     private WebSocket mWebSocket;
     // 退出时间
     private long currentBackPressedTime = 0;
     // 退出间隔
-    private static final int BACK_PRESSED_INTERVAL = 6;
+    private static final int BACK_PRESSED_INTERVAL = 3;
     private String channel;
     private String channel2;
 
@@ -891,42 +870,60 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                         Collections.reverse(mDesignates.getAsks());
                         if (stutas == 50) {
                             if (mDesignates.getAsks().size() >= 50) {
-                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 50));
-
+                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 49));
+                            }else {
+                                mSellerAdapter.setNewData(mDesignates.getAsks());
                             }
                             if (mDesignates.getBids().size() >= 50) {
-                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 50));
+                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 49));
+                            }else {
+                                mBuyAdapter.setNewData(mDesignates.getBids());
                             }
                         }
                         if (stutas == 20) {
                             if (mDesignates.getAsks().size() >= 20) {
                                 mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
 
+                            }else {
+                                mSellerAdapter.setNewData(mDesignates.getAsks());
                             }
                             if (mDesignates.getBids().size() >= 20) {
                                 mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 20));
+                            }else {
+                                mBuyAdapter.setNewData(mDesignates.getBids());
                             }
                         }
                         if (stutas == 10) {
                             if (mDesignates.getAsks().size() >= 10) {
                                 mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
 
+                            }else {
+                                mSellerAdapter.setNewData(mDesignates.getAsks());
                             }
                             if (mDesignates.getBids().size() >= 10) {
                                 mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
+                            }else {
+                                mBuyAdapter.setNewData(mDesignates.getBids());
                             }
                         }
                         if (stutas == 5) {
                             if (mDesignates.getAsks().size() >= 5) {
                                 mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 5));
 
+                            }else {
+                                mSellerAdapter.setNewData(mDesignates.getAsks());
                             }
                             if (mDesignates.getBids().size() >= 5) {
                                 mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
+                            }else {
+                                mBuyAdapter.setNewData(mDesignates.getBids());
                             }
+                        }else {
+                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                            mBuyAdapter.setNewData(mDesignates.getBids());
                         }
                         getBuyDepthList3(mDesignates.getBids(),mDesignates.getAsks());
-                        depthView.resetAllData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
+                        depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                     }
                 }
 
