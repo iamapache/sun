@@ -24,7 +24,9 @@ import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.dhh.rxlife2.RxLife;
 import com.dhh.websocket.RxWebSocket;
+import com.dhh.websocket.WebSocketInfo;
 import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
@@ -32,6 +34,7 @@ import com.madaex.exchange.common.base.activity.dialog.BaseNetDialogFragment;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.CustomPopWindow;
@@ -59,6 +62,7 @@ import com.madaex.exchange.view.PayPassView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.reactivestreams.Subscription;
 
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +72,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.WebSocket;
 
 /**
@@ -141,6 +144,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     private CustomPopWindow mCustomPopWindow;
     Home baseBean = new Home();
     String mString = "";
+    Subscription subscription;
 
     public static DealFragment newInstance(String string, String one_xnb, String two_xnb) {
         DealFragment fragment = null;
@@ -246,8 +250,10 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 
             }
         });
+
+
         RxWebSocket.get(Constant.Websocket)
-                .subscribeOn(Schedulers.io())
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     public void onOpen(@NonNull WebSocket webSocket) {
@@ -256,7 +262,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 
                     @Override
                     protected void onMessage(String message) {
-                        if (TextUtils.isEmpty(message)||message.equals("hello")) {
+                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
                             return;
                         }
                         if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
@@ -266,53 +272,60 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                             DealBean mDesignates = new Gson().fromJson(message, DealBean.class);
                             if (mBuyAdapter != null && mSellerAdapter != null) {
                                 if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
-                                    Collections.reverse(mDesignates.getAsks());
-                                    if (stutas == 50) {
-                                        mSellerAdapter.setNewData(mDesignates.getAsks());
-                                        mBuyAdapter.setNewData(mDesignates.getBids());
-                                    }
-                                    if (stutas == 20) {
-                                        if (mDesignates.getAsks().size() >= 20) {
-                                            mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
+                                    if (mDesignates != null && EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                        Collections.reverse(mDesignates.getAsks());
+                                        if (stutas == 50) {
+                                            if (mDesignates.getAsks().size() >= 50) {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 50));
+                                            } else {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                                            }
+                                            if (mDesignates.getBids().size() >= 50) {
+                                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 50));
+                                            } else {
+                                                mBuyAdapter.setNewData(mDesignates.getBids());
+                                            }
+                                        } else if (stutas == 20) {
+                                            if (mDesignates.getAsks().size() >= 20) {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
 
-                                        }
-                                        if (mDesignates.getBids().size() >= 20) {
-                                            mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 20));
-                                        }
-                                    }
-                                    if (stutas == 10) {
-                                        if (mDesignates.getAsks().size() >= 10) {
-                                            mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
+                                            } else {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                                            }
+                                            if (mDesignates.getBids().size() >= 20) {
+                                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 20));
+                                            } else {
+                                                mBuyAdapter.setNewData(mDesignates.getBids());
+                                            }
+                                        } else if (stutas == 10) {
+                                            if (mDesignates.getAsks().size() >= 10) {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
 
-                                        }
-                                        if (mDesignates.getBids().size() >= 10) {
-                                            mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
-                                        }
-                                    }
-                                    if (stutas == 5) {
-                                        if (mDesignates.getAsks().size() >= 5) {
-                                            mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 5));
+                                            } else {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                                            }
+                                            if (mDesignates.getBids().size() >= 10) {
+                                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
+                                            } else {
+                                                mBuyAdapter.setNewData(mDesignates.getBids());
+                                            }
+                                        } else if (stutas == 5) {
+                                            if (mDesignates.getAsks().size() >= 5) {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 5));
 
-                                        }
-                                        if (mDesignates.getBids().size() >= 5) {
-                                            mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
+                                            } else {
+                                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                                            }
+                                            if (mDesignates.getBids().size() >= 5) {
+                                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
+                                            } else {
+                                                mBuyAdapter.setNewData(mDesignates.getBids());
+                                            }
                                         }
                                     }
                                 }
                             }
 
-                            if (mDesignates != null && mDesignates.getChannel().equals(channel2)) {
-                                if (mDesignates != null) {
-//                                    if (TextUtils.isEmpty(mString) && EmptyUtils.isNotEmpty(mCurrentnumber)) {
-//                                        if (trans_type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-//                                            mTvFour.setText(ArithUtil.div(Double.valueOf(mCurrentnumber.getText().toString()), Double.valueOf(mDesignates.getTicker().getLast()), 2) + "");
-//                                        } else {
-//                                            mTvFour.setText(ArithUtil.round(ArithUtil.mul(Double.valueOf(mCurrentnumber.getText().toString()), Double.valueOf(mDesignates.getTicker().getLast())), 2) + "");
-//                                        }
-//                                    }
-                                }
-
-                            }
                         }
                     }
 
@@ -427,8 +440,8 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                 }
                 mString = editable.toString();
 
-                if(!TextUtils.isEmpty(mCurrentnumber.getText().toString())){
-                    if (!mCurrentnumber.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")&& !mCurrentnumber.getText().toString().equals("0")) {
+                if (!TextUtils.isEmpty(mCurrentnumber.getText().toString())) {
+                    if (!mCurrentnumber.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !mCurrentnumber.getText().toString().equals("0")) {
                         mSeekbar.setClickable(true);
                         mSeekbar.setEnabled(true);
                         mSeekbar.setSelected(true);
@@ -528,7 +541,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
             mToolbarTitleTv.setText(coin);
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
-            market_type= event.getHeyue();
+            market_type = event.getHeyue();
             sendSocket();
         }
     }
@@ -537,10 +550,10 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     private String channel2;
 
     private void sendSocket() {
-        if(market_type.equals("0")){
+        if (market_type.equals("0")) {
             mEtPrice.setEnabled(true);
 
-        }else {
+        } else {
             mEtPrice.setEnabled(false);
         }
         SocketBean socketBean = new SocketBean();

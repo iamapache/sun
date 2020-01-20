@@ -195,4 +195,6 @@ dependencies {
     implementation files('libs/AndroidPicker-1.5.6.jar')
     implementation 'com.github.FJ917:FJDropDownMenu:v1.1'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    implementation 'com.dhh:rxLife2:1.2.0'
 }

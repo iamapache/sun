@@ -222,6 +222,7 @@ public class AllHistoryActivity extends BaseNetActivity<ContractPresenter> imple
 
     @Override
     protected void initDatas() {
+        coin_id =getIntent().getStringExtra("coin_id");
         getData();
     }
 

@@ -29,6 +29,7 @@ import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
 import com.madaex.exchange.ui.finance.contracts.presenter.ContractPresenter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -162,16 +163,16 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
             mAdapter.notifyDataSetChanged();
         }
         if (EmptyUtils.isNotEmpty(commonBean.getData().getAssetsArr())) {
-            mUsdt.setText(commonBean.getData().getAssetsArr().getUsdt() + "USDT");
-            mRmb.setText("≈ ¥ " + commonBean.getData().getAssetsArr().getRmb() + "");
+            mUsdt.setText(commonBean.getData().getAssetsArr().getUsdt().setScale(2, BigDecimal.ROUND_HALF_UP).toString() + "USDT");
+            mRmb.setText("≈ ¥ " + commonBean.getData().getAssetsArr().getRmb().setScale(2, BigDecimal.ROUND_HALF_UP).toString() + "");
         }
         mGone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isgone) {
                     isgone =false;
-                    mUsdt.setText(commonBean.getData().getAssetsArr().getUsdt() + "USDT");
-                    mRmb.setText("≈ ¥ " + commonBean.getData().getAssetsArr().getRmb() + "");
+                    mUsdt.setText(commonBean.getData().getAssetsArr().getUsdt().setScale(2, BigDecimal.ROUND_HALF_UP).toString() + "USDT");
+                    mRmb.setText("≈ ¥ " + commonBean.getData().getAssetsArr().getRmb().setScale(2, BigDecimal.ROUND_HALF_UP).toString() + "");
                     mGone.setImageResource(R.mipmap.denglu_zy);
                 } else {
                     isgone =true;

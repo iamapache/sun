@@ -2,12 +2,15 @@ package com.madaex.exchange.ui.buy.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
+import com.madaex.exchange.common.util.DataUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +42,12 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder,  int position) {
         holder.name.setText(mContext.getResources().getString(R.string.buy) + (position+ 1)  );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.common_red) );
-        holder.price.setText( mDatas.get(position).get(0)+"");
-        holder.number.setText( mDatas.get(position).get(1)+"");
+        holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
+        holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+        int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
+        holder.mProgressBar.setProgress(vote);
+        Log.d("onBindViewHolder", vote+"重连");
+        holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg));
         holder.itemView.setTag(mDatas.get(position).get(0)+"");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,12 +76,14 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         TextView price;
         TextView name;
         TextView number;
+        ProgressBar mProgressBar;
         public MyViewHolder(View view) {
             super(view);
             classView = itemView;
             price=(TextView) view.findViewById(R.id.price);
             name=(TextView) view.findViewById(R.id.name);
             number=(TextView) view.findViewById(R.id.number);
+            mProgressBar=(ProgressBar) view.findViewById(R.id.progress_bar_h);
         }
 
     }

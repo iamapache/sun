@@ -25,9 +25,9 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/d_44dp"
-        android:layout_marginBottom="60dp"
-        android:layout_height="match_parent">
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +80,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0" android:maxLines="1"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -108,7 +110,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0" android:maxLines="1"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -136,7 +140,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0" android:maxLines="1"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 

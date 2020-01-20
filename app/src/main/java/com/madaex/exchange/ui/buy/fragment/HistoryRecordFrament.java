@@ -14,7 +14,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.alibaba.fastjson.JSON;
+import com.dhh.rxlife2.RxLife;
 import com.dhh.websocket.RxWebSocket;
+import com.dhh.websocket.WebSocketInfo;
 import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
@@ -42,7 +44,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.WebSocket;
 
 /**
@@ -97,7 +98,7 @@ public class HistoryRecordFrament extends BaseNetDialogFragment<CoinPresenter> i
         mRecyclerview.setAdapter(mBuyAdapter);
         mRecyclerview.setHasFixedSize(true);
         RxWebSocket.get(Constant.Websocket)
-                .subscribeOn(Schedulers.io())
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     public void onOpen(@NonNull WebSocket webSocket) {

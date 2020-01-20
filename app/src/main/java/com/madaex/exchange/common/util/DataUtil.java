@@ -41,7 +41,17 @@ public class DataUtil {
             return false;
         }
     }
-
+    public static String is9Length(String value) {
+        try {
+            if(value.length()>=9){
+                return new BigDecimal(value.substring(8)).toString();
+            }else {
+                return new BigDecimal(value).toString();
+            }
+        } catch (NumberFormatException e) {
+            return "";
+        }
+    }
     /**
      * 判断字符串是否是浮点数
      */

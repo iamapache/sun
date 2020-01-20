@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dhh.rxlife2.RxLife;
 import com.dhh.websocket.RxWebSocket;
+import com.dhh.websocket.WebSocketInfo;
 import com.dhh.websocket.WebSocketSubscriber;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
@@ -292,6 +294,7 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
         mPresenter.getJavaLineDetail(DataUtil.sign(params2));
 
         RxWebSocket.get(Constant.Websocket)
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     protected void onMessage(String text) {

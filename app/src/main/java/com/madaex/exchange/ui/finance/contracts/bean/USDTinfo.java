@@ -1,5 +1,7 @@
 package com.madaex.exchange.ui.finance.contracts.bean;
 
+import java.math.BigDecimal;
+
 /**
  * 项目：  sun
  * 类名：  Coininfo.java
@@ -53,11 +55,19 @@ public class USDTinfo {
         private AssetsBean assets;
         private String con_usable_assets;
         private String con_frozen_assets;
-        private int lock_assets;
+        private String lock_assets;
         private String market_name;
-
+        private String con_id;
         public AssetsBean getAssets() {
             return assets;
+        }
+
+        public String getCon_id() {
+            return con_id;
+        }
+
+        public void setCon_id(String con_id) {
+            this.con_id = con_id;
         }
 
         public void setAssets(AssetsBean assets) {
@@ -80,11 +90,11 @@ public class USDTinfo {
             this.con_frozen_assets = con_frozen_assets;
         }
 
-        public int getLock_assets() {
+        public String getLock_assets() {
             return lock_assets;
         }
 
-        public void setLock_assets(int lock_assets) {
+        public void setLock_assets(String lock_assets) {
             this.lock_assets = lock_assets;
         }
 
@@ -102,22 +112,22 @@ public class USDTinfo {
              * rmb : 140000
              */
 
-            private String usdt;
-            private String rmb;
+            private BigDecimal usdt;
+            private BigDecimal rmb;
 
-            public String getUsdt() {
+            public BigDecimal getUsdt() {
                 return usdt;
             }
 
-            public void setUsdt(String usdt) {
+            public void setUsdt(BigDecimal usdt) {
                 this.usdt = usdt;
             }
 
-            public String getRmb() {
+            public BigDecimal getRmb() {
                 return rmb;
             }
 
-            public void setRmb(String rmb) {
+            public void setRmb(BigDecimal rmb) {
                 this.rmb = rmb;
             }
         }

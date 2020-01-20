@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.finance.contracts.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,22 +79,22 @@ public class ContractAsset implements Parcelable {
              * rmb : 779128
              */
 
-            private String usdt;
-            private String rmb;
+            private BigDecimal usdt;
+            private BigDecimal rmb;
 
-            public String getUsdt() {
+            public BigDecimal getUsdt() {
                 return usdt;
             }
 
-            public void setUsdt(String usdt) {
+            public void setUsdt(BigDecimal usdt) {
                 this.usdt = usdt;
             }
 
-            public String getRmb() {
+            public BigDecimal getRmb() {
                 return rmb;
             }
 
-            public void setRmb(String rmb) {
+            public void setRmb(BigDecimal rmb) {
                 this.rmb = rmb;
             }
 
@@ -104,19 +105,19 @@ public class ContractAsset implements Parcelable {
 
             @Override
             public void writeToParcel(Parcel dest, int flags) {
-                dest.writeString(this.usdt);
-                dest.writeString(this.rmb);
+                dest.writeSerializable(this.usdt);
+                dest.writeSerializable(this.rmb);
             }
 
             public AssetsArrBean() {
             }
 
             protected AssetsArrBean(Parcel in) {
-                this.usdt = in.readString();
-                this.rmb = in.readString();
+                this.usdt = (BigDecimal) in.readSerializable();
+                this.rmb = (BigDecimal) in.readSerializable();
             }
 
-            public static final Parcelable.Creator<AssetsArrBean> CREATOR = new Parcelable.Creator<AssetsArrBean>() {
+            public static final Creator<AssetsArrBean> CREATOR = new Creator<AssetsArrBean>() {
                 @Override
                 public AssetsArrBean createFromParcel(Parcel source) {
                     return new AssetsArrBean(source);

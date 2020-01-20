@@ -11,12 +11,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
+import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.contract.CoinLister;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.bean.Position;
+import com.madaex.exchange.ui.websocket.rx.RxWebSocket;
 import com.madaex.exchange.view.GlideImgManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,6 +26,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import io.reactivex.disposables.Disposable;
 
 /**
  * 项目：  madaexchange
@@ -86,7 +89,11 @@ public class CoinFragment extends BaseNetLazyFragment {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 CoinList.DataBean.ListBean listBean = (CoinList.DataBean.ListBean) adapter.getItem(position);
-
+                Disposable disposable = RxWebSocket.get(Constant.Websocket).subscribe();
+                //注销
+                if (disposable != null && !disposable.isDisposed()) {
+                    disposable.dispose();
+                }
                 Event event = new Event();
                 event.setMsg(listBean.getName());
                 event.setCode(type);

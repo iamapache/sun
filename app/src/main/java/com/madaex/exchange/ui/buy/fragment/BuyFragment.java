@@ -22,7 +22,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.dhh.rxlife2.RxLife;
 import com.dhh.websocket.RxWebSocket;
+import com.dhh.websocket.WebSocketInfo;
 import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
@@ -69,7 +71,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.WebSocket;
 
 /**
@@ -217,7 +218,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 //            }
 //        });
         RxWebSocket.get(Constant.Websocket)
-                .subscribeOn(Schedulers.io())
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     public void onOpen(@NonNull WebSocket webSocket) {
@@ -242,8 +243,8 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                                 public void run() {
                                     DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
                                     Message messages = Message.obtain();
-                        messages.obj = mDesignates;
-                        messages.what = 1;
+                                    messages.obj = mDesignates;
+                                    messages.what = 1;
                                     handler.sendMessage(messages);//将message对象发送出去
                                 }
                             }).start();
@@ -274,28 +275,30 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             for (int i = 0; i < listList.size(); i++) {
                 account = account + listList.get(i).get(0);
                 depthList.add(new DepthDataBean(listList.get(i).get(0),
-                        listList.get(i).get(1) ));
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
                 depthList.add(new DepthDataBean(lists.get(i).get(0),
-                        lists.get(i).get(1) ));
+                        lists.get(i).get(1)));
             }
         }
 
         return depthList;
     }
-    public int bs(double a ,double b){
-        if(b==0){
-          return 0;
-        }else {
-            return (int)((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue())*100);
+
+    public int bs(double a, double b) {
+        if (b == 0) {
+            return 0;
+        } else {
+            return (int) ((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue()) * 100);
         }
 
     }
+
     private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
         List<DepthDataBean> depthList = new ArrayList<>();
-        if (buy.size() >= 50&&sell.size() >= 50) {
+        if (buy.size() >= 50 && sell.size() >= 50) {
             List<List<Float>> listList = buy.subList(0, 49);
             List<List<Float>> listList2 = sell.subList(0, 49);
             double account = 0;
@@ -309,7 +312,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                 for (int j = 0; j < listList2.size(); j++) {
                     account = account + listList2.get(j).get(0);
                 }
-                mBili.setText(bs(account2,account)+"%");
+                mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < listList.size(); i++) {
                     account = account + listList.get(i).get(0);
@@ -318,7 +321,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                     account = account + listList2.get(j).get(0);
                     account2 = account2 + listList2.get(j).get(0);
                 }
-                mBili.setText(bs(account2,account)+"%");
+                mBili.setText(bs(account2, account) + "%");
             }
 
         } else {
@@ -333,7 +336,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                 for (int j = 0; j < sell.size(); j++) {
                     account = account + sell.get(j).get(0);
                 }
-                mBili.setText(bs(account2,account)+"%");
+                mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < buy.size(); i++) {
                     account = account + buy.get(i).get(0);
@@ -342,7 +345,7 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
                     account = account + sell.get(j).get(0);
                     account2 = account2 + sell.get(j).get(0);
                 }
-                mBili.setText(bs(account2,account)+"%");
+                mBili.setText(bs(account2, account) + "%");
             }
         }
 
@@ -356,12 +359,12 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             Log.v("depthList", listList.size() + "");
             for (int i = 0; i < listList.size(); i++) {
                 depthList.add(new DepthDataBean(listList.get(i).get(0),
-                        listList.get(i).get(1) ));
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
                 depthList.add(new DepthDataBean(lists.get(i).get(0),
-                        lists.get(i).get(1) ));
+                        lists.get(i).get(1)));
             }
         }
 
@@ -697,17 +700,21 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-        this.baseBean = baseBean;
-        mLast.setText(baseBean.getCurrentPrice().toString());
-        mCoinname.setText(baseBean.getExchangeType().toUpperCase());
-        if (baseBean.getRiseRate().contains("-")) {
-            mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
-            mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
-        } else {
-            mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
-            mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
+        if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
+            this.baseBean = baseBean;
+            mLast.setText(baseBean.getCurrentPrice().toString());
+            mCoinname.setText(baseBean.getExchangeType().toUpperCase());
+            if (baseBean.getRiseRate().contains("-")) {
+                mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
+            } else {
+                mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
+            }
+            initData(Double.valueOf(baseBean.getCurrentPrice()));
         }
-        initData(Double.valueOf(baseBean.getCurrentPrice()));
+
+
 //        if (type.equals(ConstantUrl.TRANS_TYPE_BUY) && EmptyUtils.isNotEmpty(mOneXnb)) {
 //            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(baseBean.getCurrentPrice()), 2) + "").stripTrailingZeros().toPlainString());
 //        } else {
@@ -866,67 +873,62 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             int i = msg.what;
             if (i == 1) {
                 if (mBuyAdapter != null && mSellerAdapter != null) {
-                    if (mDesignates != null && EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
-                        Collections.reverse(mDesignates.getAsks());
-                        if (stutas == 50) {
-                            if (mDesignates.getAsks().size() >= 50) {
-                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 49));
-                            }else {
-                                mSellerAdapter.setNewData(mDesignates.getAsks());
-                            }
-                            if (mDesignates.getBids().size() >= 50) {
-                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 49));
-                            }else {
-                                mBuyAdapter.setNewData(mDesignates.getBids());
-                            }
-                        }
-                        if (stutas == 20) {
-                            if (mDesignates.getAsks().size() >= 20) {
-                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
+                    if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
+                        if (mDesignates != null && EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                            Collections.reverse(mDesignates.getAsks());
+                            if (stutas == 50) {
+                                if (mDesignates.getAsks().size() >= 50) {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 50));
+                                } else {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks());
+                                }
+                                if (mDesignates.getBids().size() >= 50) {
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 50));
+                                } else {
+                                    mBuyAdapter.setNewData(mDesignates.getBids());
+                                }
+                            } else if (stutas == 20) {
+                                if (mDesignates.getAsks().size() >= 20) {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 20));
 
-                            }else {
-                                mSellerAdapter.setNewData(mDesignates.getAsks());
-                            }
-                            if (mDesignates.getBids().size() >= 20) {
-                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 20));
-                            }else {
-                                mBuyAdapter.setNewData(mDesignates.getBids());
-                            }
-                        }
-                        if (stutas == 10) {
-                            if (mDesignates.getAsks().size() >= 10) {
-                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
+                                } else {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks());
+                                }
+                                if (mDesignates.getBids().size() >= 20) {
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 20));
+                                } else {
+                                    mBuyAdapter.setNewData(mDesignates.getBids());
+                                }
+                            } else if (stutas == 10) {
+                                if (mDesignates.getAsks().size() >= 10) {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
 
-                            }else {
-                                mSellerAdapter.setNewData(mDesignates.getAsks());
-                            }
-                            if (mDesignates.getBids().size() >= 10) {
-                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
-                            }else {
-                                mBuyAdapter.setNewData(mDesignates.getBids());
-                            }
-                        }
-                        if (stutas == 5) {
-                            if (mDesignates.getAsks().size() >= 5) {
-                                mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 5));
+                                } else {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks());
+                                }
+                                if (mDesignates.getBids().size() >= 10) {
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
+                                } else {
+                                    mBuyAdapter.setNewData(mDesignates.getBids());
+                                }
+                            } else if (stutas == 5) {
+                                if (mDesignates.getAsks().size() >= 5) {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 5));
 
-                            }else {
-                                mSellerAdapter.setNewData(mDesignates.getAsks());
+                                } else {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks());
+                                }
+                                if (mDesignates.getBids().size() >= 5) {
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
+                                } else {
+                                    mBuyAdapter.setNewData(mDesignates.getBids());
+                                }
                             }
-                            if (mDesignates.getBids().size() >= 5) {
-                                mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 5));
-                            }else {
-                                mBuyAdapter.setNewData(mDesignates.getBids());
-                            }
-                        }else {
-                                mSellerAdapter.setNewData(mDesignates.getAsks());
-                            mBuyAdapter.setNewData(mDesignates.getBids());
+                            getBuyDepthList3(mDesignates.getBids(), mDesignates.getAsks());
+                            depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                         }
-                        getBuyDepthList3(mDesignates.getBids(),mDesignates.getAsks());
-                        depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                     }
                 }
-
             }
         }
     };

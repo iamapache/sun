@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
+import com.madaex.exchange.common.util.DataUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +43,13 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
     public void onBindViewHolder(SellerAdapter.MyViewHolder holder, final int position) {
         holder.name.setText(mContext.getResources().getString(R.string.seller) + (getItemCount()-position )+ "" );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.green) );
-        holder.price.setText( mDatas.get(position).get(0)+"");
-        holder.number.setText( mDatas.get(position).get(1)+"");
+        holder.price.setText(DataUtil.is9Length(mDatas.get(position).get(0)+""));
+        holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
         holder.itemView.setTag(mDatas.get(position).get(0)+"");
+        int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
+        holder.mProgressBar.setProgress(vote);
+        Log.d("onBindViewHolder2", vote+"重连");
+        holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg2));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,12 +77,13 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         TextView price;
         TextView name;
         TextView number;
-
+        ProgressBar mProgressBar;
         public MyViewHolder(View view) {
             super(view);
             price=(TextView) view.findViewById(R.id.price);
             name=(TextView) view.findViewById(R.id.name);
             number=(TextView) view.findViewById(R.id.number);
+            mProgressBar=(ProgressBar) view.findViewById(R.id.progress_bar_h);
         }
 
     }

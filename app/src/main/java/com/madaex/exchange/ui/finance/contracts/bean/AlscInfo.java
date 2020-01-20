@@ -1,5 +1,7 @@
 package com.madaex.exchange.ui.finance.contracts.bean;
 
+import java.math.BigDecimal;
+
 /**
  * 项目：  sun
  * 类名：  AlscInfo.java
@@ -55,7 +57,7 @@ public class AlscInfo {
         private AssetsBean assets;
         private String con_usable_assets;
         private String con_frozen_assets;
-        private int lock_assets;
+        private String lock_assets;
         private TodayBean today;
         private TomorrowBean tomorrow;
         private String market_name;
@@ -84,11 +86,11 @@ public class AlscInfo {
             this.con_frozen_assets = con_frozen_assets;
         }
 
-        public int getLock_assets() {
+        public String getLock_assets() {
             return lock_assets;
         }
 
-        public void setLock_assets(int lock_assets) {
+        public void setLock_assets(String lock_assets) {
             this.lock_assets = lock_assets;
         }
 
@@ -122,22 +124,22 @@ public class AlscInfo {
              * rmb : 652960
              */
 
-            private String alsc;
-            private String rmb;
+            private BigDecimal alsc;
+            private BigDecimal rmb;
 
-            public String getAlsc() {
+            public BigDecimal getAlsc() {
                 return alsc;
             }
 
-            public void setAlsc(String alsc) {
+            public void setAlsc(BigDecimal alsc) {
                 this.alsc = alsc;
             }
 
-            public String getRmb() {
+            public BigDecimal getRmb() {
                 return rmb;
             }
 
-            public void setRmb(String rmb) {
+            public void setRmb(BigDecimal rmb) {
                 this.rmb = rmb;
             }
         }
@@ -148,14 +150,14 @@ public class AlscInfo {
              * usdt : 466.4
              */
 
-            private int alsc;
+            private String alsc;
             private double usdt;
 
-            public int getAlsc() {
+            public String getAlsc() {
                 return alsc;
             }
 
-            public void setAlsc(int alsc) {
+            public void setAlsc(String alsc) {
                 this.alsc = alsc;
             }
 
@@ -174,14 +176,14 @@ public class AlscInfo {
              * usdt : 466.4
              */
 
-            private int alsc;
+            private String alsc;
             private double usdt;
 
-            public int getAlsc() {
+            public String getAlsc() {
                 return alsc;
             }
 
-            public void setAlsc(int alsc) {
+            public void setAlsc(String alsc) {
                 this.alsc = alsc;
             }
 

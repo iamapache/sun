@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.allenliu.versionchecklib.v2.AllenVersionChecker;
+import com.dhh.rxlife2.RxLife;
 import com.dhh.websocket.RxWebSocket;
+import com.dhh.websocket.WebSocketInfo;
 import com.dhh.websocket.WebSocketSubscriber;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.BaseApplication;
@@ -123,6 +125,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mTabList.add(getString(R.string.item_finance));
         mTabList.add(getString(R.string.item_mine));
         RxWebSocket.get(Constant.Websocket)
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     protected void onMessage(String text) {
@@ -231,9 +234,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             String coin = event.getMsg();
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
-            if(mWebSocket!=null){
-                mWebSocket.cancel();
-            }
 
         }
     }

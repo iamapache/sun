@@ -24,6 +24,7 @@ import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
 import com.madaex.exchange.ui.finance.contracts.presenter.ContractPresenter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -136,9 +137,13 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
                 mPresenter.open_contract(DataUtil.sign(params));
                 break;
             case R.id.allrecords:
-                Intent intent =  getIntent();
-                intent.setClass(mContext, AllHistoryActivity.class);
-                startActivity(intent);
+                if(commonBean!=null){
+                    Intent intent =  getIntent();
+                    intent.setClass(mContext, AllHistoryActivity.class);
+                    intent.putExtra("con_id", commonBean.getData().getCon_id());
+                    startActivity(intent);
+                }
+
                 break;
         }
     }
@@ -173,11 +178,12 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     public void requestSuccess(WalletInfo commonBean) {
 
     }
-
+    USDTinfo commonBean;
     @Override
     public void requestSuccess(USDTinfo commonBean) {
-        mCny.setText(commonBean.getData().getAssets().getUsdt()+"");
-        mDollar.setText("≈ ¥ "+commonBean.getData().getAssets().getRmb()+"");
+        this.commonBean =commonBean;
+        mCny.setText(commonBean.getData().getAssets().getUsdt().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        mDollar.setText("≈ ¥ "+commonBean.getData().getAssets().getRmb().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         mAvail.setText(commonBean.getData().getCon_usable_assets()+"");
         mFrozen.setText(commonBean.getData().getCon_frozen_assets()+"");
         mLocking.setText(commonBean.getData().getLock_assets()+"");
@@ -201,7 +207,6 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
 
     @Override
     public void requestErrorcontract(String s) {
-        ToastUtils.showToast(s);
         Intent intent =  getIntent();
         intent.setClass(mContext, OpenContractActivity.class);
         startActivity(intent);
