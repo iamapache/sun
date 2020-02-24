@@ -12,6 +12,7 @@ import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.contract.DealContract;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
+import com.madaex.exchange.ui.common.SB2Data;
 import com.madaex.exchange.ui.market.bean.LineDetail;
 
 import java.util.Map;
@@ -116,6 +117,32 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                                 mView.requestError(commonBean.getData() + "");
                             } else {
                                 mView.requestDetailSuccess(commonBean.getData());
+                            }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getToken(Map map) {
+        addSubscribe((Disposable) rxApi.getTestResult(map)
+                .map(new Function<String, SB2Data>() {
+                    @Override
+                    public SB2Data apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        SB2Data commonBean = gson.fromJson(data, SB2Data.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<SB2Data>(mView, true) {
+                    @Override
+                    public void onNext(SB2Data commonBean) {
+                        if (mView != null) {
+                            if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                                mView.requestError(commonBean.getData() + "");
+                            } else {
+                                mView.requestToken(commonBean.getData());
                             }
                         }
                     }

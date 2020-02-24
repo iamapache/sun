@@ -190,6 +190,11 @@ public class DealFragment extends BaseNetLazyFragment<CoinPresenter> implements 
 
     }
 
+    @Override
+    public void requestToken(String baseBean) {
+
+    }
+
 
     @Override
     public void sendMsgSuccess(DealInfo msg) {

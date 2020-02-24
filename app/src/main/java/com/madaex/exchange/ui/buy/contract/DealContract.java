@@ -21,11 +21,14 @@ public class DealContract {
 
         void sendMsgSuccess(DealInfo msg);
         void requestDetailSuccess(Home baseBean);
+
+        void requestToken(String baseBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<DealContract.View> {
         void getData(Map str);
         void getMsgInfo(Map str);
         void getJavaLineDetail(Map map);
+        void getToken(Map map);
     }
 }

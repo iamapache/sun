@@ -161,6 +161,10 @@ public class CoinListFrament extends BaseNetDialogFragment<CoinPresenter> implem
 
     }
 
+    @Override
+    public void requestToken(String baseBean) {
+
+    }
 
 
     @Override

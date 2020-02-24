@@ -168,6 +168,11 @@ public class C2CListActivity extends BaseNetActivity<CoinPresenter> implements C
     }
 
     @Override
+    public void requestToken(String baseBean) {
+
+    }
+
+    @Override
     public void sendMsgSuccess(DealInfo msg) {
 
     }

@@ -127,6 +127,10 @@ public class ConstantUrl {
     public static String TRADE_COIN_LIST = "market.getFavCoinList";
     //交易的买入、卖出功能
     public static String TRADE_UPTRADE = "Trade.upTrade";
+    public static String User_form_token = "User.form_token";
+
+    public static String Contract_upContract = "Contract.upContract";
+
     public static String Contract_UPTRADE = "Contract.upTrade";
     //币的详情页面的简介
     public static String TRADE_INTRODUCE = "Trade.introduce";

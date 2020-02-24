@@ -218,6 +218,10 @@ public class HistoryRecordFrament extends BaseNetDialogFragment<CoinPresenter> i
 
     }
 
+    @Override
+    public void requestToken(String baseBean) {
+
+    }
 
 
     @Override

@@ -260,7 +260,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                                                     mPresenter.delete(DataUtil.sign(params));
                                                 }else {
                                                     TreeMap params = new TreeMap<>();
-                                                    params.put("act", ConstantUrl.Contract_UPTRADE);
+                                                    params.put("act", ConstantUrl.Contract_REVOKE);
                                                     params.put("one_xnb", item.getOne_xnb());
                                                     params.put("two_xnb", item.getTwo_xnb());
                                                     params.put("id", item.getId());
@@ -329,7 +329,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                         params.put("two_xnb", two_xnb);
                         params.put("id", str);
                     }else {
-                        params.put("act", ConstantUrl.Contract_UPTRADE);
+                        params.put("act", ConstantUrl.Contract_REVOKE);
                         params.put("one_xnb", one_xnb);
                         params.put("two_xnb", two_xnb);
                         params.put("id", str);

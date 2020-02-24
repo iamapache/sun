@@ -26,7 +26,7 @@ public class CoinContract {
 
 
         void requestDetailSuccess(Home baseBean);
-
+        void requestToken(String baseBean);
         void sendMsgSuccess(DealInfo msg);
     }
 
@@ -36,5 +36,7 @@ public class CoinContract {
         void getMsgInfo(Map str);
 
         void getJavaLineDetail(Map map);
+
+        void getToken(Map map);
     }
 }

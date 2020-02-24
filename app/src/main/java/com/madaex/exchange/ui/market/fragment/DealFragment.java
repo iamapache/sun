@@ -34,7 +34,6 @@ import com.madaex.exchange.common.base.activity.dialog.BaseNetDialogFragment;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.CustomPopWindow;
@@ -223,7 +222,11 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
         mBuyAdapter.setItemClickListener(new BuyDealAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(List<String> list) {
-                mEtPrice.setText(list.get(0).toString());
+                if (market_type.equals("0")) {
+                    mEtPrice.setText(list.get(0).toString());
+                } else {
+
+                }
             }
 
             @Override
@@ -242,7 +245,11 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
         mSellerAdapter.setItemClickListener(new SellerDealAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(List<String> list) {
-                mEtPrice.setText(list.get(0).toString());
+                if (market_type.equals("0")) {
+                    mEtPrice.setText(list.get(0).toString());
+                } else {
+
+                }
             }
 
             @Override
@@ -272,7 +279,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
                             DealBean mDesignates = new Gson().fromJson(message, DealBean.class);
                             if (mBuyAdapter != null && mSellerAdapter != null) {
                                 if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
-                                    if (mDesignates != null && EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                    if (mDesignates != null ) {
                                         Collections.reverse(mDesignates.getAsks());
                                         if (stutas == 50) {
                                             if (mDesignates.getAsks().size() >= 50) {
@@ -355,12 +362,19 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     }
 
     private void getMsgInfo() {
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_TRADE);
-        params.put("one_xnb", one_xnb);
-        params.put("two_xnb", two_xnb);
-        params.put("market_type", market_type);
-        mPresenter.getMsgInfo(DataUtil.sign(params));
+        if (market_type.equals("0")) {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.TRADE_TRADE);
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            mPresenter.getMsgInfo(DataUtil.sign(params));
+        } else {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.Contract_contractAssets);
+            params.put("one_xnb", one_xnb);
+            params.put("two_xnb", two_xnb);
+            mPresenter.getMsgInfo(DataUtil.sign(params));
+        }
     }
 
 
@@ -573,7 +587,7 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
         socketBean2.setMarket_type(market_type);
         socketBean2.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker");
         channel2 = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker";
-        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
     }
 
     @Override
@@ -713,23 +727,19 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
     }
 
     PayPassDialog dialog;
-
+    String passContents = "";
     private void payDialog() {
         dialog = new PayPassDialog(mContext);
         dialog.getPayViewPass()
                 .setPayClickListener(new PayPassView.OnPayClickListener() {
                     @Override
                     public void onPassFinish(String passContent) {
+                        passContents = passContent;
                         TreeMap params = new TreeMap<>();
-                        params.put("act", ConstantUrl.TRADE_UPTRADE);
-                        params.put("market", one_xnb + "_" + two_xnb);
-                        params.put("price", mEtPrice.getText().toString().trim());
-                        params.put("num", mEtNumber.getText().toString().trim());
-                        params.put("paypassword", passContent);
-                        params.put("type", trans_type);
-                        params.put("source", "android");
-                        params.put("market_type", market_type);
-                        mPresenter.deal(DataUtil.sign(params));
+                        params.put("act", ConstantUrl.User_form_token);
+                        mPresenter.getToken(DataUtil.sign(params));
+
+
                     }
 
                     @Override
@@ -796,6 +806,33 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 //                mTvFour.setText(ArithUtil.round(ArithUtil.mul(Double.valueOf(mCurrentnumber.getText().toString()), Double.valueOf(baseBean.getCurrentPrice())), 2) + "");
 //            }
 //        }
+    }
+
+    @Override
+    public void requestToken(String baseBean) {
+        if (market_type.equals("0")) {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.TRADE_UPTRADE);
+            params.put("market", one_xnb + "_" + two_xnb);
+            params.put("price", mEtPrice.getText().toString().trim());
+            params.put("num", mEtNumber.getText().toString().trim());
+            params.put("paypassword", passContents);
+            params.put("type", trans_type);
+            params.put("source", "android");
+            params.put("__token__", baseBean);
+            mPresenter.deal(DataUtil.sign(params));
+        } else {
+            TreeMap params = new TreeMap<>();
+            params.put("act", ConstantUrl.Contract_upContract);
+            params.put("market", one_xnb + "_" + two_xnb);
+            params.put("price", mEtPrice.getText().toString().trim());
+            params.put("num", mEtNumber.getText().toString().trim());
+            params.put("type", trans_type);
+            params.put("paypassword", passContents);
+            params.put("source", "android");
+            params.put("__token__", baseBean);
+            mPresenter.deal(DataUtil.sign(params));
+        }
     }
 
     @Override
