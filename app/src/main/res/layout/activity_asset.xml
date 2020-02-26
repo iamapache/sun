@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:focusable="true"
-    android:background="@color/backGroundColor"
-              android:focusableInTouchMode="true"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <com.madaex.exchange.common.view.CustomToolBar
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         app:right_btn_visible="false"
         app:title_color="@color/white"
         app:title_text="@string/finance_spot_assets"
-        app:title_visible="true"/>
+        app:title_visible="true" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
@@ -35,43 +35,99 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@color/colorTheme"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_height="180dp"
+                android:layout_margin="16dp"
+                android:background="@color/common_black"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/totalAssets"
-                    android:textColor="@color/common_title_unbg"
-                    android:textSize="17dp"/>
 
-                <TextView
-                    android:id="@+id/cny"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/d_8dp"
-                    android:text="￥0.00"
-                    android:textColor="@color/title_color"
-                    android:textSize="25dp"/>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/dollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/d_8dp"
-                    android:text="$0.00"
-                    android:textColor="@color/title_color"
-                    android:textSize="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finance_spot_assets"
+                        android:textColor="#C4C5CE"
+                        android:textSize="16dp" />
+
+                    <ImageView
+                        android:id="@+id/gone"
+                        android:layout_marginLeft="25dp"
+                        android:layout_width="22dp"
+                        android:layout_height="16dp"
+                        android:layout_marginRight="12dp"
+                        android:src="@mipmap/denglu_zy" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/cny"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0000"
+                        android:textColor="#fff"
+                        android:textSize="32dp" />
+
+
+                    <TextView
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BTC"
+                        android:textColor="#fff"
+                        android:layout_marginBottom="2dp"
+                        android:layout_gravity="bottom"
+                        android:textSize="16dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/dollar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0000"
+                        android:layout_weight="1"
+                        android:textColor="#fff"
+                        android:textSize="16dp" />
+
+
+                    <TextView
+                        android:layout_marginLeft="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="估值"
+                        android:textColor="#fff"
+                        android:layout_marginBottom="2dp"
+                        android:layout_gravity="bottom"
+                        android:textSize="16dp" />
+                </LinearLayout>
             </LinearLayout>
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="@dimen/d_10dp"
-                android:background="@drawable/common_shape_corner"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -84,18 +140,18 @@
                     android:drawableLeft="@mipmap/icon_search"
                     android:drawablePadding="@dimen/d_5dp"
                     android:hint="@string/searchAssets"
-                    android:padding="@dimen/d_5dp"
                     android:maxLines="1"
+                    android:padding="@dimen/d_5dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/colorCutOffSide"
-                    android:textSize="@dimen/d_14dp"/>
+                    android:textSize="@dimen/d_14dp" />
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/d_10dp"
                     android:layout_marginTop="@dimen/d_10dp"
-                    android:background="@color/common_title_unbg"/>
+                    android:layout_marginBottom="@dimen/d_10dp"
+                    android:background="@color/common_title_unbg" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,7 +159,7 @@
                     android:layout_marginLeft="@dimen/d_10dp"
                     android:text="@string/yingcang"
                     android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_14dp"/>
+                    android:textSize="@dimen/d_14dp" />
 
                 <CheckBox
                     android:id="@+id/cb_number"
@@ -114,15 +170,14 @@
                     android:background="@android:color/transparent"
                     android:button="@drawable/check_regist_selector"
                     android:checked="false"
-                    android:gravity="center_vertical"
-                    />
+                    android:gravity="center_vertical" />
 
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

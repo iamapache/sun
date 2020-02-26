@@ -122,7 +122,7 @@
     <string name="addwalletaddress">新增付币地址</string>
     <string name="totalAssets">现货折合</string>
     <string name="searchAssets">搜索币种资产</string>
-    <string name="yingcang">隐藏小于¥1</string>
+    <string name="yingcang">隐藏小额资产</string>
     <string name="Historybill">账单详情</string>
     <string name="accountbalance">账户余额</string>
     <string name="billtime">账单时间</string>
