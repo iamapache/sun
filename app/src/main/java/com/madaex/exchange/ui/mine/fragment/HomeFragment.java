@@ -19,8 +19,10 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
+import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
@@ -63,7 +65,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
  * 描述：  ${TODO}
  */
 
-public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> implements PageHomeContract.View, KineQuickAdapter.OnclikCallBack  {
+public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> implements PageHomeContract.View, KineQuickAdapter.OnclikCallBack {
     ArrayList<HotCoin.DataBean> testBeans = new ArrayList<>();
     BaseQuickAdapter mAdapter;
     Unbinder unbinder;
@@ -78,12 +80,14 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
 
 
     ArrayList<Home> mHomeArrayList = new ArrayList<>();
-//    BaseQuickAdapter mAdapter2;
+    //    BaseQuickAdapter mAdapter2;
     KineQuickAdapter mKineQuickAdapter;
     @BindView(R.id.img_scan)
     LinearLayout mImgScan;
     @BindView(R.id.img_popview)
     ImageView mImgPopview;
+    @BindView(R.id.tologin)
+    TextView mTologin;
 
     public static HomeFragment newInstance(String string) {
         HomeFragment fragment = null;
@@ -240,6 +244,12 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         params3.put("act", ConstantUrl.TRADE_HOME_INDEX);
         params3.put("name", "USDT");
         mPresenter.getMartketList(DataUtil.sign(params3));
+
+        if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+            mTologin.setText(getString(R.string.login));
+        }else {
+            mTologin.setText(R.string.islogin);
+        }
     }
 
 
@@ -292,7 +302,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         //设置自动轮播，默认为true
         banner.isAutoPlay(true);
         //设置轮播时间
-        banner.setDelayTime(1500);
+        banner.setDelayTime(3000);
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.CENTER);
         //banner设置方法全部调用完毕时最后调用
@@ -330,12 +340,15 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         mAdapter.setNewData(bean.getData());
 
     }
+
     private int sort = 0;
-    private int mCurrentPosition = -1;private String searchAsset = "";
+    private int mCurrentPosition = -1;
+    private String searchAsset = "";
+
     @Override
     public void requestHotcoin(HomeData commonBean) {
 //        mKineQuickAdapter.setNewData(commonBean.getData());
-        if(EmptyUtils.isNotEmpty(commonBean)){
+        if (EmptyUtils.isNotEmpty(commonBean)) {
             for (int j = 0; j < commonBean.getData().size(); j++) {
                 if (mCurrentPosition == j) {
                     commonBean.getData().get(j).isShow = true;
@@ -353,7 +366,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     }
 
 
-    @OnClick({R.id.ll_chongtibi, R.id.ll_toupiao, R.id.ll_gongmu, R.id.ll_heyuejiaoyi})
+    @OnClick({R.id.ll_chongtibi, R.id.ll_toupiao, R.id.ll_gongmu, R.id.ll_heyuejiaoyi, R.id.shareqiu, R.id.servicezai, R.id.toasset})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_chongtibi:
@@ -382,7 +395,34 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
                 intent3.putExtra("title", getString(R.string.contract));
                 startActivityAfterLogin(intent3);
                 break;
+
+            case R.id.shareqiu:
+                goInvitation();
+                break;
+            case R.id.servicezai:
+                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.service);
+                startActivity(intent0);
+                break;
+            case R.id.toasset:
+                Intent toasset = new Intent();
+                toasset.setClass(mContext, AssetActivity.class);
+                toasset.putExtra("wallet_type", "general");
+                toasset.putExtra("title", getString(R.string.finance_spot_assets));
+                startActivityAfterLogin(toasset);
+                break;
+
         }
+    }
+
+    private void goInvitation() {
+        Intent intent3 = new Intent(mContext, LinkWebViewActivity.class);
+        intent3.putExtra(LinkWebViewActivity.WEB_status, 1);
+        intent3.putExtra("title", 1);
+        intent3.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_invitation));
+        intent3.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.INVITE + "?token=" + SPUtils.getString(Constants.TOKEN, ""));
+        startActivityAfterLogin(intent3);
     }
 
     @Override
@@ -397,7 +437,8 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     }
 
     @Override
-    public void doItem(int item) {mCurrentPosition = item;
+    public void doItem(int item) {
+        mCurrentPosition = item;
     }
 
 }

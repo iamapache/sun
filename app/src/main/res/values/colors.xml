@@ -12,10 +12,10 @@
     <color name="alipay">#00a5ff</color>
     <color name="gray_e5">#e5e5e5</color>
 
-    <color name="colorTheme">#12151A</color>
+    <color name="colorTheme">#363947</color>
     <color name="colorTheme2">#001e3a</color>
     <color name="colorTheme3">#FDF8E0</color>
-    <color name="title_color">#FBB03B</color>
+    <color name="title_color">#EEC67F</color>
     <color name="colorCutOffSide">#cccccc</color>
     <color name="backGroundColor">#12151A</color>
 
@@ -31,9 +31,10 @@
     <color name="common_bule">#5470e7</color>
     <color name="common_divier">#e5e5e5</color>
     <color name="common_edbg">#F2F2F2</color>
-    <color name="common_red">#f43530</color>
-    <color name="common_green">#25A035</color>
-
+    <color name="common_red">#D4273E</color>
+    <color name="common_green">#00BB7E</color>
+    <color name="common_cheng"> #EEC67F</color>
+    <color name="common_hui"> #51535C</color>
     <color name="common_lan"> #192F47</color>
     <color name="depth_background">#101724</color>
     <color name="depth_text_color">#587094</color>
@@ -75,7 +76,7 @@
     <color name="common_divider_wide">@color/light_white</color>
 
 
-    <color name="common_ggray">#9FA4B2</color>
+    <color name="common_ggray">#6D778B</color>
     <color name="common_black">#1B1E22</color>
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorTheme"
+    android:background="#363947"
     android:orientation="vertical">
 
     <View
@@ -19,6 +19,7 @@
         android:gravity="center_vertical">
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/img_bank"
             android:layout_width="@dimen/d_30dp"
             android:layout_height="@dimen/d_30dp"
@@ -43,7 +44,7 @@
                     android:gravity="center_vertical|bottom"
                     android:maxLines="1"
                     android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_15dp"
+                    android:textSize="@dimen/d_14dp"
                     tools:text="ETH" />
 
                 <TextView
@@ -54,7 +55,7 @@
                     android:gravity="center_vertical|bottom"
                     android:maxLines="1"
                     android:textColor="#9FA4B2"
-                    android:textSize="@dimen/d_13dp"
+                    android:textSize="@dimen/d_12dp"
                     tools:text="/ETH" />
             </LinearLayout>
 
@@ -67,15 +68,16 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="#9FA4B2"
-                android:textSize="@dimen/d_12dp"
+                android:textSize="@dimen/d_11dp"
                 tools:text="ETH" />
         </LinearLayout>
 
         <LinearLayout
+            android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:gravity="center_vertical|end"
+            android:gravity="center_vertical|start"
             android:orientation="vertical">
 
             <TextView
@@ -85,7 +87,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/common_red"
-                android:textSize="@dimen/d_15dp"
+                android:textSize="@dimen/d_16dp"
                 tools:text="ETH" />
 
             <TextView
@@ -96,7 +98,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="#9FA4B2"
-                android:textSize="@dimen/d_12dp"
+                android:textSize="@dimen/d_11dp"
                 tools:text="ETH" />
         </LinearLayout>
 
@@ -111,7 +113,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="@dimen/d_12dp"
+            android:textSize="@dimen/d_16dp"
             tools:text="ETH" />
     </LinearLayout>
 

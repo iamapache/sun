@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/d_3dp"
-        android:textSize="@dimen/d_11dp"
+        android:textSize="@dimen/d_12dp"
         android:gravity="center"
-        android:textColor="@color/common_ggray"/>
+        android:textColor="#6D778B"/>
 </LinearLayout>

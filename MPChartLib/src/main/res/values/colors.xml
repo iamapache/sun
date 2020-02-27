@@ -7,8 +7,8 @@
     <color name="white">#ffffff</color>
     <color name="common_ggray">#9FA4B2</color>
     <color name="common_black">#1B1E22</color>
-    <color name="common_red">#f43530</color>
-    <color name="common_green">#25A035</color>
+    <color name="common_red">#D4273E</color>
+    <color name="common_green">#00BB7E</color>
     <color name="title_color">#FBB03B</color>
     <color name="common_lan"> #192F47</color>
     <color name="common_slan"> #001E3A</color>
@@ -21,7 +21,7 @@
     <color name="ma10">#E9967A</color>
     <color name="ma20">#8d4bbb</color>
     <color name="ma30">#804000</color>
-
+    <color name="backg">#343434</color>
     <!-- chart -->
     <color name="chart_bg">#ffffff</color>
     <color name="marker_bg">#ff8c0d</color>

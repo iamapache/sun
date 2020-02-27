@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:background="@color/colorTheme"
+
         android:gravity="center_vertical">
 
         <ImageView
@@ -26,13 +27,14 @@
             <ImageView
                 android:layout_width="27dp"
                 android:layout_height="27dp"
+                android:visibility="gone"
                 android:src="@mipmap/applogo" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="GDC"
+                android:text="@string/item_market"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -56,19 +58,33 @@
 
 
     </LinearLayout>
-
-    <android.support.design.widget.TabLayout
+    <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/stl"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_40dp"
-        android:background="@color/common_black"
-        app:tabBackground="@color/common_black"
-        app:tabIndicatorColor="@color/title_color"
-        app:tabIndicatorHeight="@dimen/d_2dp"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/title_color"
-        app:tabTextColor="@color/white"
-        />
+        android:layout_height="@dimen/d_44dp"
+        android:background="#363947"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        tl:tl_tab_space_equal="false"
+        tl:tl_indicator_color="@color/common_hui"
+        tl:tl_indicator_margin_left="2dp"
+        tl:tl_indicator_margin_right="2dp"
+        tl:tl_indicator_style="BLOCK"
+        tl:tl_textSelectColor="@color/common_cheng"
+        tl:tl_textUnselectColor="@color/common_title_unbg"
+        tl:tl_textsize="@dimen/d_15dp"/>
+<!--    <android.support.design.widget.TabLayout-->
+<!--        android:id="@+id/stl"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/d_40dp"-->
+<!--        android:background="@color/common_black"-->
+<!--        app:tabBackground="@color/common_black"-->
+<!--        app:tabIndicatorColor="@color/title_color"-->
+<!--        app:tabIndicatorHeight="@dimen/d_2dp"-->
+<!--        app:tabMode="fixed"-->
+<!--        app:tabSelectedTextColor="@color/title_color"-->
+<!--        app:tabTextColor="@color/white"-->
+<!--        />-->
 <!--        tl:tl_tab_space_equal="false"-->
 <!--        tl:tl_indicator_color="#09306a"-->
 <!--        tl:tl_indicator_margin_left="2dp"-->

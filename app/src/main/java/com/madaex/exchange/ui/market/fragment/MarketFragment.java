@@ -3,7 +3,6 @@ package com.madaex.exchange.ui.market.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
+import com.flyco.tablayout.SlidingTabLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
@@ -53,7 +53,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
 public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implements HomeContract.View {
 
     @BindView(R.id.stl)
-    TabLayout mStl;
+    SlidingTabLayout mStl;
     @BindView(R.id.vp)
     NoScrollViewPager mVp;
     Unbinder unbinder;
@@ -252,8 +252,8 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
         mVp.setAdapter(mAdapter);
         mVp.setCurrentItem(1);
         mVp.setOffscreenPageLimit(2);
-        mStl.setupWithViewPager(mVp);
-        mStl.setTabsFromPagerAdapter(mAdapter);
+        mStl.setViewPager(mVp);
+//        mStl.setTabsFromPagerAdapter(mAdapter);
     }
 
 }

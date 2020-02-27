@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.allenliu.versionchecklib.v2.builder.NotificationBuilder;
@@ -30,6 +29,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
+import com.madaex.exchange.common.languagelib.LanguageType;
+import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.RegexUtil;
@@ -85,11 +86,13 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     @BindView(R.id.img)
     ImageView mImageView;
     @BindView(R.id.rl_info)
-    RelativeLayout mRlInfo;
+    LinearLayout mRlInfo;
     @BindView(R.id.mark)
     TextView mark;
     @BindView(R.id.img_msg)
     ImageViewBound mImgMsg;
+    @BindView(R.id.language)
+    TextView mLanguage;
     private CustomPopWindow mCustomPopWindow;
 
     public static MineFragment newInstance(String string) {
@@ -160,7 +163,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         super.onDestroyView();
         unbinder.unbind();
     }
-
+    private int selectedLanguage;
     @Override
     protected void lazyLoad() {
         if (!isPrepared || !isVisible) {
@@ -171,6 +174,12 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.USER_NEWS_TOTAL);
         mPresenter.getMessageCount(DataUtil.sign(params));
+        selectedLanguage = MultiLanguageUtil.getInstance().getLanguageType();
+        if (selectedLanguage == LanguageType.LANGUAGE_CHINESE_SIMPLIFIED) {
+            mLanguage.setText(getString(R.string.setting_simplified_chinese));
+        } else if (selectedLanguage == LanguageType.LANGUAGE_EN) {
+            mLanguage.setText(getString(R.string.setting_language_english));
+        }
     }
 
 

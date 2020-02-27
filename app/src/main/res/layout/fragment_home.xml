@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
 
 
@@ -9,13 +10,13 @@
         android:id="@+id/img_scan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:background="@color/colorTheme"
+
         android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="@dimen/d_44dp"
             android:layout_height="@dimen/d_22dp"
-            android:layout_marginLeft="@dimen/d_15dp"
+            android:layout_marginLeft="@dimen/d_5dp"
             android:src="@mipmap/icon_sacn" />
 
 
@@ -34,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="GDC"
+                android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -64,8 +65,7 @@
             <com.youth.banner.Banner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="144dp"
-                android:background="@color/common_black" />
+                android:layout_height="144dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,8 +95,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:background="@color/common_black"
-
                     android:text="新币上线,ALSC将于08.10正式发布"
                     android:textColor="#ffffffff"
                     android:textSize="13sp" />
@@ -106,14 +104,134 @@
                 android:id="@+id/hotcoinview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/common_black" />
+                android:layout_margin="10dp"
+                android:background="#21212A" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/toasset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:text="我的资产"
+                            android:textColor="#ffffffff"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:maxLines="1"
+                            android:text="在线客服"
+                            android:textColor="#B9BAC8"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/tologin"
+                            android:layout_width="60dp"
+                            android:layout_height="24dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@mipmap/bg_button"
+                            android:gravity="center"
+                            android:text="@string/login"
+                            android:textColor="#523D17"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="66dp"
+                            android:layout_height="43dp"
+                            android:background="@mipmap/zic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/shareqiu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="15dp"
+                            android:background="@mipmap/shareqiu" />
+
+                        <TextView
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:maxLines="1"
+                            android:text="全球分享"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/servicezai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="15dp"
+                            android:background="@mipmap/servicezaixian" />
+
+                        <TextView
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:maxLines="1"
+                            android:text="在线客服"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/common_black"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -210,6 +328,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -222,60 +341,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="@string/bbmarket"
-                    android:textColor="@color/white"
                     android:layout_marginRight="15dp"
-
+                    android:layout_weight="1"
                     android:drawableRight="@mipmap/icon_right"
                     android:drawablePadding="5dp"
+                    android:gravity="start"
+
+                    android:text="@string/bbmarket"
+                    android:textColor="@color/white"
                     android:textSize="16dp" />
 
 
-
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_weight="1"
-                    android:text="@string/Market"
-                    android:textColor="@color/common_ggray"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="@string/newPrice"
-                    android:textColor="@color/common_ggray"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginLeft="65dp"
-                    android:gravity="end"
-                    android:text="@string/Charge"
-                    android:textColor="@color/common_ggray"
-                    android:textSize="12dp" />
-            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/common_black"
                 android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
