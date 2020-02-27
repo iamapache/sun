@@ -2,6 +2,7 @@ package com.madaex.exchange.ui.mine.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -88,7 +90,8 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     ImageView mImgPopview;
     @BindView(R.id.tologin)
     TextView mTologin;
-
+    @BindView(R.id.today_tab)
+    RadioButton today_tab;
     public static HomeFragment newInstance(String string) {
         HomeFragment fragment = null;
         if (fragment == null) {
@@ -187,6 +190,8 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
                 startActivityAfterLogin(new Intent(mContext, AccountManagerActivity.class));
             }
         });
+
+
     }
 
     private void openScanCode() {

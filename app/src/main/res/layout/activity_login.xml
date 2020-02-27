@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:fitsSystemWindows="true"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bgground_login"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="44dp">
+        android:layout_height="44dp"
+        android:gravity="center_vertical">
 
         <ImageView
-            android:layout_marginLeft="@dimen/d_15dp"
+            android:visibility="gone"
             android:id="@+id/img_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/icon_blanck_back"/>
+            android:layout_marginLeft="@dimen/d_15dp"
+            android:background="@mipmap/icon_blanck_back" />
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -31,76 +33,100 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@mipmap/applogo"/>
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:gravity="center_vertical"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="欢迎使用"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="链·黄金"
+                        android:textColor="@color/white"
+                        android:textSize="28sp" />
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_marginLeft="13dp"
+                        android:src="@mipmap/applogo" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="见证收益精彩"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:src="@mipmap/icon_dengluye_zhanghu"
                     android:layout_width="26dp"
-                    android:layout_height="26dp"/>
+                    android:layout_height="26dp"
+                    android:src="@mipmap/icon_dengluye_zhanghu"
+                    android:visibility="gone" />
+
                 <LinearLayout
-                    android:visibility="gone"
                     android:id="@+id/ll_code"
-                    android:gravity="center_vertical"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/tv_addresscode"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="+86"
-                        android:maxLines="1"
                         android:gravity="center"
-                        android:drawableRight="@mipmap/icon_down"
+                        android:maxLines="1"
+                        android:text="+86"
                         android:textColor="@color/colorCutOffSide"
-                        android:textSize="14sp"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
-                <EditText
+                <View
                     android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:background="@color/common_title_unbg" />
+                <EditText
                     android:id="@+id/phone"
-                    android:layout_weight="1"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_weight="1"
                     android:background="@null"
                     android:hint="@string/user_hint_login"
                     android:maxLength="30"
-                    android:text="" android:maxLines="1"
+                    android:maxLines="1"
+                    android:text=""
                     android:textColor="@color/common_text_1"
                     android:textColorHint="@color/colorCutOffSide"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
+
                 <ImageView
-                    android:visibility="gone"
                     android:id="@+id/img_clear"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="8dp"
-                    android:src="@mipmap/icon_clear"/>
+                    android:src="@mipmap/icon_clear"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <View
@@ -108,23 +134,25 @@
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/common_black"/>
+                android:background="@color/common_black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
                 <ImageView
-                    android:src="@mipmap/icon_dengluye_mima"
                     android:layout_width="26dp"
-                    android:layout_height="26dp"/>
+                    android:layout_height="26dp"
+                    android:src="@mipmap/icon_dengluye_mima"
+                    android:visibility="gone" />
+
                 <EditText
                     android:id="@+id/password"
-                    android:layout_marginLeft="@dimen/d_10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -132,31 +160,33 @@
                     android:hint="@string/pwd_hint_login"
                     android:inputType="textPassword"
                     android:maxLength="20"
-                    android:text="" android:maxLines="1"
+                    android:maxLines="1"
+                    android:text=""
                     android:textColor="@color/common_text_1"
                     android:textColorHint="@color/colorCutOffSide"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/img_switch_pwd"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:padding="8dp"
-                    android:src="@mipmap/denglu_by"/>
+                    android:src="@mipmap/denglu_by" />
             </LinearLayout>
 
             <View
                 android:id="@+id/view2"
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="30dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -166,12 +196,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_forget_pwd"
                     android:textColor="@color/white"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/tv_register"
@@ -180,18 +210,47 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lijiregst"
                     android:textColor="@color/white"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="46dp"
+                android:layout_marginRight="30dp">
+
+                <CheckBox
+                    android:id="@+id/agree_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:background="@android:color/transparent"
+                    android:button="@drawable/check_login_selector"
+                    android:checked="true"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:id="@+id/ll_agree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_xieyi"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btn_login"
                 style="@style/ButtonStyle"
-                android:background="@mipmap/bg_login"
                 android:layout_marginLeft="40dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginTop="60dp"
-                android:text="@string/login"/>
-
+                android:background="@mipmap/bg_login"
+                android:text="@string/login"
+                android:textColor="#523D17" />
 
 
         </LinearLayout>

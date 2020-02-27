@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_margin="16dp"
-                android:background="@color/common_black"
+                android:background="@mipmap/bg_asset"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -60,8 +60,8 @@
                     <ImageView
                         android:id="@+id/gone"
                         android:layout_marginLeft="25dp"
-                        android:layout_width="22dp"
-                        android:layout_height="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
                         android:src="@mipmap/denglu_zy" />
                 </LinearLayout>
@@ -146,32 +146,26 @@
                     android:textColorHint="@color/colorCutOffSide"
                     android:textSize="@dimen/d_14dp" />
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/d_10dp"
-                    android:layout_marginBottom="@dimen/d_10dp"
-                    android:background="@color/common_title_unbg" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/d_10dp"
-                    android:text="@string/yingcang"
-                    android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_14dp" />
 
                 <CheckBox
                     android:id="@+id/cb_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_10dp"
-                    android:layout_marginRight="@dimen/d_10dp"
+
                     android:background="@android:color/transparent"
                     android:button="@drawable/check_regist_selector"
                     android:checked="false"
                     android:gravity="center_vertical" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:text="@string/yingcang"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="@dimen/d_14dp" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView

@@ -554,4 +554,5 @@
     <string name="namevol">名称/成交量</string>
     <string name="islogin">已登录</string>
     <string name="lijiregst">立即注册</string>
+    <string name="login_xieyi">我已经阅读并同意《用户服务协议及隐私政策》</string>
 </resources>
