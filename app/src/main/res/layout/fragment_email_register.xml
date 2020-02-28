@@ -173,7 +173,7 @@
             android:layout_marginLeft="@dimen/d_10dp"
             android:layout_marginRight="@dimen/d_10dp"
             android:background="@android:color/transparent"
-            android:button="@drawable/check_regist_selector"
+            android:button="@drawable/check_login_selector"
             android:checked="true"
             android:gravity="center_vertical"
             />

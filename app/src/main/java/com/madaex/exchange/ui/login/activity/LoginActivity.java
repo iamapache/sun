@@ -96,13 +96,13 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
             public void afterTextChanged(Editable editable) {
                 if (TextUtils.isEmpty(editable.toString())) {
                     mImgClear.setVisibility(View.INVISIBLE);
-                    mLlCode.setVisibility(View.GONE);
+//                    mLlCode.setVisibility(View.GONE);
                 } else {
                     mImgClear.setVisibility(View.VISIBLE);
                     if (editable.toString().contains("@")) {
-                        mLlCode.setVisibility(View.GONE);
+//                        mLlCode.setVisibility(View.GONE);
                     }else {
-                        mLlCode.setVisibility(View.GONE);
+//                        mLlCode.setVisibility(View.GONE);
                     }
                 }
             }

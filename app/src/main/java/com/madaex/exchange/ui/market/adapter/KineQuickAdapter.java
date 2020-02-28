@@ -60,6 +60,15 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
     public void setData(List<Home> mCategoryDatas) {
         this.mCategoryDatas = mCategoryDatas;
     }
+    public void setnewData(List<Home> mCategoryDatas) {
+        mCategoryDatas.clear();
+        mCategoryDatas2.clear();
+        issort= 0;
+        status=3;
+        parentposition=0;
+        mCurrentPosition=-1;
+        this.mCategoryDatas = mCategoryDatas;
+    }
 
 
     public void filter(String charString, int issort, int mCurrentPosition, boolean b) {

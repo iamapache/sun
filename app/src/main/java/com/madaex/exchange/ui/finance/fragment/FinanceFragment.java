@@ -3,7 +3,6 @@ package com.madaex.exchange.ui.finance.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,14 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.animation.Easing;
-import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -49,7 +41,6 @@ import com.madaex.exchange.ui.mine.activity.AccountManagerActivity;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -95,10 +86,18 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     LinearLayout mLlGongmu;
     @BindView(R.id.img_popview)
     ImageView mImgPopview;
-    @BindView(R.id.mPieChart)
-    PieChart mPieChart;
+    //    @BindView(R.id.mPieChart)
+//    PieChart mPieChart;
     @BindView(R.id.asset)
     TextView mAsset;
+    @BindView(R.id.bili1)
+    TextView mBili1;
+    @BindView(R.id.bili2)
+    TextView mBili2;
+    @BindView(R.id.bili3)
+    TextView mBili3;
+    @BindView(R.id.bili4)
+    TextView mBili4;
     private CustomPopWindow mCustomPopWindow;
 
     public static FinanceFragment newInstance(String string) {
@@ -213,11 +212,11 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
         mMoney3.setText("￥ 0.0");
         mMoney4.setText("￥ 0.0");
         mCny.setText("￥ 0.0");
-        initChart(1,
-                1,
-                1,
-                1, "",
-                "", "");
+//        initChart(1,
+//                1,
+//                1,
+//                1, "",
+//                "", "");
     }
 
     @Override
@@ -227,11 +226,11 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
         mMoney3.setText("￥ 0.0");
         mMoney4.setText("￥ 0.0");
         mCny.setText("￥ 0.0");
-        initChart(1,
-                1,
-                1,
-                1, "",
-                "", "");
+//        initChart(1,
+//                1,
+//                1,
+//                1, "",
+//                "", "");
     }
 
     @Override
@@ -254,123 +253,114 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             mMoney2.setText("￥  " + commonBean.getData().getCoin_hot().get(1).getValue());
             mMoney3.setText("￥  " + commonBean.getData().getCoin_hot().get(2).getValue());
             mMoney4.setText("￥  " + commonBean.getData().getCoin_hot().get(3).getValue());
-            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
-                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
-                    Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),
-                    Float.valueOf(commonBean.getData().getCoin_hot().get(3).getValue()), commonBean.getData().getCoin_hot().get(0).getName(),
-                    commonBean.getData().getCoin_hot().get(1).getName(), commonBean.getData().getCoin_hot().get(2).getName());
+//            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
+//                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
+//                    Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),
+//                    Float.valueOf(commonBean.getData().getCoin_hot().get(3).getValue()), commonBean.getData().getCoin_hot().get(0).getName(),
+//                    commonBean.getData().getCoin_hot().get(1).getName(), commonBean.getData().getCoin_hot().get(2).getName());
         }
 
     }
 
-    /**
-     * @param f1
-     * @param f2
-     * @param f3
-     * @param f4
-     * @param str1
-     * @param str2
-     * @param str3
-     */
-    private void initChart(float f1, float f2, float f3, float f4, String str1, String str2, String str3) {
-        if (f1 == 0 && f2 == 0 && f3 == 0 && f4 == 0) {
-            f1 = 1;
-            f2 = 1;
-            f3 = 1;
-            f4 = 1;
-        }
-        mPieChart.setUsePercentValues(true);
-        mPieChart.getDescription().setEnabled(false);
-        mPieChart.setExtraOffsets(2, 2, 2, 2);
-        mPieChart.setBackgroundColor(Color.WHITE);
-        mPieChart.setDragDecelerationFrictionCoef(0.95f);
-        mPieChart.getLegend().setEnabled(false);
-        mPieChart.setDrawHoleEnabled(true);
-        mPieChart.setBackgroundColor(getResources().getColor(R.color.common_black));
-        mPieChart.setHoleColor(Color.WHITE);
+//    private void initChart(float f1, float f2, float f3, float f4, String str1, String str2, String str3) {
+//        if (f1 == 0 && f2 == 0 && f3 == 0 && f4 == 0) {
+//            f1 = 1;
+//            f2 = 1;
+//            f3 = 1;
+//            f4 = 1;
+//        }
+//        mPieChart.setUsePercentValues(true);
+//        mPieChart.getDescription().setEnabled(false);
+//        mPieChart.setExtraOffsets(2, 2, 2, 2);
+//        mPieChart.setBackgroundColor(Color.WHITE);
+//        mPieChart.setDragDecelerationFrictionCoef(0.95f);
+//        mPieChart.getLegend().setEnabled(false);
+//        mPieChart.setDrawHoleEnabled(true);
+//        mPieChart.setBackgroundColor(getResources().getColor(R.color.common_black));
+//        mPieChart.setHoleColor(Color.WHITE);
+////
+//        mPieChart.setTransparentCircleColor(Color.WHITE);
+//        mPieChart.setTransparentCircleAlpha(110);
+////
+////        mPieChart.setHoleRadius(58f);
+////        mPieChart.setTransparentCircleRadius(61f);
 //
-        mPieChart.setTransparentCircleColor(Color.WHITE);
-        mPieChart.setTransparentCircleAlpha(110);
+//        mPieChart.setDrawCenterText(false);
 //
-//        mPieChart.setHoleRadius(58f);
-//        mPieChart.setTransparentCircleRadius(61f);
-
-        mPieChart.setDrawCenterText(false);
-
-        mPieChart.setRotationAngle(0);
-        // 触摸旋转
-        mPieChart.setRotationEnabled(true);
-        mPieChart.setHighlightPerTapEnabled(true);
-
-        //变化监听
-        mPieChart.setOnChartValueSelectedListener(this);
-        mPieChart.setDrawHoleEnabled(false);
-        //模拟数据
-        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
-        entries.add(new PieEntry(f1, str1));
-        entries.add(new PieEntry(f2, str2));
-        entries.add(new PieEntry(f3, str3));
-        entries.add(new PieEntry(f4, getString(R.string.finance_other)));
-
-        //设置数据
-        setData(entries);
-
-        mPieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
-
-        Legend l = mPieChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(false);
-        l.setXEntrySpace(7f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
-        // 输入标签样式
-        mPieChart.setEntryLabelColor(Color.TRANSPARENT);
-        mPieChart.setEntryLabelTextSize(0f);
-        mPieChart.setEntryLabelColor(Color.TRANSPARENT);
-    }
+//        mPieChart.setRotationAngle(0);
+//        // 触摸旋转
+//        mPieChart.setRotationEnabled(true);
+//        mPieChart.setHighlightPerTapEnabled(true);
+//
+//        //变化监听
+//        mPieChart.setOnChartValueSelectedListener(this);
+//        mPieChart.setDrawHoleEnabled(false);
+//        //模拟数据
+//        ArrayList<PieEntry> entries = new ArrayList<PieEntry>();
+//        entries.add(new PieEntry(f1, str1));
+//        entries.add(new PieEntry(f2, str2));
+//        entries.add(new PieEntry(f3, str3));
+//        entries.add(new PieEntry(f4, getString(R.string.finance_other)));
+//
+//        //设置数据
+//        setData(entries);
+//
+//        mPieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
+//
+//        Legend l = mPieChart.getLegend();
+//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setDrawInside(false);
+//        l.setXEntrySpace(7f);
+//        l.setYEntrySpace(0f);
+//        l.setYOffset(0f);
+//        // 输入标签样式
+//        mPieChart.setEntryLabelColor(Color.TRANSPARENT);
+//        mPieChart.setEntryLabelTextSize(0f);
+//        mPieChart.setEntryLabelColor(Color.TRANSPARENT);
+//    }
 
     //设置数据
-    private void setData(ArrayList<PieEntry> entries) {
-        PieDataSet dataSet = new PieDataSet(entries, "");
-        dataSet.setSliceSpace(1f);
-        dataSet.setSelectionShift(1f);
-
-        //数据和颜色
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-//        colors.add(R.color.key_ok_color);
-//        colors.add(R.color.light_pink);
-//        colors.add(R.color.common_divier);
-//        colors.add(R.color.common_text_5);
-        colors.add(Color.rgb(59, 177, 247));
-        colors.add(Color.rgb(225, 161, 87));
-        colors.add(Color.rgb(223, 227, 226));
-        colors.add(Color.rgb(111, 116, 110));
-        dataSet.setColors(colors);
-
-//        dataSet.setValueLinePart1OffsetPercentage(80.f);
-//        dataSet.setValueLinePart1Length(0.5f);
-//        dataSet.setValueLinePart2Length(0.5f);
-//        dataSet.setValueLineColor(Color.BLACK);
-//        //当值显示在界面外面的时候是否允许改变量行长度
-//        dataSet.setValueLineVariableLength(false);
-//        //设置线的宽度
-//        dataSet.setValueLineWidth(1);
-//        //设置项X值拿出去
-//        dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-//        //设置将Y轴的值拿出去
-//        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
-
-        PieData data = new PieData(dataSet);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(0f);
-        data.setValueTextColor(Color.TRANSPARENT);
-        mPieChart.setData(data);
-        mPieChart.highlightValues(null);
-        //刷新
-        mPieChart.invalidate();
-    }
+//    private void setData(ArrayList<PieEntry> entries) {
+//        PieDataSet dataSet = new PieDataSet(entries, "");
+//        dataSet.setSliceSpace(1f);
+//        dataSet.setSelectionShift(1f);
+//
+//        //数据和颜色
+//        ArrayList<Integer> colors = new ArrayList<Integer>();
+////        colors.add(R.color.key_ok_color);
+////        colors.add(R.color.light_pink);
+////        colors.add(R.color.common_divier);
+////        colors.add(R.color.common_text_5);
+//        colors.add(Color.rgb(59, 177, 247));
+//        colors.add(Color.rgb(225, 161, 87));
+//        colors.add(Color.rgb(223, 227, 226));
+//        colors.add(Color.rgb(111, 116, 110));
+//        dataSet.setColors(colors);
+//
+////        dataSet.setValueLinePart1OffsetPercentage(80.f);
+////        dataSet.setValueLinePart1Length(0.5f);
+////        dataSet.setValueLinePart2Length(0.5f);
+////        dataSet.setValueLineColor(Color.BLACK);
+////        //当值显示在界面外面的时候是否允许改变量行长度
+////        dataSet.setValueLineVariableLength(false);
+////        //设置线的宽度
+////        dataSet.setValueLineWidth(1);
+////        //设置项X值拿出去
+////        dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+////        //设置将Y轴的值拿出去
+////        dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+//
+//        PieData data = new PieData(dataSet);
+//        data.setValueFormatter(new PercentFormatter());
+//        data.setValueTextSize(0f);
+//        data.setValueTextColor(Color.TRANSPARENT);
+//        mPieChart.setData(data);
+//        mPieChart.highlightValues(null);
+//        //刷新
+//        mPieChart.invalidate();
+//    }
 
     @Override
     protected void lazyLoad() {

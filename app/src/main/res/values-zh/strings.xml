@@ -38,7 +38,7 @@
     <string name="MINIMUMQUANTITYs">最小起卖量</string>
     <!--财务中心-->
     <string name="finance_center">财务中心</string>
-    <string name="finance_assets">总资产折合(%1$s)</string>
+    <string name="finance_assets">总资产折合（CNY）</string>
     <string name="finance_other">其他</string>
     <string name="finance_spot_assets">现货资产</string>
     <string name="finance_bank_card">银行卡</string>

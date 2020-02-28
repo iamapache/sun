@@ -3,19 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#363947"
+    android:background="@drawable/gradient"
     android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1dp"
-        android:background="@color/backGroundColor" />
+        android:layout_height="@dimen/d_1dp" />
 
     <LinearLayout
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_65dp"
-        android:background="@color/common_black"
         android:gravity="center_vertical">
 
         <ImageView
@@ -122,14 +120,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="@drawable/shape_gradient"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d_10dp">
+            android:layout_marginTop="@dimen/d_6dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -182,7 +179,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/colorTheme"
             android:id="@+id/ll_linechart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

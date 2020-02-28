@@ -80,7 +80,7 @@ import okhttp3.WebSocket;
  * 描述：  ${TODO}
  */
 
-public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements DealContract.View, CoinLister {
+public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements DealContract.View, CoinLister {
     @BindView(R.id.et_price)
     EditText mEtPrice;
     @BindView(R.id.et_number)
@@ -151,10 +151,10 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     String str = "";
     Home baseBean = new Home();
 
-    public static BuyFragment newInstance(String string, String one_xnb, String two_xnb) {
-        BuyFragment fragment = null;
+    public static Buy2Fragment newInstance(String string, String one_xnb, String two_xnb) {
+        Buy2Fragment fragment = null;
         if (fragment == null) {
-            fragment = new BuyFragment();
+            fragment = new Buy2Fragment();
         }
         Bundle bundle = new Bundle();
         bundle.putString(Constants.ARGS, string);

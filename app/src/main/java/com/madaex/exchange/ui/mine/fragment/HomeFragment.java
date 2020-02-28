@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -49,6 +48,7 @@ import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -90,7 +90,10 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     @BindView(R.id.tologin)
     TextView mTologin;
     @BindView(R.id.today_tab)
-    RadioButton today_tab;
+    LinearLayout today_tab;
+    @BindView(R.id.record_tab)
+    LinearLayout record_tab;
+
     public static HomeFragment newInstance(String string) {
         HomeFragment fragment = null;
         if (fragment == null) {
@@ -190,9 +193,26 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
             }
         });
 
-
+        today_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iszhang = true;
+                today_tab.setBackgroundResource(R.drawable.common_tab_shape);
+                record_tab.setBackgroundResource(0);
+                getListLine();
+            }
+        });
+        record_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iszhang = false;
+                record_tab.setBackgroundResource(R.drawable.common_tab_shape);
+                today_tab.setBackgroundResource(0);
+                getListLine();
+            }
+        });
     }
-
+boolean iszhang = true;
     private void openScanCode() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
         intentIntegrator.setCaptureActivity(ScanActivity.class);
@@ -244,16 +264,20 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         params2.put("act", ConstantUrl.MARKET_GETHOTCOIN);
         mPresenter.update(DataUtil.sign(params2));
 
-        TreeMap params3 = new TreeMap<>();
-        params3.put("act", ConstantUrl.TRADE_HOME_INDEX);
-        params3.put("name", "USDT");
-        mPresenter.getMartketList(DataUtil.sign(params3));
+        getListLine();
 
         if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
             mTologin.setText(getString(R.string.login));
         }else {
             mTologin.setText(R.string.islogin);
         }
+    }
+
+    private void getListLine() {
+        TreeMap params3 = new TreeMap<>();
+        params3.put("act", ConstantUrl.TRADE_HOME_INDEX);
+        params3.put("name", "USDT");
+        mPresenter.getMartketList(DataUtil.sign(params3));
     }
 
 
@@ -358,10 +382,29 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
                     commonBean.getData().get(j).isShow = true;
                 }
             }
+            if(iszhang){
+                Iterator<Home> it = commonBean.getData().iterator();
+                while(it.hasNext()){
+                    Home home = it.next();
+                    if (home.getRiseRate().contains("-")) {
+                        it.remove();
+                    }
+                }
+            }else {
+                Iterator<Home> it = commonBean.getData().iterator();
+                while(it.hasNext()){
+                    Home home = it.next();
+                    if (!home.getRiseRate().contains("-")) {
+                        it.remove();
+                    }
+                }
+            }
+
             mKineQuickAdapter.setData(commonBean.getData());
 //        mAdapter.setNewData(msg);
             mKineQuickAdapter.filter(searchAsset, sort, mCurrentPosition, false);
         }
+
     }
 
     @Override

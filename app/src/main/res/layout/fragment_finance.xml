@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
-        android:background="@color/colorTheme"
         android:gravity="center_vertical">
 
         <ImageView
             android:layout_width="@dimen/d_22dp"
             android:layout_height="@dimen/d_22dp"
-            android:layout_marginRight="@dimen/d_15dp"/>
+            android:layout_marginRight="@dimen/d_15dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +23,7 @@
             android:gravity="center"
             android:text="@string/item_finance_cetener"
             android:textColor="@color/white"
-            android:textSize="18dp"/>
+            android:textSize="18dp" />
 
 
         <ImageView
@@ -31,7 +31,7 @@
             android:layout_width="@dimen/d_22dp"
             android:layout_height="@dimen/d_22dp"
             android:layout_marginRight="@dimen/d_15dp"
-            android:src="@mipmap/mark_list"/>
+            android:src="@mipmap/mark_list" />
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -47,17 +47,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/common_black"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/asset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/finance_assets"
-                    android:textColor="@color/common_text_1"
-                    android:textSize="17dp"/>
 
                 <TextView
                     android:id="@+id/cny"
@@ -65,289 +56,635 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="￥0.00"
-                    android:textColor="#e4a578"
-                    android:textSize="25dp"/>
-            </LinearLayout>
+                    android:textColor="#EEC67F"
+                    android:textSize="28dp" />
 
+                <TextView
+                    android:id="@+id/asset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/finance_assets"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="2dp"
-                android:background="@color/common_black"
-                android:gravity="center"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/d_13dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/bili1"
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="0"
+                            android:textSize="16dp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:background="@mipmap/blue"/>
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/name1"
                                 style="@style/TextColorSizeStyle"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="GRC："
-                                android:textSize="14dp"/>
+                                android:layout_marginTop="6dp"
+                                android:maxLines="1"
+                                android:text="GRC"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
 
-
+                            <TextView
+                                android:id="@+id/money1"
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginLeft="6dp"
+                                android:maxLines="1"
+                                android:text="￥0.00"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
                         </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/bili2"
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="0"
+                            android:textSize="16dp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:gravity="center_vertical">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:background="@mipmap/fen"/>
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/name2"
                                 style="@style/TextColorSizeStyle"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="SNRC："
-                                android:textSize="14dp"/>
+                                android:layout_marginTop="6dp"
+                                android:maxLines="1"
+                                android:text="GNRC"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
 
-
+                            <TextView
+                                android:id="@+id/money2"
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginLeft="6dp"
+                                android:maxLines="1"
+                                android:text="￥0.00"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
                         </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="116dp"
+                    android:layout_height="181dp"
+                    android:background="@mipmap/zhuzhuangtu" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/bili3"
+                            style="@style/TextColorSizeStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:maxLines="1"
+                            android:text="0"
+                            android:textSize="16dp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:gravity="center_vertical">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:background="@mipmap/hui"/>
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/name3"
                                 style="@style/TextColorSizeStyle"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="6dp"
                                 android:maxLines="1"
-                                android:text="ETH："
-                                android:textSize="14dp"/>
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:gravity="center_vertical">
-
-                            <ImageView
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
-                                android:background="@mipmap/hese"/>
+                                android:text="ETH"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
 
                             <TextView
-                                android:id="@+id/name4"
+                                android:id="@+id/money3"
                                 style="@style/TextColorSizeStyle"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="8dp"
-                                android:text="@string/finance_other"
-                                android:textSize="14dp"/>
-
-
+                                android:layout_marginTop="6dp"
+                                android:layout_marginLeft="6dp"
+                                android:maxLines="1"
+                                android:text="￥0.00"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/money1"
+                            android:id="@+id/bili4"
                             style="@style/TextColorSizeStyle"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:maxLines="1"
-                            android:text="￥0.00"
-                            android:textSize="14dp"/>
+                            android:layout_marginTop="15dp"
+                            android:text="0"
+                            android:textSize="16dp" />
 
-                        <TextView
-                            android:id="@+id/money2"
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="6dp"
-                            android:maxLines="1"
-                            android:text="￥0.00"
-                            android:textSize="14dp"/>
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/money3"
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="6dp"
-                            android:maxLines="1"
-                            android:text="￥0.00"
-                            android:textSize="14dp"/>
+                            <TextView
+                                android:id="@+id/name4"
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_other"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
 
-                        <TextView
-                            android:id="@+id/money4"
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="6dp"
-                            android:maxLines="1"
-                            android:text="￥0.00"
-                            android:textSize="14dp"/>
+                            <TextView
+                                android:id="@+id/money4"
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginLeft="6dp"
+                                android:maxLines="1"
+                                android:text="￥0.00"
+                                android:textColor="#6C6E78"
+                                android:textSize="12dp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-                <com.github.mikephil.charting.charts.PieChart
-                    android:id="@+id/mPieChart"
-                    android:layout_width="130dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"/>
-
             </LinearLayout>
+
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="140dp"-->
+            <!--                android:layout_marginTop="2dp"-->
+            <!--                android:background="@color/common_black"-->
+            <!--                android:gravity="center"-->
+            <!--                android:padding="10dp">-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="@dimen/d_13dp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:orientation="horizontal">-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <LinearLayout-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:gravity="center_vertical">-->
+
+            <!--                            <ImageView-->
+            <!--                                android:layout_width="14dp"-->
+            <!--                                android:layout_height="14dp"-->
+            <!--                                android:background="@mipmap/blue" />-->
+
+            <!--                            <TextView-->
+            <!--                                android:id="@+id/name1"-->
+            <!--                                style="@style/TextColorSizeStyle"-->
+            <!--                                android:layout_width="wrap_content"-->
+            <!--                                android:layout_height="wrap_content"-->
+            <!--                                android:layout_marginLeft="8dp"-->
+            <!--                                android:text="GRC："-->
+            <!--                                android:textSize="14dp" />-->
+
+
+            <!--                        </LinearLayout>-->
+
+            <!--                        <LinearLayout-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:gravity="center_vertical">-->
+
+            <!--                            <ImageView-->
+            <!--                                android:layout_width="14dp"-->
+            <!--                                android:layout_height="14dp"-->
+            <!--                                android:background="@mipmap/fen" />-->
+
+            <!--                            <TextView-->
+            <!--                                android:id="@+id/name2"-->
+            <!--                                style="@style/TextColorSizeStyle"-->
+            <!--                                android:layout_width="wrap_content"-->
+            <!--                                android:layout_height="wrap_content"-->
+            <!--                                android:layout_marginLeft="8dp"-->
+            <!--                                android:text="SNRC："-->
+            <!--                                android:textSize="14dp" />-->
+
+
+            <!--                        </LinearLayout>-->
+
+            <!--                        <LinearLayout-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:gravity="center_vertical">-->
+
+            <!--                            <ImageView-->
+            <!--                                android:layout_width="14dp"-->
+            <!--                                android:layout_height="14dp"-->
+            <!--                                android:background="@mipmap/hui" />-->
+
+            <!--                            <TextView-->
+            <!--                                android:id="@+id/name3"-->
+            <!--                                style="@style/TextColorSizeStyle"-->
+            <!--                                android:layout_width="wrap_content"-->
+            <!--                                android:layout_height="wrap_content"-->
+            <!--                                android:layout_marginLeft="8dp"-->
+            <!--                                android:maxLines="1"-->
+            <!--                                android:text="ETH："-->
+            <!--                                android:textSize="14dp" />-->
+
+
+            <!--                        </LinearLayout>-->
+
+            <!--                        <LinearLayout-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:gravity="center_vertical">-->
+
+            <!--                            <ImageView-->
+            <!--                                android:layout_width="14dp"-->
+            <!--                                android:layout_height="14dp"-->
+            <!--                                android:background="@mipmap/hese" />-->
+
+            <!--                            <TextView-->
+            <!--                                android:id="@+id/name4"-->
+            <!--                                style="@style/TextColorSizeStyle"-->
+            <!--                                android:layout_width="wrap_content"-->
+            <!--                                android:layout_height="wrap_content"-->
+            <!--                                android:layout_marginLeft="8dp"-->
+            <!--                                android:text="@string/finance_other"-->
+            <!--                                android:textSize="14dp" />-->
+
+
+            <!--                        </LinearLayout>-->
+            <!--                    </LinearLayout>-->
+
+            <!--                    <LinearLayout-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:orientation="vertical">-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/money1"-->
+            <!--                            style="@style/TextColorSizeStyle"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginLeft="16dp"-->
+            <!--                            android:maxLines="1"-->
+            <!--                            android:text="￥0.00"-->
+            <!--                            android:textSize="14dp" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/money2"-->
+            <!--                            style="@style/TextColorSizeStyle"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginLeft="16dp"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:maxLines="1"-->
+            <!--                            android:text="￥0.00"-->
+            <!--                            android:textSize="14dp" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/money3"-->
+            <!--                            style="@style/TextColorSizeStyle"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginLeft="16dp"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:maxLines="1"-->
+            <!--                            android:text="￥0.00"-->
+            <!--                            android:textSize="14dp" />-->
+
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/money4"-->
+            <!--                            style="@style/TextColorSizeStyle"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_marginLeft="16dp"-->
+            <!--                            android:layout_marginTop="6dp"-->
+            <!--                            android:maxLines="1"-->
+            <!--                            android:text="￥0.00"-->
+            <!--                            android:textSize="14dp" />-->
+            <!--                    </LinearLayout>-->
+            <!--                </LinearLayout>-->
+
+            <!--                <com.github.mikephil.charting.charts.PieChart-->
+            <!--                    android:id="@+id/mPieChart"-->
+            <!--                    android:layout_width="130dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_gravity="center" />-->
+
+            <!--            </LinearLayout>-->
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="111dp"
-                    android:background="@color/common_black">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="19dp">
 
                     <LinearLayout
-                        android:id="@+id/ll_asset"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:background="@mipmap/assets"/>
+                        <LinearLayout
+                            android:id="@+id/ll_asset"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
 
-                        <TextView
-                            android:id="@+id/textView"
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:maxLines="1"
-                            android:text="@string/finance_spot_assets"
-                            android:textSize="14dp"/>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/assets" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_spot_assets"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_bank"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/bank" />
+
+                            <TextView
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_bank_card"
+                                android:textSize="14dp" />
+                        </LinearLayout>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/backGroundColor"/>
+                    <!--                    <LinearLayout-->
+                    <!--                        android:visibility="gone"-->
+                    <!--                        android:id="@+id/ll_bank"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_marginLeft="1dp"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        android:gravity="center"-->
+                    <!--                        android:orientation="vertical">-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="30dp"-->
+                    <!--                            android:layout_height="30dp"-->
+                    <!--                            android:background="@mipmap/bank_card" />-->
+
+                    <!--                        <TextView-->
+                    <!--                            style="@style/TextColorSizeStyle"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_marginTop="10dp"-->
+                    <!--                            android:maxLines="1"-->
+                    <!--                            android:text="@string/SpotAssets"-->
+                    <!--                            android:textSize="14dp" />-->
+                    <!--                    </LinearLayout>-->
+
+
                     <LinearLayout
-                        android:id="@+id/ll_bank"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="1dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="19dp"
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:background="@mipmap/bank_card"/>
+                        <LinearLayout
 
-                        <TextView
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:maxLines="1"
-                            android:text="@string/SpotAssets"
-                            android:textSize="14dp"
-                            />
+                            android:id="@+id/ll_c2ctrans"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/c2c" />
+
+                            <TextView
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_c2c"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_otc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/otc" />
+
+                            <TextView
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_otc"
+                                android:textSize="14dp" />
+                        </LinearLayout>
                     </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/backGroundColor"/>
+
                     <LinearLayout
-                        android:id="@+id/ll_c2ctrans"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="1dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_marginTop="19dp">
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:background="@mipmap/c2c"/>
 
-                        <TextView
-                            style="@style/TextColorSizeStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:maxLines="1"
-                            android:text="@string/contract"
-                            android:textSize="14dp"
-                            />
+                        <LinearLayout
+                            android:id="@+id/ll_votecoin"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/vote" />
+
+                            <TextView
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_vote"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_gongmu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:background="@mipmap/kuangk"
+                            android:gravity="center|start"
+                            android:orientation="vertical"
+                            android:padding="21dp">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@mipmap/offering" />
+
+                            <TextView
+                                style="@style/TextColorSizeStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:maxLines="1"
+                                android:text="@string/finance_offering"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1dp"
-                    android:background="@color/backGroundColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="110dp"
                     android:layout_marginTop="1dp"
-                    android:visibility="gone"
-                    android:background="@color/common_ggray">
+                    android:background="@color/common_ggray"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -359,7 +696,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:background="@mipmap/otc"/>
+                            android:background="@mipmap/otc" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -368,8 +705,7 @@
                             android:layout_marginTop="10dp"
                             android:maxLines="1"
                             android:text="@string/Platformtransfers"
-                            android:textSize="14dp"
-                            />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -384,7 +720,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:background="@mipmap/internaltransfer"/>
+                            android:background="@mipmap/internaltransfer" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -393,8 +729,7 @@
                             android:layout_marginTop="10dp"
                             android:maxLines="1"
                             android:text="@string/Internaltransfer"
-                            android:textSize="14dp"
-                            />
+                            android:textSize="14dp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -409,7 +744,7 @@
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:background="@mipmap/ncin"/>
+                            android:background="@mipmap/ncin" />
 
                         <TextView
                             style="@style/TextColorSizeStyle"
@@ -418,105 +753,14 @@
                             android:layout_marginTop="10dp"
                             android:maxLines="1"
                             android:text="@string/ncin"
-                            android:textSize="14dp"
-                            />
+                            android:textSize="14dp" />
                     </LinearLayout>
                 </LinearLayout>
 
 
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/backGroundColor"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/common_black">
 
-                <LinearLayout
-                    android:id="@+id/ll_otc"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@mipmap/otc"/>
-
-                    <TextView
-                        style="@style/TextColorSizeStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:maxLines="1"
-                        android:text="@string/finance_otc"
-                        android:textSize="14dp"
-                        />
-                </LinearLayout>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/backGroundColor"/>
-                <LinearLayout
-                    android:id="@+id/ll_votecoin"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@mipmap/vote"/>
-
-                    <TextView
-                        style="@style/TextColorSizeStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:maxLines="1"
-                        android:text="@string/finance_vote"
-                        android:textSize="14dp"
-                        />
-                </LinearLayout>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/backGroundColor"/>
-                <LinearLayout
-                    android:id="@+id/ll_gongmu"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@mipmap/offering"/>
-
-                    <TextView
-                        style="@style/TextColorSizeStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:maxLines="1"
-                        android:text="@string/finance_offering"
-                        android:textSize="14dp"
-                        />
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

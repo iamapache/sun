@@ -120,12 +120,12 @@ public class KLineView extends BaseView implements View.OnClickListener {
 //        candleChart.clear();
         candleChart.setDrawBorders(false);
         candleChart.setBorderWidth(0.7f);
-        if (landscape) {
-            candleChart.setBorderColor(ContextCompat.getColor(mContext, R.color.border_color));
-            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
-        } else {
-            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
-        }
+//        if (landscape) {
+//            candleChart.setBorderColor(ContextCompat.getColor(mContext, R.color.border_color));
+//            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
+//        } else {
+//            candleChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.common_black));
+//        }
         candleChart.setDragEnabled(landscape);
         candleChart.setScaleYEnabled(false);
         candleChart.setHardwareAccelerationEnabled(true);
@@ -145,7 +145,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
         //副图
         barChart.setDrawBorders(true);
         barChart.setBorderWidth(0.7f);
-        barChart.setBorderColor(ContextCompat.getColor(mContext, R.color.border_color));
+        barChart.setBorderColor(ContextCompat.getColor(mContext, R.color.title_color));
         barChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.border_color));
         barChart.setDragEnabled(landscape);
         barChart.setScaleYEnabled(false);

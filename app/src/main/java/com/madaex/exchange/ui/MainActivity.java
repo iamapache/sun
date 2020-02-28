@@ -24,7 +24,7 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.NoScrollViewPager;
 import com.madaex.exchange.ui.adapter.TabLayoutFragmentAdapter;
 import com.madaex.exchange.ui.buy.bean.Event;
-import com.madaex.exchange.ui.buy.fragment.DealFragment;
+import com.madaex.exchange.ui.buy.fragment.Deal2Fragment;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.fragment.FinanceFragment;
 import com.madaex.exchange.ui.market.fragment.MarketFragment;
@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //        mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(HomeFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
-        mFragments.add(DealFragment.newInstance(0));
+        mFragments.add(Deal2Fragment.newInstance(0));
 
         mFragments.add(FinanceFragment.newInstance(getString(R.string.item_finance)));
         mFragments.add(MineFragment.newInstance(getString(R.string.item_mine)));

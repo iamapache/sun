@@ -131,7 +131,7 @@ public class DepthMapView extends View {
                 mLineCount = typedArray.getInt(R.styleable.DepthMapView_line_count, 4);
                 mDotRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_dot_radius, ResourceUtil.dp2px(getContext(), mDotRadius));
                 mCircleRadius = typedArray.getDimensionPixelSize(R.styleable.DepthMapView_circle_radius, ResourceUtil.dp2px(getContext(), mCircleRadius));
-                mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_background_color, ResourceUtil.getColor(getContext(), R.color.depth_background));
+                mBackgroundColor = typedArray.getColor(R.styleable.DepthMapView_background_color, ResourceUtil.getColor(getContext(), R.color.transparent));
                 mBuyLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
                 mSellLinePaint.setStrokeWidth(typedArray.getDimensionPixelSize(R.styleable.DepthMapView_line_width, ResourceUtil.dp2px(getContext(), 1.5f)));
                 mTextPaint.setColor(typedArray.getColor(R.styleable.DepthMapView_text_color, ResourceUtil.getColor(getContext(), R.color.depth_text_color)));
