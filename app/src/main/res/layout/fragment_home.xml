@@ -63,14 +63,16 @@
             android:orientation="vertical">
 
             <com.youth.banner.Banner
+                android:layout_margin="12dp"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="144dp" />
 
             <LinearLayout
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -102,22 +104,24 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/hotcoinview"
+                android:background="#21212A"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#21212A" />
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="5dp"
+                android:layout_margin="12dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/toasset"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -178,6 +182,7 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:background="#21212A"
                         android:id="@+id/shareqiu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -202,6 +207,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:background="#21212A"
                         android:id="@+id/servicezai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -231,7 +237,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -333,7 +338,7 @@
                 android:id="@+id/tabs_rg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal">
 
@@ -359,7 +364,7 @@
                         android:checked="true"
                         android:gravity="center"
                         android:text="涨幅榜"
-                        android:textColor="@color/tab_text_color_selector"
+                        android:textColor="@color/common_green"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -368,7 +373,7 @@
                     android:id="@+id/record_tab"
                     android:layout_width="90dp"
                     android:layout_height="30dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="12dp"
                     android:gravity="center">
 
                     <ImageView

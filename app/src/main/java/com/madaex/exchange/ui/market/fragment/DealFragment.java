@@ -50,6 +50,7 @@ import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.activity.EntrustActivity;
 import com.madaex.exchange.ui.market.adapter.BuyDealAdapter;
 import com.madaex.exchange.ui.market.adapter.SellerDealAdapter;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.market.view.KeyboardUtil;
 import com.madaex.exchange.ui.market.view.MyKeyBoardView;
@@ -845,6 +846,26 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
             mCurrentnumber.setText(data.getData().getOne_xnb());
             mTvFour.setText(data.getData().getTwo_xnbd());
         }
+    }
+
+    @Override
+    public void requestSuccess(EntrustList bean) {
+
+    }
+
+    @Override
+    public void nodata(String msg) {
+
+    }
+
+    @Override
+    public void deleteSuccess(String msg) {
+
+    }
+
+    @Override
+    public void deleteError(String msg) {
+
     }
 
     private int stutas = 50;

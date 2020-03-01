@@ -41,6 +41,8 @@ import com.madaex.exchange.ui.mine.activity.AccountManagerActivity;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -240,7 +242,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             String sAgeFormat1 = getResources().getString(R.string.finance_assets);
             @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String sFinal1 = String.format(sAgeFormat1, "USDT");
             mAsset.setText(sFinal1);
-            mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
+            mCny.setText("￥  " + commonBean.getData().getAssets().getRmb() + "");
 //        mName1.setText(commonBean.getData().getXnb_list().get(0).getXnb_name());
 //        mName2.setText(commonBean.getData().getXnb_list().get(1).getXnb_name());
 //        mName3.setText(commonBean.getData().getXnb_list().get(2).getXnb_name());
@@ -249,10 +251,18 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             mName2.setText(commonBean.getData().getCoin_hot().get(1).getName());
             mName3.setText(commonBean.getData().getCoin_hot().get(2).getName());
             mName4.setText(commonBean.getData().getCoin_hot().get(3).getName());
-            mMoney1.setText("￥  " + commonBean.getData().getCoin_hot().get(0).getValue());
-            mMoney2.setText("￥  " + commonBean.getData().getCoin_hot().get(1).getValue());
-            mMoney3.setText("￥  " + commonBean.getData().getCoin_hot().get(2).getValue());
-            mMoney4.setText("￥  " + commonBean.getData().getCoin_hot().get(3).getValue());
+            mMoney1.setText("￥" + commonBean.getData().getCoin_hot().get(0).getValue());
+            mMoney2.setText("￥" + commonBean.getData().getCoin_hot().get(1).getValue());
+            mMoney3.setText("￥" + commonBean.getData().getCoin_hot().get(2).getValue());
+            mMoney4.setText("￥" + commonBean.getData().getCoin_hot().get(3).getValue());
+
+            DecimalFormat df = new DecimalFormat("0%");
+            df.setMaximumFractionDigits(2);
+            df.setRoundingMode(RoundingMode.HALF_UP);
+            mBili1.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(0).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            mBili4.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(3).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
 //            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),

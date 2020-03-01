@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.buy.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
 
 import java.util.Map;
@@ -28,6 +29,13 @@ public class CoinContract {
         void requestDetailSuccess(Home baseBean);
         void requestToken(String baseBean);
         void sendMsgSuccess(DealInfo msg);
+
+
+        void requestSuccess(EntrustList bean);
+        void nodata(String msg);
+        void deleteSuccess(String msg);
+
+        void deleteError(String msg);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<CoinContract.View> {
@@ -38,5 +46,9 @@ public class CoinContract {
         void getJavaLineDetail(Map map);
 
         void getToken(Map map);
+
+
+        void getDataenn(Map body);
+        void deleteenn(Map body);
     }
 }

@@ -14,6 +14,7 @@ import com.madaex.exchange.ui.buy.contract.CoinContract;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.common.SB2Data;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.LineDetail;
 import com.orhanobut.logger.Logger;
 
@@ -141,6 +142,67 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                             } else {
                                 mView.requestToken(commonBean.getData());
                             }
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getDataenn(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, EntrustList>() {
+                    @Override
+                    public EntrustList apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+
+
+                        CommonBaseBean commonBaseBean = gson.fromJson(data, CommonBaseBean.class);
+                        if (commonBaseBean.getStatus() == 0||commonBaseBean.getStatus() == -1) {
+                            CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                            EntrustList user = new EntrustList();
+                            user.setMsg(commonBean.getMessage());
+                            user.setStatus(commonBean.getStatus());
+                            return user;
+                        } else {
+                            EntrustList commonBean = gson.fromJson(data, EntrustList.class);
+                            return commonBean;
+                        }
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<EntrustList>(mView) {
+                    @Override
+                    public void onNext(EntrustList commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMsg());
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.nodata(commonBean.getData()+"");
+                        }else {
+                            mView.requestSuccess(commonBean);
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void deleteenn(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonBean>() {
+                    @Override
+                    public CommonBean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                    @Override
+                    public void onNext(CommonBean commonBean) {
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.deleteError(commonBean.getMessage()+"");
+                        }else {
+                            mView.deleteSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));

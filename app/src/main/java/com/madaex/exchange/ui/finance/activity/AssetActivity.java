@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
@@ -58,6 +59,9 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     private boolean isshow =false;
     @BindView(R.id.toolbar_title_tv)
     TextView mTitleView;
+    @BindView(R.id.gone)
+    ImageView mGone;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_asset;
@@ -178,8 +182,10 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
                 mAdapter.filter(editable.toString(),isshow);
             }
         });
-    }
 
+
+    }
+    private boolean isgone = false;
     private void getData() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
@@ -230,9 +236,24 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
             mAdapter.notifyDataSetChanged();
         }
         if(EmptyUtils.isNotEmpty(commonBean.getData().getAssets())){
-            mCny.setText("￥  " + commonBean.getData().getAssets().getUsdt() + "");
-            mDollar.setText("$  " + commonBean.getData().getAssets().getRmb() + "");
+            mCny.setText("" + commonBean.getData().getAssets().getUsdt() + "");
+            mDollar.setText("≈￥" + commonBean.getData().getAssets().getRmb() + "");
         }
-
+        mGone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isgone) {
+                    isgone =false;
+                    mCny.setText("" + commonBean.getData().getAssets().getUsdt() + "");
+                    mDollar.setText("≈￥" + commonBean.getData().getAssets().getRmb() + "");
+                    mGone.setImageResource(R.mipmap.denglu_zy);
+                } else {
+                    isgone =true;
+                    mCny.setText("***********");
+                    mDollar.setText("***********");
+                    mGone.setImageResource(R.mipmap.denglu_by);
+                }
+            }
+        });
     }
 }

@@ -23,6 +23,7 @@ import com.madaex.exchange.ui.buy.presenter.CoinPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.activity.DealActivity;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.market.fragment.EntrustCurrentFragment;
 
@@ -198,6 +199,26 @@ public class DealFragment extends BaseNetLazyFragment<CoinPresenter> implements 
 
     @Override
     public void sendMsgSuccess(DealInfo msg) {
+
+    }
+
+    @Override
+    public void requestSuccess(EntrustList bean) {
+
+    }
+
+    @Override
+    public void nodata(String msg) {
+
+    }
+
+    @Override
+    public void deleteSuccess(String msg) {
+
+    }
+
+    @Override
+    public void deleteError(String msg) {
 
     }
 

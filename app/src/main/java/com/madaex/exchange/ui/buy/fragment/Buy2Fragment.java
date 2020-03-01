@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -19,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -134,6 +135,12 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     DepthMapView depthView;
     @BindView(R.id.bili)
     TextView mBili;
+
+    @BindView(R.id.tabs_rg)
+    RadioGroup mTabRadioGroup;
+
+    @BindView(R.id.baibili)
+    TextView baibili;
     private String type;
     private String one_xnb = "";
     private String two_xnb = "";
@@ -265,6 +272,28 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         Log.d("MainActivity", "重连");
                     }
                 });
+
+        mTabRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                for (int i = 0; i < group.getChildCount(); i++) {
+//                    if (group.getChildAt(i).getId() == checkedId) {
+//                        RadioButton radioButton = (RadioButton) group.getChildAt(i);
+//                        ToastUtils.showToast(radioButton.getText().toString());
+//                        return;
+//                    }
+//                }
+                switch (checkedId) {
+                    case R.id.today_tab:
+                        RadioButton radioButton = (RadioButton) group.findViewById(group.getCheckedRadioButtonId());
+                        ToastUtils.showToast(radioButton.getText().toString());
+                        break;
+                    case R.id.record_tab:
+                        break;
+                }
+            }
+        });
+
 
     }
 
@@ -482,7 +511,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_buy;
+        return R.layout.fragment_buy2;
     }
 
     @Override
@@ -679,8 +708,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
 //            mOneXnb.setText(data.getData().getTwo_xnb());
             mOrderBuyFee.setText(data.getData().getTrade_buy_fee());
-            if (baseBean != null && baseBean.getSellRmb() != null && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice() )&& Double.valueOf(baseBean.getCurrentPrice()) != 0) {
-                        mEtPrice.setText((Double.valueOf(data.getData().getRise_once())+Double.valueOf(baseBean.getCurrentPrice() ))+"");
+            if (baseBean != null && baseBean.getSellRmb() != null && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice()) && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
+                mEtPrice.setText((Double.valueOf(data.getData().getRise_once()) + Double.valueOf(baseBean.getCurrentPrice())) + "");
             }
 
 //            mOneXnbd.setText(data.getData().getOne_xnbd());
@@ -694,7 +723,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             mOrderBuyFee.setText(data.getData().getTrade_sell_fee());
 
             if (baseBean != null && baseBean.getSellRmb() != null && baseBean.getCurrentPrice() != null && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
-                mEtPrice.setText(Double.valueOf(baseBean.getCurrentPrice() )+"");
+                mEtPrice.setText(Double.valueOf(baseBean.getCurrentPrice()) + "");
             }
         }
     }
@@ -704,7 +733,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
             this.baseBean = baseBean;
             mLast.setText(baseBean.getCurrentPrice().toString());
-            mCoinname.setText(baseBean.getExchangeType().toUpperCase());
+            mCoinname.setText(baseBean.getRiseRate());
+            baibili.setText("￥" + baseBean.getSellRmb());
             if (baseBean.getRiseRate().contains("-")) {
                 mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
                 mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
@@ -767,16 +797,11 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     private boolean change = true;
 
-    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change, R.id.shouqi})
+    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_deal:
                 submit();
-                break;
-            case R.id.shouqi:
-                FragmentManager fm0 = getFragmentManager();
-                HistoryRecordFrament editNameDialog = HistoryRecordFrament.newInstance(Constants.MARK, one_xnb, two_xnb);
-                editNameDialog.show(fm0, "fragment_bottom_dialog");
                 break;
             case R.id.ll_gears:
                 showGearsPopMenu();

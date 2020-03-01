@@ -145,7 +145,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
         //副图
         barChart.setDrawBorders(true);
         barChart.setBorderWidth(0.7f);
-        barChart.setBorderColor(ContextCompat.getColor(mContext, R.color.title_color));
+        barChart.setBorderColor(ContextCompat.getColor(mContext, R.color.transparent));
         barChart.setBackgroundColor(ContextCompat.getColor(mContext, R.color.border_color));
         barChart.setDragEnabled(landscape);
         barChart.setScaleYEnabled(false);

@@ -239,8 +239,9 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
 
     @Override
     public void SuccessTitle(TitleBean msg) {
-        mTitleList.addAll(msg.getData());
         mTitleList.add(0,getString(R.string.favorites));
+        mTitleList.addAll(msg.getData());
+
         for (int j = 0; j < mTitleList.size(); j++) {
             mFragments.add(TransactionListFragment.newInstance(j,mTitleList.get(j)));
         }
@@ -250,9 +251,9 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
 //        mStl.setViewPager(mVp);
 
         mVp.setAdapter(mAdapter);
-        mVp.setCurrentItem(1);
-        mVp.setOffscreenPageLimit(2);
         mStl.setViewPager(mVp);
+        mVp.setCurrentItem(1);
+
 //        mStl.setTabsFromPagerAdapter(mAdapter);
     }
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/gradient"
+    android:background="#363947"
     android:orientation="vertical">
 
     <View
@@ -311,4 +311,8 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:background="#17EFC680"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1dp" />
 </LinearLayout>

@@ -20,6 +20,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.c2c.fragment.MyEntrustFragment;
 import com.madaex.exchange.ui.finance.c2c.fragment.PlatformEntrustFragment;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
 
 import org.greenrobot.eventbus.EventBus;
@@ -174,6 +175,26 @@ public class C2CListActivity extends BaseNetActivity<CoinPresenter> implements C
 
     @Override
     public void sendMsgSuccess(DealInfo msg) {
+
+    }
+
+    @Override
+    public void requestSuccess(EntrustList bean) {
+
+    }
+
+    @Override
+    public void nodata(String msg) {
+
+    }
+
+    @Override
+    public void deleteSuccess(String msg) {
+
+    }
+
+    @Override
+    public void deleteError(String msg) {
 
     }
 }

@@ -31,6 +31,7 @@ import com.madaex.exchange.ui.buy.contract.CoinLister;
 import com.madaex.exchange.ui.buy.presenter.CoinPresenter;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.adapter.HistoryBuyAdapter;
+import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.HistoryDetail;
 import com.madaex.exchange.ui.market.bean.Home;
 
@@ -226,6 +227,26 @@ public class HistoryRecordFrament extends BaseNetDialogFragment<CoinPresenter> i
 
     @Override
     public void sendMsgSuccess(DealInfo msg) {
+
+    }
+
+    @Override
+    public void requestSuccess(EntrustList bean) {
+
+    }
+
+    @Override
+    public void nodata(String msg) {
+
+    }
+
+    @Override
+    public void deleteSuccess(String msg) {
+
+    }
+
+    @Override
+    public void deleteError(String msg) {
 
     }
 

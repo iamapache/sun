@@ -117,11 +117,10 @@
 
                             <TextView
                                 android:id="@+id/money1"
-                                style="@style/TextColorSizeStyle"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
                                 android:layout_marginLeft="6dp"
+                                android:layout_marginTop="6dp"
                                 android:maxLines="1"
                                 android:text="￥0.00"
                                 android:textColor="#6C6E78"
@@ -138,7 +137,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/bili2"
+                            android:id="@+id/bili3"
                             style="@style/TextColorSizeStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -152,7 +151,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/name2"
+                                android:id="@+id/name3"
                                 style="@style/TextColorSizeStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -163,8 +162,7 @@
                                 android:textSize="12dp" />
 
                             <TextView
-                                android:id="@+id/money2"
-                                style="@style/TextColorSizeStyle"
+                                android:id="@+id/money3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
@@ -198,7 +196,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/bili3"
+                            android:id="@+id/bili2"
                             style="@style/TextColorSizeStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -213,7 +211,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/name3"
+                                android:id="@+id/name2"
                                 style="@style/TextColorSizeStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -224,8 +222,7 @@
                                 android:textSize="12dp" />
 
                             <TextView
-                                android:id="@+id/money3"
-                                style="@style/TextColorSizeStyle"
+                                android:id="@+id/money2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
@@ -273,7 +270,6 @@
 
                             <TextView
                                 android:id="@+id/money4"
-                                style="@style/TextColorSizeStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
@@ -490,8 +486,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/assets" />
 
                             <TextView
@@ -517,8 +513,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/bank" />
 
                             <TextView
@@ -527,7 +523,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:maxLines="1"
-                                android:text="@string/finance_bank_card"
+                                android:text="@string/SpotAssets"
                                 android:textSize="14dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -575,8 +571,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/c2c" />
 
                             <TextView
@@ -585,7 +581,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:maxLines="1"
-                                android:text="@string/finance_c2c"
+                                android:text="@string/contract"
                                 android:textSize="14dp" />
                         </LinearLayout>
 
@@ -602,8 +598,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/otc" />
 
                             <TextView
@@ -635,8 +631,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/vote" />
 
                             <TextView
@@ -662,8 +658,8 @@
                             android:padding="21dp">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
                                 android:background="@mipmap/offering" />
 
                             <TextView
@@ -694,8 +690,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:background="@mipmap/otc" />
 
                         <TextView
@@ -718,8 +714,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:background="@mipmap/internaltransfer" />
 
                         <TextView
