@@ -45,6 +45,7 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/deleteone"
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -59,6 +60,7 @@
                             android:background="@color/common_green" />
 
                         <EditText
+                            android:id="@+id/price"
                             android:layout_width="160dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -78,6 +80,7 @@
                             android:background="@color/common_green" />
 
                         <TextView
+                            android:id="@+id/addone"
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -120,6 +123,7 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/deletetwo"
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -134,11 +138,12 @@
                             android:background="@color/common_green" />
 
                         <EditText
+                            android:id="@+id/number"
                             android:layout_width="160dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:background="@null"
-                            android:hint="@string/entrastPrice"
+                            android:hint="@string/Quantity"
                             android:inputType="numberDecimal"
                             android:maxLength="4"
                             android:maxLines="1"
@@ -153,6 +158,7 @@
                             android:background="@color/common_green" />
 
                         <TextView
+                            android:id="@+id/addtwo"
                             android:layout_width="42dp"
                             android:layout_height="42dp"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -167,6 +173,7 @@
                         android:layout_height="22dp"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_marginTop="@dimen/d_10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginRight="@dimen/d_5dp">
 
 
@@ -267,186 +274,6 @@
                             android:text="Usdt"
                             android:textColor="#A3AEBA"
                             android:textSize="@dimen/d_12dp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/d_40dp"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_marginTop="@dimen/d_10dp"
-                            android:layout_marginRight="@dimen/d_15dp"
-                            android:background="@drawable/common_bg_gray_corners"
-                            android:gravity="center_vertical">
-
-                            <EditText
-                                android:id="@+id/et_price"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/d_5dp"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:hint="@string/entrastPrice"
-                                android:inputType="numberDecimal"
-                                android:maxLength="4"
-                                android:maxLines="1"
-                                android:paddingLeft="@dimen/d_5dp"
-                                android:textColor="@color/common_ggray"
-                                android:textColorHint="@color/common_ggray"
-                                android:textSize="@dimen/d_16dp" />
-
-                            <TextView
-                                android:id="@+id/typeone"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:text="GRC"
-                                android:textColor="@color/common_text_6"
-                                android:textSize="@dimen/d_16dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_marginTop="@dimen/d_5dp"
-                            android:layout_marginRight="@dimen/d_15dp"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:text="@string/totalcny"
-                                android:textColor="@color/common_text_6"
-                                android:textSize="@dimen/d_14dp" />
-
-                            <TextView
-                                android:id="@+id/cny"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:maxLines="2"
-                                android:text="￥0"
-                                android:textColor="@color/common_red"
-                                android:textSize="@dimen/d_14dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/d_40dp"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_marginTop="@dimen/d_5dp"
-                            android:layout_marginRight="@dimen/d_15dp"
-                            android:background="@drawable/common_bg_gray_corners"
-                            android:gravity="center_vertical">
-
-                            <EditText
-                                android:id="@+id/et_number"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/d_5dp"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:hint="@string/Quantity"
-                                android:inputType="numberDecimal"
-                                android:maxLength="6"
-                                android:maxLines="1"
-                                android:paddingLeft="@dimen/d_5dp"
-                                android:textColor="@color/common_ggray"
-                                android:textColorHint="@color/common_ggray"
-                                android:textSize="@dimen/d_16dp" />
-
-                            <TextView
-                                android:id="@+id/typetwo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:text="GRC"
-                                android:textColor="@color/common_text_6"
-                                android:textSize="@dimen/d_16dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/d_40dp"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_marginTop="@dimen/d_10dp"
-                            android:layout_marginRight="@dimen/d_15dp"
-                            android:background="@drawable/common_bg_gray_corners"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:id="@+id/et_account"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="@dimen/d_5dp"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:hint="@string/Totalmoney"
-                                android:paddingLeft="@dimen/d_5dp"
-                                android:textColor="@color/common_ggray"
-                                android:textColorHint="@color/common_ggray"
-                                android:textSize="@dimen/d_16dp" />
-
-                            <TextView
-                                android:id="@+id/typethree"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:text="GRC"
-                                android:textColor="@color/common_text_6"
-                                android:textSize="@dimen/d_16dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/ll_fee"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/d_40dp"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_marginTop="@dimen/d_15dp"
-                            android:layout_marginRight="@dimen/d_15dp"
-                            android:background="@drawable/common_bg_gray_corners"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/d_5dp"
-                                android:text="@string/fee"
-
-                                android:textColor="@color/common_ggray"
-                                android:textSize="@dimen/d_16dp" />
-
-                            <TextView
-                                android:id="@+id/order_buy_fee"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginRight="4dp"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center_vertical|end"
-                                android:maxLines="2"
-                                android:text="0"
-                                android:textColor="@color/common_red"
-                                android:textSize="@dimen/d_16dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="@dimen/d_5dp"
-                                android:text="GRC"
-                                android:textColor="@color/common_text_6"
-                                android:textSize="@dimen/d_16dp" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <TextView
@@ -574,8 +401,9 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -653,7 +481,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">

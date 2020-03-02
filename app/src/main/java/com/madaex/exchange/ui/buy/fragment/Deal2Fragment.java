@@ -39,6 +39,7 @@ import com.madaex.exchange.ui.buy.contract.CoinContract;
 import com.madaex.exchange.ui.buy.presenter.CoinPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.market.activity.EntrustActivity;
 import com.madaex.exchange.ui.market.activity.EntrustDetailActivity;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
@@ -416,11 +417,15 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         unbinder.unbind();
     }
 
-    @OnClick({R.id.toolbar_left_btn_ll, R.id.toolbar_right_btn_ll, R.id.toolbar_title_tv, R.id.toolbar_left_btn})
+    @OnClick({R.id.toolbar_left_btn_ll, R.id.toolbar_right_btn_ll, R.id.history})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.toolbar_left_btn:
-
+            case R.id.history:
+                Intent intent = getActivity().getIntent();
+                intent.setClass(mContext, EntrustActivity.class);
+                intent.putExtra(Constants.ONE_XNB, one_xnb);
+                intent.putExtra(Constants.TWO_XNB, two_xnb);
+                startActivity(intent);
                 break;
             case R.id.toolbar_left_btn_ll:
                 FragmentManager fm = getChildFragmentManager();
@@ -436,9 +441,6 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 FragmentManager fm0 = getFragmentManager();
                 HistoryRecordFrament historyRecordFrament = HistoryRecordFrament.newInstance(Constants.MARK, one_xnb, two_xnb);
                 historyRecordFrament.show(fm0, "fragment_bottom_dialog");
-                break;
-            case R.id.toolbar_title_tv:
-
                 break;
         }
     }

@@ -250,11 +250,12 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             mName1.setText(commonBean.getData().getCoin_hot().get(0).getName());
             mName2.setText(commonBean.getData().getCoin_hot().get(1).getName());
             mName3.setText(commonBean.getData().getCoin_hot().get(2).getName());
-            mName4.setText(commonBean.getData().getCoin_hot().get(3).getName());
+
+
             mMoney1.setText("￥" + commonBean.getData().getCoin_hot().get(0).getValue());
             mMoney2.setText("￥" + commonBean.getData().getCoin_hot().get(1).getValue());
             mMoney3.setText("￥" + commonBean.getData().getCoin_hot().get(2).getValue());
-            mMoney4.setText("￥" + commonBean.getData().getCoin_hot().get(3).getValue());
+
 
             DecimalFormat df = new DecimalFormat("0%");
             df.setMaximumFractionDigits(2);
@@ -262,7 +263,11 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             mBili1.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(0).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
             mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
             mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
-            mBili4.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(3).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            if(commonBean.getData().getCoin_hot().size()>3){
+                mName4.setText(commonBean.getData().getCoin_hot().get(3).getName());
+                mMoney4.setText("￥" + commonBean.getData().getCoin_hot().get(3).getValue());
+                mBili4.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(3).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            }
 //            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),
