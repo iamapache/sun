@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/d_15dp"
-    android:layout_marginRight="@dimen/d_15dp"
     android:layout_marginTop="@dimen/d_15dp"
+    android:layout_marginRight="@dimen/d_15dp"
     android:background="#373742"
     android:orientation="vertical">
 
@@ -14,10 +13,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/d_10dp"
         android:layout_marginLeft="@dimen/d_10dp"
-        android:layout_marginRight="@dimen/d_10dp"
         android:layout_marginTop="@dimen/d_10dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:layout_marginBottom="@dimen/d_10dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -30,24 +29,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-
+                <TextView
+                    android:id="@+id/name"
+                    android:drawableLeft="@mipmap/arrowdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
                 <TextView
                     android:id="@+id/type"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="@color/common_text_5"
-                    android:textSize="14dp"/>
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/num"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_5dp"
                     android:maxLines="1"
                     android:textColor="@color/common_red"
                     android:textSize="14dp"
-                    tools:text="0"/>
+                    tools:text="0" />
             </LinearLayout>
 
 
@@ -56,11 +65,15 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/make"
-                    android:textColor="@color/common_text_5"
-                    android:textSize="14dp"/>
+                    android:id="@+id/img_delete"
+                    android:layout_width="@dimen/d_45dp"
+                    android:layout_height="@dimen/d_25dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/common_button_redshape"
+                    android:gravity="center"
+                    android:text="@string/llations"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/d_13dp" />
 
                 <TextView
                     android:id="@+id/deal"
@@ -70,7 +83,8 @@
                     android:maxLines="1"
                     android:textColor="@color/common_red"
                     android:textSize="14dp"
-                    tools:text="0"/>
+                    android:visibility="gone"
+                    tools:text="0" />
 
             </LinearLayout>
 
@@ -91,7 +105,7 @@
                 android:gravity="end"
                 android:text="@string/llations"
                 android:textColor="@color/common_text_5"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/revoke"
@@ -102,7 +116,7 @@
                 android:maxLines="1"
                 android:textColor="@color/common_red"
                 android:textSize="14dp"
-                tools:text="0"/>
+                tools:text="0" />
         </LinearLayout>
     </LinearLayout>
 
@@ -122,7 +136,35 @@
             android:text=""
             android:textColor="@color/white"
             android:textSize="14sp"
-            />
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="时间"
+                android:textColor="#A3AEBA"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/createtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="ETH" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -138,9 +180,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="@string/Quantity"
-                android:textColor="@color/common_text_5"
-                android:textSize="14sp"
-                />
+                android:textColor="#A3AEBA"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/price"
@@ -149,10 +190,9 @@
                 android:layout_marginTop="6dp"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="@color/common_text_6"
-                android:textSize="14sp"
-                tools:text="ETH"
-                />
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="ETH" />
         </LinearLayout>
 
         <LinearLayout
@@ -170,9 +210,8 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:text="@string/transaction"
-                android:textColor="@color/common_text_5"
-                android:textSize="14sp"
-                />
+                android:textColor="#A3AEBA"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/mum"
@@ -180,12 +219,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:gravity="center_vertical"
-                android:maxLines="1"
                 android:maxLength="9"
-                android:textColor="@color/common_text_6"
-                android:textSize="14sp"
-                tools:text="ETH--"
-                />
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="ETH--" />
         </LinearLayout>
 
 
@@ -196,8 +234,8 @@
             android:layout_weight="1"
             android:gravity="center_vertical|end"
 
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/time"
@@ -207,8 +245,7 @@
                 android:maxLines="1"
                 android:text="成交价"
                 android:textColor="@color/common_text_5"
-                android:textSize="14sp"
-                />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/time_hour"
@@ -218,21 +255,11 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/common_text_5"
-                android:textSize="14sp"
-                tools:text="ETH"
-                />
+                android:textSize="12sp"
+                tools:text="ETH" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/img_delete"
-            android:layout_width="@dimen/d_45dp"
-            android:layout_height="@dimen/d_25dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/common_button_shape"
-            android:gravity="center"
-            android:text="@string/llations"
-            android:textColor="@color/white"
-            android:textSize="@dimen/d_13dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -253,6 +280,6 @@
             android:layout_marginRight="10dp"
             android:max="100"
             android:maxHeight="2dp"
-            android:minHeight="2dp"/>
+            android:minHeight="2dp" />
     </LinearLayout>
 </LinearLayout>

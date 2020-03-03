@@ -23,7 +23,6 @@ import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.RegexUtil;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
-import com.madaex.exchange.common.util.ViewUtil;
 import com.madaex.exchange.common.view.TimerText;
 import com.madaex.exchange.ui.MainActivity;
 import com.madaex.exchange.ui.buy.bean.Event;
@@ -96,10 +95,10 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
 
     @Override
     protected void initView() {
-        ViewUtil.setView(mPhone, mView1);
-        ViewUtil.setView(mPassword, mView2);
-        ViewUtil.setView(mCode, mView3);
-        ViewUtil.setView(mRecommend, mView4);
+//        ViewUtil.setView(mPhone, mView1);
+//        ViewUtil.setView(mPassword, mView2);
+//        ViewUtil.setView(mCode, mView3);
+//        ViewUtil.setView(mRecommend, mView4);
     }
 
     @Override

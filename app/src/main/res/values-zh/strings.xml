@@ -199,7 +199,7 @@
     <string name="internaltransfer">内部转账</string>
     <string name="agreetrans">同意内部账号之间的转账不走区块链，0手续费0确认，急速到账</string>
     <string name="entrycardid">请输入您的证件号码（非必填）</string>
-    <string name="mdxieyi">我已阅读并同意《金数云用户服务协议》</string>
+    <string name="mdxieyi">我已阅读并同意《VCOIN用户服务协议》</string>
     <string name="cancellations">全部撤单</string>
     <string name="close">关闭</string>
     <string name="Checkdelegate">查看委托</string>
@@ -306,7 +306,7 @@
     <string name="thousand">万</string>
     <string name="transnumber">成交数量</string>
     <string name="cacelentrast">取消委托</string>
-    <string name="llations">撤单</string>
+    <string name="llations">撤销</string>
     <string name="serviceagreement">用户协议</string>
     <string name="tixianaddress">提现地址</string>
     <string name="chulitime">处理时间</string>
@@ -554,5 +554,5 @@
     <string name="namevol">名称/成交量</string>
     <string name="islogin">已登录</string>
     <string name="lijiregst">立即注册</string>
-    <string name="login_xieyi">我已经阅读并同意《用户服务协议及隐私政策》</string>
+    <string name="login_xieyi">我同意《用户服务协议及隐私政策》</string>
 </resources>

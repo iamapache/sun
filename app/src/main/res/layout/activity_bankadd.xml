@@ -186,5 +186,7 @@
         android:id="@+id/submit"
         android:layout_marginTop="@dimen/d_30dp"
         android:text="@string/Confirm"
+        android:background="@mipmap/bg_login"
+        android:textColor="#523D17"
         style="@style/ButtonStyle"/>
 </LinearLayout>

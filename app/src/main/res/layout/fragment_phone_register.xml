@@ -23,16 +23,17 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="80dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
 
                     <TextView
                         android:id="@+id/tv_addresscode"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/d_8dp"
                         android:drawableRight="@mipmap/icon_down"
+                        android:drawablePadding="5dp"
                         android:gravity="center"
                         android:maxLines="1"
                         android:text="+86"
@@ -68,7 +69,7 @@
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@color/light_black"/>
+                android:background="#828383"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -104,6 +105,7 @@
             <View
                 android:id="@+id/view2"
                 style="@style/CrossCutOffSideStyle"
+                android:background="#828383"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"/>
 
@@ -146,6 +148,7 @@
             <View
                 android:id="@+id/view3"
                 style="@style/CrossCutOffSideStyle"
+                android:background="#828383"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"/>
 
@@ -175,6 +178,7 @@
                 android:id="@+id/view4"
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
+                android:background="#828383"
                 android:layout_marginRight="30dp"/>
 
             <LinearLayout
@@ -212,7 +216,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="@dimen/d_26dp"
-                android:text="@string/text_register"/>
+                android:background="@mipmap/bg_login"
+                android:text="@string/login"
+                android:textColor="#523D17"/>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

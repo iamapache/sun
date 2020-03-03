@@ -14,14 +14,15 @@
         android:id="@+id/ll_content"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_65dp"
+        android:background="@drawable/hogradient"
         android:gravity="center_vertical">
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/img_bank"
             android:layout_width="@dimen/d_30dp"
             android:layout_height="@dimen/d_30dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,10 +72,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_weight="2"
             android:gravity="center_vertical|start"
             android:orientation="vertical">
 
@@ -119,131 +120,137 @@
         android:id="@+id/ll_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:background="#13151B"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/d_6dp">
+            android:background="#1C1D23"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/maxPrice"
-                android:textColor="#9FA4B2"
-                android:textSize="13sp" />
+                android:layout_marginTop="@dimen/d_6dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/maxPrice"
+                    android:textColor="#9FA4B2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/minPrice"
+                    android:textColor="#9FA4B2"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/maxprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="13sp"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/minprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="14sp"
+                    tools:text="0" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_linechart"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/d_34dp"
+                android:layout_marginTop="@dimen/d_5dp"
+                android:layout_marginRight="@dimen/d_34dp"
                 android:gravity="center"
-                android:text="@string/minPrice"
-                android:textColor="#9FA4B2"
-                android:textSize="14sp" />
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/d_8dp"
+                    android:text="@string/onesecond"
+                    android:textColor="#9FA4B2"
+                    android:textSize="13sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/d_5dp">
+                <TextView
+                    android:id="@+id/tv_time2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/d_8dp"
+                    android:text="@string/fifteen"
+                    android:textColor="#9FA4B2"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/maxprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textColor="@color/common_text_1"
-                android:textSize="13sp"
-                tools:text="1" />
+                <TextView
+                    android:id="@+id/tv_time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/chart_shape"
+                    android:gravity="center"
+                    android:padding="@dimen/d_8dp"
+                    android:text="@string/onehour"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/minprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textColor="@color/common_text_1"
-                android:textSize="14sp"
-                tools:text="0" />
+                <TextView
+                    android:id="@+id/tv_time4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/d_8dp"
+                    android:text="@string/oneday"
+                    android:textColor="#9FA4B2"
+                    android:textSize="13sp" />
 
+                <TextView
+                    android:id="@+id/tv_time5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/d_10dp"
+                    android:text="@string/oneweek"
+                    android:textColor="#9FA4B2"
+                    android:textSize="13sp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_linechart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/d_34dp"
-            android:layout_marginTop="@dimen/d_5dp"
-            android:layout_marginRight="@dimen/d_34dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_time1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/d_8dp"
-                android:text="@string/onesecond"
-                android:textColor="#9FA4B2"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tv_time2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/d_8dp"
-                android:text="@string/fifteen"
-                android:textColor="#9FA4B2"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tv_time3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/chart_shape"
-                android:gravity="center"
-                android:padding="@dimen/d_8dp"
-                android:text="@string/onehour"
-                android:textColor="@color/common_text_1"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tv_time4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/d_8dp"
-                android:text="@string/oneday"
-                android:textColor="#9FA4B2"
-                android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/tv_time5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="@dimen/d_10dp"
-                android:text="@string/oneweek"
-                android:textColor="#9FA4B2"
-                android:textSize="13sp" />
-
+            </LinearLayout>
         </LinearLayout>
 
         <com.github.mikephil.charting.stockChart.view.KLineView
@@ -311,8 +318,9 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
     <View
-        android:background="#17EFC680"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/d_1dp" />
+        android:layout_height="@dimen/d_1dp"
+        android:background="#17EFC680" />
 </LinearLayout>

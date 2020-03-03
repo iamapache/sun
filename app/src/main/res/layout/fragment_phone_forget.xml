@@ -171,6 +171,7 @@
     <Button
         android:id="@+id/btn_regist"
         style="@style/ButtonStyle"
+        android:background="@mipmap/bg_login"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="40dp"

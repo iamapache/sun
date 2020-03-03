@@ -200,7 +200,7 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
 
     @Override
     public void requestSuccess(AlscInfo commonBean) {
-        mCny.setText(commonBean.getData().getAssets().getAlsc().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        mCny.setText(commonBean.getData().getAssets().getUsdt().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         mDollar.setText("≈ ¥ "+commonBean.getData().getAssets().getRmb().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         mAvail.setText(commonBean.getData().getCon_usable_assets() + "");
         mFrozen.setText(commonBean.getData().getCon_frozen_assets() + "");

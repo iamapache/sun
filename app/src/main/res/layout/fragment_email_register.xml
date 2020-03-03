@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+
               android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
@@ -46,9 +47,9 @@
     <View
         android:id="@+id/view1"
         style="@style/CrossCutOffSideStyle"
+        android:background="#828383"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@color/light_black"/>
+        android:layout_marginRight="30dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,6 +86,7 @@
     <View
         android:id="@+id/view2"
         style="@style/CrossCutOffSideStyle"
+        android:background="#828383"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"/>
 
@@ -130,6 +132,7 @@
     <View
         android:id="@+id/view3"
         style="@style/CrossCutOffSideStyle"
+        android:background="#828383"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"/>
 
@@ -157,6 +160,7 @@
     <View
         android:id="@+id/view4"
         style="@style/CrossCutOffSideStyle"
+        android:background="#828383"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"/>
     <LinearLayout
@@ -194,6 +198,8 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="@dimen/d_26dp"
+        android:background="@mipmap/bg_login"
+        android:textColor="#523D17"
         android:text="@string/text_register"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

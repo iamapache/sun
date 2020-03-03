@@ -222,7 +222,7 @@ public class Asset extends CommonBaseBean {
 
             private String value;
             private String name;
-
+            private String precent;
             public String getValue() {
                 return value;
             }
@@ -233,6 +233,14 @@ public class Asset extends CommonBaseBean {
 
             public String getName() {
                 return name;
+            }
+
+            public String getPrecent() {
+                return precent;
+            }
+
+            public void setPrecent(String precent) {
+                this.precent = precent;
             }
 
             public void setName(String name) {

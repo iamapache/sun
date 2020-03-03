@@ -29,6 +29,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
+import com.madaex.exchange.ui.finance.bank.activity.BankListActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
@@ -163,13 +164,13 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
                 startActivityAfterLogin(intent11);
                 break;
             case R.id.ll_bank:
-//                startActivityAfterLogin(new Intent(mContext, BankListActivity.class));
+                startActivityAfterLogin(new Intent(mContext, BankListActivity.class));
 //                startActivityAfterLogin(new Intent(mContext, WayActivity.class));
-                Intent intent2 = new Intent();
-                intent2.setClass(mContext, AssetActivity.class);
-                intent2.putExtra("wallet_type", "hedge");
-                intent2.putExtra("title", getString(R.string.SpotAssets));
-                startActivityAfterLogin(intent2);
+//                Intent intent2 = new Intent();
+//                intent2.setClass(mContext, AssetActivity.class);
+//                intent2.putExtra("wallet_type", "hedge");
+//                intent2.putExtra("title", getString(R.string.SpotAssets));
+//                startActivityAfterLogin(intent2);
                 break;
             case R.id.ll_c2ctrans:
 //                startActivityAfterLogin(new Intent(mContext, C2CTransationActivity.class));
@@ -260,14 +261,15 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             DecimalFormat df = new DecimalFormat("0%");
             df.setMaximumFractionDigits(2);
             df.setRoundingMode(RoundingMode.HALF_UP);
-            mBili1.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(0).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
-            mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
-            mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+            mBili1.setText(commonBean.getData().getCoin_hot().get(0).getPrecent()+"%");
+            mBili2.setText(commonBean.getData().getCoin_hot().get(1).getPrecent()+"%");
+            mBili3.setText(commonBean.getData().getCoin_hot().get(2).getPrecent()+"%");
+//            mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
+//            mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
             if(commonBean.getData().getCoin_hot().size()>3){
                 mName4.setText(commonBean.getData().getCoin_hot().get(3).getName());
                 mMoney4.setText("￥" + commonBean.getData().getCoin_hot().get(3).getValue());
-                mBili4.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(3).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
-            }
+                mBili4.setText(commonBean.getData().getCoin_hot().get(3).getPrecent()+"%");}
 //            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(2).getValue()),

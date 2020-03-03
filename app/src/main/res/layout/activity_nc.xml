@@ -247,6 +247,7 @@
                 android:id="@+id/submit"
                 style="@style/ButtonStyle"
                 android:layout_marginTop="@dimen/d_30dp"
+                android:background="@mipmap/bg_login"
                 android:layout_marginBottom="60dp"
                 android:text="@string/Confirm"/>
         </LinearLayout>

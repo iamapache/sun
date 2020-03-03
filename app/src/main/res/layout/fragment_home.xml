@@ -10,6 +10,7 @@
         android:id="@+id/img_scan"
         android:layout_width="match_parent"
         android:layout_height="@dimen/d_44dp"
+        android:background="@drawable/hogradient"
 
         android:gravity="center_vertical">
 
@@ -27,18 +28,10 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="27dp"
-                android:layout_height="27dp"
-                android:src="@mipmap/applogo" />
-
-            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                android:layout_height="25dp"
+                android:src="@mipmap/toplogo" />
+
         </LinearLayout>
 
         <ImageView
@@ -63,16 +56,16 @@
             android:orientation="vertical">
 
             <com.youth.banner.Banner
-                android:layout_margin="12dp"
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="144dp" />
+                android:layout_height="144dp"
+                android:layout_margin="12dp" />
 
             <LinearLayout
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="5dp">
@@ -102,15 +95,41 @@
                     android:textSize="13sp" />
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/hotcoinview"
-                android:background="#21212A"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginRight="12dp"
-                 />
+                android:background="#21212A"
+                android:orientation="vertical">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/hotcoinview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:background="@drawable/rect_rounded_huang"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp" />
+
+                    <TextView
+                        android:layout_marginLeft="6dp"
+                        android:background="@drawable/rect_rounded_green"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -122,7 +141,8 @@
                     android:id="@+id/toasset"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:background="#21212A">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -178,16 +198,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:background="#21212A"
                         android:id="@+id/shareqiu"
                         android:layout_width="match_parent"
+
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
                         android:layout_weight="1"
+                        android:background="#21212A"
                         android:gravity="center_vertical">
 
                         <ImageView
@@ -207,12 +228,12 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:background="#21212A"
                         android:id="@+id/servicezai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
+                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
+                        android:background="#21212A"
                         android:gravity="center_vertical">
 
                         <ImageView
@@ -364,7 +385,7 @@
                         android:checked="true"
                         android:gravity="center"
                         android:text="涨幅榜"
-                        android:textColor="@color/common_green"
+                        android:textColor="@color/common_red"
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -391,7 +412,7 @@
                         android:checked="true"
                         android:gravity="center"
                         android:text="跌幅榜"
-                        android:textColor="@color/tab_text_color_selector"
+                        android:textColor="@color/common_green"
                         android:textSize="14sp" />
 
                 </LinearLayout>

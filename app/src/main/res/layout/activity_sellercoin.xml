@@ -238,6 +238,7 @@
     <Button
         android:id="@+id/submit"
         style="@style/ButtonStyle"
+        android:background="@mipmap/bg_login"
         android:layout_marginTop="@dimen/d_30dp"
         android:text="@string/oksellerbill"/>
 </LinearLayout>

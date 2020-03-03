@@ -120,10 +120,10 @@
             android:layout_height="44dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/common_button_shape"
             android:layout_weight="1"
-            android:layout_marginTop="@dimen/d_30dp"
+            android:background="@mipmap/bg_login"
             android:textColor="@color/white"
+            android:layout_marginTop="@dimen/d_30dp"
             android:text="@string/delete"/>
 
         <Button
@@ -132,9 +132,9 @@
             android:layout_height="44dp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:background="@drawable/common_button_shape"
             android:layout_weight="1"
             android:layout_marginTop="@dimen/d_30dp"
+            android:background="@mipmap/bg_login"
             android:textColor="@color/white"
             android:text="@string/modification"/>
 

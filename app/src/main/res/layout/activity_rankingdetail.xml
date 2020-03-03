@@ -252,6 +252,7 @@
             <Button
                 android:id="@+id/submit"
                 style="@style/ButtonStyle"
+                android:background="@mipmap/bg_login"
                 android:layout_marginTop="@dimen/d_30dp"
                 android:layout_marginBottom="@dimen/d_36dp"
                 android:text="@string/Confirmationvote"/>

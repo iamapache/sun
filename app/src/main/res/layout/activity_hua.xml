@@ -189,6 +189,8 @@
             android:id="@+id/submit"
             style="@style/ButtonStyle"
             android:layout_gravity="center"
+            android:background="@mipmap/bg_login"
+            android:textColor="#523D17"
             android:text="@string/Transferh" />
 
     </LinearLayout>

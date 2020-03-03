@@ -22,9 +22,9 @@ public class ViewUtil {
     public static void setView(EditText editText, final View view) {
         editText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                view.setBackgroundResource(R.color.light_black);
-            } else {
                 view.setBackgroundResource(R.color.colorCutOffSide);
+            } else {
+                view.setBackgroundResource(R.color.light_black);
             }
         });
     }

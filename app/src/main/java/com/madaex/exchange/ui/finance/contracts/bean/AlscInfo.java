@@ -126,9 +126,17 @@ public class AlscInfo {
 
             private BigDecimal alsc;
             private BigDecimal rmb;
-
+            private BigDecimal usdt;
             public BigDecimal getAlsc() {
                 return alsc;
+            }
+
+            public BigDecimal getUsdt() {
+                return usdt;
+            }
+
+            public void setUsdt(BigDecimal usdt) {
+                this.usdt = usdt;
             }
 
             public void setAlsc(BigDecimal alsc) {

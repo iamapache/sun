@@ -36,6 +36,8 @@
             style="@style/ButtonStyle"
             android:layout_marginBottom="@dimen/d_10dp"
             android:layout_marginTop="@dimen/d_10dp"
+            android:background="@mipmap/bg_login"
+            android:textColor="#523D17"
             android:text="@string/addwalletaddress"/>
 
     </LinearLayout>

@@ -147,7 +147,7 @@
             android:id="@+id/submit"
             style="@style/ButtonStyle"
             android:layout_marginTop="@dimen/d_30dp"
-            android:background="@drawable/common_button_shape"
+            android:background="@mipmap/bg_login"
             android:text="@string/oksubmit"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

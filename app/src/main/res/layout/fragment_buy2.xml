@@ -2,28 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:descendantFocusability="blocksDescendants"
+            android:fillViewport="true"
+            android:focusableInTouchMode="true">
 
-            <android.support.v4.widget.NestedScrollView
+
+            <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="270dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -173,8 +180,8 @@
                         android:layout_height="22dp"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_marginTop="@dimen/d_10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="@dimen/d_5dp">
+                        android:layout_marginRight="@dimen/d_5dp"
+                        android:layout_marginBottom="5dp">
 
 
                         <RadioGroup
@@ -257,6 +264,7 @@
                             android:textSize="@dimen/d_12dp" />
 
                         <TextView
+                            android:id="@+id/cny"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -264,10 +272,11 @@
                             android:gravity="end"
                             android:maxLines="2"
                             android:text="￥0"
-                            android:textColor="@color/common_red"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/d_12dp" />
 
                         <TextView
+                            android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/d_5dp"
@@ -294,271 +303,269 @@
                         android:layout_height="@dimen/d_1dp"
                         android:layout_marginTop="@dimen/d_15dp"
                         android:background="@color/common_black" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
 
-                            <TextView
-                                android:layout_width="@dimen/d_10dp"
-                                android:layout_height="@dimen/d_10dp"
-                                android:layout_marginRight="7dp"
-                                android:background="@drawable/rect_rounded_arc" />
+                        <TextView
+                            android:layout_width="@dimen/d_10dp"
+                            android:layout_height="@dimen/d_10dp"
+                            android:layout_marginRight="7dp"
+                            android:background="@drawable/rect_rounded_arc" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="7dp"
-                                android:text="@string/buy"
-                                android:textColor="#A3AEBA"
-                                android:textSize="@dimen/d_9dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="7dp"
+                            android:text="@string/buy"
+                            android:textColor="#A3AEBA"
+                            android:textSize="@dimen/d_9dp" />
 
-                            <TextView
-                                android:layout_width="@dimen/d_10dp"
-                                android:layout_height="@dimen/d_10dp"
-                                android:layout_marginRight="7dp"
-                                android:background="@drawable/rect_rounded_red" />
+                        <TextView
+                            android:layout_width="@dimen/d_10dp"
+                            android:layout_height="@dimen/d_10dp"
+                            android:layout_marginRight="7dp"
+                            android:background="@drawable/rect_rounded_red" />
 
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="4dp"
-                                android:text="@string/seller"
-                                android:textColor="#A3AEBA"
-                                android:textSize="@dimen/d_9dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/bili"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textColor="@color/white"
-                                android:textSize="@dimen/d_9dp" />
-                        </LinearLayout>
-
-                        <com.madaex.exchange.ui.buy.adapter.DepthMapView
-                            android:id="@+id/dv_depth"
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp"
-
-                            app:buy_line_color="@color/common_red"
-                            app:buy_path_color="@color/common_red"
-                            app:circle_radius="8dp"
-                            app:dot_radius="1.5dp"
-                            app:line_count="4"
-                            app:line_width="1.5dp"
-                            app:sell_line_color="@color/common_green"
-                            app:sell_path_color="@color/common_green"
-                            app:text_color="@color/white"
-                            app:text_size="10sp" />
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="4dp"
+                            android:text="@string/seller"
+                            android:textColor="#A3AEBA"
+                            android:textSize="@dimen/d_9dp" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/infomation"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/d_15dp"
-                        android:layout_marginRight="@dimen/d_5dp"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:hint="@string/snrcInformation"
-                        android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_14dp"
-                        android:visibility="gone" />
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bili"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/d_9dp" />
+                    </LinearLayout>
+
+                    <com.madaex.exchange.ui.buy.adapter.DepthMapView
+                        android:id="@+id/dv_depth"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+
+                        app:buy_line_color="@color/common_red"
+                        app:buy_path_color="@color/common_red"
+                        app:circle_radius="8dp"
+                        app:dot_radius="1.5dp"
+                        app:line_count="4"
+                        app:line_width="1.5dp"
+                        app:sell_line_color="@color/common_green"
+                        app:sell_path_color="@color/common_green"
+                        app:text_color="@color/white"
+                        app:text_size="10sp" />
+
                 </LinearLayout>
-            </android.support.v4.widget.NestedScrollView>
+
+                <TextView
+                    android:id="@+id/infomation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/d_15dp"
+                    android:layout_marginRight="@dimen/d_5dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="@string/snrcInformation"
+                    android:textColor="@color/common_text_1"
+                    android:textSize="@dimen/d_14dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/common_black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <com.madaex.exchange.ui.buy.fragment.NoConflictRecyclerView
+                    android:id="@+id/sellerrecyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+            </LinearLayout>
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1dp"
                 android:background="@color/common_black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
+                android:layout_height="@dimen/d_40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/sellerrecyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1dp"
-                    android:background="@color/common_black" />
-
-                <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_40dp"
-                    android:layout_marginRight="15dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:id="@+id/last"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/d_15dp"
-                            android:layout_weight="1"
-                            android:text="0"
-                            android:textColor="@color/common_red"
-                            android:textSize="@dimen/d_14dp" />
-
-                        <TextView
-                            android:id="@+id/coinname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="end"
-                            android:text="0"
-                            android:textColor="@color/common_red"
-                            android:textSize="@dimen/d_12dp" />
-
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/baibili"
+                        android:id="@+id/last"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_weight="1"
                         android:text="0"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/d_12dp" />
+                        android:textColor="@color/common_red"
+                        android:textSize="@dimen/d_14dp" />
 
-                    <ImageView
-                        android:id="@+id/change"
+                    <TextView
+                        android:id="@+id/coinname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/d_15dp"
-                        android:background="@mipmap/icon_sphuansuan"
-                        android:visibility="gone" />
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/common_red"
+                        android:textSize="@dimen/d_12dp" />
+
                 </LinearLayout>
 
-                <View
+                <TextView
+                    android:id="@+id/baibili"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_15dp"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/d_12dp" />
+
+                <ImageView
+                    android:id="@+id/change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/d_15dp"
+                    android:background="@mipmap/icon_sphuansuan"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/d_1dp"
+                android:background="@color/common_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.madaex.exchange.ui.buy.fragment.NoConflictRecyclerView
+                    android:id="@+id/buyrecyclerview"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/d_1dp"
-                    android:background="@color/common_black" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/d_10dp"
+                android:background="@drawable/common_bg_gray_corners"
+                android:gravity="center">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:id="@+id/ll_gears"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/buyrecyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_gears"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fivefiles"
+                        android:textColor="@color/common_red"
+                        android:textSize="@dimen/d_12dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gear"
+                        android:textColor="@color/common_text_5"
+                        android:textSize="@dimen/d_11dp" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/d_1dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/common_text_2" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="@dimen/d_10dp"
-                    android:layout_marginRight="@dimen/d_10dp"
-                    android:background="@drawable/common_bg_gray_corners"
-                    android:gravity="center">
+                    android:id="@+id/ll_depth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/ll_gears"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:text="@string/fivefiles"
+                        android:textColor="@color/common_red"
+                        android:textSize="@dimen/d_12dp"
+                        android:visibility="gone" />
 
-                        <TextView
-                            android:id="@+id/tv_gears"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fivefiles"
-                            android:textColor="@color/common_red"
-                            android:textSize="@dimen/d_12dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/gear"
-                            android:textColor="@color/common_text_5"
-                            android:textSize="@dimen/d_11dp" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="@dimen/d_1dp"
-                        android:layout_height="wrap_content"
-                        android:background="@color/common_text_2" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_depth"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fivefiles"
-                            android:textColor="@color/common_red"
-                            android:textSize="@dimen/d_12dp"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/depth"
-                            android:textColor="@color/common_text_5"
-                            android:textSize="@dimen/d_11dp" />
-                    </LinearLayout>
+                        android:text="@string/depth"
+                        android:textColor="@color/common_text_5"
+                        android:textSize="@dimen/d_11dp" />
                 </LinearLayout>
             </LinearLayout>
-
-
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

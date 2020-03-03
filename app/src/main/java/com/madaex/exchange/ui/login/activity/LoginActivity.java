@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -164,7 +165,8 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
                 break;
         }
     }
-
+    @BindView(R.id.agree_register)
+    CheckBox mAgreeRegister;
     private void validate() {
         if (TextUtils.isEmpty(mPhone.getText().toString())) {
             ToastUtils.showToast(getString(R.string.pleaseentryaccount));
@@ -172,6 +174,11 @@ public class LoginActivity extends BaseNetActivity<CommonPresenter> implements C
         }
         if (TextUtils.isEmpty(mPassword.getText().toString())) {
             ToastUtils.showToast(getString(R.string.input_pwd));
+            return;
+        }
+
+        if (!mAgreeRegister.isChecked()) {
+            ToastUtils.showToast(getString(R.string.agreetmt));
             return;
         }
         VerifyActivity.startSimpleVerifyUI(LoginActivity.this, VerifyType.NOCAPTCHA, "0335", null, new IActivityCallback() {

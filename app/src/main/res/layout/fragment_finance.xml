@@ -502,10 +502,10 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/ll_bank"
+                            android:layout_marginLeft="12dp"
+                            android:id="@+id/ll_c2ctrans"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="12dp"
                             android:layout_weight="1"
                             android:background="@mipmap/kuangk"
                             android:gravity="center|start"
@@ -515,7 +515,7 @@
                             <ImageView
                                 android:layout_width="23dp"
                                 android:layout_height="23dp"
-                                android:background="@mipmap/bank" />
+                                android:background="@mipmap/c2c" />
 
                             <TextView
                                 style="@style/TextColorSizeStyle"
@@ -523,7 +523,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:maxLines="1"
-                                android:text="@string/SpotAssets"
+                                android:text="@string/contract"
                                 android:textSize="14dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -558,12 +558,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="19dp"
                         android:orientation="horizontal">
-
                         <LinearLayout
-
-                            android:id="@+id/ll_c2ctrans"
+                            android:id="@+id/ll_bank"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+
                             android:layout_weight="1"
                             android:background="@mipmap/kuangk"
                             android:gravity="center|start"
@@ -573,7 +572,7 @@
                             <ImageView
                                 android:layout_width="23dp"
                                 android:layout_height="23dp"
-                                android:background="@mipmap/c2c" />
+                                android:background="@mipmap/bank" />
 
                             <TextView
                                 style="@style/TextColorSizeStyle"
@@ -581,9 +580,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:maxLines="1"
-                                android:text="@string/contract"
+                                android:text="@string/finance_bank_card"
                                 android:textSize="14dp" />
                         </LinearLayout>
+
 
 
                         <LinearLayout

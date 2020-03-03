@@ -85,7 +85,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
 
-//    @BindView(R.id.swiperefreshlayout)
+    //    @BindView(R.id.swiperefreshlayout)
 //    SwipeRefreshLayout mSwiperefreshlayout;
     private String status = "0";
 
@@ -154,10 +154,10 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             }
         });
 
-        if(getActivity().getIntent().hasExtra("market_type")){
+        if (getActivity().getIntent().hasExtra("market_type")) {
             market_type = getActivity().getIntent().getStringExtra("market_type");
-        }else {
-            market_type =  SPUtils.getString("market_type","0");
+        } else {
+            market_type = SPUtils.getString("market_type", "0");
         }
 
         getdata();
@@ -167,10 +167,11 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     private String market_type = "0";
 
     boolean isRefresh = true;
-    private String mEntrusttype="1";
+    private String mEntrusttype = "1";
     int pageNum = 1;
+
     private void getdata() {
-        if(market_type.equals("0")){
+        if (market_type.equals("0")) {
             TreeMap params = new TreeMap<>();
             if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
                 params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST);
@@ -181,9 +182,9 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             params.put("one_xnb", one_xnb);
             params.put("two_xnb", two_xnb);
             params.put("status", status);
-            params.put("curPage", pageNum+"");
+            params.put("curPage", pageNum + "");
             mPresenter.getDataenn(DataUtil.sign(params));
-        }else {
+        } else {
             TreeMap params = new TreeMap<>();
             if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
                 params.put("act", ConstantUrl.Contract_CURRENT_ENTRUST);
@@ -194,7 +195,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             params.put("one_xnb", one_xnb);
             params.put("two_xnb", two_xnb);
             params.put("status", status);
-            params.put("curPage", pageNum+"");
+            params.put("curPage", pageNum + "");
             mPresenter.getDataenn(DataUtil.sign(params));
         }
 
@@ -232,23 +233,26 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust) {
+        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust2) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                helper.setText(R.id.price, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString()).
+                helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString())
-                        .setText(R.id.mum, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString());
+                        .setText(R.id.createtime, item.getAddtime())
+                        .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
+                        .setText(R.id.coinprice, getString(R.string.amount) + "（VDS）")
+                        .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
+                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
 
                 helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    helper.setGone(R.id.ll_line, true).setGone(R.id.ll_history, false)
+                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
                             .setGone(R.id.img_delete, true).setText(R.id.deal, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getDeal()) || !TextUtils.isEmpty(item.getNum())) {
                         int pb = (int) (Double.valueOf(item.getDeal()) / Double.valueOf(item.getNum()));
                         progressBar.setProgress(pb);
                     }
-                    helper.setText(R.id.mum, item.getTwo_xnb() + "--");
                 } else {
                     helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, true)
                             .setGone(R.id.img_delete, false).setText(R.id.deal,
@@ -258,37 +262,11 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                     }
                     if (item.getStatus() == 2) {
                         helper.setGone(R.id.ll_revoke, true);
-                        helper.setText(R.id.deal, item.getOne_xnb() +  "0=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
+                        helper.setText(R.id.deal, item.getOne_xnb() + "0=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
                     } else {
                         helper.setGone(R.id.ll_revoke, false);
                     }
                     helper.setText(R.id.revoke, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getCancel_number())).stripTrailingZeros().toPlainString());
-                }
-                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    if (item.getType().equals("1")) {
-                        helper.setText(R.id.type, R.string.buy).setText(R.id.deal_type, R.string.buy);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_red)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_red);
-                    } else if (item.getType().equals("2")) {
-                        helper.setText(R.id.type, R.string.seller).setText(R.id.deal_type, R.string.seller);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_green)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_green);
-                    }
-                } else {
-                    if (item.getType().equals("1")) {
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_red)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_red);
-                        helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));
-                    } else if (item.getType().equals("2")) {
-
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_green)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_green);
-                        helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_green));
-                    }
                 }
 
                 helper.getView(R.id.img_delete).
@@ -311,14 +289,14 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                                             @Override
                                             public void onClick(IosDialog dialog, View v) {
                                                 dialog.dismiss();
-                                                if(market_type.equals("0")){
+                                                if (market_type.equals("0")) {
                                                     TreeMap params = new TreeMap<>();
                                                     params.put("act", ConstantUrl.TRADE_REVOKE);
                                                     params.put("one_xnb", item.getOne_xnb());
                                                     params.put("two_xnb", item.getTwo_xnb());
                                                     params.put("id", item.getId());
                                                     mPresenter.deleteenn(DataUtil.sign(params));
-                                                }else {
+                                                } else {
                                                     TreeMap params = new TreeMap<>();
                                                     params.put("act", ConstantUrl.Contract_REVOKE);
                                                     params.put("one_xnb", item.getOne_xnb());
@@ -372,6 +350,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         mRecyclerview.setAdapter(mAdapter);
         mAdapter.setEmptyView(R.layout.view_empty_data, (ViewGroup) mRecyclerview.getParent());
     }
+
     @SuppressLint("NewApi")
     public static void setProgressDrawable(@NonNull ProgressBar bar, @DrawableRes int resId) {
         Drawable layerDrawable = bar.getResources().getDrawable(resId);
@@ -429,7 +408,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 break;
             case R.id.toolbar_left_btn_ll:
                 FragmentManager fm = getChildFragmentManager();
-                CoinListFrament editNameDialog = CoinListFrament.newInstance(Constants.DEAL, one_xnb, two_xnb);
+                CoinListFrament2 editNameDialog = CoinListFrament2.newInstance(Constants.DEAL, one_xnb, two_xnb);
                 editNameDialog.show(fm, "fragment_bottom_dialog");
                 break;
             case R.id.toolbar_right_btn_ll:
@@ -452,17 +431,17 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             mToolbarTitleTv.setText(coin);
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
-            market_type= event.getHeyue();
+            market_type = event.getHeyue();
             pageNum = 1;
-            isRefresh =true;
+            isRefresh = true;
             getdata();
         }
 
         if (event != null && event.getCode() == Constants.ENTRUST) {
             pageNum = 1;
-            isRefresh =true;
+            isRefresh = true;
             pageNum = 1;
-            isRefresh =true;
+            isRefresh = true;
             getdata();
         }
     }
@@ -506,7 +485,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     @Override
     public void requestSuccess(EntrustList bean) {
-        mAdapter.setNewData( bean.getData());
+        mAdapter.setNewData(bean.getData());
 //        mSwiperefreshlayout.setRefreshing(false);
 //        if (bean != null) {
 //            setData(isRefresh, bean.getData());
@@ -515,6 +494,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 //            mAdapter.setEnableLoadMore(true);
 //        }
     }
+
     private void setData(boolean isRefresh, List data) {
         pageNum++;
         final int size = data == null ? 0 : data.size();
@@ -535,6 +515,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             mAdapter.loadMoreComplete();
         }
     }
+
     @Override
     public void nodata(String msg) {
 //        mSwiperefreshlayout.setRefreshing(false);
@@ -545,7 +526,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     public void deleteSuccess(String msg) {
         ToastUtils.showToast(msg);
         pageNum = 1;
-        isRefresh =true;
+        isRefresh = true;
         getdata();
     }
 
@@ -553,7 +534,6 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     public void deleteError(String msg) {
         ToastUtils.showToast(msg);
     }
-
 
 
     @Override

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bgground_login"
@@ -13,12 +12,12 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/img_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/d_15dp"
-            android:background="@mipmap/icon_blanck_back" />
+            android:background="@mipmap/icon_blanck_back"
+            android:visibility="gone" />
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -56,7 +55,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_marginLeft="13dp"
-                        android:src="@mipmap/applogo" />
+                        android:src="@mipmap/logologin" />
                 </LinearLayout>
 
                 <TextView
@@ -99,11 +98,13 @@
                         android:textColor="@color/colorCutOffSide"
                         android:textSize="14sp" />
                 </LinearLayout>
+
                 <View
-                    android:layout_marginLeft="@dimen/d_10dp"
                     android:layout_width="1dp"
                     android:layout_height="12dp"
+                    android:layout_marginLeft="@dimen/d_10dp"
                     android:background="@color/common_title_unbg" />
+
                 <EditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
@@ -133,8 +134,7 @@
                 android:id="@+id/view1"
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@color/common_black" />
+                android:layout_marginRight="30dp" android:background="#828383" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,6 +178,7 @@
                 android:id="@+id/view2"
                 style="@style/CrossCutOffSideStyle"
                 android:layout_marginLeft="30dp"
+                android:background="#828383"
                 android:layout_marginRight="30dp" />
 
             <LinearLayout

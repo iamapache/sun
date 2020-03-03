@@ -1,14 +1,21 @@
 package com.madaex.exchange.ui.login.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseActivity;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.ui.MainActivity;
 import com.madaex.exchange.ui.constant.Constants;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -21,9 +28,12 @@ import com.madaex.exchange.ui.constant.Constants;
 public class WelcomeActivity extends BaseActivity {
 
 
+    @BindView(R.id.img)
+    ImageView mImageView;
+
     @Override
     public void initDatas() {
-        handler.sendEmptyMessageDelayed(0, 2000);
+        handler.sendEmptyMessageDelayed(0, 4000);
     }
 
 
@@ -39,7 +49,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        Glide.with(this).load(R.mipmap.welcome).into(new GlideDrawableImageViewTarget(mImageView,1)); //加载一次
     }
 
 
@@ -70,4 +80,10 @@ public class WelcomeActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

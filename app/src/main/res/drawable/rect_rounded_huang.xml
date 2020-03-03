@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 矩形圆角+圆出一个圆弧 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="oval"
+       android:useLevel="false">
+
+    <size android:height="5dp"
+          android:width="5dp"/>
+
+    <solid android:color="#FFBA57" />
+
+    <corners android:radius="2dp" />
+
+</shape>

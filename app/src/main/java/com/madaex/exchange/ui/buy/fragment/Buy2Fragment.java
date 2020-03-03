@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -30,6 +29,7 @@ import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.net.Constant;
+import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.SPUtils;
@@ -84,9 +84,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     TextView mTvDeal;
     Unbinder unbinder;
     @BindView(R.id.buyrecyclerview)
-    RecyclerView mBuyrecyclerview;
+    NoConflictRecyclerView mBuyrecyclerview;
     @BindView(R.id.sellerrecyclerview)
-    RecyclerView mSellerrecyclerview;
+    NoConflictRecyclerView mSellerrecyclerview;
     @BindView(R.id.last)
     TextView mLast;
     @BindView(R.id.coinname)
@@ -109,6 +109,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     EditText mPrice;
     @BindView(R.id.number)
     EditText mNumber;
+    @BindView(R.id.cny)
+    TextView mCny;
+    @BindView(R.id.name)
+    TextView mName;
     private String type;
     private String one_xnb = "";
     private String two_xnb = "";
@@ -253,23 +257,23 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                }
                 switch (checkedId) {
                     case R.id.today_tab:
-                        if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString())*0.25)+"");
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.25) + "");
                         }
                         break;
                     case R.id.record_tab:
-                        if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString())*0.5)+"");
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.5) + "");
                         }
                         break;
                     case R.id.contact_tab:
-                        if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString())*0.75)+"");
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.75) + "");
                         }
                         break;
                     case R.id.settings_tab:
-                        if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString())*1)+"");
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 1) + "");
                         }
                         break;
                 }
@@ -437,31 +441,31 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         } else {
             mPrice.setEnabled(false);
         }
-
-            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                mTvDeal.setBackgroundResource(R.drawable.common_bg_red_corners);
-                mTvDeal.setText(getString(R.string.item_buy) + " " + one_xnb);
-                mTvDeal.setTextColor(getResources().getColor(R.color.white));
-                if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    mTvDeal.setText(R.string.loginregister);
-                }
+        mName.setText(two_xnb);
+        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+            mTvDeal.setBackgroundResource(R.drawable.common_bg_red_corners);
+            mTvDeal.setText(getString(R.string.item_buy) + " " + one_xnb);
+            mTvDeal.setTextColor(getResources().getColor(R.color.white));
+            if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                mTvDeal.setText(R.string.loginregister);
+            }
 //            mTvOne.setText(getString(R.string.Available) + " " + two_xnb);
 //            mTvTwo.setText(getString(R.string.kebuy) + " " + one_xnb);
 //            mTvThree.setText(getString(R.string.Available) + " " + one_xnb);
 //            mTvFour.setText(getString(R.string.Frozen) + " " + two_xnb);
-            } else {
-                mTvDeal.setBackgroundResource(R.drawable.common_bg_green_corners);
-                mTvDeal.setText(getString(R.string.item_seller) + " " + one_xnb);
-                mTvDeal.setTextColor(getResources().getColor(R.color.white));
-                if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    mTvDeal.setText(R.string.loginregister);
-                }
+        } else {
+            mTvDeal.setBackgroundResource(R.drawable.common_bg_green_corners);
+            mTvDeal.setText(getString(R.string.item_seller) + " " + one_xnb);
+            mTvDeal.setTextColor(getResources().getColor(R.color.white));
+            if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                mTvDeal.setText(R.string.loginregister);
+            }
 //            mTvOne.setText(getString(R.string.Available) + " " + one_xnb);
 //
 //            mTvTwo.setText(getString(R.string.exchange) + " " +two_xnb  + "");
 //            mTvThree.setText(getString(R.string.Available) + " " + two_xnb);
 //            mTvFour.setText(getString(R.string.Frozen) + " " + one_xnb);
-            }
+        }
     }
 
     private void getMsgInfo() {
@@ -500,6 +504,47 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Override
     protected void initView() {
 
+        mPrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TextUtils.isEmpty(editable.toString())) {
+                    mCny.setText("￥0");
+                    return;
+                }
+                str = editable.toString();
+                if (!TextUtils.isEmpty(mNumber.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
+                        double number = Double.valueOf(mNumber.getText().toString().trim());
+                        double price = Double.valueOf(editable.toString());
+                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+                    }
+                }
+
+                if (!TextUtils.isEmpty(editable.toString())) {
+                    if (!editable.toString().equals("0.") && Double.valueOf(editable.toString()) != 0) {
+//                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+//                            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString()), 2) + "").stripTrailingZeros().toPlainString());
+//                        } else {
+//                            mOneXnbd.setText(new BigDecimal(ArithUtil.round(ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
+//                        }
+                        if (baseBean != null && baseBean.getSellRmb() != null && baseBean.getCurrentPrice() != null && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
+                            mCny.setText("￥" + new BigDecimal(ArithUtil.round(ArithUtil.mul(ArithUtil.div(Double.valueOf(baseBean.getSellRmb()),
+                                    Double.valueOf(baseBean.getCurrentPrice()), 2), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
+                        }
+                    }
+                }
+            }
+        });
         mNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
@@ -512,9 +557,20 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
+                        double number = Double.valueOf(mPrice.getText().toString().trim());
+                        double price = Double.valueOf(editable.toString());
+                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+                    }
+                }
             }
         });
     }
+
+
+    private double rise_once = 0;
 
     @Override
     protected void initDatas() {
@@ -630,6 +686,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void sendMsgSuccess(DealInfo data) {
+
+        if (EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(data.getData())) {
+            rise_once = Double.valueOf(data.getData().getRise_once());
+        }
         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
 
 //            mOneXnb.setText(data.getData().getTwo_xnb());
@@ -720,26 +780,34 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
     private boolean change = true;
+
     public static boolean strResult(String args) {
         Boolean strResult = args.matches("-[0-9]+(.[0-9]+)?|[0-9]+(.[0-9]+)?");
-       return strResult;
+        return strResult;
     }
+
     @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change, R.id.deletetwo, R.id.deleteone, R.id.addone, R.id.addtwo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.deletetwo:
 
-                if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                    mNumber.setText((Double.valueOf(mNumber.getText().toString())-1)+"");
+                if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                    mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
                 }
                 break;
             case R.id.deleteone:
+                if (strResult(mNumber.getText().toString()) && rise_once != 0) {
+                    mPrice.setText((Double.valueOf(mPrice.getText().toString()) - rise_once) + "");
+                }
                 break;
             case R.id.addone:
+                if (strResult(mNumber.getText().toString()) && rise_once != 0) {
+                    mPrice.setText((Double.valueOf(mPrice.getText().toString()) + rise_once) + "");
+                }
                 break;
             case R.id.addtwo:
-                if(EmptyUtils.isNotEmpty(mNumber.getText().toString())&&strResult(mNumber.getText().toString())){
-                    mNumber.setText((Double.valueOf(mNumber.getText().toString())+1)+"");
+                if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                    mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
                 }
                 break;
 
@@ -947,6 +1015,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 mInfomation.setVisibility(View.GONE);
             }
             sendSocket();
+            getMsgInfo();
+            linedetail();
             initview();
         } else if (event != null && event.getCode() == Constants.LOGINSUCCESS) {
             String coin = event.getMsg();
@@ -955,6 +1025,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
     private String market_type = "0";
-    private int stutas = 50;
+    private int stutas = 10;
 
 }
