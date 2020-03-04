@@ -37,12 +37,13 @@ public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRe
 
     private Context mContext;
     private List<ContractAsset.DataBean.XnbListBean> data;
-    private List<ContractAsset.DataBean.XnbListBean> mFilterList = new ArrayList<>();
+    private List<ContractAsset.DataBean.XnbListBean> mFilterList = new ArrayList<ContractAsset.DataBean.XnbListBean>();
     private boolean isshow;
     String wallet_type ="";
     public ContractRecyclerviewAdapter(Context context, List<ContractAsset.DataBean.XnbListBean> data, String wallet_type ) {
         this.mContext = context;
         this.data = data;
+
         this.mFilterList = data;
         this.wallet_type  =wallet_type;
     }
@@ -81,6 +82,9 @@ public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRe
 
     @Override
     public int getItemCount() {
+        if(mFilterList==null||mFilterList.size()==0){
+            return 0;
+        }
         return mFilterList.size();
     }
 

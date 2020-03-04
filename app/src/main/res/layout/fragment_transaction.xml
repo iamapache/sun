@@ -51,10 +51,9 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_weight="1"
             android:text="@string/namevol"
             android:textColor="@color/common_ggray"
             android:textSize="12dp" />

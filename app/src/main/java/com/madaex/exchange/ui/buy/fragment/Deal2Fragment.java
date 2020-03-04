@@ -435,6 +435,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             pageNum = 1;
             isRefresh = true;
             getdata();
+            mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
         }
 
         if (event != null && event.getCode() == Constants.ENTRUST) {

@@ -14,6 +14,7 @@ import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.common.SB2Data;
 import com.madaex.exchange.ui.market.bean.LineDetail;
+import com.orhanobut.logger.Logger;
 
 import java.util.Map;
 
@@ -113,6 +114,7 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                     @Override
                     public void onNext(LineDetail commonBean) {
                         if (mView != null) {
+                            Logger.i("<==>111111111111111");
                             if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                                 mView.requestError(commonBean.getData() + "");
                             } else {

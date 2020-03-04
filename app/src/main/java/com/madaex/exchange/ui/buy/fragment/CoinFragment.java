@@ -94,6 +94,8 @@ public class CoinFragment extends BaseNetLazyFragment {
                 if (disposable != null && !disposable.isDisposed()) {
                     disposable.dispose();
                 }
+                SPUtils.putString(Constants.ONE_XNB,listBean.getName().split("/")[0]);
+                SPUtils.putString(Constants.TWO_XNB,listBean.getName().split("/")[1]);
                 Event event = new Event();
                 event.setMsg(listBean.getName());
                 event.setCode(type);
@@ -111,8 +113,7 @@ public class CoinFragment extends BaseNetLazyFragment {
                 event.setData(bean);
                 EventBus.getDefault().post(event);
                 mCoinLister.inputInforCompleted("");
-                SPUtils.putString(Constants.ONE_XNB,listBean.getName().split("/")[0]);
-                SPUtils.putString(Constants.TWO_XNB,listBean.getName().split("/")[1]);
+
             }
         });
         mRecyclerview.setAdapter(mAdapter);

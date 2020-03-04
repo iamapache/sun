@@ -44,7 +44,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/d_40dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_marginTop="@dimen/d_10dp"
                         android:layout_marginRight="@dimen/d_5dp"
@@ -53,8 +53,8 @@
 
                         <TextView
                             android:id="@+id/deleteone"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginRight="@dimen/d_5dp"
                             android:gravity="center"
                             android:text="—"
@@ -88,8 +88,8 @@
 
                         <TextView
                             android:id="@+id/addone"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginRight="@dimen/d_5dp"
                             android:gravity="center"
                             android:text="+"
@@ -122,7 +122,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/d_40dp"
+                        android:layout_height="30dp"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_marginTop="@dimen/d_5dp"
                         android:layout_marginRight="@dimen/d_5dp"
@@ -131,8 +131,8 @@
 
                         <TextView
                             android:id="@+id/deletetwo"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginRight="@dimen/d_5dp"
                             android:gravity="center"
                             android:text="—"
@@ -166,8 +166,8 @@
 
                         <TextView
                             android:id="@+id/addtwo"
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginRight="@dimen/d_5dp"
                             android:gravity="center"
                             android:text="+"

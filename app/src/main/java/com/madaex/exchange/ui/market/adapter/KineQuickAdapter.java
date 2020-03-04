@@ -28,6 +28,7 @@ import com.orhanobut.logger.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -133,9 +134,11 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
         helper.setText(R.id.endname, "/" + item.getExchangeType().toUpperCase());
         helper.setVisible(R.id.endname, true);
         helper.setText(R.id.coinname, item.getCurrentype().toUpperCase());
+        BigDecimal bg = new BigDecimal(item.getSellRmb());
+        double f1 = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
         helper.setText(R.id.coinnumber, mContext.getString(R.string.vol) + " " + DataUtil.thousand(item.getVolumn(), mContext))
                 .setText(R.id.coinprice, "" + item.getCurrentPrice()).
-                setText(R.id.coinrmb, "￥" + item.getSellRmb()).setText(R.id.bili, item.getRiseRate())
+                setText(R.id.coinrmb, "￥" + f1).setText(R.id.bili, item.getRiseRate())
                 .setText(R.id.maxprice, item.getHigh() + "").
                 setText(R.id.minprice, item.getLow() + "");
 

@@ -152,133 +152,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         isPrepared = false;
 
 
-        initview();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mBuyrecyclerview.setLayoutManager(linearLayoutManager);
-
-        mBuyAdapter = new BuyAdapter(mContext);
-        mBuyrecyclerview.setAdapter(mBuyAdapter);
-        mBuyrecyclerview.setHasFixedSize(true);
-        mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(List<Float> list) {
-                if (market_type.equals("0")) {
-                    mPrice.setText(list.get(0).toString());
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onItemLongClick(View view) {
-
-            }
-        });
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(mContext);
-        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
-        mSellerrecyclerview.setLayoutManager(linearLayoutManager1);
-        mSellerAdapter = new SellerAdapter(mContext);
-        mSellerrecyclerview.setAdapter(mSellerAdapter);
-        mSellerrecyclerview.setHasFixedSize(true);
-        mSellerAdapter.setItemClickListener(new SellerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(List<Float> list) {
-                if (market_type.equals("0")) {
-                    mPrice.setText(list.get(0).toString());
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onItemLongClick(View view) {
-
-            }
-        });
-//        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                List<String> list = (List<String>) adapter.getItem(position);
-//                mEtPrice.setText(list.get(0).toString());
-//            }
-//        });
-        RxWebSocket.get(Constant.Websocket)
-                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
-                .subscribe(new WebSocketSubscriber() {
-                    @Override
-                    public void onOpen(@NonNull WebSocket webSocket) {
-                        Log.d("MainActivity", "onOpen1:");
-                        mWebSocket = webSocket;
-                    }
-
-                    @Override
-                    protected void onMessage(String message) {
-
-                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
-                            return;
-                        }
-                        Log.i("BuyFragment", message);
-                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
-                            currentBackPressedTime++;
-                        } else {
-                            currentBackPressedTime = 0;
-                            new Thread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
-                                    Message messages = Message.obtain();
-                                    messages.obj = mDesignates;
-                                    messages.what = 1;
-                                    handler.sendMessage(messages);//将message对象发送出去
-                                }
-                            }).start();
-
-                        }
-                    }
-
-                    @Override
-                    protected void onReconnect() {
-                        Log.d("MainActivity", "重连");
-                    }
-                });
-
-        mTabRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                for (int i = 0; i < group.getChildCount(); i++) {
-//                    if (group.getChildAt(i).getId() == checkedId) {
-//                        RadioButton radioButton = (RadioButton) group.getChildAt(i);
-//                        ToastUtils.showToast(radioButton.getText().toString());
-//                        return;
-//                    }
-//                }
-                switch (checkedId) {
-                    case R.id.today_tab:
-                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.25) + "");
-                        }
-                        break;
-                    case R.id.record_tab:
-                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.5) + "");
-                        }
-                        break;
-                    case R.id.contact_tab:
-                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.75) + "");
-                        }
-                        break;
-                    case R.id.settings_tab:
-                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 1) + "");
-                        }
-                        break;
-                }
-            }
-        });
 
 
     }
@@ -434,7 +308,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     private void initview() {
         market_type = SPUtils.getString("market_type", "0");
-
         if (market_type.equals("0")) {
             mPrice.setEnabled(true);
 
@@ -466,6 +339,11 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //            mTvThree.setText(getString(R.string.Available) + " " + two_xnb);
 //            mTvFour.setText(getString(R.string.Frozen) + " " + one_xnb);
         }
+
+
+
+
+
     }
 
     private void getMsgInfo() {
@@ -567,6 +445,132 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 }
             }
         });
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mBuyrecyclerview.setLayoutManager(linearLayoutManager);
+
+        mBuyAdapter = new BuyAdapter(mContext);
+        mBuyrecyclerview.setAdapter(mBuyAdapter);
+        mBuyrecyclerview.setHasFixedSize(true);
+        mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(List<Float> list) {
+                if (market_type.equals("0")) {
+                    mPrice.setText(list.get(0).toString());
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view) {
+
+            }
+        });
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(mContext);
+        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
+        mSellerrecyclerview.setLayoutManager(linearLayoutManager1);
+        mSellerAdapter = new SellerAdapter(mContext);
+        mSellerrecyclerview.setAdapter(mSellerAdapter);
+        mSellerrecyclerview.setHasFixedSize(true);
+        mSellerAdapter.setItemClickListener(new SellerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(List<Float> list) {
+                if (market_type.equals("0")) {
+                    mPrice.setText(list.get(0).toString());
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view) {
+
+            }
+        });
+//        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                List<String> list = (List<String>) adapter.getItem(position);
+//                mEtPrice.setText(list.get(0).toString());
+//            }
+//        });
+        RxWebSocket.get(Constant.Websocket)
+                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
+                .subscribe(new WebSocketSubscriber() {
+                    @Override
+                    public void onOpen(@NonNull WebSocket webSocket) {
+                        Log.d("MainActivity", "onOpen1:");
+                        mWebSocket = webSocket;
+                    }
+
+                    @Override
+                    protected void onMessage(String message) {
+
+                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
+                            return;
+                        }
+                        Log.i("BuyFragment", message);
+                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
+                            currentBackPressedTime++;
+                        } else {
+                            currentBackPressedTime = 0;
+                            new Thread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
+                                    Message messages = Message.obtain();
+                                    messages.obj = mDesignates;
+                                    messages.what = 1;
+                                    handler.sendMessage(messages);//将message对象发送出去
+                                }
+                            }).start();
+
+                        }
+                    }
+
+                    @Override
+                    protected void onReconnect() {
+                        Log.d("MainActivity", "重连");
+                    }
+                });
+
+        mTabRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                for (int i = 0; i < group.getChildCount(); i++) {
+//                    if (group.getChildAt(i).getId() == checkedId) {
+//                        RadioButton radioButton = (RadioButton) group.getChildAt(i);
+//                        ToastUtils.showToast(radioButton.getText().toString());
+//                        return;
+//                    }
+//                }
+                switch (checkedId) {
+                    case R.id.today_tab:
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.25) + "");
+                        }
+                        break;
+                    case R.id.record_tab:
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.5) + "");
+                        }
+                        break;
+                    case R.id.contact_tab:
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 0.75) + "");
+                        }
+                        break;
+                    case R.id.settings_tab:
+                        if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) * 1) + "");
+                        }
+                        break;
+                }
+            }
+        });
     }
 
 
@@ -611,6 +615,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //
 //                    }
 //                });
+        initview();
         linedetail();
         sendSocket();
     }
@@ -681,7 +686,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void requestError(String msg) {
-        ToastUtils.showToast(msg);
+//        ToastUtils.showToast(msg);
     }
 
     @Override
@@ -726,7 +731,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
                 mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
             }
-            getMsgInfo();
+//            getMsgInfo();
         }
 
 
@@ -1014,10 +1019,13 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             } else {
                 mInfomation.setVisibility(View.GONE);
             }
+
+            initview();
             sendSocket();
+
             getMsgInfo();
             linedetail();
-            initview();
+
         } else if (event != null && event.getCode() == Constants.LOGINSUCCESS) {
             String coin = event.getMsg();
             getMsgInfo();

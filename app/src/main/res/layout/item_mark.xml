@@ -25,10 +25,9 @@
             android:visibility="gone" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -84,7 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:maxEms="8"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:textColor="@color/common_red"
                 android:textSize="@dimen/d_16dp"
                 tools:text="ETH" />
