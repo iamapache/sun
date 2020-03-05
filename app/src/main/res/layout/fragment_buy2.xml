@@ -16,16 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:descendantFocusability="blocksDescendants"
-            android:fillViewport="true"
-            android:focusableInTouchMode="true">
+           >
 
 
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -111,10 +108,11 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/guzhi"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
-                            android:text="限价单"
+                            android:text="0"
                             android:textColor="#ffffffff"
                             android:textSize="12sp" />
                     </LinearLayout>

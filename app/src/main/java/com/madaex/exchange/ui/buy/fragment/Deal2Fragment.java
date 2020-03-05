@@ -171,33 +171,36 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     int pageNum = 1;
 
     private void getdata() {
-        if (market_type.equals("0")) {
-            TreeMap params = new TreeMap<>();
-            if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST);
-            } else {
-                params.put("act", ConstantUrl.TRADE_HISTORY_ENTRUST);
-            }
+        if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+            if (market_type.equals("0")) {
+                TreeMap params = new TreeMap<>();
+                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
+                    params.put("act", ConstantUrl.TRADE_CURRENT_ENTRUST);
+                } else {
+                    params.put("act", ConstantUrl.TRADE_HISTORY_ENTRUST);
+                }
 
-            params.put("one_xnb", one_xnb);
-            params.put("two_xnb", two_xnb);
-            params.put("status", status);
-            params.put("curPage", pageNum + "");
-            mPresenter.getDataenn(DataUtil.sign(params));
-        } else {
-            TreeMap params = new TreeMap<>();
-            if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                params.put("act", ConstantUrl.Contract_CURRENT_ENTRUST);
+                params.put("one_xnb", one_xnb);
+                params.put("two_xnb", two_xnb);
+                params.put("status", status);
+                params.put("curPage", pageNum + "");
+                mPresenter.getDataenn(DataUtil.sign(params));
             } else {
-                params.put("act", ConstantUrl.Contract_HISTORY_ENTRUST);
-            }
+                TreeMap params = new TreeMap<>();
+                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
+                    params.put("act", ConstantUrl.Contract_CURRENT_ENTRUST);
+                } else {
+                    params.put("act", ConstantUrl.Contract_HISTORY_ENTRUST);
+                }
 
-            params.put("one_xnb", one_xnb);
-            params.put("two_xnb", two_xnb);
-            params.put("status", status);
-            params.put("curPage", pageNum + "");
-            mPresenter.getDataenn(DataUtil.sign(params));
+                params.put("one_xnb", one_xnb);
+                params.put("two_xnb", two_xnb);
+                params.put("status", status);
+                params.put("curPage", pageNum + "");
+                mPresenter.getDataenn(DataUtil.sign(params));
+            }
         }
+
 
     }
 

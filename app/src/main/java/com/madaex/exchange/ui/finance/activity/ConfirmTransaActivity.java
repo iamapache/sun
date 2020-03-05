@@ -160,8 +160,8 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
         params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         params.put("addr", getIntent().getStringExtra("address"));
         params.put("num", getIntent().getStringExtra("number"));
-//        params.put("fee", getIntent().getStringExtra("fee"));
-        params.put("is_platform", getIntent().getBooleanExtra("isCheck", true) == false ? 0 + "" : 1 + "");
+        params.put("coin_fee", getIntent().getStringExtra("fee"));
+        params.put("is_platform", getIntent().getBooleanExtra("isCheck", false) == false ? 0 + "" : 1 + "");
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setClickable(false);
         mSubmit.setBackgroundResource(R.drawable.common_button_shape);

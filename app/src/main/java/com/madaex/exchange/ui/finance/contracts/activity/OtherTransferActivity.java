@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
@@ -172,6 +173,9 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
     public void requestErrorcontract(String s) {
         ToastUtils.showToast(s);
         Intent intent =  getIntent();
+        if(EmptyUtils.isNotEmpty(commonBean)){
+            intent.putExtra("market_name",commonBean.getData().getMarket_name());
+        }
         intent.setClass(mContext, OpenContractActivity.class);
         startActivity(intent);
     }
@@ -197,9 +201,10 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
     public void requestSuccess(USDTinfo commonBean) {
 
     }
-
+    AlscInfo commonBean;
     @Override
     public void requestSuccess(AlscInfo commonBean) {
+        this.commonBean =commonBean;
         mCny.setText(commonBean.getData().getAssets().getUsdt().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         mDollar.setText("≈ ¥ "+commonBean.getData().getAssets().getRmb().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
         mAvail.setText(commonBean.getData().getCon_usable_assets() + "");

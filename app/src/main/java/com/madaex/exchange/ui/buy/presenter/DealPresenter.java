@@ -90,6 +90,7 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                 .subscribeWith(new CommonSubscriber<DealInfo>(mView, true) {
                     @Override
                     public void onNext(DealInfo commonBean) {
+                        Logger.i("<==>2222222222222");
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
                         }else {
                             mView.sendMsgSuccess(commonBean);

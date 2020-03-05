@@ -9,9 +9,7 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -66,12 +64,10 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     ToggleButton mTogglebutton;
     @BindView(R.id.cointype)
     TextView mCointype;
-    @BindView(R.id.ll_neibu)
-    LinearLayout mLlNeibu;
     @BindView(R.id.submit)
     Button mSubmit;
     private int CODE_REQUEST = 0x002;
-    private boolean isCheck = true;
+    private boolean isCheck = false;
     private double zc_min = 0;
     private double zc_max = 10000;
     @BindView(R.id.tv_transpassword)
@@ -92,16 +88,6 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         mTvAddress.setFocusable(false);
         mTvAddress.setFocusableInTouchMode(false);
         mTvNumber.setFilters(new InputFilter[]{new EditInputFilter(100000)});
-        mTogglebutton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    isCheck = true;
-                } else {
-                    isCheck = false;
-                }
-            }
-        });
     }
 
     @Override
@@ -111,10 +97,10 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         String wallet_type = getIntent().getStringExtra("wallet_type");
         mTitleView.setText(getString(R.string.fu) + xnb_name);
         mCointype.setText(xnb_name);
-        if (!xnb_name.equals("GRC")) {
-            mLlNeibu.setVisibility(View.GONE);
-            mTogglebutton.setChecked(false);
-        }
+//        if (!xnb_name.equals("GRC")) {
+//            mLlNeibu.setVisibility(View.GONE);
+//            mTogglebutton.setChecked(false);
+//        }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CASH_COIN);
 //        params.put("xnb", str);
@@ -215,7 +201,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
                         intent.putExtra("address", mTvAddress.getText().toString().trim());
                         intent.putExtra("pass", mTvTranspassword.getText().toString().trim());
                         intent.putExtra("fee", mTvKgf.getText().toString().trim());
-                        intent.putExtra("isCheck", isCheck);
+                        intent.putExtra("isCheck", mTogglebutton.isChecked());
                         startActivity(intent);
                         dialog.dismiss();
 
@@ -264,7 +250,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         if (resultCode == RESULT_OK
                 && requestCode == CODE_REQUEST) {
             String wallets = data.getStringExtra("fee");
-            mTvKgf.setText(wallets + "%");
+            mTvKgf.setText(wallets + "");
         } else if (resultCode == RESULT_OK
                 && requestCode == 100) {
             String address = data.getStringExtra("address");
@@ -326,7 +312,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         mSellerCoin = new SellerCoin();
         mSellerCoin = commonBean;
         mTvAmount.setText(commonBean.getData().getXnb_num());
-        mTvKgf.setText(commonBean.getData().getXnb_fee().get(0) + "%");
+        mTvKgf.setText(commonBean.getData().getXnb_fee().get(0) + "");
         zc_min = Double.valueOf(commonBean.getData().getZc_min());
         zc_max = Double.valueOf(commonBean.getData().getZc_max());
     }

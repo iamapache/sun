@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
@@ -208,6 +209,9 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     @Override
     public void requestErrorcontract(String s) {
         Intent intent =  getIntent();
+        if(EmptyUtils.isNotEmpty(commonBean)){
+            intent.putExtra("market_name",commonBean.getData().getMarket_name());
+        }
         intent.setClass(mContext, OpenContractActivity.class);
         startActivity(intent);
     }

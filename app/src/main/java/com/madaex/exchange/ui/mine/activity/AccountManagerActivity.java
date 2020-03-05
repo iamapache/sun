@@ -65,6 +65,7 @@ public class AccountManagerActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.submit:
                 SPUtils.putString(Constants.TOKEN, "");
+                SPUtils.putString(Constants.USER_ID, "");
                 startActivity(new Intent(mContext, LoginActivity.class));
                 finish();
                 break;

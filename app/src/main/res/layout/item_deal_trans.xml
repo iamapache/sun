@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/d_10dp"
                 android:text="0"
-                android:visibility="gone"
                 android:textColor="@color/common_green"
                 android:textSize="12dp" />
 

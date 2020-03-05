@@ -535,6 +535,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     public void nodata(String msg) {
 
         SPUtils.putString(Constants.TOKEN, "");
+        SPUtils.putString(Constants.USER_ID, "");
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

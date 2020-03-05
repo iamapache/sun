@@ -207,7 +207,7 @@
             android:layout_height="@dimen/d_40dp"
             android:layout_marginRight="@dimen/d_15dp"
             android:background="@drawable/selector_butn_toggle"
-            android:checked="true"
+            android:checked="false"
             android:text=""
             android:textOff=""
             android:textOn=""/>

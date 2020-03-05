@@ -121,10 +121,10 @@ public class OpenContractActivity extends BaseNetActivity<ContractPresenter> imp
             ToastUtils.showToast(getString(R.string.agreetmt));
             return;
         }
-        ContractAsset.DataBean.XnbListBean  mParcelableExtra = getIntent().getParcelableExtra("bean");
+//        ContractAsset.DataBean.XnbListBean  mParcelableExtra = getIntent().getParcelableExtra("bean");
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.Userlevel_add);
-        params.put("market", mParcelableExtra.getMarket_id()+ "");
+        params.put("market",getIntent().getSerializableExtra("market_name")+ "");
         params.put("invit", mPhone.getText().toString()+ "");
         mPresenter.hua(DataUtil.sign(params));
     }
@@ -139,6 +139,10 @@ public class OpenContractActivity extends BaseNetActivity<ContractPresenter> imp
     public void requestError(String msg) {
         ToastUtils.showToast(msg);
     }
+
+
+
+
 
     @Override
     public void requestSuccess(String commonBean) {
