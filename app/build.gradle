@@ -195,6 +195,8 @@ dependencies {
     implementation files('libs/AndroidPicker-1.5.6.jar')
     implementation 'com.github.FJ917:FJDropDownMenu:v1.1'
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-
+    implementation "com.github.VictorAlbertos.RxCache:runtime:1.8.1-2.x"
+    //我们再添加这个依赖，下面有说明
+    implementation 'com.github.VictorAlbertos.Jolyglot:gson:0.0.3'
     implementation 'com.dhh:rxLife2:1.2.0'
 }

@@ -43,8 +43,17 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
     public void onBindViewHolder(SellerAdapter.MyViewHolder holder, final int position) {
         holder.name.setText(mContext.getResources().getString(R.string.seller) + (getItemCount()-position )+ "" );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.green) );
-        holder.price.setText(DataUtil.is9Length(mDatas.get(position).get(0)+""));
-        holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+        if(mDatas.get(position).get(0)==0){
+            holder.price.setText( "--");
+        }else {
+            holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
+        }
+        if(mDatas.get(position).get(1)==0){
+            holder.number.setText( "--");
+        }else {
+            holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+        }
+
         holder.itemView.setTag(mDatas.get(position).get(0)+"");
         int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
         holder.mProgressBar.setProgress(vote);

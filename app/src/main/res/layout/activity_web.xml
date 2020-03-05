@@ -30,7 +30,6 @@
         android:background="@color/common_black"
         android:orientation="vertical">
 
-
     </LinearLayout>
 
 </LinearLayout>

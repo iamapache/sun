@@ -410,7 +410,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|bottom"
                 android:orientation="vertical">
 
 
@@ -491,7 +491,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|top"
                 android:orientation="vertical">
 
                 <com.madaex.exchange.ui.buy.fragment.NoConflictRecyclerView

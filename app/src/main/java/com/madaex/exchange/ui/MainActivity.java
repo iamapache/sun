@@ -122,7 +122,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mTabList.add(getString(R.string.item_market));
         mTabList.add(getString(R.string.item_onetran));
         
-        mTabList.add(getString(R.string.item_finance));
+        mTabList.add(getString(R.string.item_finance2));
         mTabList.add(getString(R.string.item_mine));
         RxWebSocket.get(Constant.Websocket)
                 .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
@@ -201,7 +201,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             tabIcon.setImageResource(R.mipmap.icon_market_select);
         } else if (getString(R.string.item_onetran).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_buy_select);
-        }  else if (getString(R.string.item_finance).equals(s)) {
+        }  else if (getString(R.string.item_finance2).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_finance_select);
         } else if (getString(R.string.item_mine).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_mine_select);
@@ -222,7 +222,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             tabIcon.setImageResource(R.mipmap.icon_market_unselect);
         } else if (getString(R.string.item_onetran).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_buy_unselect);
-        } else if (getString(R.string.item_finance).equals(s)) {
+        } else if (getString(R.string.item_finance2).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_finance_unselect);
         } else if (getString(R.string.item_mine).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_mine_unselect);

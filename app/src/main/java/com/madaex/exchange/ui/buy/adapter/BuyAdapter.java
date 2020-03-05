@@ -41,9 +41,19 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder,  int position) {
         holder.name.setText(mContext.getResources().getString(R.string.buy) + (position+ 1)  );
+        if(mDatas.get(position).get(0)==0){
+            holder.price.setText( "--");
+        }else {
+            holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
+        }
+        if(mDatas.get(position).get(1)==0){
+            holder.number.setText( "--");
+        }else {
+            holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+        }
         holder.name.setTextColor(mContext.getResources().getColor(R.color.common_red) );
-        holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
-        holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+
+
         int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
         holder.mProgressBar.setProgress(vote);
         Log.d("onBindViewHolder", vote+"重连");

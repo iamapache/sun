@@ -20,6 +20,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
+import com.madaex.exchange.common.view.CustomPopWindow;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.bean.Event;
@@ -105,6 +107,19 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         return R.layout.fragment_dealtwo;
     }
 
+    private DEtailLister mCoinLister;
+
+    public DEtailLister getCoinLister() {
+        return mCoinLister;
+    }
+
+    public void setCoinLister(DEtailLister coinLister) {
+        mCoinLister = coinLister;
+    }
+
+    Buy2Fragment fragment1;
+    Buy2Fragment fragment2;
+
     @Override
     protected void lazyLoad() {
         if (!isPrepared || !isVisible) {
@@ -118,8 +133,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         two_xnb = SPUtils.getString(Constants.TWO_XNB, "ETH");
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
         int str = (int) getArguments().get(Constants.ARGS);
-        Buy2Fragment fragment1 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_BUY, one_xnb, two_xnb);
-        Buy2Fragment fragment2 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_SELLER, one_xnb, two_xnb);
+        fragment1 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_BUY, one_xnb, two_xnb);
+        fragment2 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_SELLER, one_xnb, two_xnb);
         mViewList.add(fragment1);
         mViewList.add(fragment2);
 
@@ -170,7 +185,17 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     private String mEntrusttype = "1";
     int pageNum = 1;
 
+    private void linedetail() {
+        TreeMap params2 = new TreeMap<>();
+        params2.put("act", ConstantUrl.TRADE_HOME_INDEX_DETAIL);
+        params2.put("market", one_xnb + "_" + two_xnb);
+        params2.put("market_type", market_type);
+        mPresenter.getJavaLineDetail(DataUtil.sign(params2));
+    }
+
     private void getdata() {
+
+        linedetail();
         if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
             if (market_type.equals("0")) {
                 TreeMap params = new TreeMap<>();
@@ -413,6 +438,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 FragmentManager fm = getChildFragmentManager();
                 CoinListFrament2 editNameDialog = CoinListFrament2.newInstance(Constants.DEAL, one_xnb, two_xnb);
                 editNameDialog.show(fm, "fragment_bottom_dialog");
+//                showDepthPopMenu();
                 break;
             case R.id.toolbar_right_btn_ll:
 //                Intent intent = new Intent(mContext, DealActivity.class);
@@ -450,6 +476,9 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         }
     }
 
+    public interface DEtailLister {
+        void inputInforCompleted(Home string);
+    }
 
     @Override
     public void requestSuccess(String msg) {
@@ -473,7 +502,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-
+        fragment1.setDetailSuccess(baseBean);
+        fragment2.setDetailSuccess(baseBean);
     }
 
     @Override
@@ -549,4 +579,25 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     public void onTabReselect(int position) {
 
     }
+
+    private CustomPopWindow mCustomPopWindow;
+
+    private void showDepthPopMenu() {
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.fragment_coin_list, null);
+        //处理popWindow 显示内容
+        //创建并显示popWindow
+        mCustomPopWindow = new CustomPopWindow.PopupWindowBuilder(mContext)
+                .setView(contentView)
+                .enableBackgroundDark(true) //弹出popWindow时，背景是否变暗
+                .setBgDarkAlpha(0.7f) // 控制亮度
+                .setOnDissmissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                    }
+                })
+                .create();
+        mCustomPopWindow.showAsDropDown(mToolbarTitleTv, 15, -(mToolbarTitleTv.getHeight() + mCustomPopWindow.getHeight() + 20));
+    }
+
+
 }

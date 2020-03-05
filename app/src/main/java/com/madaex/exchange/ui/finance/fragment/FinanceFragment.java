@@ -244,19 +244,19 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             String sAgeFormat1 = getResources().getString(R.string.finance_assets);
             @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String sFinal1 = String.format(sAgeFormat1, "USDT");
             mAsset.setText(sFinal1);
-            mCny.setText("￥" + commonBean.getData().getAssets().getRmb() + "");
+            mCny.setText("￥" + new BigDecimal(commonBean.getData().getAssets().getRmb() ).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 //        mName1.setText(commonBean.getData().getXnb_list().get(0).getXnb_name());
 //        mName2.setText(commonBean.getData().getXnb_list().get(1).getXnb_name());
 //        mName3.setText(commonBean.getData().getXnb_list().get(2).getXnb_name());
 //        mName4.setText(commonBean.getData().getXnb_list().get(3).getXnb_name());
             mName1.setText(commonBean.getData().getCoin_hot().get(0).getName());
-            mName2.setText(commonBean.getData().getCoin_hot().get(1).getName());
-            mName3.setText(commonBean.getData().getCoin_hot().get(2).getName());
+
+
 
 
             mMoney1.setText("￥" + commonBean.getData().getCoin_hot().get(0).getValue());
-            mMoney2.setText("￥" + commonBean.getData().getCoin_hot().get(1).getValue());
-            mMoney3.setText("￥" + commonBean.getData().getCoin_hot().get(2).getValue());
+
+
 
 
             DecimalFormat df = new DecimalFormat("0%");
@@ -264,8 +264,17 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
             df.setMaximumFractionDigits(2);
             df.setRoundingMode(RoundingMode.HALF_UP);
             mBili1.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(0).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
-            mBili2.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(1).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
-            mBili3.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(2).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
+
+            if(commonBean.getData().getCoin_hot().size()>1){
+                mName2.setText(commonBean.getData().getCoin_hot().get(1).getName());
+                mMoney2.setText("￥" + commonBean.getData().getCoin_hot().get(1).getValue());
+                mBili2.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(1).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
+            }
+            if(commonBean.getData().getCoin_hot().size()>2){
+                mName3.setText(commonBean.getData().getCoin_hot().get(2).getName());
+                mMoney3.setText("￥" + commonBean.getData().getCoin_hot().get(2).getValue());
+                mBili3.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(2).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
+            }
 //            mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
 //            mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
             if(commonBean.getData().getCoin_hot().size()>3){
