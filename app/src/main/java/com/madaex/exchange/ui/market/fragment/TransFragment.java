@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
@@ -23,6 +21,8 @@ import com.madaex.exchange.ui.buy.bean.SocketBean;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.adapter.TransBuyAdapter;
 import com.madaex.exchange.ui.market.adapter.TransSellerAdapter;
+import com.madaex.exchange.websocket.RxWebSocket;
+import com.madaex.exchange.websocket.WebSocketSubscriber;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

@@ -44,6 +44,7 @@ import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.activity.EntrustActivity;
 import com.madaex.exchange.ui.market.activity.EntrustDetailActivity;
 import com.madaex.exchange.ui.market.bean.EntrustList;
+import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.wc.widget.dialog.IosDialog;
 
@@ -169,11 +170,11 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             }
         });
 
-        if (getActivity().getIntent().hasExtra("market_type")) {
-            market_type = getActivity().getIntent().getStringExtra("market_type");
-        } else {
+//        if (getActivity().getIntent().hasExtra("market_type")) {
+//            market_type = getActivity().getIntent().getStringExtra("market_type");
+//        } else {
             market_type = SPUtils.getString("market_type", "0");
-        }
+//        }
 
         getdata();
     }
@@ -229,6 +230,22 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     }
 
+    public void setFragment(FramnetBean framnetBean) {
+        one_xnb = framnetBean.getOne_xnb();
+        two_xnb =  framnetBean.getTwo_xnb();
+        market_type = framnetBean.getMarket_type();
+        pageNum = 1;
+        isRefresh = true;
+        getdata();
+        mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
+        if(fragment1!=null){
+            fragment1.setFragment(framnetBean);
+        }
+        if(fragment2!=null){
+            fragment2.setFragment(framnetBean);
+        }
+    }
+
     private class MyPagerAdapter extends FragmentPagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -264,8 +281,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust2) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString()).
-                        setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString())
+                helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
+                        setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
                         .setText(R.id.createtime, item.getAddtime())
                         .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
                         .setText(R.id.coinprice, getString(R.string.amount) + "（VDS）")
@@ -432,7 +449,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 intent.setClass(mContext, EntrustActivity.class);
                 intent.putExtra(Constants.ONE_XNB, one_xnb);
                 intent.putExtra(Constants.TWO_XNB, two_xnb);
-                startActivity(intent);
+                startActivityAfterLogin(intent);
                 break;
             case R.id.toolbar_left_btn_ll:
                 FragmentManager fm = getChildFragmentManager();
@@ -502,8 +519,12 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-        fragment1.setDetailSuccess(baseBean);
-        fragment2.setDetailSuccess(baseBean);
+        if(fragment1!=null){
+            fragment1.setDetailSuccess(baseBean);
+        }
+        if(fragment2!=null) {
+            fragment2.setDetailSuccess(baseBean);
+        }
     }
 
     @Override

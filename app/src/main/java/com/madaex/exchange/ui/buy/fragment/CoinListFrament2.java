@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.buy.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
@@ -15,10 +16,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
-import com.madaex.exchange.common.CacheProviders;
-import com.madaex.exchange.common.GitHubServiceManager;
 import com.madaex.exchange.common.base.activity.dialog.BaseNetDialogFragment;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.ui.adapter.TitleStatePagerAdapter;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.DealInfo;
@@ -27,9 +27,11 @@ import com.madaex.exchange.ui.buy.contract.CoinLister;
 import com.madaex.exchange.ui.buy.presenter.CoinPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.login.activity.LoginActivity;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.Home;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -38,13 +40,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import io.rx_cache2.DynamicKey;
-import io.rx_cache2.EvictDynamicKey;
 
 /**
  * 项目：  madaexchange
@@ -110,60 +105,72 @@ public class CoinListFrament2 extends BaseNetDialogFragment<CoinPresenter> imple
     private void requestHttp(String userName) {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_COIN_LIST);
+        mPresenter.getData(DataUtil.sign(params));
         //网络请求数据
-        Observable<String> user = new GitHubServiceManager()
-                .getTestResult2(DataUtil.sign(params));
-        //缓存配置
-        CacheProviders.getUserCache()
-                .getTestResult2(user, new DynamicKey(userName), new EvictDynamicKey(false))//用户名作为动态key生成不同文件存储数据，默认不清除缓存数据
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(String data2) {
-                        Gson gson = new Gson();
-                        CoinList data = gson.fromJson(data2, CoinList.class);
-                        srtData(data);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+//        Observable<String> user = new GitHubServiceManager()
+//                .getTestResult2(DataUtil.sign(params));
+//        //缓存配置
+//        CacheProviders.getUserCache()
+//                .getTestResult2(user, new DynamicKey(userName), new EvictDynamicKey(false))//用户名作为动态key生成不同文件存储数据，默认不清除缓存数据
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<String>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(String data2) {
+//
+//
+//                        srtData(data2);
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//
+//                    }
+//                });
     }
 
 
-   void srtData(CoinList data){
-       int type = getArguments().getInt("type",0);
-       for (int j = 0; j < data.getData().size(); j++) {
-           CoinList.DataBean dataBean= data.getData().get(j);
-           mTitleList.add(dataBean.getTitle());
-           CoinFragment fragment3 = CoinFragment.newInstance(dataBean.getTitle(),j,type,dataBean.getList());
-           fragment3.setCoinLister(this);
-           mViewList.add(fragment3);
+   void srtData(String data2){
+       Gson gson = new Gson();
+       CoinList data=null;
+       try {
+            data = gson.fromJson(data2, (Type) CoinList.class);
+       } catch (Exception e) {
        }
-       for (CoinList.DataBean dataBean : data.getData()) {
-           mTitleList.add(dataBean.getTitle());
+       int type = getArguments().getInt("type",0);
+       if(EmptyUtils.isNotEmpty(data)){
+           for (int j = 0; j < data.getData().size(); j++) {
+               CoinList.DataBean dataBean= data.getData().get(j);
+               mTitleList.add(dataBean.getTitle());
+               CoinFragment fragment3 = CoinFragment.newInstance(dataBean.getTitle(),j,type,dataBean.getList());
+               fragment3.setCoinLister(this);
+               mViewList.add(fragment3);
+           }
+           for (CoinList.DataBean dataBean : data.getData()) {
+               mTitleList.add(dataBean.getTitle());
+           }
+
+           TitleStatePagerAdapter adapter = new TitleStatePagerAdapter(getChildFragmentManager(), mViewList
+                   , mTitleList);
+           mPager.setAdapter(adapter);
+           mPager.setCurrentItem(0);
+           mPager.setOffscreenPageLimit(3);
+           mTabLayout.setupWithViewPager(mPager);
+           mTabLayout.setTabsFromPagerAdapter(adapter);
+       }else {
+           startActivity(new Intent(mContext, LoginActivity.class));
        }
 
-       TitleStatePagerAdapter adapter = new TitleStatePagerAdapter(getChildFragmentManager(), mViewList
-               , mTitleList);
-       mPager.setAdapter(adapter);
-       mPager.setCurrentItem(0);
-       mPager.setOffscreenPageLimit(3);
-       mTabLayout.setupWithViewPager(mPager);
-       mTabLayout.setTabsFromPagerAdapter(adapter);
     }
 
     @Override
@@ -197,12 +204,34 @@ public class CoinListFrament2 extends BaseNetDialogFragment<CoinPresenter> imple
 
     @Override
     public void requestError(String msg) {
-
+        startActivity(new Intent(mContext, LoginActivity.class));
     }
 
     @Override
     public void sendMsgSuccess(CoinList data) {
+        int type = getArguments().getInt("type",0);
+        if(EmptyUtils.isNotEmpty(data)){
+            for (int j = 0; j < data.getData().size(); j++) {
+                CoinList.DataBean dataBean= data.getData().get(j);
+                mTitleList.add(dataBean.getTitle());
+                CoinFragment fragment3 = CoinFragment.newInstance(dataBean.getTitle(),j,type,dataBean.getList());
+                fragment3.setCoinLister(this);
+                mViewList.add(fragment3);
+            }
+            for (CoinList.DataBean dataBean : data.getData()) {
+                mTitleList.add(dataBean.getTitle());
+            }
 
+            TitleStatePagerAdapter adapter = new TitleStatePagerAdapter(getChildFragmentManager(), mViewList
+                    , mTitleList);
+            mPager.setAdapter(adapter);
+            mPager.setCurrentItem(0);
+            mPager.setOffscreenPageLimit(3);
+            mTabLayout.setupWithViewPager(mPager);
+            mTabLayout.setTabsFromPagerAdapter(adapter);
+        }else {
+            startActivity(new Intent(mContext, LoginActivity.class));
+        }
     }
 
     @Override

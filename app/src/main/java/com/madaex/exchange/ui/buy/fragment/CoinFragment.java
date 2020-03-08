@@ -18,8 +18,8 @@ import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.contract.CoinLister;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.bean.Position;
-import com.madaex.exchange.ui.websocket.rx.RxWebSocket;
 import com.madaex.exchange.view.GlideImgManager;
+import com.madaex.exchange.websocket.RxWebSocket;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -12,16 +12,20 @@ import com.alibaba.wireless.security.jaq.SecurityVerification;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
-import com.dhh.websocket.Config;
-import com.dhh.websocket.RxWebSocket;
 import com.madaex.exchange.common.di.component.ApplicationComponent;
 import com.madaex.exchange.common.di.component.DaggerApplicationComponent;
 import com.madaex.exchange.common.di.module.ApiModule;
 import com.madaex.exchange.common.di.module.ApplicationModule;
 import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
+import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.SPUtils;
+import com.madaex.exchange.websocket.Config;
+import com.madaex.exchange.websocket.RxWebSocket;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.zhangke.websocket.WebSocketHandler;
+import com.zhangke.websocket.WebSocketManager;
+import com.zhangke.websocket.WebSocketSetting;
 
 import java.io.File;
 import java.io.InputStream;
@@ -60,6 +64,35 @@ public class BaseApplication extends Application {
         instance = this;
         sContext = getApplicationContext();
         init();
+        initWebSocket();
+    }
+
+    private void initWebSocket(){
+        WebSocketSetting setting = new WebSocketSetting();
+        //连接地址，必填，例如 wss://echo.websocket.org
+        setting.setConnectUrl(Constant.Websocket);//必填
+
+        //设置连接超时时间
+        setting.setConnectTimeout(15 * 1000);
+
+        //设置心跳间隔时间
+        setting.setConnectionLostTimeout(60);
+
+        //设置断开后的重连次数，可以设置的很大，不会有什么性能上的影响
+        setting.setReconnectFrequency(60);
+
+        //网络状态发生变化后是否重连，
+        //需要调用 WebSocketHandler.registerNetworkChangedReceiver(context) 方法注册网络监听广播
+        setting.setReconnectWithNetworkChanged(true);
+
+        //通过 init 方法初始化默认的 WebSocketManager 对象
+        WebSocketManager manager = WebSocketHandler.init(setting);
+        //启动连接
+        manager.start();
+
+        //注意，需要在 AndroidManifest 中配置网络状态获取权限
+        //注册网路连接状态变化广播
+        WebSocketHandler.registerNetworkChangedReceiver(this);
     }
 
     public Cache getCache() {

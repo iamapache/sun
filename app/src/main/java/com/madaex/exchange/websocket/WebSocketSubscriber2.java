@@ -1,4 +1,4 @@
-package com.madaex.exchange.ui.websocket.rx;
+package com.madaex.exchange.websocket;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.CallSuper;

@@ -12,9 +12,6 @@ import android.widget.TextView;
 
 import com.allenliu.versionchecklib.v2.AllenVersionChecker;
 import com.dhh.rxlife2.RxLife;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketInfo;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.BaseApplication;
 import com.madaex.exchange.common.base.activity.BaseActivity;
@@ -27,9 +24,13 @@ import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.buy.fragment.Deal2Fragment;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.fragment.FinanceFragment;
+import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.fragment.MarketFragment;
 import com.madaex.exchange.ui.mine.fragment.HomeFragment;
 import com.madaex.exchange.ui.mine.fragment.MineFragment;
+import com.madaex.exchange.websocket.RxWebSocket;
+import com.madaex.exchange.websocket.WebSocketInfo;
+import com.madaex.exchange.websocket.WebSocketSubscriber;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -85,6 +86,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         }
     }
 
+    Deal2Fragment deal2Fragment;
+
     @Override
     protected void initView() {
         int crruent = 0;
@@ -110,7 +113,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //        mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(HomeFragment.newInstance(getString(R.string.item_market)));
         mFragments.add(MarketFragment.newInstance(getString(R.string.item_market)));
-        mFragments.add(Deal2Fragment.newInstance(0));
+        deal2Fragment = Deal2Fragment.newInstance(0);
+        mFragments.add(deal2Fragment);
 
         mFragments.add(FinanceFragment.newInstance(getString(R.string.item_finance)));
         mFragments.add(MineFragment.newInstance(getString(R.string.item_mine)));
@@ -121,7 +125,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mTabList.add(getString(R.string.item_home));
         mTabList.add(getString(R.string.item_market));
         mTabList.add(getString(R.string.item_onetran));
-        
+
         mTabList.add(getString(R.string.item_finance2));
         mTabList.add(getString(R.string.item_mine));
         RxWebSocket.get(Constant.Websocket)
@@ -129,14 +133,16 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 .subscribe(new WebSocketSubscriber() {
                     @Override
                     protected void onMessage(String text) {
-                        Log.d("socket",""+ text);
+                        Log.d("socket", "" + text);
                     }
+
                     @Override
                     public void onOpen(@NonNull WebSocket webSocket) {
                         Log.d("MainActivity", "onOpen1:");
                         mWebSocket = webSocket;
 
                     }
+
                     @Override
                     protected void onReconnect() {
                         Log.d("MainActivity", "重连");
@@ -151,6 +157,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         two_xnb = SPUtils.getString(Constants.TWO_XNB, "ETH");
 
     }
+
 
     // 退出时间
     private long currentBackPressedTime = 0;
@@ -197,11 +204,11 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         String s = tabText.getText().toString();
         if (getString(R.string.item_home).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_sell_select);
-        }else if (getString(R.string.item_market).equals(s)) {
+        } else if (getString(R.string.item_market).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_market_select);
         } else if (getString(R.string.item_onetran).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_buy_select);
-        }  else if (getString(R.string.item_finance2).equals(s)) {
+        } else if (getString(R.string.item_finance2).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_finance_select);
         } else if (getString(R.string.item_mine).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_mine_select);
@@ -215,10 +222,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         ImageView tabIcon = (ImageView) customView.findViewById(R.id.iv_tab_icon);
         tabText.setTextColor(ContextCompat.getColor(mContext, R.color.common_ggray));
         String s = tabText.getText().toString();
-          if (getString(R.string.item_home).equals(s)) {
+        if (getString(R.string.item_home).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_sell_unselect);
-        }
-          else if (getString(R.string.item_market).equals(s)) {
+        } else if (getString(R.string.item_market).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_market_unselect);
         } else if (getString(R.string.item_onetran).equals(s)) {
             tabIcon.setImageResource(R.mipmap.icon_buy_unselect);
@@ -228,6 +234,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             tabIcon.setImageResource(R.mipmap.icon_mine_unselect);
         }
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         if (event != null && event.getCode() == Constants.DEAL) {
@@ -235,6 +242,14 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
 
+        } else if (event != null && event.getCode() == Constants.fragmnet) {
+
+            mViewPager.setCurrentItem(2);
+            FramnetBean framnetBean = (FramnetBean) event.getData();
+            SPUtils.putString(Constants.ONE_XNB, framnetBean.getOne_xnb());
+            SPUtils.putString(Constants.TWO_XNB, framnetBean.getTwo_xnb());
+            SPUtils.putString("market_type", framnetBean.getMarket_type() + "");
+            deal2Fragment.setFragment(framnetBean);
         }
     }
 
@@ -253,6 +268,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
 
     }
+
     private WebSocket mWebSocket;
 
     @Override

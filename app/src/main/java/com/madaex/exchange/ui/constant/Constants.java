@@ -36,6 +36,8 @@ public class Constants {
 
     public static int ENTRUST = 100;
 
+    public static int fragmnet = 352;
+
     public static String INFO = "info";
 
     public static String INFO_CHILD = "INFO_child";

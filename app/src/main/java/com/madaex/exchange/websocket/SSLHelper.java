@@ -1,4 +1,4 @@
-package com.madaex.exchange.ui.websocket.rx;
+package com.madaex.exchange.websocket;
 
 import java.io.IOException;
 import java.io.InputStream;

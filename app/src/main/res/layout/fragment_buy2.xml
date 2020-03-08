@@ -73,6 +73,7 @@
                             android:inputType="numberDecimal"
                             android:maxLength="4"
                             android:maxLines="1"
+                            android:gravity="center"
                             android:paddingLeft="@dimen/d_5dp"
                             android:textColor="@color/white"
                             android:textColorHint="@color/common_ggray"
@@ -98,12 +99,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginRight="@dimen/d_5dp"
                         android:layout_marginTop="@dimen/d_5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="估值"
+                            android:text="估值:"
                             android:textColor="#A3AEBA"
                             android:textSize="12sp" />
 
@@ -113,6 +115,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="3dp"
                             android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="1"
                             android:textColor="#ffffffff"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -152,6 +156,7 @@
                             android:inputType="numberDecimal"
                             android:maxLength="4"
                             android:maxLines="1"
+                            android:gravity="center"
                             android:paddingLeft="@dimen/d_5dp"
                             android:textColor="@color/white"
                             android:textColorHint="@color/common_ggray"
@@ -173,6 +178,39 @@
                             android:textSize="@dimen/d_18dp" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="@dimen/d_5dp"
+                        android:layout_marginTop="@dimen/d_5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="可用:"
+                            android:textColor="#A3AEBA"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/keyong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:text="0"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:textColor="#ffffffff"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/name2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/d_5dp"
+                            android:text="usdt"
+                            android:textColor="#A3AEBA"
+                            android:textSize="@dimen/d_12dp" />
+                    </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="22dp"
@@ -249,7 +287,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
-                        android:layout_marginTop="@dimen/d_15dp"
+                        android:layout_marginTop="@dimen/d_12dp"
                         android:layout_marginRight="@dimen/d_5dp"
                         android:gravity="center_vertical">
 
@@ -278,7 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/d_5dp"
-                            android:text="Usdt"
+                            android:text=""
                             android:textColor="#A3AEBA"
                             android:textSize="@dimen/d_12dp" />
                     </LinearLayout>

@@ -21,10 +21,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.dhh.rxlife2.RxLife;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketInfo;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
@@ -49,18 +45,25 @@ import com.madaex.exchange.ui.buy.presenter.DealPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.login.activity.LoginActivity;
+import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.mine.activity.TransactionPasswordActivity;
 import com.madaex.exchange.view.EditInputFilter;
 import com.madaex.exchange.view.PayPassDialog;
 import com.madaex.exchange.view.PayPassView;
 import com.orhanobut.logger.Logger;
+import com.zhangke.websocket.SimpleListener;
+import com.zhangke.websocket.SocketListener;
+import com.zhangke.websocket.WebSocketHandler;
+import com.zhangke.websocket.WebSocketSetting;
+import com.zhangke.websocket.response.ErrorResponse;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.math.BigDecimal;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -69,7 +72,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import io.reactivex.annotations.NonNull;
 import okhttp3.WebSocket;
 
 /**
@@ -145,6 +147,53 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         return fragment;
     }
 
+    private SocketListener socketListener = new SimpleListener() {
+        @Override
+        public void onConnected() {
+            Log.v("==", "onConnected");
+        }
+
+        @Override
+        public void onConnectFailed(Throwable e) {
+            if (e != null) {
+                Log.v("==", "onConnectFailed:" + e.toString());
+            } else {
+                Log.v("==", "onConnectFailed:null");
+            }
+        }
+
+        @Override
+        public void onDisconnect() {
+            Log.v("==", "onDisconnect");
+//            sendSocket();
+        }
+
+        @Override
+        public void onSendDataError(ErrorResponse errorResponse) {
+            errorResponse.release();
+        }
+
+        @Override
+        public <T> void onMessage(String message, T data) {
+            Log.v("==", "onMessage(String, T):" + message);
+
+            if (TextUtils.isEmpty(message) || message.equals("hello")) {
+                sendSocket();
+                return;
+            }
+            DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
+            Message messages = Message.obtain();
+            messages.obj = mDesignates;
+            messages.what = 1;
+            handler.sendMessage(messages);//将message对象发送出去
+        }
+
+        @Override
+        public <T> void onMessage(ByteBuffer bytes, T data) {
+            Log.v("==", "onMessage(ByteBuffer, T):" + bytes);
+        }
+    };
+
     @Override
     protected void lazyLoad() {
         if (!isPrepared || !isVisible) {
@@ -201,46 +250,46 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                mEtPrice.setText(list.get(0).toString());
 //            }
 //        });
-        RxWebSocket.get(Constant.Websocket)
-                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
-                .subscribe(new WebSocketSubscriber() {
-                    @Override
-                    public void onOpen(@NonNull WebSocket webSocket) {
-                        Log.d("MainActivity", "onOpen1:");
-                        mWebSocket = webSocket;
-                    }
-
-                    @Override
-                    protected void onMessage(String message) {
-
-                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
-                            return;
-                        }
-                        Log.i("BuyFragment", message);
-                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
-                            currentBackPressedTime++;
-                        } else {
-                            currentBackPressedTime = 0;
-                            new Thread(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
-                                    Message messages = Message.obtain();
-                                    messages.obj = mDesignates;
-                                    messages.what = 1;
-                                    handler.sendMessage(messages);//将message对象发送出去
-                                }
-                            }).start();
-
-                        }
-                    }
-
-                    @Override
-                    protected void onReconnect() {
-                        Log.d("MainActivity", "重连");
-                    }
-                });
+//        RxWebSocket.get(Constant.Websocket)
+//                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
+//                .subscribe(new WebSocketSubscriber() {
+//                    @Override
+//                    public void onOpen(@NonNull WebSocket webSocket) {
+//                        Log.d("MainActivity", "onOpen1:");
+//                        mWebSocket = webSocket;
+//                    }
+//
+//                    @Override
+//                    protected void onMessage(String message) {
+//
+//                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
+//                            return;
+//                        }
+//                        Log.i("BuyFragment", message);
+//                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
+//                            currentBackPressedTime++;
+//                        } else {
+//                            currentBackPressedTime = 0;
+//                            new Thread(new Runnable() {
+//
+//                                @Override
+//                                public void run() {
+//                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
+//                                    Message messages = Message.obtain();
+//                                    messages.obj = mDesignates;
+//                                    messages.what = 1;
+//                                    handler.sendMessage(messages);//将message对象发送出去
+//                                }
+//                            }).start();
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    protected void onReconnect() {
+//                        Log.d("MainActivity", "重连");
+//                    }
+//                });
     }
 
 
@@ -353,6 +402,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        WebSocketHandler.getDefault().removeListener(socketListener);
     }
 
     private WebSocket mWebSocket;
@@ -366,6 +416,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     private void sendSocket() {
 
+        market_type = SPUtils.getString("market_type", "0");
         SocketBean socketBean = new SocketBean();
         socketBean.setEvent("addChannel");
         socketBean.setMarket_type(market_type);
@@ -379,9 +430,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //        mServerConnection.sendMessage(new Gson().toJson(socketBean));
         channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
         channel2 = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker";
-
-        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
+        WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
+
     }
 
     private void linedetail() {
@@ -753,6 +805,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                });
 //        initview();
 //        linedetail();
+        WebSocketHandler.getDefault().addListener(socketListener);
         sendSocket();
         getMsgInfo();
     }
@@ -823,7 +876,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void requestError(String msg) {
-//        ToastUtils.showToast(msg);
+        ToastUtils.showToast(msg);
     }
 
     @Override
@@ -966,8 +1019,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 break;
             case R.id.deleteone:
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    mPrice.setText((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once)) + "");
-
+                    if (market_type.equals("0")) {
+                        mPrice.setText((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once)) + "");
+                    }
                 } else {
                     startActivity(new Intent(mContext, LoginActivity.class));
                 }
@@ -975,11 +1029,13 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 break;
             case R.id.addone:
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    mPrice.setText((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once)) + "");
+                    if (market_type.equals("0")) {
+                        mPrice.setText((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once)) + "");
+                    }
+
                 } else {
                     startActivity(new Intent(mContext, LoginActivity.class));
                 }
-                ToastUtils.showToast(rise_once + "");
 
                 break;
             case R.id.addtwo:
@@ -1161,12 +1217,28 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                 ArrayList arrayList = new ArrayList<>(1);
                                 arrayList.add(0f);
                                 arrayList.add(0f);
-                                for (int bb = 0; i < 8; i++) {
-                                    mDesignates.getBids().add(arrayList);
+
+                                ArrayList arrayList2 = new ArrayList<>(1);
+                                arrayList2.add(0f);
+                                arrayList2.add(0f);
+
+                                if (mDesignates.getBids().size() < 10) {
+                                    for (int bb = 0; i < 8; i++) {
+                                        mDesignates.getBids().add(arrayList);
+                                    }
                                 }
-                                for (int bb = 0; i < 8; i++) {
-                                    mDesignates.getAsks().add(arrayList);
+                                if (mDesignates.getAsks().size() < 10) {
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(0, arrayList2);
                                 }
+//                                for (int jj = 0; i < 8; i++) {
+//                                    mDesignates.getAsks().add(0,arrayList2);
+//                                }
                                 if (mDesignates.getAsks().size() >= 10) {
                                     mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
 
@@ -1220,7 +1292,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             String coin = event.getMsg();
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
-
 //            mOneXnbd.setText("0");
             if (one_xnb.equals("SNRC")) {
                 mInfomation.setVisibility(View.VISIBLE);
@@ -1229,8 +1300,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             }
             channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
             initview();
-            sendSocket();
-
+          ;WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
+                setting.setConnectUrl(Constant.Websocket);
+            WebSocketHandler.getDefault().reconnect(setting);
             getMsgInfo();
 
             Logger.i("<==>:isVisibleisVisibleisVisibleisVisible" + isVisible);
@@ -1251,4 +1323,21 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
 
+    public void setFragment(FramnetBean framnetBean) {
+
+        one_xnb = framnetBean.getOne_xnb();
+        two_xnb = framnetBean.getTwo_xnb();
+        market_type = framnetBean.getMarket_type();
+
+//            mOneXnbd.setText("0");
+        channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
+        initview();
+        ;WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
+        setting.setConnectUrl(Constant.Websocket);
+        WebSocketHandler.getDefault().reconnect(setting);
+
+        getMsgInfo();
+
+        Logger.i("<==>:isVisibleisVisibleisVisibleisVisible" + isVisible);
+    }
 }

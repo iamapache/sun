@@ -23,9 +23,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.dhh.rxlife2.RxLife;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketInfo;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
@@ -55,6 +52,9 @@ import com.madaex.exchange.ui.mine.activity.TransactionPasswordActivity;
 import com.madaex.exchange.view.EditInputFilter;
 import com.madaex.exchange.view.PayPassDialog;
 import com.madaex.exchange.view.PayPassView;
+import com.madaex.exchange.websocket.RxWebSocket;
+import com.madaex.exchange.websocket.WebSocketInfo;
+import com.madaex.exchange.websocket.WebSocketSubscriber;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

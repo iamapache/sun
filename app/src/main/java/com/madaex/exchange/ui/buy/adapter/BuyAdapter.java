@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,10 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
     private List<List<Float>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
+    private String market_type = "0";
     public BuyAdapter(Context context){
         this. mContext=context;
+        market_type = SPUtils.getString("market_type", "0");
         inflater=LayoutInflater. from(mContext);
     }
 
@@ -62,7 +65,10 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mItemClickListener.onItemClick( mDatas.get(position));
+                if(market_type.equals("0")){
+                    mItemClickListener.onItemClick( mDatas.get(position));
+                }
+
             }
         });
     }

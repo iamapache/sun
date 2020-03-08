@@ -1,8 +1,7 @@
-package com.madaex.exchange.ui.websocket.rx;
+package com.madaex.exchange.websocket;
 
 import android.os.SystemClock;
 import android.util.Log;
-
 
 import java.io.IOException;
 import java.util.Map;
@@ -247,6 +246,15 @@ public class RxWebSocketUtil {
         }
     }
 
+    public void close(String url, String msg) {
+        WebSocket webSocket = webSocketMap.get(url);
+        if (webSocket != null) {
+            webSocket.close(3000, "close WebSocket");
+        } else {
+            throw new IllegalStateException("The WebSokcet not open");
+        }
+    }
+
     /**
      * 如果url的WebSocket已经打开,可以直接调用这个发送消息.
      *
@@ -269,6 +277,7 @@ public class RxWebSocketUtil {
      * @param msg
      */
     public void asyncSend(String url, final String msg) {
+
         getWebSocket(url)
                 .take(1)
                 .subscribe(new Consumer<WebSocket>() {
@@ -277,7 +286,6 @@ public class RxWebSocketUtil {
                         webSocket.send(msg);
                     }
                 });
-
     }
 
     /**
@@ -287,6 +295,7 @@ public class RxWebSocketUtil {
      * @param byteString
      */
     public void asyncSend(String url, final ByteString byteString) {
+
         getWebSocket(url)
                 .take(1)
                 .subscribe(new Consumer<WebSocket>() {
@@ -296,7 +305,7 @@ public class RxWebSocketUtil {
                     }
                 });
     }
-
+    private WebSocket webSocket;
     private Request getRequest(String url) {
         return new Request.Builder().get().url(url).build();
     }
@@ -304,7 +313,7 @@ public class RxWebSocketUtil {
     private final class WebSocketOnSubscribe implements ObservableOnSubscribe<WebSocketInfo> {
         private String url;
 
-        private WebSocket webSocket;
+
 
         public WebSocketOnSubscribe(String url) {
             this.url = url;

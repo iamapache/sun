@@ -22,7 +22,7 @@ public interface UserCacheProviders {
      * @param evictDynamicKey   可以明确地清理指定的数据 DynamicKey.
      * @return
      */
-    @LifeCache(duration = 1,timeUnit = TimeUnit.HOURS)
+    @LifeCache(duration = 1,timeUnit = TimeUnit.MINUTES)
     Observable<String> getTestResult2(Observable<String> user, DynamicKey userName, EvictDynamicKey evictDynamicKey);
     @LifeCache(duration = 1,timeUnit = TimeUnit.MINUTES)
     Observable<String> getJavaLineDetail(Observable<String> user, DynamicKey userName, EvictDynamicKey evictDynamicKey);

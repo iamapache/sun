@@ -1,6 +1,4 @@
-package com.madaex.exchange.ui.websocket.rx;
-
-import com.dhh.websocket.WebSocketInfo;
+package com.madaex.exchange.websocket;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;

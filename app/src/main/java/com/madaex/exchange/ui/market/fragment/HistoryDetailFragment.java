@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 
 import com.alibaba.fastjson.JSON;
 import com.dhh.rxlife2.RxLife;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketInfo;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
@@ -26,6 +23,9 @@ import com.madaex.exchange.ui.market.bean.CoinDetail;
 import com.madaex.exchange.ui.market.bean.HistoryDetail;
 import com.madaex.exchange.ui.market.contract.CoinDetailContract;
 import com.madaex.exchange.ui.market.presenter.CoinDetailPresenter;
+import com.madaex.exchange.websocket.RxWebSocket;
+import com.madaex.exchange.websocket.WebSocketInfo;
+import com.madaex.exchange.websocket.WebSocketSubscriber;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dhh.rxlife2.RxLife;
-import com.dhh.websocket.RxWebSocket;
-import com.dhh.websocket.WebSocketInfo;
-import com.dhh.websocket.WebSocketSubscriber;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.net.Constant;
@@ -43,10 +40,14 @@ import com.madaex.exchange.ui.market.fragment.TransFragment;
 import com.madaex.exchange.ui.market.manager.CustomLrcPagerAdapter;
 import com.madaex.exchange.ui.market.presenter.DealInfoPresenter;
 import com.madaex.exchange.view.WrapContentHeightViewPager;
+import com.madaex.exchange.websocket.RxWebSocket;
+import com.madaex.exchange.websocket.WebSocketInfo;
+import com.madaex.exchange.websocket.WebSocketSubscriber;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,8 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
     @BindView(R.id.low)
     TextView mLow;
     CustomLrcPagerAdapter adapter;
-
+    @BindView(R.id.bili)
+    TextView bili;
     private String one_xnb = "BAT";
     private String two_xnb = "ETH";
     private String market_type="0";
@@ -444,17 +446,22 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
     @Override
     public void requestDetailSuccess(Home baseBean) {
         mCurrentype.setText(baseBean.getCurrentype().toUpperCase() + "  " + getString(R.string.currentprice));
-        mExchangeType.setText( "GRC  " + baseBean.getCurrentPrice());
-        mSellRmb.setText("￥" + baseBean.getSellRmb());
+        mExchangeType.setText(  baseBean.getCurrentPrice());
+        mSellRmb.setText("≈¥" + baseBean.getSellRmb());
         mRate.setText(baseBean.getRiseRate());
         mHight.setText(baseBean.getHigh() + "");
-        mVolume.setText(baseBean.getVolumn().toString() + "");
+        mVolume.setText(new BigDecimal(baseBean.getVolumn().toString() ).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+ "");
         mLow.setText(baseBean.getLow() + "");
+        bili.setText(baseBean.getRiseRate());
         if (baseBean.getRiseRate().contains("-")) {
             mExchangeType.setTextColor(mContext.getResources().getColor(R.color.common_green));
             mSellRmb.setTextColor(mContext.getResources().getColor(R.color.common_green));
             mRate.setTextColor(mContext.getResources().getColor(R.color.common_green));
+            bili.setBackgroundResource( R.drawable.common_button_buleshape);
+
         } else {
+            bili.setText("+" + baseBean.getRiseRate());
+            bili.setBackgroundResource( R.drawable.common_button_redshape);
             mExchangeType.setTextColor(mContext.getResources().getColor(R.color.common_red));
             mSellRmb.setTextColor(mContext.getResources().getColor(R.color.common_red));
             mRate.setTextColor(mContext.getResources().getColor(R.color.common_red));

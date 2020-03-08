@@ -175,7 +175,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                helper.setText(R.id.price, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString()).
+                helper.setText(R.id.price, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString())
                         .setText(R.id.mum, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
@@ -190,7 +190,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     }
                     helper.setText(R.id.mum, item.getTwo_xnb() + "--");
                 } else {
-                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, true)
+                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
                             .setGone(R.id.img_delete, false).setText(R.id.deal,
                             item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString() + "=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getAdd_time())) {

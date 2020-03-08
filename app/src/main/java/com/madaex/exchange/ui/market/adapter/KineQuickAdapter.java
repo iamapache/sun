@@ -17,14 +17,17 @@ import com.madaex.exchange.common.net.RetrofitHelper;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.SPUtils;
+import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.login.activity.LoginActivity;
 import com.madaex.exchange.ui.market.activity.DealActivity;
+import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.view.GlideImgManager;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -230,15 +233,25 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
         helper.getView(R.id.ll_transation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(mContext, DealActivity.class);
-                intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
-                intent.putExtra("collect", item.getCollection());
-                intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
-                intent.putExtra("market_type", item.getMarket_type()+"");
-                intent.putExtra(Constants.INFO, parentposition);
-                intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
-                mContext.startActivity(intent);
+//                Intent intent = new Intent();
+//                intent.setClass(mContext, DealActivity.class);
+//                intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
+//                intent.putExtra("collect", item.getCollection());
+//                intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
+//                intent.putExtra("market_type", item.getMarket_type()+"");
+//                intent.putExtra(Constants.INFO, parentposition);
+//                intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
+//                mContext.startActivity(intent);
+
+                Event event = new Event();
+                event.setCode(Constants.fragmnet);
+
+                FramnetBean bean  = new FramnetBean();
+                bean.setOne_xnb( item.getCurrentype().toUpperCase());
+                bean.setTwo_xnb( item.getExchangeType().toUpperCase());
+                bean.setMarket_type( item.getMarket_type()+"");
+                event.setData(bean);
+                EventBus.getDefault().post(event);
             }
         });
 

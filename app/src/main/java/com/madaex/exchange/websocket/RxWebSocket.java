@@ -1,5 +1,4 @@
-package com.madaex.exchange.ui.websocket.rx;
-
+package com.madaex.exchange.websocket;
 
 import java.util.concurrent.TimeUnit;
 
@@ -77,7 +76,9 @@ public final class RxWebSocket {
     public static void asyncSend(String url, String msg) {
         RxWebSocketUtil.getInstance().asyncSend(url, msg);
     }
-
+    public static void close(String url, String msg) {
+        RxWebSocketUtil.getInstance().close(url, msg);
+    }
     /**
      * 不用关心url 的WebSocket是否打开,可以直接发送
      *

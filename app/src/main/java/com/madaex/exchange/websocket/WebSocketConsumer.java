@@ -1,8 +1,6 @@
-package com.madaex.exchange.ui.websocket.rx;
+package com.madaex.exchange.websocket;
 
 import android.support.annotation.CallSuper;
-
-import com.dhh.websocket.WebSocketInfo;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
