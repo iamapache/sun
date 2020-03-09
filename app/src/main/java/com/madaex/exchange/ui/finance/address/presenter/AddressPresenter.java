@@ -55,8 +55,8 @@ public class AddressPresenter extends RxPresenter<AddressContract.View> implemen
                     public void onNext(WalletAddress commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        }  else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
-                            mView.nodata(commonBean.getData()+"");
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         }else {
                             mView.requestSuccess(commonBean);
                         }

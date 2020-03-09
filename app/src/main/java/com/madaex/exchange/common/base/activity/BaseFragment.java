@@ -1,7 +1,12 @@
 package com.madaex.exchange.common.base.activity;
 
 
+import android.content.Intent;
+
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
+import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.login.activity.LoginActivity;
 
 /**
  * 项目：  frame
@@ -56,7 +61,9 @@ public abstract class BaseFragment extends RxFragment {
 
     @Override
     public void onUnLogin() {
-        ToastUtils.showToast("账号未登录");
+        SPUtils.putString(Constants.TOKEN, "");
+        SPUtils.putString(Constants.USER_ID, "");
+        startActivity(new Intent(mContext, LoginActivity.class));
     }
 
     @Override

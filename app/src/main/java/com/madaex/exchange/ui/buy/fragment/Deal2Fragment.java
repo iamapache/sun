@@ -173,7 +173,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 //        if (getActivity().getIntent().hasExtra("market_type")) {
 //            market_type = getActivity().getIntent().getStringExtra("market_type");
 //        } else {
-            market_type = SPUtils.getString("market_type", "0");
+        market_type = SPUtils.getString("market_type", "0");
 //        }
 
         getdata();
@@ -232,16 +232,16 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     public void setFragment(FramnetBean framnetBean) {
         one_xnb = framnetBean.getOne_xnb();
-        two_xnb =  framnetBean.getTwo_xnb();
+        two_xnb = framnetBean.getTwo_xnb();
         market_type = framnetBean.getMarket_type();
         pageNum = 1;
         isRefresh = true;
         getdata();
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
-        if(fragment1!=null){
+        if (fragment1 != null) {
             fragment1.setFragment(framnetBean);
         }
-        if(fragment2!=null){
+        if (fragment2 != null) {
             fragment2.setFragment(framnetBean);
         }
     }
@@ -285,11 +285,20 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
                         .setText(R.id.createtime, item.getAddtime())
                         .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
-                        .setText(R.id.coinprice, getString(R.string.amount) + "（VDS）")
+                        .setText(R.id.coinprice, getString(R.string.amount) )
                         .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
-                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString());
+                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
-
+                TextView textView = helper.getView(R.id.name);
+                if (item.getType().equals("1")) {
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowdown);
+                    rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
+                    textView.setCompoundDrawables(rightDrawable, null, null, null);  // left, top, right, bottom
+                }else {
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
+                    rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
+                    textView.setCompoundDrawables(rightDrawable, null, null, null);
+                }
                 helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
                     helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
@@ -484,7 +493,13 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
         }
 
-        if (event != null && event.getCode() == Constants.ENTRUST) {
+        else  if (event != null && event.getCode() == Constants.ENTRUST) {
+            pageNum = 1;
+            isRefresh = true;
+            pageNum = 1;
+            isRefresh = true;
+            getdata();
+        }else if (event != null && event.getCode() == Constants.LOGINSUCCESS) {
             pageNum = 1;
             isRefresh = true;
             pageNum = 1;
@@ -519,10 +534,10 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-        if(fragment1!=null){
+        if (fragment1 != null) {
             fragment1.setDetailSuccess(baseBean);
         }
-        if(fragment2!=null) {
+        if (fragment2 != null) {
             fragment2.setDetailSuccess(baseBean);
         }
     }

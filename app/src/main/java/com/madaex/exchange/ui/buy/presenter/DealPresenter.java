@@ -56,9 +56,11 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                 .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
                     @Override
                     public void onNext(CommonBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.requestError(commonBean.getMessage()+"");
-                        }else {
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
+                        }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
@@ -91,8 +93,8 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                     @Override
                     public void onNext(DealInfo commonBean) {
                         Logger.i("<==>2222222222222");
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
-                        }else {
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
+                        }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.sendMsgSuccess(commonBean);
                         }
                     }
@@ -118,7 +120,7 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                             Logger.i("<==>111111111111111");
                             if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                                 mView.requestError(commonBean.getData() + "");
-                            } else {
+                            }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                                 mView.requestDetailSuccess(commonBean.getData());
                             }
                         }
@@ -144,7 +146,9 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                         if (mView != null) {
                             if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                                 mView.requestError(commonBean.getData() + "");
-                            } else {
+                            }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                                mView.onUnLogin();
+                            }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                                 mView.requestToken(commonBean.getData());
                             }
                         }

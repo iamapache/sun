@@ -171,7 +171,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center"
             android:orientation="vertical">
 
             <TextView
@@ -199,8 +199,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|end"
             android:orientation="vertical">
 
             <TextView

@@ -53,7 +53,9 @@ public class BillPresenter extends RxPresenter<BillContract.View> implements Bil
                     public void onNext(BillList commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        } else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
+                        }else {
                             mView.requestSuccess(commonBean);
                         }
                     }

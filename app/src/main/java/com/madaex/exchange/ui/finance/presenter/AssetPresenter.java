@@ -64,9 +64,9 @@ public class AssetPresenter extends RxPresenter<AssetContract.View> implements A
                     public void onNext(Asset commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        } else if (commonBean.getStatus() == -1) {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.requestError("");
 
-                            mView.nodata("");
                         }else {
                             if(mView!=null){
                                 mView.requestSuccess(commonBean);

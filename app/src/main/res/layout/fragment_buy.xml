@@ -290,136 +290,136 @@
                             app:sell_path_color="@color/common_green"
                             app:text_color="@color/white"
                             app:text_size="10sp" />
-                        <!--                    <LinearLayout-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_44dp"-->
-                        <!--                        android:gravity="center_vertical">-->
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_44dp"
+                                                android:gravity="center_vertical">
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_one"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="@dimen/d_15dp"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="@string/Available"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
+                                                <TextView
+                                                    android:id="@+id/tv_one"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="@dimen/d_15dp"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:maxLines="1"
+                                                    android:text="@string/Available"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/one_xnb"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:ellipsize="end"-->
-                        <!--                            android:gravity="end"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="0"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
-                        <!--                    </LinearLayout>-->
+                                                <TextView
+                                                    android:id="@+id/one_xnb"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="end"
+                                                    android:maxLines="1"
+                                                    android:text="0"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
+                                            </LinearLayout>
 
-                        <!--                    <View-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_1dp"-->
-                        <!--                        android:background="@color/common_black" />-->
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_1dp"
+                                                android:background="@color/common_black" />
 
-                        <!--                    <LinearLayout-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_44dp"-->
-                        <!--                        android:gravity="center_vertical">-->
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_44dp"
+                                                android:gravity="center_vertical">
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_two"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="@dimen/d_15dp"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="@string/Available"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
+                                                <TextView
+                                                    android:id="@+id/tv_two"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="@dimen/d_15dp"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:maxLines="1"
+                                                    android:text="@string/Available"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/one_xnbd"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:ellipsize="end"-->
-                        <!--                            android:gravity="end"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="0"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
-                        <!--                    </LinearLayout>-->
+                                                <TextView
+                                                    android:id="@+id/one_xnbd"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="end"
+                                                    android:maxLines="1"
+                                                    android:text="0"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
+                                            </LinearLayout>
 
-                        <!--                    <View-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_1dp"-->
-                        <!--                        android:background="@color/common_black" />-->
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_1dp"
+                                                android:background="@color/common_black" />
 
-                        <!--                    <LinearLayout-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_44dp"-->
-                        <!--                        android:gravity="center_vertical">-->
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_44dp"
+                                                android:gravity="center_vertical">
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_three"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="@dimen/d_15dp"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="@string/Available"-->
-                        <!--                            android:textColor="@color/common_text_6"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
+                                                <TextView
+                                                    android:id="@+id/tv_three"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="@dimen/d_15dp"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:maxLines="1"
+                                                    android:text="@string/Available"
+                                                    android:textColor="@color/common_text_6"
+                                                    android:textSize="@dimen/d_14dp" />
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/two_xnb"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:ellipsize="end"-->
-                        <!--                            android:gravity="end"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="0"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
-                        <!--                    </LinearLayout>-->
+                                                <TextView
+                                                    android:id="@+id/two_xnb"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="end"
+                                                    android:maxLines="1"
+                                                    android:text="0"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
+                                            </LinearLayout>
 
-                        <!--                    <View-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_1dp"-->
-                        <!--                        android:background="@color/common_black" />-->
+                                            <View
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_1dp"
+                                                android:background="@color/common_black" />
 
-                        <!--                    <LinearLayout-->
-                        <!--                        android:layout_width="match_parent"-->
-                        <!--                        android:layout_height="@dimen/d_44dp"-->
-                        <!--                        android:gravity="center_vertical">-->
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="@dimen/d_44dp"
+                                                android:gravity="center_vertical">
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_four"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="@dimen/d_15dp"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="@string/Available"-->
-                        <!--                            android:textColor="@color/common_text_6"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
+                                                <TextView
+                                                    android:id="@+id/tv_four"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginLeft="@dimen/d_15dp"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:maxLines="1"
+                                                    android:text="@string/Available"
+                                                    android:textColor="@color/common_text_6"
+                                                    android:textSize="@dimen/d_14dp" />
 
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/two_xnbd"-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginRight="@dimen/d_5dp"-->
-                        <!--                            android:ellipsize="end"-->
-                        <!--                            android:gravity="end"-->
-                        <!--                            android:maxLines="1"-->
-                        <!--                            android:text="0"-->
-                        <!--                            android:textColor="@color/common_red"-->
-                        <!--                            android:textSize="@dimen/d_14dp" />-->
-                        <!--                    </LinearLayout>-->
+                                                <TextView
+                                                    android:id="@+id/two_xnbd"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginRight="@dimen/d_5dp"
+                                                    android:ellipsize="end"
+                                                    android:gravity="end"
+                                                    android:maxLines="1"
+                                                    android:text="0"
+                                                    android:textColor="@color/common_red"
+                                                    android:textSize="@dimen/d_14dp" />
+                                            </LinearLayout>
 
                     </LinearLayout>
 

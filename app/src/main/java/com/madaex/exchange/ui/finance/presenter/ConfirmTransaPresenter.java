@@ -52,8 +52,10 @@ public class ConfirmTransaPresenter extends RxPresenter<ConfirmTransaContract.Vi
                 .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
                     public void onNext(CommonDataBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus()== -1){
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.requestError(commonBean.getMessage()+"");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         }else {
                             mView.requestSuccess(commonBean.getMessage()+"");
                         }
@@ -79,6 +81,8 @@ public class ConfirmTransaPresenter extends RxPresenter<ConfirmTransaContract.Vi
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()==0){
                             mView.requestMsgError(commonBean.getMessage()+"");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         }else {
                             mView.sendMsgSuccess(commonBean.getData().getToken());
                         }

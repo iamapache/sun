@@ -54,7 +54,9 @@ public class SellerCoinPresenter extends RxPresenter<SellerCoinContract.View> im
                     public void onNext(SellerCoin commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        } else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
+                        }else {
                             mView.requestSuccess(commonBean);
                         }
                     }

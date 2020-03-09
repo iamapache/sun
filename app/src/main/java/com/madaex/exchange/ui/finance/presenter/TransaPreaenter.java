@@ -63,8 +63,10 @@ public class TransaPreaenter extends RxPresenter<TransaContract.View> implements
                 .subscribeWith(new CommonSubscriber<TransaList>(mView,true) {
                     @Override
                     public void onNext(TransaList commonBean) {
-                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR||commonBean.getStatus() == -1) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         } else {
                             mView.requestSuccess(commonBean);
                         }

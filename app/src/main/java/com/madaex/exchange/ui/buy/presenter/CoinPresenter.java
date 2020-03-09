@@ -84,8 +84,10 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                 .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
                     @Override
                     public void onNext(CommonBean commonBean) {
-                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR||commonBean.getStatus() == -1){
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.requestError(commonBean.getMessage()+"");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         }else {
                             mView.sendDealSuccess(commonBean.getMessage());
                         }
@@ -201,6 +203,8 @@ public class CoinPresenter extends RxPresenter<CoinContract.View> implements Coi
                     public void onNext(CommonBean commonBean) {
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
                             mView.deleteError(commonBean.getMessage()+"");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
                         }else {
                             mView.deleteSuccess(commonBean.getMessage()+"");
                         }

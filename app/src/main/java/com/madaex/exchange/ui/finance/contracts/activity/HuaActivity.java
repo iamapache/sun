@@ -20,6 +20,9 @@ import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
 import com.madaex.exchange.ui.finance.contracts.presenter.ContractPresenter;
+import com.madaex.exchange.ui.mine.activity.TransactionPasswordActivity;
+import com.madaex.exchange.view.PayPassDialog;
+import com.madaex.exchange.view.PayPassView;
 
 import java.util.TreeMap;
 
@@ -69,6 +72,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     protected void initDatas() {
         mParcelableExtra = getIntent().getParcelableExtra("bean");
         mTitleView.setText(mParcelableExtra.getXnb_name()+getString(R.string.Transferh));
+
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.Trade_transfer_wallet_info);
         params.put("wallet_id", mParcelableExtra.getWallet_id() + "");
@@ -94,19 +98,22 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.imageView:
-                if(flag){
-                    flag=false;
-                    type ="contract_to_coin";
-                    mCoin.setText(getString(R.string.Contracthy));
-                    mContract.setText(getString(R.string.Coin));
-                    mUsablebalance.setText(commonBean.getData().getGen_wallet_id()+"");
-                }else {
-                    flag=true;
-                    type ="coin_to_contract";
-                    mCoin.setText(getString(R.string.Coin));
-                    mContract.setText(getString(R.string.Contracthy));
-                    mUsablebalance.setText(commonBean.getData().getCon_assets()+"");
+                if(!mParcelableExtra.getXnb_name().equals("ALSC")){
+                    if(flag){
+                        flag=false;
+                        type ="contract_to_coin";
+                        mCoin.setText(getString(R.string.Contracthy));
+                        mContract.setText(getString(R.string.Coin));
+                        mUsablebalance.setText(commonBean.getData().getGen_wallet_id()+"");
+                    }else {
+                        flag=true;
+                        type ="coin_to_contract";
+                        mCoin.setText(getString(R.string.Coin));
+                        mContract.setText(getString(R.string.Contracthy));
+                        mUsablebalance.setText(commonBean.getData().getCon_assets()+"");
+                    }
                 }
+
                 break;
             case R.id.submit:
                 validate();
@@ -119,16 +126,48 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             return;
         }
         if(EmptyUtils.isNotEmpty(commonBean)){
-            TreeMap params = new TreeMap<>();
-            params.put("act", ConstantUrl.Trade_contract_transfer);
-            params.put("gen_wallet_id", commonBean.getData().getGen_wallet_id()+ "");
-            params.put("con_wallet_id", commonBean.getData().getCon_wallet_id()+ "");
-            params.put("type", type+ "");
-            params.put("num", mAccounts.getText().toString()+ "");
-            mPresenter.hua(DataUtil.sign(params));
+            payDialog();
         }
-
     }
+
+    PayPassDialog dialog;
+    String passContents = "";
+
+    private void payDialog() {
+        dialog = new PayPassDialog(mContext);
+        dialog.getPayViewPass()
+                .setPayClickListener(new PayPassView.OnPayClickListener() {
+                    @Override
+                    public void onPassFinish(String passContent) {
+                        passContents = passContent;
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", ConstantUrl.Trade_contract_transfer);
+                        params.put("gen_wallet_id", commonBean.getData().getGen_wallet_id()+ "");
+                        params.put("con_wallet_id", commonBean.getData().getCon_wallet_id()+ "");
+                        params.put("paypassword", passContent);
+                        params.put("type", type+ "");
+                        params.put("num", mAccounts.getText().toString()+ "");
+                        mPresenter.hua(DataUtil.sign(params));
+
+
+                    }
+
+                    @Override
+                    public void onPayClose() {
+                        dialog.dismiss();
+                        //关闭回调
+                    }
+
+                    @Override
+                    public void onPayForget() {
+                        dialog.dismiss();
+                        //点击忘记密码回调
+                        startActivity(new Intent(mContext, TransactionPasswordActivity.class));
+                    }
+                });
+    }
+
+
     @Override
     public void nodata(String msg) {
 
@@ -141,6 +180,9 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
     @Override
     public void requestSuccess(String commonBean) {
+        if (dialog!=null){
+            dialog.dismiss();
+        }
         ToastUtils.showToast(commonBean);
     }
 
