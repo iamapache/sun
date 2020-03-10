@@ -104,7 +104,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
                         type ="contract_to_coin";
                         mCoin.setText(getString(R.string.Contracthy));
                         mContract.setText(getString(R.string.Coin));
-                        mUsablebalance.setText(commonBean.getData().getGen_wallet_id()+"");
+                        mUsablebalance.setText(commonBean.getData().getGen_assets()+"");
                     }else {
                         flag=true;
                         type ="coin_to_contract";

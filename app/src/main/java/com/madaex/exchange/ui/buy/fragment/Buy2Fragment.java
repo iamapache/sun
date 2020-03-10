@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -48,7 +47,6 @@ import com.madaex.exchange.ui.login.activity.LoginActivity;
 import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.mine.activity.TransactionPasswordActivity;
-import com.madaex.exchange.view.EditInputFilter;
 import com.madaex.exchange.view.PayPassDialog;
 import com.madaex.exchange.view.PayPassView;
 import com.orhanobut.logger.Logger;
@@ -830,7 +828,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         } else {
             mInfomation.setVisibility(View.GONE);
         }
-        mPrice.setFilters(new InputFilter[]{new EditInputFilter(500000)});
+//        mPrice.setFilters(new InputFilter[]{new EditInputFilter(500000)});
 //        mNumber.setFilters(new InputFilter[]{new EditInputFilter(1000000)});
 //        Observable.interval(0, 60, TimeUnit.SECONDS)
 //                .subscribeOn(Schedulers.io())
@@ -944,6 +942,16 @@ private String total="0";
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                 mKeyong.setText(data.getData().getTwo_xnb());
                 total = data.getData().getTwo_xnb();
+                if(EmptyUtils.isNotEmpty(baseBean)&&EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())){
+                        if (baseBean.getRiseRate().contains("-")) {
+                            mPrice.setText((Double.valueOf(baseBean.getCurrentPrice()) - Double.valueOf(rise_once)) + "");
+                        }else {
+                            mPrice.setText((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) + "");
+                        }
+                }else {
+                    mPrice.setText("0");
+                }
+
 //            mOneXnb.setText(data.getData().getTwo_xnb());
 //            if (baseBean != null && baseBean.getSellRmb() != null && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice()) && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
 //                mPrice.setText((Double.valueOf(data.getData().getRise_once()) + Double.valueOf(baseBean.getCurrentPrice())) + "");
@@ -955,6 +963,7 @@ private String total="0";
             } else {
                 mKeyong.setText(data.getData().getOne_xnb());
                 total = data.getData().getOne_xnb();
+                mPrice.setText(baseBean.getCurrentPrice());
 //            mOneXnb.setText(data.getData().getOne_xnb());
 //            mOneXnbd.setText(data.getData().getTwo_xnbd());
 //            mTwoXnb.setText(data.getData().getTwo_xnb());
@@ -969,14 +978,21 @@ private String total="0";
 
 
     public void setDetailSuccess(Home baseBean) {
+        this.baseBean = baseBean;
         if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
-            this.baseBean = baseBean;
             mLast.setText(baseBean.getCurrentPrice().toString());
             mCoinname.setText(baseBean.getRiseRate());
             baibili.setText("￥" + baseBean.getSellRmb());
             mGuzhi.setText("￥" + baseBean.getSellRmb().toString());
-            mPrice.setText(baseBean.getCurrentPrice());
-
+            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                if (baseBean.getRiseRate().contains("-")) {
+                    mPrice.setText((Double.valueOf(baseBean.getCurrentPrice()) - Double.valueOf(rise_once)) + "");
+                }else {
+                    mPrice.setText((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) + "");
+                }
+            }else {
+                mPrice.setText(baseBean.getCurrentPrice());
+            }
             if (baseBean.getRiseRate().contains("-")) {
                 mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
                 mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));

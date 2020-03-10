@@ -123,7 +123,7 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
     private void getData() {
         TreeMap params = new TreeMap<Object, Object>();
         params.put("act", ConstantUrl.Trade_contract_bills);
-        params.put("type","all" );
+        params.put("type","recent" );
         params.put("curPage", pageNum+"");
         params.put("wallet_id", mParcelableExtra.getWallet_id() + "");
         mPresenter.bills(DataUtil.sign(params));
