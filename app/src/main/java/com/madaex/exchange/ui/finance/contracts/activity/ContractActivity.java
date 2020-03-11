@@ -23,14 +23,15 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.adapter.ContractRecyclerviewAdapter;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
-import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
 import com.madaex.exchange.ui.finance.contracts.presenter.ContractPresenter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -59,7 +60,7 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
     @BindView(R.id.gone)
     ImageView mGone;
     private ContractRecyclerviewAdapter mAdapter;
-    ArrayList<ContractAsset.DataBean.XnbListBean> testBeans = new ArrayList<>();
+    List<List<ContractAsset.DataBean.XnbListBean>> testBeans = new ArrayList<>();
     private Handler handler = new Handler();
     private boolean isshow = false;
 
@@ -98,13 +99,6 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-                if (isChecked) {
-                    isshow = true;
-                    mAdapter.filter(mSearchAsset.getText().toString(), isshow);
-                } else {
-                    isshow = false;
-                    mAdapter.filter(mSearchAsset.getText().toString(), isshow);
-                }
             }
         });
         mSearchAsset.addTextChangedListener(new TextWatcher() {
@@ -120,7 +114,6 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mAdapter.filter(editable.toString(), isshow);
             }
         });
     }
@@ -159,7 +152,7 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
 //        mAdapter.setNewData(commonBean.getData().getXnb_list());
         testBeans.clear();
         if (EmptyUtils.isNotEmpty(commonBean.getData().getXnb_list())) {
-            testBeans.addAll(commonBean.getData().getXnb_list().get(0));
+            testBeans.addAll(commonBean.getData().getXnb_list());
             mAdapter.notifyDataSetChanged();
         }
         if (EmptyUtils.isNotEmpty(commonBean.getData().getAssetsArr())) {
