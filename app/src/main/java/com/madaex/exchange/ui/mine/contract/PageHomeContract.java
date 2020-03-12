@@ -5,6 +5,7 @@ import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.mine.bean.BannerData;
 import com.madaex.exchange.ui.mine.bean.HotCoin;
 import com.madaex.exchange.ui.mine.bean.NoticeData;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 
 import java.util.Map;
 
@@ -26,6 +27,8 @@ public class PageHomeContract {
         void requestHotcoin(HomeData commonBean);
 
         void requestSuccess(String s);
+
+        void requestService(Urlbean commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PageHomeContract.View> {
@@ -37,5 +40,8 @@ public class PageHomeContract {
         void getMartketList(Map msg);
 
         void collection(Map body);
+
+        void getService(Map body);
+
     }
 }

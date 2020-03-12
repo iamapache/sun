@@ -1,6 +1,7 @@
 package com.madaex.exchange.ui.mine.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 import com.madaex.exchange.ui.mine.bean.User;
 import com.madaex.exchange.ui.mine.bean.update;
 
@@ -19,14 +20,14 @@ public class MineContract {
         void nodata(String msg);
         void requestError(String msg);
         void requestMessageCountSuccess(String msg);
-        void requestupdate(update bean);
+        void requestupdate(update bean);void requestService(Urlbean commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<MineContract.View> {
         void getData(Map body);
         void getMessageCount(Map body);
         void update(Map body);
-
+        void getService(Map body);
         void load(String msg);
     }
 }

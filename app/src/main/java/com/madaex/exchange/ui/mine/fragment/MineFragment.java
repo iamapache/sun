@@ -48,6 +48,7 @@ import com.madaex.exchange.ui.mine.activity.AuthenticationActivity;
 import com.madaex.exchange.ui.mine.activity.LanguageActivity;
 import com.madaex.exchange.ui.mine.activity.LinkWebViewActivity;
 import com.madaex.exchange.ui.mine.activity.SafeActivity;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 import com.madaex.exchange.ui.mine.bean.User;
 import com.madaex.exchange.ui.mine.bean.update;
 import com.madaex.exchange.ui.mine.contract.MineContract;
@@ -191,10 +192,13 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 goAu();
                 break;
             case R.id.ll_service:
-                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
-                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
-                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.service);
-                startActivity(intent0);
+//                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+//                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+//                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.service);
+//                startActivity(intent0);
+                TreeMap params3 = new TreeMap<>();
+                params3.put("act", "User.customer");
+                mPresenter.getService(DataUtil.sign(params3));
                 break;
             case R.id.ll_safe:
                 goSafe();
@@ -566,6 +570,14 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         if (bean.getData().getIs_update().equals("0")) {
             ToastUtils.showToast(getString(R.string.nonewversion));
         }
+    }
+
+    @Override
+    public void requestService(Urlbean commonBean) {
+        Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+        intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+        intent0.putExtra(LinkWebViewActivity.WEB_URL, commonBean.getData().getUrl());
+        startActivity(intent0);
     }
 
     private boolean isForceUpdate = true;

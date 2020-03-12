@@ -171,7 +171,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
-
+        if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
         mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
@@ -276,6 +276,28 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                         });
             }
         };
+        } else {
+            mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrustdetail3) {
+                @Override
+                protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
+                    if (!TextUtils.isEmpty(item.getAdd_time())) {
+                            helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
+                    }
+                    helper.setText(R.id.deal, item.getStatus_name());
+                    helper.setText(R.id.price, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).setText(R.id.num, item.getOne_xnb() )
+                            .setText(R.id.mum, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getMum())).stripTrailingZeros().toPlainString());
+                    if (item.getType() .equals("1")) {
+                        helper.setText(R.id.type, R.string.buy).setText(R.id.deal_type, R.string.buy);
+                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
+                              .setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);   ;
+                    } else if (item.getType() .equals("2")) {
+                        helper.setText(R.id.type, R.string.seller).setText(R.id.deal_type, R.string.seller);
+                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
+                              .setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);    ;
+                    }
+                }
+            };
+        }
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

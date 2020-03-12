@@ -58,9 +58,17 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
 
         private String deal_money;
         private String cancel_number;
-
+        private String status_name;
         public String getStatuss() {
             return statuss;
+        }
+
+        public String getStatus_name() {
+            return status_name;
+        }
+
+        public void setStatus_name(String status_name) {
+            this.status_name = status_name;
         }
 
         public void setStatuss(String statuss) {
