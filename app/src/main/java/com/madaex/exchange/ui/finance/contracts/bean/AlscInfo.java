@@ -158,23 +158,23 @@ public class AlscInfo {
              * usdt : 466.4
              */
 
-            private String alsc;
-            private double usdt;
+            private String release;
+            private String income;
 
-            public String getAlsc() {
-                return alsc;
+            public String getRelease() {
+                return release;
             }
 
-            public void setAlsc(String alsc) {
-                this.alsc = alsc;
+            public void setRelease(String release) {
+                this.release = release;
             }
 
-            public double getUsdt() {
-                return usdt;
+            public String getIncome() {
+                return income;
             }
 
-            public void setUsdt(double usdt) {
-                this.usdt = usdt;
+            public void setIncome(String income) {
+                this.income = income;
             }
         }
 
@@ -184,23 +184,23 @@ public class AlscInfo {
              * usdt : 466.4
              */
 
-            private String alsc;
-            private double usdt;
+            private String release;
+            private String income;
 
-            public String getAlsc() {
-                return alsc;
+            public String getRelease() {
+                return release;
             }
 
-            public void setAlsc(String alsc) {
-                this.alsc = alsc;
+            public void setRelease(String release) {
+                this.release = release;
             }
 
-            public double getUsdt() {
-                return usdt;
+            public String getIncome() {
+                return income;
             }
 
-            public void setUsdt(double usdt) {
-                this.usdt = usdt;
+            public void setIncome(String income) {
+                this.income = income;
             }
         }
     }

@@ -13,6 +13,7 @@ import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.mine.bean.BannerData;
 import com.madaex.exchange.ui.mine.bean.HotCoin;
 import com.madaex.exchange.ui.mine.bean.NoticeData;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 import com.madaex.exchange.ui.mine.contract.PageHomeContract;
 
 import java.util.Map;
@@ -155,6 +156,31 @@ public class PageHomePresenter extends RxPresenter<PageHomeContract.View> implem
                             mView.requestSuccess(commonBean.getMessage() + "");
                         } else {
                             mView.requestError(commonBean.getMessage() + "");
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void getService(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, Urlbean>() {
+                    @Override
+                    public Urlbean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        Urlbean commonBean = gson.fromJson(data, Urlbean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<Urlbean>(mView, true) {
+                    @Override
+                    public void onNext(Urlbean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMessage() + "");
+                        } else {
+
+                            mView.requestService(commonBean);
                         }
                     }
                 }));

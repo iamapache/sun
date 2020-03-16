@@ -25,8 +25,9 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/d_44dp" android:layout_marginBottom="60dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/d_44dp"
+        android:layout_marginBottom="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,30 +60,34 @@
                     android:textColor="@color/white"
                     android:textSize="16dp" />
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="14dp"
+                    android:background="@mipmap/itembg2"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="@string/TodayReleased"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="50dp"
                         android:orientation="vertical">
 
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/TodayReleased"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
                         <LinearLayout
+                            android:layout_weight="1"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="horizontal">
 
@@ -90,8 +95,9 @@
                                 android:id="@+id/today"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0" android:maxLines="1"
                                 android:maxLength="6"
+                                android:maxLines="1"
+                                android:text="0"
                                 android:textColor="#fffbb03b"
                                 android:textSize="12sp" />
 
@@ -103,28 +109,65 @@
                                 android:textColor="@color/white"
                                 android:textSize="12dp" />
                         </LinearLayout>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-
-                            android:text="@string/TomorrowReleasable"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
 
                         <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/Income"
+                                android:textColor="@color/white"
+                                android:textSize="12dp" />
+
+
+                            <TextView
+                                android:id="@+id/income1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLength="6"
+                                android:maxLines="1"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:background="@mipmap/itembg1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/TomorrowReleasable"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="50dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_weight="1"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
@@ -134,7 +177,9 @@
                                 android:id="@+id/tomorrow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0" android:maxLines="1"   android:maxLength="6"
+                                android:maxLength="6"
+                                android:maxLines="1"
+                                android:text="0"
                                 android:textColor="#fffbb03b"
                                 android:textSize="12sp" />
 
@@ -147,72 +192,56 @@
                                 android:textSize="12dp" />
                         </LinearLayout>
 
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/Income"
+                                android:textColor="@color/white"
+                                android:textSize="12dp" />
+
+
+                            <TextView
+                                android:id="@+id/income2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:maxLength="6"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/Income"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
-
-                        <TextView
-                            android:id="@+id/income1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center" android:maxLines="1"
-                            android:text="0"   android:maxLength="6"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
 
                     </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/Income"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
-
-                        <TextView
-                            android:id="@+id/income2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="0"   android:maxLength="6"
-                            android:textColor="@color/white"
-                            android:textSize="12dp" />
-
-                    </LinearLayout>
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -233,8 +262,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0"
                             android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -243,7 +272,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/Available"
+                            android:text="可提"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -262,7 +291,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0" android:maxLines="1"
+                            android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -271,7 +301,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/Frozen"
+                            android:text="@string/Locking"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -290,7 +320,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="0" android:maxLines="1"
+                            android:maxLines="1"
+                            android:text="0"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -299,7 +330,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="@string/Locking"
+                            android:text="交易中"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -392,8 +423,8 @@
         <Button
             android:id="@+id/submit"
             style="@style/ButtonStyle"
-            android:background="@mipmap/bg_login"
             android:layout_gravity="center"
+            android:background="@mipmap/bg_login"
             android:text="@string/Transferh" />
 
     </LinearLayout>

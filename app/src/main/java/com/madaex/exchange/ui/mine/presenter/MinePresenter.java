@@ -17,6 +17,7 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.common.CommonDataBean;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 import com.madaex.exchange.ui.mine.bean.User;
 import com.madaex.exchange.ui.mine.bean.update;
 import com.madaex.exchange.ui.mine.contract.MineContract;
@@ -49,7 +50,30 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
     public MinePresenter(Context mContext) {
         this.mContext = mContext;
     }
+    @Override
+    public void getService(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, Urlbean>() {
+                    @Override
+                    public Urlbean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        Urlbean commonBean = gson.fromJson(data, Urlbean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<Urlbean>(mView, true) {
+                    @Override
+                    public void onNext(Urlbean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMessage() + "");
+                        } else {
 
+                            mView.requestService(commonBean);
+                        }
+                    }
+                }));
+    }
     @Override
     public void getData(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)

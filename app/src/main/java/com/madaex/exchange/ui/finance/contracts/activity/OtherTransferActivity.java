@@ -210,10 +210,15 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
         mAvail.setText(commonBean.getData().getCon_usable_assets() + "");
         mFrozen.setText(commonBean.getData().getCon_frozen_assets() + "");
         mLocking.setText(commonBean.getData().getLock_assets() + "");
-        mIncome1.setText(commonBean.getData().getToday().getUsdt()+"");
-        mIncome2.setText(commonBean.getData().getTomorrow().getUsdt()+"");
-        mToday.setText(commonBean.getData().getToday().getAlsc()+"");
-        mTomorrow.setText(commonBean.getData().getTomorrow().getAlsc()+"");
+        if(EmptyUtils.isNotEmpty(commonBean.getData().getToday())){
+            mIncome1.setText(commonBean.getData().getToday().getIncome()+"");
+            mToday.setText(commonBean.getData().getToday().getRelease() + "");
+
+        }
+        if(EmptyUtils.isNotEmpty(commonBean.getData().getTomorrow())) {
+            mIncome2.setText(commonBean.getData().getTomorrow().getIncome()+"");
+            mTomorrow.setText(commonBean.getData().getTomorrow().getRelease() + "");
+        }
     }
 
     @Override

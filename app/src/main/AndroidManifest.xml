@@ -138,6 +138,7 @@
         <activity android:name=".ui.mine.activity.AccountManagerActivity"/>
         <activity android:name=".ui.mine.activity.LanguageActivity"/>
         <activity android:name=".ui.mine.activity.LinkWebViewActivity"/>
+        <activity android:name=".ui.mine.activity.LinkWebView2Activity"/>
         <activity android:name="com.alibaba.verificationsdk.ui.VerifyActivity"
                   android:screenOrientation="portrait"
                   android:theme="@android:style/Theme.NoTitleBar"

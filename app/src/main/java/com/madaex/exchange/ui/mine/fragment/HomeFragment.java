@@ -40,6 +40,7 @@ import com.madaex.exchange.ui.mine.adapter.GlideImageLoader;
 import com.madaex.exchange.ui.mine.bean.BannerData;
 import com.madaex.exchange.ui.mine.bean.HotCoin;
 import com.madaex.exchange.ui.mine.bean.NoticeData;
+import com.madaex.exchange.ui.mine.bean.Urlbean;
 import com.madaex.exchange.ui.mine.contract.PageHomeContract;
 import com.madaex.exchange.ui.mine.presenter.PageHomePresenter;
 import com.youth.banner.Banner;
@@ -84,7 +85,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     //    BaseQuickAdapter mAdapter2;
     KineQuickAdapter mKineQuickAdapter;
     @BindView(R.id.img_scan)
-    LinearLayout mImgScan;
+    ImageView mImgScan;
     @BindView(R.id.img_popview)
     ImageView mImgPopview;
     @BindView(R.id.tologin)
@@ -183,7 +184,10 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         mImgScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openScanCode();
+//                openScanCode();
+                TreeMap params3 = new TreeMap<>();
+                params3.put("act", "User.customer");
+                mPresenter.getService(DataUtil.sign(params3));
             }
         });
         mImgPopview.setOnClickListener(new View.OnClickListener() {
@@ -410,6 +414,14 @@ boolean iszhang = true;
     @Override
     public void requestSuccess(String s) {
 
+    }
+
+    @Override
+    public void requestService(Urlbean commonBean) {
+        Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+        intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+        intent0.putExtra(LinkWebViewActivity.WEB_URL, commonBean.getData().getUrl());
+        startActivity(intent0);
     }
 
 
