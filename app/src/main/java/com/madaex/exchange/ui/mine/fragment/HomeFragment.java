@@ -48,6 +48,8 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -403,7 +405,37 @@ boolean iszhang = true;
                     }
                 }
             }
+            Collections.sort(commonBean.getData(), new Comparator<Home>() {
+                @Override
+                public int compare(Home o1, Home o2) {
+                    if(o1.getRiseRate().contains("-")){
+                        String gotime = o1.getRiseRate().replace("%", "");
+                        String returntime = o2.getRiseRate().replace("%", "");
+                        double hits1 = Double.valueOf(gotime);
+                        double hits0 = Double.valueOf(returntime);
+                        if (hits1 > hits0) {
+                            return 1;
+                        } else if (hits1 == hits0) {
+                            return 0;
+                        } else {
+                            return -1;
+                        }
+                    }else {
+                        String gotime = o1.getRiseRate().replace("%", "");
+                        String returntime = o2.getRiseRate().replace("%", "");
+                        double hits1 = Double.valueOf(gotime);
+                        double hits0 = Double.valueOf(returntime);
+                        if (hits1 > hits0) {
+                            return -1;
+                        } else if (hits1 == hits0) {
+                            return 0;
+                        } else {
+                            return 1;
+                        }
+                    }
 
+                }
+            });
             mKineQuickAdapter.setData(commonBean.getData());
 //        mAdapter.setNewData(msg);
             mKineQuickAdapter.filter(searchAsset, sort, mCurrentPosition, false);
