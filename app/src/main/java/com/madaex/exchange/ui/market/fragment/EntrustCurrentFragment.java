@@ -182,7 +182,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
 
                 helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    helper.setGone(R.id.ll_line, true).setGone(R.id.ll_history, false)
+                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
                             .setGone(R.id.img_delete, true).setText(R.id.deal, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getDeal()) || !TextUtils.isEmpty(item.getNum())) {
                         int pb = (int) (Double.valueOf(item.getDeal()) / Double.valueOf(item.getNum()));

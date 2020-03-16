@@ -228,7 +228,7 @@
             android:layout_width="@dimen/d_45dp"
             android:layout_height="@dimen/d_25dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/common_button_shape"
+            android:background="@drawable/common_button_redshape"
             android:gravity="center"
             android:text="@string/llations"
             android:textColor="@color/white"
