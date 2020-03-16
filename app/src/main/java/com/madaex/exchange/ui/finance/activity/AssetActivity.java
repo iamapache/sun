@@ -235,9 +235,9 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
             testBeans.addAll(commonBean.getData().getXnb_list());
             mAdapter.notifyDataSetChanged();
         }
-        if(EmptyUtils.isNotEmpty(commonBean.getData().getAssets())){
-            mCny.setText("" + commonBean.getData().getAssets().getUsdt() + "");
-            mDollar.setText("≈￥" + commonBean.getData().getAssets().getRmb() + "");
+        if(EmptyUtils.isNotEmpty(commonBean.getData().getGen_assets())){
+            mCny.setText("" + commonBean.getData().getGen_assets().getUsdt() + "");
+            mDollar.setText("≈￥" + commonBean.getData().getGen_assets().getRmb() + "");
         }
         mGone.setOnClickListener(new View.OnClickListener() {
             @Override

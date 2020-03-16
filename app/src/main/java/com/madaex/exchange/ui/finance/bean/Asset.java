@@ -49,7 +49,7 @@ public class Asset extends CommonBaseBean {
         private String exchange_coin;
         private List<XnbListBean> xnb_list;
         private List<CoinHotBean> coin_hot;
-
+        private GenAssetsBean gen_assets;
         public AssetsBean getAssets() {
             return assets;
         }
@@ -82,6 +82,14 @@ public class Asset extends CommonBaseBean {
             this.coin_hot = coin_hot;
         }
 
+        public GenAssetsBean getGen_assets() {
+            return gen_assets;
+        }
+
+        public void setGen_assets(GenAssetsBean gen_assets) {
+            this.gen_assets = gen_assets;
+        }
+
         public static class AssetsBean {
             /**
              * usdt : 0.00
@@ -107,7 +115,31 @@ public class Asset extends CommonBaseBean {
                 this.usdt = usdt;
             }
         }
+        public static class GenAssetsBean {
+            /**
+             * usdt : 0.00
+             * dollar : --
+             */
 
+            private String usdt;
+            private String rmb;
+
+            public String getUsdt() {
+                return usdt;
+            }
+
+            public String getRmb() {
+                return rmb;
+            }
+
+            public void setRmb(String rmb) {
+                this.rmb = rmb;
+            }
+
+            public void setUsdt(String usdt) {
+                this.usdt = usdt;
+            }
+        }
         public static class XnbListBean {
             /**
              * frozen : 0.000000
