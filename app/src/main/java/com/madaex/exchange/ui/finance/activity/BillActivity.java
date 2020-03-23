@@ -83,7 +83,7 @@ getActivityComponent().inject(this);
             }
         });
         mRecyclerview.addItemDecoration(new RecycleViewDivider(
-                mContext, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.white)));
+                mContext, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.common_ggray)));
         mAdapter.setEmptyView(R.layout.view_empty_bill, (ViewGroup) mRecyclerview.getParent());
         mRecyclerview.setAdapter(mAdapter);
 

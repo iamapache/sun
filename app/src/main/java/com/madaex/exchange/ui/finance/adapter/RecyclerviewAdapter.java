@@ -108,7 +108,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(mContext, BillActivity.class);
-                intent.putExtra("xnb", item.getXnb());
+                intent.putExtra("xnb", item.getCoin_id()+"");
                 intent.putExtra("xnb_name", item.getXnb_name());
                 mContext.startActivity(intent);
             }
