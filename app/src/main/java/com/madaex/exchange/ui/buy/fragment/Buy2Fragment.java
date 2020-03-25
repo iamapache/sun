@@ -879,7 +879,15 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 ToastUtils.showToast(getString(R.string.entryvotenumber));
                 return;
             }
-            payDialog();
+            if (market_type.equals("0")) {
+                payDialog();
+
+            } else {
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.User_form_token);
+                mPresenter.getToken(DataUtil.sign(params));
+            }
+
 
         } else {
             startActivity(new Intent(mContext, LoginActivity.class));
@@ -1074,7 +1082,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             params.put("price", mPrice.getText().toString().trim());
             params.put("num", mNumber.getText().toString().trim());
             params.put("type", type);
-            params.put("paypassword", passContents);
+//            params.put("paypassword", passContents);
             params.put("source", "android");
             params.put("__token__", baseBean);
             mPresenter.getData(DataUtil.sign(params));
@@ -1339,16 +1347,16 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                                for (int jj = 0; i < 8; i++) {
 //                                    mDesignates.getAsks().add(0,arrayList2);
 //                                }
-                                if (mDesignates.getAsks().size() >= 10) {
-                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
+                                if (mDesignates.getAsks().size() >= 8) {
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 8));
 
                                 } else {
 
 
                                     mSellerAdapter.setNewData(mDesignates.getAsks());
                                 }
-                                if (mDesignates.getBids().size() >= 10) {
-                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
+                                if (mDesignates.getBids().size() >= 8) {
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 8));
                                 } else {
 
 

@@ -59,7 +59,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Asset.DataBean.XnbListBean item = mFilterList.get(position);
         holder.mAssetName.setText(item.getXnb_name());
-        holder.mAvail.setText(mContext.getString(R.string.alltotal) + "￥ " + item.getAssets());
+        holder.mAvail.setText(mContext.getString(R.string.alltotal) + "$" + item.getAssets());
         holder.mFrozen.setText(mContext.getString(R.string.Frozen) + item.getFrozen());
         holder.mAssets.setText(item.getAvail() + "");
 

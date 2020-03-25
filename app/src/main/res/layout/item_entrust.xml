@@ -137,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="@string/Quantity"
+                android:text="@string/entrastPrice"
                 android:textColor="@color/common_text_5"
                 android:textSize="14sp"
                 />
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:text="@string/transaction"
+                android:text="@string/amount"
                 android:textColor="@color/common_text_5"
                 android:textSize="14sp"
                 />

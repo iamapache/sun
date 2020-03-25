@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/d_100dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/d_15dp"
     android:layout_marginRight="@dimen/d_15dp"
     android:layout_marginTop="@dimen/d_15dp"
-    android:background="@drawable/common_bg_gray_corners"
+    android:background="#373742"
     android:orientation="vertical">
 
     <LinearLayout
@@ -101,7 +101,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/common_text_5"
                 android:textSize="14sp"
-                android:text="@string/entrastPrice"
+                android:text="@string/transaction"
                 />
 
             <TextView
@@ -151,7 +151,6 @@
 
 
         <LinearLayout
-            android:visibility="invisible"
             android:id="@+id/ll_history"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
@@ -168,7 +167,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical|end"
                 android:maxLines="1"
-                android:text="成交价"
                 android:textColor="@color/common_text_5"
                 android:textSize="14sp"
                 />

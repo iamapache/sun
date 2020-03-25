@@ -491,10 +491,13 @@ boolean iszhang = true;
                 goInvitation();
                 break;
             case R.id.servicezai:
-                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
-                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
-                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.service);
-                startActivity(intent0);
+                TreeMap params3 = new TreeMap<>();
+                params3.put("act", "User.customer");
+                mPresenter.getService(DataUtil.sign(params3));
+//                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+//                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+//                intent0.putExtra(LinkWebViewActivity.WEB_URL, Constant.HTTP + ConstantUrl.service);
+//                startActivity(intent0);
                 break;
             case R.id.toasset:
                 Intent toasset = new Intent();
