@@ -42,7 +42,6 @@ import com.madaex.exchange.ui.buy.presenter.CoinPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.market.activity.EntrustActivity;
-import com.madaex.exchange.ui.market.activity.EntrustDetailActivity;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
@@ -371,19 +370,19 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    EntrustList.DataBean item = (EntrustList.DataBean) adapter.getItem(position);
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, EntrustDetailActivity.class);
-                    intent.putExtra("bean", item);
-                    intent.putExtra("market_type", market_type);
-                    if (item.getType().equals("1")) {
-                        intent.putExtra("type", 1);
-                    } else if (item.getType().equals("2")) {
-                        intent.putExtra("type", 2);
-                    }
-                    startActivityForResult(intent, 250);
-                }
+//                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
+//                    EntrustList.DataBean item = (EntrustList.DataBean) adapter.getItem(position);
+//                    Intent intent = new Intent();
+//                    intent.setClass(mContext, EntrustDetailActivity.class);
+//                    intent.putExtra("bean", item);
+//                    intent.putExtra("market_type", market_type);
+//                    if (item.getType().equals("1")) {
+//                        intent.putExtra("type", 1);
+//                    } else if (item.getType().equals("2")) {
+//                        intent.putExtra("type", 2);
+//                    }
+//                    startActivityForResult(intent, 250);
+//                }
             }
         });
 //        mSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
