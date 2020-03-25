@@ -57,7 +57,7 @@ public class ExceptionHandle {
                 case SERVICE_UNAVAILABLE:
                 default:
                     ex = new ResponeThrowable(e, ERROR.HTTP_ERROR);
-                    ex.message = "无网络,请重试!";
+                    ex.message = "";
                     break;
             }
             return ex;

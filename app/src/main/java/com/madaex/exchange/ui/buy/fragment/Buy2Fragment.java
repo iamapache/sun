@@ -23,7 +23,6 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
-import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
@@ -53,7 +52,6 @@ import com.orhanobut.logger.Logger;
 import com.zhangke.websocket.SimpleListener;
 import com.zhangke.websocket.SocketListener;
 import com.zhangke.websocket.WebSocketHandler;
-import com.zhangke.websocket.WebSocketSetting;
 import com.zhangke.websocket.response.ErrorResponse;
 
 import org.greenrobot.eventbus.EventBus;
@@ -177,10 +175,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
         @Override
         public <T> void onMessage(String message, T data) {
-            Log.v("==", "onMessage(String, T):" + message);
+            Log.v("==", "onMessage(String, T):" + message.substring(message.length()-60,message.length()));
 
             if (TextUtils.isEmpty(message) || message.equals("hello")) {
-                sendSocket();
+//                sendSocket();
                 return;
             }
             DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
@@ -412,7 +410,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     private long currentBackPressedTime = 0;
     // 退出间隔
     private static final int BACK_PRESSED_INTERVAL = 3;
-    private String channel;
+    private String channel="";
     private String channel2;
 
 
@@ -432,7 +430,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //        mServerConnection.sendMessage(new Gson().toJson(socketBean));
         channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
         channel2 = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_ticker";
-        WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
+        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+            WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
+        }
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
 
@@ -861,7 +861,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //        initview();
 //        linedetail();
         WebSocketHandler.getDefault().addListener(socketListener);
-        sendSocket();
+
+            sendSocket();
+
+
         getMsgInfo();
     }
 
@@ -1386,6 +1389,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         if (event != null && event.getCode() == Constants.DEAL) {
+            cacelSocket();
             String coin = event.getMsg();
             one_xnb = coin.split("/")[0];
             two_xnb = coin.split("/")[1];
@@ -1400,9 +1404,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             mKeyong.setText("");
             mCny.setText("");
             initview();
-            WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
-            setting.setConnectUrl(Constant.Websocket);
-            WebSocketHandler.getDefault().reconnect(setting);
+            sendSocket();
+//            WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
+//            setting.setConnectUrl(Constant.Websocket);
+//            WebSocketHandler.getDefault().reconnect(setting);
             getMsgInfo();
 
             Logger.i("<==>:isVisibleisVisibleisVisibleisVisible" + isVisible);
@@ -1439,7 +1444,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
 
     public void setFragment(FramnetBean framnetBean) {
-
+        cacelSocket();
         one_xnb = framnetBean.getOne_xnb();
         two_xnb = framnetBean.getTwo_xnb();
         market_type = framnetBean.getMarket_type();
@@ -1450,13 +1455,29 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         mNumber.setText("");
         mKeyong.setText("");
         initview();
-        ;
-        WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
-        setting.setConnectUrl(Constant.Websocket);
-        WebSocketHandler.getDefault().reconnect(setting);
+        sendSocket();
+//        ;
+//        WebSocketSetting setting = WebSocketHandler.getDefault().getSetting();
+//        setting.setConnectUrl(Constant.Websocket);
+//        WebSocketHandler.getDefault().reconnect(setting);
 
         getMsgInfo();
 
         Logger.i("<==>:isVisibleisVisibleisVisibleisVisible" + isVisible);
+    }
+
+    private void cacelSocket() {
+
+        SocketBean socketBean = new SocketBean();
+        socketBean.setEvent("cancelChannel");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase()+ "_depth");
+        Log.d("<==>", new Gson().toJson(socketBean));
+//        mServerConnection.sendMessage(new Gson().toJson(socketBean));
+//        channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
+        WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
+
     }
 }
