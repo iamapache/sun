@@ -291,11 +291,11 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
                 TextView textView = helper.getView(R.id.name);
                 if (item.getType().equals("1")) {
-                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowdown);
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
                     rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
                     textView.setCompoundDrawables(rightDrawable, null, null, null);  // left, top, right, bottom
                 }else {
-                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowdown);
                     rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
                     textView.setCompoundDrawables(rightDrawable, null, null, null);
                 }

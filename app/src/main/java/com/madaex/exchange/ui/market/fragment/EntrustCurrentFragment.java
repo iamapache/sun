@@ -280,7 +280,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                 @Override
                 protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                     if (!TextUtils.isEmpty(item.getAdd_time())) {
-                            helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
+                            helper.setText(R.id.time, item.getAdd_time());
                     }
                     helper.setText(R.id.deal, item.getStatus_name());
                     helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).setText(R.id.num, item.getOne_xnb() )
