@@ -185,4 +185,29 @@ public class PageHomePresenter extends RxPresenter<PageHomeContract.View> implem
                     }
                 }));
     }
+
+    @Override
+    public void getNotice(String body) {
+        addSubscribe((Disposable) rxApi.getTestResult44(body)
+                .map(new Function<String, Urlbean>() {
+                    @Override
+                    public Urlbean apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        Urlbean commonBean = gson.fromJson(data, Urlbean.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<Urlbean>(mView, true) {
+                    @Override
+                    public void onNext(Urlbean commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMessage() + "");
+                        } else {
+
+                            mView.requestNotice(commonBean);
+                        }
+                    }
+                }));
+    }
 }

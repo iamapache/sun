@@ -554,7 +554,17 @@
     <string name="allnum">allnum：</string>
     <string name="Historyre">History</string>
     <string name="namevol">name/vol</string>
-    <string name="islogin">已登录</string>
-    <string name="lijiregst">立即注册</string>
-    <string name="login_xieyi">我已经阅读并同意《用户服务协议及隐私政策》</string>
+    <string name="islogin">Logged</string>
+    <string name="lijiregst">Registered</string>
+    <string name="login_xieyi">I agree《User agreement》</string>
+    <string name="Total">Total</string>
+    <string name="Valuegu">Value:</string>
+    <string name="Historyjy">History</string>
+    <string name="Gainers">Gainers</string>
+    <string name="Losers">Losers</string>
+    <string name="Shareqq">Share</string>
+    <string name="OnlineService">Online Service</string>
+    <string name="Loginview">Login view</string>
+    <string name="Assets">Assets</string>
+    <string name="Witnessprofits">Witness profits</string>
 </resources>

@@ -172,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@mipmap/jiaoyijl"
                     android:drawablePadding="5dp"
-                    android:text="交易记录"
+                    android:text="@string/Historyjy"
                     android:textColor="#A3AEBA"
                     android:textSize="14sp" />
             </LinearLayout>

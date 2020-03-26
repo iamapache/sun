@@ -27,7 +27,8 @@ public interface ApiService {
     @POST(Constant.APP_APIS)
     @FormUrlEncoded
     Observable<String> getTestResult(@FieldMap Map<String, String> map);
-
+    @GET
+    Observable<String> getTestResult44(@Url String map);
     @POST(Constant.APP_APIS)
     @FormUrlEncoded
     Observable<String> getTestResult2(@FieldMap Map<String, String> map);

@@ -29,6 +29,8 @@ public class PageHomeContract {
         void requestSuccess(String s);
 
         void requestService(Urlbean commonBean);
+
+        void requestNotice(Urlbean commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<PageHomeContract.View> {
@@ -42,6 +44,6 @@ public class PageHomeContract {
         void collection(Map body);
 
         void getService(Map body);
-
+        void getNotice(String body);
     }
 }

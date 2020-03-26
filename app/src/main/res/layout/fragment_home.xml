@@ -156,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
-                            android:text="我的资产"
+                            android:text="@string/Assets"
                             android:textColor="#ffffffff"
                             android:textSize="14sp" />
 
@@ -166,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:maxLines="1"
-                            android:text="在线客服"
+                            android:text="@string/Loginview"
                             android:textColor="#B9BAC8"
                             android:textSize="11sp" />
 
@@ -224,7 +224,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:maxLines="1"
-                            android:text="全球分享"
+                            android:text="@string/Shareqq"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -249,7 +249,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:maxLines="1"
-                            android:text="在线客服"
+                            android:text="@string/OnlineService"
                             android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -385,7 +385,7 @@
                         android:button="@null"
                         android:checked="true"
                         android:gravity="center"
-                        android:text="涨幅榜"
+                        android:text="@string/Gainers"
                         android:textColor="@color/common_red"
                         android:textSize="14sp" />
 
@@ -412,7 +412,7 @@
                         android:button="@null"
                         android:checked="true"
                         android:gravity="center"
-                        android:text="跌幅榜"
+                        android:text="@string/Losers"
                         android:textColor="@color/common_green"
                         android:textSize="14sp" />
 

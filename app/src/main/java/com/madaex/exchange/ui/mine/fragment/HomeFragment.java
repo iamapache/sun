@@ -19,6 +19,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
+import com.madaex.exchange.common.languagelib.LanguageType;
+import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
@@ -360,11 +362,17 @@ boolean iszhang = true;
         mNotice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(mContext, LinkWebViewActivity.class);
-                intent2.putExtra(LinkWebViewActivity.WEB_TITLE, R.string.notice);
-                intent2.putExtra("type", 3);
-                intent2.putExtra(LinkWebViewActivity.WEB_URL, bean.getData().getUrl());
-                startActivity(intent2);
+                String URL2 ="";
+                String URL ="http://alsc.uoou.net/appapi/index/notice?lang=";
+                int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
+                if(languageType==2){
+                    URL2=URL+"zh-cn";
+                }else if(languageType==1){
+                    URL2=URL+"en-us";
+                }else {
+                    URL2=URL+"zh-cn";
+                }
+                mPresenter.getNotice(URL2);
             }
         });
     }
@@ -452,6 +460,14 @@ boolean iszhang = true;
     public void requestService(Urlbean commonBean) {
         Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
         intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.mine_ustomer));
+        intent0.putExtra(LinkWebViewActivity.WEB_URL, commonBean.getData().getUrl());
+        startActivity(intent0);
+    }
+
+    @Override
+    public void requestNotice(Urlbean commonBean) {
+        Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+        intent0.putExtra(LinkWebViewActivity.WEB_TITLE, getString(R.string.notice));
         intent0.putExtra(LinkWebViewActivity.WEB_URL, commonBean.getData().getUrl());
         startActivity(intent0);
     }

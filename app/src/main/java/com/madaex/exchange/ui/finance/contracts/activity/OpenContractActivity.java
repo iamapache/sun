@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.languagelib.LanguageType;
+import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
@@ -86,11 +89,17 @@ public class OpenContractActivity extends BaseNetActivity<ContractPresenter> imp
         String name = mLlAgree.getText().toString().trim();
         int index = name.indexOf(mSearchKey);
         int len = mSearchKey.length();
-        String temp = name.substring(0, index)
-                + name.substring(index, index + len)
-                + "<font color=\"#FBB03B\">"
-                + name.substring(index + len, name.length()) + "</font>";
-        mLlAgree.setText(Html.fromHtml(temp));
+        int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
+        if(languageType==2){
+            String temp = name.substring(0, index)
+                    + name.substring(index, index + len)
+                    + "<font color=\"#FBB03B\">"
+                    + name.substring(index + len, name.length()) + "</font>";
+            mLlAgree.setText(Html.fromHtml(temp));
+        }else if(languageType==1){
+            mLlAgree.setText(mSearchKey);
+        }
+
     }
     @OnClick({R.id.img_close, R.id.btn_login, R.id.img_clear, R.id.ll_agree})
     public void onViewClicked(View view) {

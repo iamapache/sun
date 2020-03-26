@@ -556,4 +556,14 @@
     <string name="islogin">已登录</string>
     <string name="lijiregst">立即注册</string>
     <string name="login_xieyi">我同意《用户服务协议及隐私政策》</string>
+    <string name="Total">成交额</string>
+    <string name="Valuegu">估值:</string>
+    <string name="Historyjy">交易记录</string>
+    <string name="Gainers">涨幅榜</string>
+    <string name="Losers">跌幅榜</string>
+    <string name="Shareqq">全球分享</string>
+    <string name="OnlineService">在线客服</string>
+    <string name="Loginview">登录查看</string>
+    <string name="Assets">我的资产</string>
+    <string name="Witnessprofits">见证收益精彩</string>
 </resources>
