@@ -142,7 +142,7 @@
             android:layout_marginRight="@dimen/d_15dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="0%"
+            android:text="0"
             android:textColor="@color/common_text_1"
             android:textSize="@dimen/d_16dp"/>
 

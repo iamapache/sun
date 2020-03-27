@@ -104,6 +104,7 @@ public class BaseApplication extends Application {
         super.onConfigurationChanged(newConfig);
     }
 
+
     private void init() {
         Glide.get(this).register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(setCertificates(new OkHttpClient.Builder()).build()));
         CrashReport.initCrashReport(getApplicationContext(), "dbd9e14990", true);
