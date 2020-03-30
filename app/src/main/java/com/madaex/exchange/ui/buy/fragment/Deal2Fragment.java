@@ -207,7 +207,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
                 params.put("one_xnb", one_xnb);
                 params.put("two_xnb", two_xnb);
-                params.put("status", status);
+                params.put("type", status);
                 params.put("curPage", pageNum + "");
                 mPresenter.getDataenn(DataUtil.sign(params));
             } else {
@@ -220,7 +220,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
 
                 params.put("one_xnb", one_xnb);
                 params.put("two_xnb", two_xnb);
-                params.put("status", status);
+                params.put("type", status);
                 params.put("curPage", pageNum + "");
                 mPresenter.getDataenn(DataUtil.sign(params));
             }

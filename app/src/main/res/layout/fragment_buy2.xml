@@ -35,7 +35,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:layout_marginTop="@dimen/d_10dp"
-                        android:text="限价单"
+                        android:text="@string/orders"
                         android:textColor="#ffffffff"
                         android:textSize="12sp" />
 

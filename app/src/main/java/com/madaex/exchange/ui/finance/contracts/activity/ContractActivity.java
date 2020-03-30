@@ -95,10 +95,17 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
             }
         });
 
-        mCbNumber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mCbNumber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
+                if(isChecked){
+                    isshow = true;
+                    mAdapter.filter(mSearchAsset.getText().toString(),isshow);
+                }else{
+                    isshow = false;
+                    mAdapter.filter(mSearchAsset.getText().toString(),isshow);
+                }
             }
         });
         mSearchAsset.addTextChangedListener(new TextWatcher() {
@@ -114,6 +121,7 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
 
             @Override
             public void afterTextChanged(Editable editable) {
+                mAdapter.filter(editable.toString(),isshow);
             }
         });
     }

@@ -155,11 +155,11 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     for (Asset.DataBean.XnbListBean str : data) {
                         //这里根据需求，添加匹配规则
                         if (isshow) {
-                            if (str.getXnb().contains(charString.toLowerCase()) && Double.valueOf(str.getAssets()) > 1) {
+                            if (str.getXnb().toLowerCase().contains(charString.toLowerCase()) && Double.valueOf(str.getAssets()) > 1) {
                                 filteredList.add(str);
                             }
                         } else {
-                            if (str.getXnb().contains(charString)) {
+                            if (str.getXnb().toLowerCase().contains(charString.toLowerCase())) {
                                 filteredList.add(str);
                             }
                         }

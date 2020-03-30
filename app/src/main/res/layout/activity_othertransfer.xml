@@ -272,7 +272,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="可提"
+                            android:text="@string/carry"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -330,7 +330,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="交易中"
+                            android:text="@string/Trading"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 

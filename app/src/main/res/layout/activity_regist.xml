@@ -85,7 +85,7 @@
                 android:layout_below="@id/id_page2"
                 android:layout_marginRight="79dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/white"
+                android:background="@color/title_color"
                 android:visibility="invisible"/>
 
         </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.buy.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -175,7 +176,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
         @Override
         public <T> void onMessage(String message, T data) {
-            Log.v("==", "onMessage(String, T):" + message.substring(message.length()-60,message.length()));
 
             if (TextUtils.isEmpty(message) || message.equals("hello")) {
 //                sendSocket();
@@ -867,7 +867,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
         getMsgInfo();
     }
-
+    private long mLastClickTime = 0;
+    public static final long TIME_INTERVAL = 1000L;
 
     private void submit() {
         if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
@@ -879,14 +880,22 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 ToastUtils.showToast(getString(R.string.entryvotenumber));
                 return;
             }
-            if (market_type.equals("0")) {
-                payDialog();
+            long nowTime = System.currentTimeMillis();
+            if (nowTime - mLastClickTime > TIME_INTERVAL) {
+                // do something
+                if (market_type.equals("0")) {
+                    payDialog();
 
+                } else {
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", ConstantUrl.User_form_token);
+                    mPresenter.getToken(DataUtil.sign(params));
+                }
+                mLastClickTime = nowTime;
             } else {
-                TreeMap params = new TreeMap<>();
-                params.put("act", ConstantUrl.User_form_token);
-                mPresenter.getToken(DataUtil.sign(params));
+//                Toast.makeText(mContext, "不要重复点击", Toast.LENGTH_SHORT).show();
             }
+
 
 
         } else {
@@ -1024,11 +1033,15 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 mPrice.setText(baseBean.getCurrentPrice());
             }
             if (baseBean.getRiseRate().contains("-")) {
-                mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
-                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                if ((mContext instanceof Activity)) {
+                    mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                    mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                }
             } else {
-                mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                if ((mContext instanceof Activity)) {
+                    mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                    mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                }
             }
 //            getMsgInfo();
         }

@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.madaex.exchange.ui.finance.contracts.activity.OtherTransferActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.TransferActivity;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
 import com.madaex.exchange.view.GlideImgManager;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ import butterknife.ButterKnife;
  * 描述：  ${TODO}
  */
 
-public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRecyclerviewAdapter.ViewHolder> {
+public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRecyclerviewAdapter.ViewHolder> implements Filterable {
 
 
     private Context mContext;
@@ -106,6 +109,78 @@ public class ContractRecyclerviewAdapter extends RecyclerView.Adapter<ContractRe
             return 0;
         }
         return mFilterList.size();
+    }
+
+    public void filter(String string, boolean isshow) {
+        getFilter().filter(string);
+        this.isshow = isshow;
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            //执行过滤操作
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                Logger.i(charString + "");
+                if (charString.isEmpty()) {
+                    //没有过滤的内容，则使用源数据
+                    List<List<ContractAsset.DataBean.XnbListBean>> filteredList = new ArrayList<>();
+                    for (List<ContractAsset.DataBean.XnbListBean> str : data) {
+                        //这里根据需求，添加匹配规则
+                        if (isshow) {
+                            if (Double.valueOf(str.get(0).getAssets()) > 1||Double.valueOf(str.get(1).getAssets()) > 1) {
+                                filteredList.add(str);
+                            }
+                        } else {
+                            filteredList.add(str);
+                        }
+                    }
+
+                    mFilterList = filteredList;
+                } else {
+                    List<List<ContractAsset.DataBean.XnbListBean>> filteredList = new ArrayList<>();
+                    for (List<ContractAsset.DataBean.XnbListBean> str : data) {
+                        //这里根据需求，添加匹配规则
+                        if (isshow) {
+                            if (str.get(0).getXnb_name().toLowerCase().contains(charString.toLowerCase()) && Double.valueOf(str.get(0).getXnb_name()) > 1) {
+                                filteredList.add(str);
+                            }else {
+                                if (str.get(1).getXnb_name().toLowerCase().contains(charString.toLowerCase()) && Double.valueOf(str.get(1).getXnb_name()) > 1) {
+                                    filteredList.add(str);
+                                }
+                            }
+                        } else {
+                            if (str.get(0).getXnb_name().toLowerCase().contains(charString.toLowerCase())) {
+                                filteredList.add(str);
+                            }else {
+                                if (str.get(1).getXnb_name().toLowerCase().contains(charString.toLowerCase())) {
+                                    filteredList.add(str);
+                                }
+                            }
+                        }
+
+                    }
+
+                    mFilterList = filteredList;
+                    Logger.i(mFilterList.size() + "");
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilterList;
+                return filterResults;
+            }
+
+            //把过滤后的值返回出来
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilterList = (List<List<ContractAsset.DataBean.XnbListBean>>) filterResults.values;
+//                Logger.i(mFilterList.size() + "");
+                notifyDataSetChanged();
+            }
+        };
     }
 
 

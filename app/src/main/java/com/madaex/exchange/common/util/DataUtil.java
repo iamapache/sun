@@ -3,6 +3,7 @@ package com.madaex.exchange.common.util;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.allenliu.versionchecklib.core.http.HttpParams;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.BaseApplication;
@@ -114,6 +115,56 @@ public class DataUtil {
         Logger.i("<==>:" + data);
         return newmap;
     }
+
+    public static HttpParams signlown(HttpParams map){
+        StringBuffer stringBuffer = new StringBuffer();
+
+        map.put("version",AppUtils.getVerName(BaseApplication.getInstance())+"");
+        map.put("timestamp",System.currentTimeMillis()+"");
+        map.put("token",SPUtils.getString(Constants.TOKEN,""));
+        map.put("user_id",SPUtils.getString(Constants.USER_ID,""));
+        map.put("port_sn","9e304d4e8df1b74cfa009913198428ab");
+        int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
+        if(languageType==2){
+            map.put("lan","zh-cn");
+        }else if(languageType==1){
+            map.put("lan","en-us");
+        }else {
+            map.put("lan","zh-cn");
+        }
+
+//        for (Map.Entry<String, String> me : set) {
+//            stringBuffer.append(me.getKey());
+//            stringBuffer.append("=");
+//            stringBuffer.append(me.getValue());
+//            stringBuffer.append("&");
+//        }
+//        String data="";
+//        try {
+//            data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+//
+////            data =Base64Utils.encode(rsa.encryptPublicKey(str.getBytes(),rsa.PUBLIC_KEY));
+//            Logger.i("<==>encryptByPublicKey:" + data);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        for (Map.Entry<String, String> me : set) {
+//            stringBuffer.append(me.getKey());
+//            stringBuffer.append("=");
+//            stringBuffer.append(me.getValue());
+//            stringBuffer.append("&");
+//        }
+//        String data="";
+//        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
+        HttpParams newmap = new HttpParams();
+        Gson gson = new Gson();
+        String data = gson.toJson(map);
+        newmap.put("data",data);
+        Logger.i("<==>:" + data);
+        return newmap;
+    }
+
     public static Map sign2(Map map){
         Set<Map.Entry<String, String>> set = map.entrySet();
         StringBuffer stringBuffer = new StringBuffer();

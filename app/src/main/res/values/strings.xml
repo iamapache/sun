@@ -566,4 +566,8 @@
     <string name="Loginview">登录查看</string>
     <string name="Assets">我的资产</string>
     <string name="Witnessprofits">见证收益精彩</string>
+    <string name="guzhi">估值</string>
+    <string name="Trading">交易中</string>
+    <string name="carry">可提</string>
+    <string name="orders">限价单</string>
 </resources>

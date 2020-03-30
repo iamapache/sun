@@ -218,7 +218,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginBottom="@dimen/d_26dp"
                 android:background="@mipmap/bg_login"
-                android:text="@string/login"
+                android:text="@string/text_register"
                 android:textColor="#523D17"/>
 
         </LinearLayout>

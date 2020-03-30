@@ -14,7 +14,6 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
-import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
@@ -217,7 +216,7 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     }
     @Override
     public void requestSuccess(String commonBean) {
-        ToastUtils.showToast(commonBean);
+//        ToastUtils.showToast(commonBean);
         Intent intent =  getIntent();
         intent.setClass(mContext, HuaActivity.class);
         startActivity(intent);

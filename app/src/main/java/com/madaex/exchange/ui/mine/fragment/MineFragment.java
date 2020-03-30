@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -21,10 +22,16 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.allenliu.versionchecklib.core.http.HttpParams;
+import com.allenliu.versionchecklib.core.http.HttpRequestMethod;
+import com.allenliu.versionchecklib.v2.AllenVersionChecker;
+import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
 import com.allenliu.versionchecklib.v2.builder.NotificationBuilder;
 import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.allenliu.versionchecklib.v2.callback.CustomDownloadingDialogListener;
 import com.allenliu.versionchecklib.v2.callback.CustomVersionDialogListener;
+import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
+import com.google.gson.Gson;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.exchange.R;
@@ -32,6 +39,7 @@ import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.languagelib.LanguageType;
 import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.net.Constant;
+import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.RegexUtil;
 import com.madaex.exchange.common.util.SPUtils;
@@ -58,6 +66,7 @@ import com.madaex.exchange.update.utils.AppUpdateUtils;
 import com.madaex.exchange.update.utils.ColorUtil;
 import com.madaex.exchange.update.utils.DrawableUtil;
 import com.madaex.exchange.update.view.NumberProgressBar;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -234,7 +243,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 //                TreeMap params = new TreeMap<>();
 //                params.put("act", ConstantUrl.VERSION_CHECK);
 //                mPresenter.update(DataUtil.sign(params));
-//                sendRequest(true);
+                sendRequest(true);
                 break;
         }
     }
@@ -249,22 +258,22 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     }
 
 
-//    private void sendRequest(boolean showmsg) {
-//
-//        TreeMap params = new TreeMap<>();
-//        params.put("act", ConstantUrl.VERSION_CHECK);
-//        HttpParams httpParams = new HttpParams();
-//        httpParams.put("data", DataUtil.sign(params));
-//        DownloadBuilder builder = AllenVersionChecker
-//                .getInstance()
-//                .requestVersion()
-//                .setRequestMethod(HttpRequestMethod.POST)
-//                .setRequestParams(httpParams)
-//                .setRequestUrl(Constant.HTTP + Constant.APP_APIS)
-//                .request(new RequestVersionListener() {
-//                    @Nullable
-//                    @Override
-//                    public UIData onRequestVersionSuccess(String result) {
+    private void sendRequest(boolean showmsg) {
+
+
+        HttpParams params = new HttpParams();
+        params.put("act", ConstantUrl.VERSION_CHECK);
+//        httpParams.put("data", DataUtil.signlown(params));
+        DownloadBuilder builder = AllenVersionChecker
+                .getInstance()
+                .requestVersion()
+                .setRequestMethod(HttpRequestMethod.POST)
+                .setRequestParams(DataUtil.signlown(params))
+                .setRequestUrl(Constant.HTTP + Constant.APP_APIS)
+                .request(new RequestVersionListener() {
+                    @Nullable
+                    @Override
+                    public UIData onRequestVersionSuccess(String result) {
 //                        FileEncryptionManager mFileEncryptionManager = FileEncryptionManager.getInstance();
 //                        String paramsStr = null;
 //                        try {
@@ -272,48 +281,48 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 //                        } catch (Exception e) {
 //                            e.printStackTrace();
 //                        }
-//                        Logger.i("<==>onRequestVersionSuccess:" + paramsStr);
-//                        Gson gson = new Gson();
-//                        update commonBean = gson.fromJson(paramsStr, update.class);
-//                        UIData uiData;
-//                        if (!commonBean.getData().getIs_update().equals("0")) {
-//                            if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
-//                                uiData = UIData
-//                                        .create()
-//                                        .setDownloadUrl(commonBean.getData().getUrl())
-//                                        .setTitle(commonBean.getData().getTitle())
-//                                        .setUPDATE(commonBean.getData().getIs_update())
-//                                        .setContent(commonBean.getData().getLog());
-//                                return uiData;
-//                            } else {
-//
-//                                return null;
-//                            }
-//                        } else {
-//                            if (showmsg) {
-//                                ToastUtils.showToast(getString(R.string.nonewversion));
-//                            }
-//                            return null;
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onRequestVersionFailure(String message) {
-//                        if (showmsg) {
-//                            ToastUtils.showToast(getString(R.string.nonewversion));
-//                        }
-//                    }
-//                });
-//
-//        builder.setForceRedownload(true);
-//        builder.setNotificationBuilder(createCustomNotification());
-//        //更新界面选择
-//        builder.setCustomVersionDialogListener(createCustomDialogTwo());
-//        //下载进度界面选择
-//        builder.setCustomDownloadingDialogListener(createCustomDownloadingDialog());
-//        builder.executeMission(getActivity());
-//    }
+                        Logger.i("<==>:xxxxxxxxx" + result);
+                        Gson gson = new Gson();
+                        update commonBean = gson.fromJson(result, update.class);
+                        UIData uiData;
+                        if (!commonBean.getData().getIs_update().equals("0")) {
+                            if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
+                                uiData = UIData
+                                        .create()
+                                        .setDownloadUrl(commonBean.getData().getUrl())
+                                        .setTitle(commonBean.getData().getTitle())
+                                        .setUPDATE(commonBean.getData().getIs_update())
+                                        .setContent(commonBean.getData().getLog());
+                                return uiData;
+                            } else {
+
+                                return null;
+                            }
+                        } else {
+                            if (showmsg) {
+                                ToastUtils.showToast(getString(R.string.nonewversion));
+                            }
+                            return null;
+                        }
+
+                    }
+
+                    @Override
+                    public void onRequestVersionFailure(String message) {
+                        if (showmsg) {
+                            ToastUtils.showToast(getString(R.string.nonewversion));
+                        }
+                    }
+                });
+
+        builder.setForceRedownload(true);
+        builder.setNotificationBuilder(createCustomNotification());
+        //更新界面选择
+        builder.setCustomVersionDialogListener(createCustomDialogTwo());
+        //下载进度界面选择
+        builder.setCustomDownloadingDialogListener(createCustomDownloadingDialog());
+        builder.executeMission(getActivity());
+    }
 
     private NotificationBuilder createCustomNotification() {
         return NotificationBuilder.create()

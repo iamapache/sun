@@ -29,5 +29,6 @@ public class MineContract {
         void update(Map body);
         void getService(Map body);
         void load(String msg);
+
     }
 }
