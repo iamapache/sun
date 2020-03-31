@@ -8,7 +8,7 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.ui.common.CommonBean;
+import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.market.bean.HomeData;
 import com.madaex.exchange.ui.market.bean.TitleBean;
@@ -150,22 +150,22 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
     @Override
     public void collection(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, CommonBaseBean>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
+                    public CommonBaseBean apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                        CommonBaseBean commonBean = gson.fromJson(data, CommonBaseBean.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<CommonBaseBean>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
+                    public void onNext(CommonBaseBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestSuccess(commonBean.getMessage() + "");
+                            mView.requestSuccess(commonBean.getMsg() + "");
                         } else {
-                            mView.requestError(commonBean.getMessage() + "");
+                            mView.requestError(commonBean.getMsg() + "");
                         }
                     }
                 }));

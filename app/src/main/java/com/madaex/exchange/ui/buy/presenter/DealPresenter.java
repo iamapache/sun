@@ -12,7 +12,6 @@ import com.madaex.exchange.ui.buy.bean.DealInfo;
 import com.madaex.exchange.ui.buy.contract.DealContract;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
-import com.madaex.exchange.ui.common.SB2Data;
 import com.madaex.exchange.ui.market.bean.LineDetail;
 import com.orhanobut.logger.Logger;
 
@@ -131,25 +130,25 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
     @Override
     public void getToken(Map map) {
         addSubscribe((Disposable) rxApi.getTestResult(map)
-                .map(new Function<String, SB2Data>() {
+                .map(new Function<String, CommonBean>() {
                     @Override
-                    public SB2Data apply(@NonNull String data) throws Exception {
+                    public CommonBean apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        SB2Data commonBean = gson.fromJson(data, SB2Data.class);
+                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<SB2Data>(mView, true) {
+                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
                     @Override
-                    public void onNext(SB2Data commonBean) {
+                    public void onNext(CommonBean commonBean) {
                         if (mView != null) {
                             if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                                 mView.requestError(commonBean.getData() + "");
                             }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                                 mView.onUnLogin();
                             }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
-                                mView.requestToken(commonBean.getData());
+                                mView.requestToken(commonBean.getMessage());
                             }
                         }
                     }
