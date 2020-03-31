@@ -110,9 +110,16 @@ public class DataUtil {
 //        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         Map newmap = new HashMap();
         Gson gson = new Gson();
-        String data = gson.toJson(map);
+        String data2 = gson.toJson(map);
+        String data="";
+        try {
+            data =Base64Utils.encode(rsa.encryptPublicKey(data2.getBytes(),rsa.PUBLIC_KEY));
+            Logger.i("<==>encryptByPublicKey:" + data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         newmap.put("data",data);
-        Logger.i("<==>:" + data);
+        Logger.i("<==>:" + data2);
         return newmap;
     }
 
@@ -139,15 +146,7 @@ public class DataUtil {
 //            stringBuffer.append(me.getValue());
 //            stringBuffer.append("&");
 //        }
-//        String data="";
-//        try {
-//            data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
-//
-////            data =Base64Utils.encode(rsa.encryptPublicKey(str.getBytes(),rsa.PUBLIC_KEY));
-//            Logger.i("<==>encryptByPublicKey:" + data);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
 //
 //        for (Map.Entry<String, String> me : set) {
 //            stringBuffer.append(me.getKey());
@@ -159,9 +158,16 @@ public class DataUtil {
 //        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         HttpParams newmap = new HttpParams();
         Gson gson = new Gson();
-        String data = gson.toJson(map);
+        String data2 = gson.toJson(map);
+        String data="";
+        try {
+            data =Base64Utils.encode(rsa.encryptPublicKey(data2.getBytes(),rsa.PUBLIC_KEY));
+            Logger.i("<==>encryptByPublicKey:" + data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         newmap.put("data",data);
-        Logger.i("<==>:" + data);
+        Logger.i("<==>:" + data2);
         return newmap;
     }
 
@@ -190,10 +196,17 @@ public class DataUtil {
 //        String data="";
 //        data =  stringBuffer.toString().substring(0,stringBuffer.toString().length()-1);
         Gson gson = new Gson();
-        String data = gson.toJson(map);
+        String data2 = gson.toJson(map);
         Map newmap = new HashMap();
+        String data="";
+        try {
+            data =Base64Utils.encode(rsa.encryptPublicKey(data2.getBytes(),rsa.PUBLIC_KEY));
+            Logger.i("<==>encryptByPublicKey:" + data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         newmap.put("data",data);
-        Logger.i("<==>:" + data);
+        Logger.i("<==>:" + data2);
         return newmap;
     }
     public static String thousand(String map,Context mContext){
