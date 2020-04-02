@@ -19,7 +19,7 @@ import com.github.mikephil.charting.stockChart.data.TimeDataManage;
 public class BaseView extends LinearLayout {
 
     public boolean landscape = false;
-    public int precision = 3;
+    public int precision = 6;
     public Paint mPaint;
 
     public BaseView(Context context) {

@@ -176,7 +176,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
         @Override
         public <T> void onMessage(String message, T data) {
-
+            Log.v("==", "onDisconnect"+message);
             if (TextUtils.isEmpty(message) || message.equals("hello")) {
 //                sendSocket();
                 return;
@@ -868,7 +868,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         getMsgInfo();
     }
     private long mLastClickTime = 0;
-    public static final long TIME_INTERVAL = 1000L;
+    public static final long TIME_INTERVAL = 3000L;
 
     private void submit() {
         if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
@@ -887,9 +887,32 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     payDialog();
 
                 } else {
-                    TreeMap params = new TreeMap<>();
-                    params.put("act", ConstantUrl.User_form_token);
-                    mPresenter.getToken(DataUtil.sign(params));
+//                    TreeMap params = new TreeMap<>();
+//                    params.put("act", ConstantUrl.User_form_token);
+//                    mPresenter.getToken(DataUtil.sign(params));
+                    if (market_type.equals("0")) {
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", ConstantUrl.TRADE_UPTRADE);
+                        params.put("market", one_xnb + "_" + two_xnb);
+                        params.put("price", mPrice.getText().toString().trim());
+                        params.put("num", mNumber.getText().toString().trim());
+                        params.put("type", type);
+                        params.put("paypassword", passContents);
+                        params.put("source", "android");
+//                        params.put("__token__", baseBean);
+                        mPresenter.getData(DataUtil.sign(params));
+                    } else {
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", ConstantUrl.Contract_upContract);
+                        params.put("market", one_xnb + "_" + two_xnb);
+                        params.put("price", mPrice.getText().toString().trim());
+                        params.put("num", mNumber.getText().toString().trim());
+                        params.put("type", type);
+//            params.put("paypassword", passContents);
+                        params.put("source", "android");
+//                        params.put("__token__", baseBean);
+                        mPresenter.getData(DataUtil.sign(params));
+                    }
                 }
                 mLastClickTime = nowTime;
             } else {
@@ -914,10 +937,29 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 .setPayClickListener(new PayPassView.OnPayClickListener() {
                     @Override
                     public void onPassFinish(String passContent) {
-                        passContents = passContent;
-                        TreeMap params = new TreeMap<>();
-                        params.put("act", ConstantUrl.User_form_token);
-                        mPresenter.getToken(DataUtil.sign(params));
+                        if (market_type.equals("0")) {
+                            TreeMap params = new TreeMap<>();
+                            params.put("act", ConstantUrl.TRADE_UPTRADE);
+                            params.put("market", one_xnb + "_" + two_xnb);
+                            params.put("price", mPrice.getText().toString().trim());
+                            params.put("num", mNumber.getText().toString().trim());
+                            params.put("type", type);
+                            params.put("paypassword", passContent);
+                            params.put("source", "android");
+//                            params.put("__token__", baseBean);
+                            mPresenter.getData(DataUtil.sign(params));
+                        } else {
+                            TreeMap params = new TreeMap<>();
+                            params.put("act", ConstantUrl.Contract_upContract);
+                            params.put("market", one_xnb + "_" + two_xnb);
+                            params.put("price", mPrice.getText().toString().trim());
+                            params.put("num", mNumber.getText().toString().trim());
+                            params.put("type", type);
+//            params.put("paypassword", passContents);
+                            params.put("source", "android");
+//                            params.put("__token__", baseBean);
+                            mPresenter.getData(DataUtil.sign(params));
+                        }
 
 
                     }
@@ -940,6 +982,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Override
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
+        mNumber.setText("");
         getMsgInfo();
         Event event = new Event();
         event.setCode(Constants.ENTRUST);
@@ -1349,13 +1392,15 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     }
                                 }
                                 if (mDesignates.getAsks().size() < 10) {
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
-                                    mDesignates.getAsks().add(0, arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+
+//                                    for (int bb = 0; i < 8; i++) {
+//                                        mDesignates.getAsks().add(arrayList);
+//                                    }
                                 }
 //                                for (int jj = 0; i < 8; i++) {
 //                                    mDesignates.getAsks().add(0,arrayList2);
@@ -1364,8 +1409,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 8));
 
                                 } else {
-
-
                                     mSellerAdapter.setNewData(mDesignates.getAsks());
                                 }
                                 if (mDesignates.getBids().size() >= 8) {

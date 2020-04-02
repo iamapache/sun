@@ -285,7 +285,7 @@ public class OneDayView extends BaseView {
         }
 
         if (mData.getAssetId().endsWith(".HK")) {
-            setPrecision(mData.getAssetId().contains("IDX") ? 2 : 3);
+            setPrecision(mData.getAssetId().contains("IDX") ? 6 : 6);
             setMaxCount(ChartType.HK_ONE_DAY.getPointNum());
         } else if (mData.getAssetId().endsWith(".US")) {
             setPrecision(2);

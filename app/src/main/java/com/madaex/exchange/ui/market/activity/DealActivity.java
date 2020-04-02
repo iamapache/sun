@@ -24,7 +24,6 @@ import com.madaex.exchange.common.view.NoScrollViewPager;
 import com.madaex.exchange.ui.adapter.TitleStatePagerAdapter;
 import com.madaex.exchange.ui.buy.bean.CoinList;
 import com.madaex.exchange.ui.buy.bean.Event;
-import com.madaex.exchange.ui.buy.fragment.CoinListFrament;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.login.activity.LoginActivity;
@@ -334,9 +333,9 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
             case R.id.toolbar_right_btn_ll:
                 break;
             case R.id.toolbar_title_tv:
-                FragmentManager fm0 = getSupportFragmentManager();
-                CoinListFrament editNameDialog = CoinListFrament.newInstance(Constants.MARK, one_xnb, two_xnb);
-                editNameDialog.show(fm0, "fragment_bottom_dialog");
+//                FragmentManager fm0 = getSupportFragmentManager();
+//                CoinListFrament editNameDialog = CoinListFrament.newInstance(Constants.MARK, one_xnb, two_xnb);
+//                editNameDialog.show(fm0, "fragment_bottom_dialog");
                 break;
             case R.id.tv_buy:
                 showBuyDialogfragment(ConstantUrl.TRANS_TYPE_BUY);

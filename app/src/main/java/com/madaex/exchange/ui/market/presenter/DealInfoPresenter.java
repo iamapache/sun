@@ -110,23 +110,23 @@ public class DealInfoPresenter extends RxPresenter<DealInfoContract.View> implem
     @Override
     public void collection(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, CommonBaseBean>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
+                    public CommonBaseBean apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(data, CommonBean.class);
+                        CommonBaseBean commonBean = gson.fromJson(data, CommonBaseBean.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<CommonBaseBean>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
+                    public void onNext(CommonBaseBean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestError(commonBean.getMessage() + "");
+                            mView.requestError(commonBean.getMsg() + "");
                         } else {
 
-                            mView.requestSuccess(commonBean.getMessage() + "");
+                            mView.requestSuccess(commonBean.getMsg() + "");
                         }
                     }
                 }));

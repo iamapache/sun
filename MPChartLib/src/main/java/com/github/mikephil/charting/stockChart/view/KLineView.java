@@ -307,9 +307,9 @@ public class KLineView extends BaseView implements View.OnClickListener {
         axisLeftBar.setValueFormatter(new VolFormatter(mContext, data.getAssetId()));
 
         if (data.getAssetId().endsWith(".HK") && !data.getAssetId().contains("IDX")) {
-            setPrecision(3);
+            setPrecision(6);
         } else {
-            setPrecision(2);
+            setPrecision(6);
         }
 
         CombinedData candleChartData;

@@ -27,10 +27,7 @@ public class rsa {
     public static final String KEY_ALGORITHM = "RSA";
     public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
     public static final String ECB_PKCS1_PADDING = "RSA/ECB/PKCS1Padding";
-    public static final String PUBLIC_KEY="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCujLQGzmXx3z9mv4L1bKVgIPQx\n" +
-            "h8Y6auKRl3tj/I6KVSDhDr+g4cNyIB0uIS3R0rNcrnWYFY3kdyvwZy/sBa7V1HMt\n" +
-            "WnhETExvG+iV2wom/9KdUOO1fmwYcPEnvGyJRLrPTd+CN/pu7SMed7V8pWM93zcq\n" +
-            "3sEvmNQBnYhPPG9TTwIDAQAB";
+    public static final String PUBLIC_KEY="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCoTjm3RXOWBo4eWOyUpn+G5LWUaiXQflRqLv5dDVFWxZOHSBUy/tTbHEEgqvJolkA/Uxngk3vKIXxeOyMwV/tRd9H3zOOOlN+eyYjprDvl4H0+dRl3loFA4Bpt7Sx4hEbM+MzlbGrtM/0bjMSmm0XuLCxZnLhDe5OcyO4xj359wwIDAQAB";
     private static final String PRIVATE_KEY = "RSAPrivateKey";
 
 

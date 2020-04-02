@@ -286,10 +286,10 @@ public class FiveDayView extends BaseView {
         }
 
         if (mData.getAssetId().endsWith(".HK")) {
-            setPrecision(mData.getAssetId().contains("IDX") ? 2 : 3);
+            setPrecision(mData.getAssetId().contains("IDX") ? 6 : 6);
             setMaxCount(ChartType.HK_FIVE_DAY.getPointNum());
         } else {
-            setPrecision(2);
+            setPrecision(6);
             setMaxCount(ChartType.FIVE_DAY.getPointNum());
         }
         setXLabels(mData.getFiveDayXLabels());

@@ -8,9 +8,9 @@ package com.madaex.exchange.common.net;
  */
 public class Constant {
 
-    public static final String HTTP = "http://alsc.uoou.net/";//http://192.168.2.117/appapi/
+    public static final String HTTP = "https://www.vcoin.be/";//http://192.168.2.117/appapi/
 
-    public static final String Websocket = "ws://47.56.143.229:8888";
+    public static final String Websocket = "ws://sock.vcoin.be:8888";
 
     public static final String JAVA_HTTP = "http://123.58.34.198/";
 
@@ -37,5 +37,5 @@ public class Constant {
     public static final String APP_APIS ="appapi";
 
     public static final String LOGIN ="market/getMarket";
-    public static final String IMG_BASE_URL = "http://alsc.uoou.net/";
+    public static final String IMG_BASE_URL = "https://www.vcoin.be/";
 }

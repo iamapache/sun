@@ -202,7 +202,7 @@ public class PageHomePresenter extends RxPresenter<PageHomeContract.View> implem
                     @Override
                     public void onNext(Urlbean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.requestError(commonBean.getMessage() + "");
+//                            mView.requestError(commonBean.getMessage() + "");
                         } else {
 
                             mView.requestNotice(commonBean);

@@ -43,7 +43,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
     //填充onCreateViewHolder方法返回的holder中的控件
     @Override
     public void onBindViewHolder(SellerAdapter.MyViewHolder holder, final int position) {
-        holder.name.setText(mContext.getResources().getString(R.string.seller) + (getItemCount()-position )+ "" );
+        holder.name.setText(mContext.getResources().getString(R.string.seller) + (position +1)+ "" );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.green) );
         if(mDatas.get(position).get(0)==0){
             holder.price.setText( "--");
@@ -55,11 +55,10 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         }else {
             holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
         }
-
+        Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
         holder.itemView.setTag(mDatas.get(position).get(0)+"");
         int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
         holder.mProgressBar.setProgress(vote);
-        Log.d("onBindViewHolder2", vote+"重连");
         holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg2));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

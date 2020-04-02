@@ -46,7 +46,7 @@ public class ToastUtils {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                getToast(resId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, resId, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -58,7 +58,7 @@ public class ToastUtils {
                 if (TextUtils.isEmpty(text)) {
                     return;
                 }
-                getToast(text, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
             }
         });
     }

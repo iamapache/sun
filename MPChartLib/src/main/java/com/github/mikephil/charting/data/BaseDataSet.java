@@ -88,7 +88,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      */
     protected boolean mVisible = true;
     //数值的精确度位数
-    protected int precision = 2;
+    protected int precision = 6;
     //分时图类型，区分当日分时和多日分时
     protected int timeDayType = 1;
 
