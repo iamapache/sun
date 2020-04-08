@@ -5,20 +5,6 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.madaex.exchange.common.view.CustomToolBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_44dp"
-        android:orientation="vertical"
-        app:barBackground="@color/colorTheme"
-        app:left_btn_src="@mipmap/icon_back"
-        app:left_btn_visible="true"
-        app:left_tv_text="@string/back"
-        app:left_tv_visible="true"
-        app:right_tv_text="@string/record"
-        app:right_tv_visible="true"
-        app:title_color="@color/white"
-        app:title_text=""
-        app:title_visible="true"/>
 
     <LinearLayout
         android:background="@color/common_black"

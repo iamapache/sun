@@ -597,4 +597,5 @@
     <string name="Trading">Trading</string>
     <string name="carry">Carry</string>
     <string name="orders">orders</string>
+    <string name="Priceus">Price(USDT)</string>
 </resources>

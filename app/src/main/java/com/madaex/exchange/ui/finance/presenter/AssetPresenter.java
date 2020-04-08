@@ -11,6 +11,7 @@ import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.bean.Recharge;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 
 import java.util.Map;
@@ -70,6 +71,36 @@ public class AssetPresenter extends RxPresenter<AssetContract.View> implements A
                         }else {
                             if(mView!=null){
                                 mView.requestSuccess(commonBean);
+                            }
+
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void cash_recharge(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, Recharge>() {
+                    @Override
+                    public Recharge apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        Recharge commonBean = gson.fromJson(data, Recharge.class);
+                            return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<Recharge>(mView,true) {
+                    @Override
+                    public void onNext(Recharge commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.requestError("");
+
+                        }else {
+                            if(mView!=null){
+                                mView.requestRecharge(commonBean);
                             }
 
                         }

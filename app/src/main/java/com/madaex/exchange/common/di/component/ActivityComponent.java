@@ -12,6 +12,8 @@ import com.madaex.exchange.ui.finance.activity.BuyBillActivity;
 import com.madaex.exchange.ui.finance.activity.BuyCoinActivity;
 import com.madaex.exchange.ui.finance.activity.ConfirmTransaActivity;
 import com.madaex.exchange.ui.finance.activity.SellerCoinActivity;
+import com.madaex.exchange.ui.finance.activity.TabBuyCoinActivity;
+import com.madaex.exchange.ui.finance.activity.TabSellerActivity;
 import com.madaex.exchange.ui.finance.activity.TransaListActivity;
 import com.madaex.exchange.ui.finance.activity.TransationDetailActivity;
 import com.madaex.exchange.ui.finance.address.activity.AddAddressActivity;
@@ -155,4 +157,8 @@ public interface ActivityComponent {
     void inject(HuaActivity huaActivity);
 
     void inject(HuaRecordActivity huaRecordActivity);
+
+    void inject(TabBuyCoinActivity tabBuyCoinActivity);
+
+    void inject(TabSellerActivity tabSellerActivity);
 }

@@ -64,6 +64,36 @@ public class SellerCoinPresenter extends RxPresenter<SellerCoinContract.View> im
     }
 
     @Override
+    public void cash_recharge(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, SellerCoin>() {
+                    @Override
+                    public SellerCoin apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        SellerCoin commonBean = gson.fromJson(data, SellerCoin.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<SellerCoin>(mView,true) {
+                    @Override
+                    public void onNext(SellerCoin commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.requestError("");
+
+                        }else {
+                            if(mView!=null){
+                                mView.requestSuccess(commonBean);
+                            }
+
+                        }
+                    }
+                }));
+    }
+
+    @Override
     public void getCashCoin(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, TransaList>() {

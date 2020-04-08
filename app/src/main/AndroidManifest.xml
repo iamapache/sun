@@ -91,6 +91,8 @@
         <activity android:name=".ui.finance.activity.TransaListActivity"/>
         <activity android:name=".ui.finance.vote.activity.VoteCoinActivity"/>
         <activity android:name=".ui.finance.activity.FeeActivity"/>
+        <activity android:name=".ui.finance.activity.TabBuyCoinActivity"/>
+        <activity android:name=".ui.finance.activity.TabSellerActivity"/>
         <activity android:name=".ui.finance.activity.BuyBillActivity"/>
         <activity android:name=".ui.finance.vote.activity.RankingDetailActivity"/>
         <activity android:name=".ui.finance.activity.TransationDetailActivity"/>

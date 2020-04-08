@@ -133,14 +133,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="价格(USDT)"
+                        android:text="@string/Priceus"
                         android:textColor="#ff6d778b"
                         android:textSize="11sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="数量"
+                        android:text="@string/number"
                         android:textColor="#ff6d778b"
                         android:textSize="11sp" />
                 </LinearLayout>

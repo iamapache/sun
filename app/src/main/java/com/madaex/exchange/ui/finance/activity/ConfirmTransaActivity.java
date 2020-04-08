@@ -2,7 +2,6 @@ package com.madaex.exchange.ui.finance.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -147,10 +146,10 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
 
     private void validate() {
 
-        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
-            ToastUtils.showToast(getString(R.string.input_msg_code));
-            return;
-        }
+//        if (TextUtils.isEmpty(mTvCode.getText().toString())) {
+//            ToastUtils.showToast(getString(R.string.input_msg_code));
+//            return;
+//        }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_CONFIRM_CASH);
         params.put("verify_code", mTvCode.getText().toString().trim());
@@ -161,6 +160,7 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
         params.put("addr", getIntent().getStringExtra("address"));
         params.put("num", getIntent().getStringExtra("number"));
         params.put("coin_fee", getIntent().getStringExtra("fee"));
+        params.put("protocol", getIntent().getStringExtra("protocol"));
         params.put("is_platform", getIntent().getBooleanExtra("isCheck", false) == false ? 0 + "" : 1 + "");
         mPresenter.getData(DataUtil.sign(params));
         mSubmit.setClickable(false);

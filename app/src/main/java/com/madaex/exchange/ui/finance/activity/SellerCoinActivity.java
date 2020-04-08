@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,9 +18,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.madaex.dialog.ActionSheetDialog;
 import com.madaex.exchange.R;
-import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.ClipboardUtil;
-import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
@@ -33,10 +33,8 @@ import com.madaex.exchange.view.EditInputFilter;
 import com.wc.widget.dialog.IosDialog;
 
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
@@ -48,7 +46,7 @@ import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE
  * 描述：  ${TODO}
  */
 
-public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> implements SellerCoinContract.View {
+public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter> implements SellerCoinContract.View {
     @BindView(R.id.tv_amount)
     TextView mTvAmount;
     @BindView(R.id.tv_address)
@@ -57,9 +55,6 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     TextView mTvKgf;
     @BindView(R.id.tv_number)
     EditText mTvNumber;
-    @BindView(R.id.toolbar_title_tv)
-    TextView mTitleView;
-    SellerCoin mSellerCoin;
     @BindView(R.id.togglebutton)
     ToggleButton mTogglebutton;
     @BindView(R.id.cointype)
@@ -78,8 +73,8 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     }
 
     @Override
-    protected void initInjector() {
-        getActivityComponent().inject(this);
+    public void initInjector() {
+        getFragmentComponent().inject(this);
     }
 
     @Override
@@ -90,23 +85,40 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
         mTvNumber.setFilters(new InputFilter[]{new EditInputFilter(100000)});
     }
 
+    public static SellerCoinActivity newInstance(boolean flag,String xnb_name, SellerCoin address) {
+        SellerCoinActivity fragment = null;
+        if (fragment == null) {
+            fragment = new SellerCoinActivity();
+        }
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("flag", flag);
+        bundle.putString("xnb_name", xnb_name);
+        bundle.putParcelable("address", address);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+    String str;
+    SellerCoin sellerCoin ;
     @Override
     protected void initDatas() {
-        String str = getIntent().getStringExtra("xnb");
-        String xnb_name = getIntent().getStringExtra("xnb_name");
-        String wallet_type = getIntent().getStringExtra("wallet_type");
-        mTitleView.setText(getString(R.string.fu) + xnb_name);
+         sellerCoin =   getArguments().getParcelable("address");
+        String xnb_name = getArguments().getString("xnb_name");
         mCointype.setText(xnb_name);
+
+        mTvAmount.setText(sellerCoin.getData().getXnb_num());
+        mTvKgf.setText(sellerCoin.getData().getXnb_fee().get(0) + "");
+        zc_min = Double.valueOf(sellerCoin.getData().getZc_min());
+        zc_max = Double.valueOf(sellerCoin.getData().getZc_max());
 //        if (!xnb_name.equals("GRC")) {
 //            mLlNeibu.setVisibility(View.GONE);
 //            mTogglebutton.setChecked(false);
 //        }
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_CASH_COIN);
-//        params.put("xnb", str);
-        params.put("wallet_type", wallet_type);
-        params.put("coin_id", getIntent().getStringExtra("coin_id"));
-        mPresenter.getData(DataUtil.sign(params));
+//        TreeMap params = new TreeMap<>();
+//        params.put("act", ConstantUrl.TRADE_CASH_COIN);
+////        params.put("xnb", str);
+//        params.put("wallet_type", wallet_type);
+//        params.put("coin_id", getArguments().getString("coin_id"));
+//        mPresenter.getData(DataUtil.sign(params));
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,36 +128,21 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
-    @OnClick({R.id.tv_address, R.id.tv_kgf, R.id.toolbar_left_btn_ll, R.id.toolbar_right_tv_ll})
+    @OnClick({R.id.tv_address, R.id.tv_kgf})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_address:
                 showCustomDialog();
                 break;
             case R.id.tv_kgf:
-                if (EmptyUtils.isNotEmpty(mSellerCoin)) {
+                if (EmptyUtils.isNotEmpty(sellerCoin)) {
                     Intent intent = new Intent();
                     intent.setClass(mContext, FeeActivity.class);
-                    intent.putStringArrayListExtra("bean", (ArrayList<String>) mSellerCoin.getData().getXnb_fee());
+                    intent.putStringArrayListExtra("bean", (ArrayList<String>) sellerCoin.getData().getXnb_fee());
                     startActivityForResult(intent, CODE_REQUEST);
                 }
 
-                break;
-            case R.id.toolbar_left_btn_ll:
-                finish();
-                break;
-            case R.id.toolbar_right_tv_ll:
-                Intent intent = getIntent();
-                intent.setClass(mContext, TransaListActivity.class);
-                intent.putExtra(ConstantUrl.TYPE, ConstantUrl.TRANS_TYPE_SELLER);
-                startActivity(intent);
                 break;
         }
     }
@@ -159,18 +156,18 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
             ToastUtils.showToast(getString(R.string.entrureturnnumber));
             return;
         }
-        if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-            return;
-        }
-        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-            return;
-        }
-        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
-            ToastUtils.showToast(getString(R.string.Pcorrectamount));
-            return;
-        }
+//        if (Double.valueOf(mTvAmount.getText().toString().trim())<Double.valueOf(mTvNumber.getText().toString().trim())) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
+//        if (zc_min > Double.valueOf(mTvNumber.getText().toString().trim())) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
+//        if (Double.valueOf(mTvNumber.getText().toString().trim()) > zc_max) {
+//            ToastUtils.showToast(getString(R.string.Pcorrectamount));
+//            return;
+//        }
         if (TextUtils.isEmpty(mTvTranspassword.getText().toString())) {
             ToastUtils.showToast(getString(R.string.entrytranspwd));
             return;
@@ -179,8 +176,8 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
 //            ToastUtils.showToast(getString(R.string.passwordfirst));
 //            return;
 //        }
-        String xnb_name = getIntent().getStringExtra("xnb_name");
-        Dialog dialog = new IosDialog.Builder(this).setTitle(getString(R.string.oksellerbill) + "?").setTitleColor(ContextCompat.getColor(mContext, R.color.common_text_1)).setTitleSize(20)
+        String xnb_name = getArguments().getString("xnb_name");
+        Dialog dialog = new IosDialog.Builder(getActivity()).setTitle(getString(R.string.oksellerbill) + "?").setTitleColor(ContextCompat.getColor(mContext, R.color.common_text_1)).setTitleSize(20)
                 .setMessage(getString(R.string.money) + xnb_name + mTvNumber.getText().toString().trim()).setMessageColor(ContextCompat.getColor(mContext, R.color.common_red)).setMessageSize(14)
                 .setNegativeButtonColor(Color.GRAY)
                 .setNegativeButtonSize(18)
@@ -195,13 +192,14 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
                 .setPositiveButton(getString(R.string.oksellerbill), new IosDialog.OnClickListener() {
                     @Override
                     public void onClick(IosDialog dialog, View v) {
-                        Intent intent = getIntent();
+                        Intent intent = getActivity().getIntent();
                         intent.setClass(mContext, ConfirmTransaActivity.class);
                         intent.putExtra("number", mTvNumber.getText().toString().trim());
                         intent.putExtra("address", mTvAddress.getText().toString().trim());
                         intent.putExtra("pass", mTvTranspassword.getText().toString().trim());
                         intent.putExtra("fee", mTvKgf.getText().toString().trim());
                         intent.putExtra("isCheck", mTogglebutton.isChecked());
+                        intent.putExtra("protocol", sellerCoin.getData().getPro_arr().get(0)+"");
                         startActivity(intent);
                         dialog.dismiss();
 
@@ -212,7 +210,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     }
 
     private void showCustomDialog() {
-        new ActionSheetDialog(SellerCoinActivity.this)
+        new ActionSheetDialog(getActivity())
                 .builder()
                 .setTitle(getString(R.string.buycoinadd))
                 .setCancelable(false)
@@ -221,7 +219,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override
                             public void onClick(int which) {
-                                Intent intent = getIntent();
+                                Intent intent = getActivity().getIntent();
                                 intent.setClass(mContext, AddressListActivity.class);
                                 intent.putExtra(ConstantUrl.TYPE, ConstantUrl.TRANS_TYPE_SELLER);
                                 startActivityForResult(intent, 100);
@@ -247,17 +245,17 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK
+        if (resultCode == Activity.RESULT_OK
                 && requestCode == CODE_REQUEST) {
             String wallets = data.getStringExtra("fee");
             mTvKgf.setText(wallets + "");
-        } else if (resultCode == RESULT_OK
+        } else if (resultCode == Activity.RESULT_OK
                 && requestCode == 100) {
             String address = data.getStringExtra("address");
             mTvAddress.setText(address);
         } else {
             try {
-                if (resultCode == RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK) {
                     if (requestCode == REQUEST_CODE) {
                         String code = data.getStringExtra("data");
                         try {
@@ -296,7 +294,7 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
     }
 
     private void openScanCode() {
-        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
         intentIntegrator.setCaptureActivity(ScanActivity.class);
         intentIntegrator.initiateScan();
     }
@@ -309,16 +307,16 @@ public class SellerCoinActivity extends BaseNetActivity<SellerCoinPresenter> imp
 
     @Override
     public void requestSuccess(SellerCoin commonBean) {
-        mSellerCoin = new SellerCoin();
-        mSellerCoin = commonBean;
-        mTvAmount.setText(commonBean.getData().getXnb_num());
-        mTvKgf.setText(commonBean.getData().getXnb_fee().get(0) + "");
-        zc_min = Double.valueOf(commonBean.getData().getZc_min());
-        zc_max = Double.valueOf(commonBean.getData().getZc_max());
+
     }
 
     @Override
     public void requestSuccess(TransaList commonBean) {
+
+    }
+
+    @Override
+    protected void lazyLoad() {
 
     }
 }

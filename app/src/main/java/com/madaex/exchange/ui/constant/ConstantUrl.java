@@ -113,6 +113,11 @@ public class ConstantUrl {
     public static String TRADE_CONFIRM_CASH = "Trade.confirm_cash";
     //充币确认的提交处理
     public static String TRADE_CONFIRM_RECHARGE = "Trade.confirm_recharge";
+
+
+    public static String TRADE_CASH_RECHARGE = "Trade.cash_recharge";
+
+
     //提币列表
     public static String TRADE_CASH_LIST = "Trade.cash_list";
     //资产列表：账单

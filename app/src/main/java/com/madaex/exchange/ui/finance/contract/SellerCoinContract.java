@@ -25,7 +25,7 @@ public class SellerCoinContract {
 
     public interface Presenter extends BaseContract.BasePresenter<SellerCoinContract.View> {
         void getData(Map body);
-
+        void cash_recharge(Map body);
         void getCashCoin(Map body);
     }
 }

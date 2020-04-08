@@ -807,6 +807,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                 resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(number, 1)) + "";
                                 mNumber.setText(resa);
                             }
+                            Logger.i("<==>:CCC" + ArithUtil.div(ArithUtil.div(number, price), 1, 3) + "");
+                            Logger.i("<==>:CCC" + ArithUtil.div(number, 1, 3) + "");
                         }
                         break;
                 }
@@ -1017,7 +1019,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 total = data.getData().getTwo_xnb();
                 if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
                     double vou= Double.valueOf(data.getData().getTwo_xnb())/Double.valueOf(baseBean.getCurrentPrice());
-                    totalnum =vou*Double.valueOf(data.getData().getTrade_buy_fee());
+                    double  bili =vou*Double.valueOf(data.getData().getTrade_buy_fee());
+                    totalnum =vou-bili;
                     if (market_type.equals("0")) {
                         mPrice.setText(baseBean.getCurrentPrice());
                     } else {
@@ -1069,7 +1072,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 }
                 if(EmptyUtils.isNotEmpty(mKeyong.getText().toString())){
                     double vou= Double.valueOf(mKeyong.getText().toString())/Double.valueOf(baseBean.getCurrentPrice());
-                    totalnum =vou*Double.valueOf(trade_buy_fee);
+                    double  bili =vou*Double.valueOf(trade_buy_fee);
+                    totalnum =vou-bili;
                 }
 
             } else {
@@ -1343,7 +1347,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 if (mBuyAdapter != null && mSellerAdapter != null) {
                     if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
                         if (mDesignates != null) {
-//                            Collections.reverse(mDesignates.getAsks());
+
                             if (stutas == 50) {
                                 if (mDesignates.getAsks().size() >= 50) {
                                     mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 50));
@@ -1397,7 +1401,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mDesignates.getAsks().add(arrayList2);
                                     mDesignates.getAsks().add(arrayList2);
                                     mDesignates.getAsks().add(arrayList2);
-
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
+                                    mDesignates.getAsks().add(arrayList2);
 //                                    for (int bb = 0; i < 8; i++) {
 //                                        mDesignates.getAsks().add(arrayList);
 //                                    }

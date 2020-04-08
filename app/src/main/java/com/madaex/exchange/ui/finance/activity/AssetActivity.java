@@ -22,6 +22,7 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.adapter.RecyclerviewAdapter;
 import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.bean.Recharge;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 
@@ -255,5 +256,10 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
                 }
             }
         });
+    }
+
+    @Override
+    public void requestRecharge(Recharge commonBean) {
+
     }
 }

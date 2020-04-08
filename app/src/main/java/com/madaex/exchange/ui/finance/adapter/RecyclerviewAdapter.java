@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.finance.activity.BillActivity;
-import com.madaex.exchange.ui.finance.activity.BuyCoinActivity;
-import com.madaex.exchange.ui.finance.activity.SellerCoinActivity;
+import com.madaex.exchange.ui.finance.activity.TabBuyCoinActivity;
+import com.madaex.exchange.ui.finance.activity.TabSellerActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.orhanobut.logger.Logger;
 
@@ -68,9 +68,9 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             public void onClick(View view) {
                 if (item.getIs_recharge() == 1) {
                     Intent intent = new Intent();
-                    intent.setClass(mContext, BuyCoinActivity.class);
+                    intent.setClass(mContext, TabBuyCoinActivity.class);
                     intent.putExtra("address", item.getAddress());
-                    intent.putExtra("xnb", item.getXnb());
+                    intent.putExtra("xnb", item.getCoin_id()+"");
                     intent.putExtra("xnb_name", item.getXnb_name());
                     intent.putExtra("wallet_type", wallet_type);
                     mContext.startActivity(intent);
@@ -90,7 +90,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             public void onClick(View view) {
                 if (item.getIs_support_cash()==1) {
                     Intent intent = new Intent();
-                    intent.setClass(mContext, SellerCoinActivity.class);
+                    intent.setClass(mContext, TabSellerActivity.class);
                     intent.putExtra("xnb", item.getCoin_id()+"");
                     intent.putExtra("xnb_name", item.getXnb_name());
                     intent.putExtra("wallet_type", wallet_type);

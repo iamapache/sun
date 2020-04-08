@@ -31,6 +31,7 @@ import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.finance.bank.activity.BankListActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.bean.Recharge;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
@@ -287,6 +288,11 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(3).getValue()), commonBean.getData().getCoin_hot().get(0).getName(),
 //                    commonBean.getData().getCoin_hot().get(1).getName(), commonBean.getData().getCoin_hot().get(2).getName());
         }
+
+    }
+
+    @Override
+    public void requestRecharge(Recharge commonBean) {
 
     }
 

@@ -2,6 +2,7 @@ package com.madaex.exchange.ui.finance.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.bean.Recharge;
 
 import java.util.Map;
 
@@ -19,9 +20,13 @@ public class AssetContract {
         void requestError(String msg);
 
         void requestSuccess(Asset commonBean);
+
+        void requestRecharge(Recharge commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<AssetContract.View> {
         void getData(Map body);
+
+        void cash_recharge(Map body);
     }
 }

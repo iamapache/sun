@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.madaex.exchange.common.view.CustomToolBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:orientation="vertical"
+        app:barBackground="@color/colorTheme"
+        app:left_btn_src="@mipmap/icon_back"
+        app:left_btn_visible="true"
+        app:left_tv_text="@string/back"
+        app:left_tv_visible="true"
+        app:right_tv_text="@string/record"
+        app:right_tv_visible="true"
+        app:title_color="@color/white"
+        app:title_text="@string/Withdrawal"
+        app:title_visible="true"/>
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/stl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_44dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        tl:tl_tab_space_equal="true"
+        tl:tl_indicator_color="@color/common_hui"
+        tl:tl_indicator_margin_left="2dp"
+        tl:tl_indicator_margin_right="2dp"
+        tl:tl_indicator_style="BLOCK"
+        tl:tl_textSelectColor="@color/common_cheng"
+        tl:tl_textUnselectColor="@color/common_title_unbg"
+        tl:tl_textsize="@dimen/d_15dp"/>
+    <!--    <android.support.design.widget.TabLayout-->
+    <!--        android:id="@+id/stl"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="@dimen/d_40dp"-->
+    <!--        android:background="@color/common_black"-->
+    <!--        app:tabBackground="@color/common_black"-->
+    <!--        app:tabIndicatorColor="@color/title_color"-->
+    <!--        app:tabIndicatorHeight="@dimen/d_2dp"-->
+    <!--        app:tabMode="fixed"-->
+    <!--        app:tabSelectedTextColor="@color/title_color"-->
+    <!--        app:tabTextColor="@color/white"-->
+    <!--        />-->
+    <!--        tl:tl_tab_space_equal="false"-->
+    <!--        tl:tl_indicator_color="#09306a"-->
+    <!--        tl:tl_indicator_margin_left="2dp"-->
+    <!--        tl:tl_indicator_margin_right="2dp"-->
+    <!--        tl:tl_indicator_style="BLOCK"-->
+    <!--        tl:tl_textSelectColor="@color/white"-->
+    <!--        tl:tl_textUnselectColor="@color/common_title_unbg"-->
+    <!--        tl:tl_textsize="@dimen/d_15dp"-->
+
+
+    <com.madaex.exchange.common.view.NoScrollViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

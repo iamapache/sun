@@ -5,19 +5,6 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.madaex.exchange.common.view.CustomToolBar
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d_44dp"
-        android:orientation="vertical"
-        app:barBackground="@color/colorTheme"
-        app:left_btn_src="@mipmap/icon_back"
-        app:left_btn_visible="true"
-        app:left_tv_text="@string/back"
-        app:left_tv_visible="true"
-        app:title_color="@color/white"
-        app:title_text="@string/ReceivingAddress"
-        app:title_visible="true"/>
-
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

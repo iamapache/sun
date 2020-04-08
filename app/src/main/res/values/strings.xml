@@ -570,4 +570,5 @@
     <string name="Trading">交易中</string>
     <string name="carry">可提</string>
     <string name="orders">限价单</string>
+    <string name="Priceus">价格(USDT)</string>
 </resources>

@@ -43,28 +43,28 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
     //填充onCreateViewHolder方法返回的holder中的控件
     @Override
     public void onBindViewHolder(SellerAdapter.MyViewHolder holder, final int position) {
-        holder.name.setText(mContext.getResources().getString(R.string.seller) + (position +1)+ "" );
+        holder.name.setText(mContext.getResources().getString(R.string.seller) + (getItemCount()-position )+ "" );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.green) );
-        if(mDatas.get(position).get(0)==0){
+        if(mDatas.get(getItemCount()-position-1 ).get(0)==0){
             holder.price.setText( "--");
         }else {
-            holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
+            holder.price.setText( DataUtil.is9Length(mDatas.get(getItemCount()-position -1).get(0)+""));
         }
-        if(mDatas.get(position).get(1)==0){
+        if(mDatas.get(getItemCount()-position -1).get(1)==0){
             holder.number.setText( "--");
         }else {
-            holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+            holder.number.setText( DataUtil.is9Length(mDatas.get(getItemCount()-position -1).get(1)+""));
         }
         Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
-        holder.itemView.setTag(mDatas.get(position).get(0)+"");
-        int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
+        holder.itemView.setTag(mDatas.get(getItemCount()-position -1).get(0)+"");
+        int vote = (int) (mDatas.get(getItemCount()-position -1).get(1)/(2000)*100);
         holder.mProgressBar.setProgress(vote);
         holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg2));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(market_type.equals("0")) {
-                    mItemClickListener.onItemClick(mDatas.get(position));
+                    mItemClickListener.onItemClick(mDatas.get(getItemCount()-position -1));
                 }
             }
         });
