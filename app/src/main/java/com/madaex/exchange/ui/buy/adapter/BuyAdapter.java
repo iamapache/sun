@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
-import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.SPUtils;
 
 import java.util.ArrayList;
@@ -47,12 +46,12 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         if(mDatas.get(position).get(0)==0){
             holder.price.setText( "--");
         }else {
-            holder.price.setText( DataUtil.is9Length(mDatas.get(position).get(0)+""));
+            holder.price.setText(mDatas.get(position).get(0)+"");
         }
         if(mDatas.get(position).get(1)==0){
             holder.number.setText( "--");
         }else {
-            holder.number.setText( DataUtil.is9Length(mDatas.get(position).get(1)+""));
+            holder.number.setText( mDatas.get(position).get(1)+"");
         }
         holder.name.setTextColor(mContext.getResources().getColor(R.color.common_red) );
 

@@ -163,7 +163,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         two_xnb = getArguments().getString(Constants.TWO_XNB);
         mEntrusttype = getArguments().getString(Constants.ENTRUSTCURRENT);
         if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-            mLlDelete.setVisibility(View.VISIBLE);
+            mLlDelete.setVisibility(View.GONE);
         } else {
             mLlDelete.setVisibility(View.GONE);
         }
@@ -177,20 +177,32 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num,  item.getOne_xnb() )
-                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getMum())).stripTrailingZeros().toPlainString());
+                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
 
                 helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
+
+
+                if (market_type.equals("0")) {
+                    helper.setGone(R.id.img_delete, true);
+                }else {
+
+                    if (item.getType().equals("1")) {
+                        helper.setGone(R.id.img_delete, true);
+                    }else {
+                        helper.setGone(R.id.img_delete, false);
+                    }
+                }
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
-                            .setGone(R.id.img_delete, true).setText(R.id.deal,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
+                    helper.setGone(R.id.ll_line, false)
+                            .setText(R.id.deal,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getDeal()) || !TextUtils.isEmpty(item.getNum())) {
                         int pb = (int) (Double.valueOf(item.getDeal()) / Double.valueOf(item.getNum()));
                         progressBar.setProgress(pb);
                     }
                 } else {
-                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
-                            .setGone(R.id.img_delete, false).setText(R.id.deal,
+                    helper.setGone(R.id.ll_line, false)
+                            .setText(R.id.deal,
                             item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString() + "=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getAdd_time())) {
                         helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
@@ -279,12 +291,10 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrustdetail3) {
                 @Override
                 protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                    if (!TextUtils.isEmpty(item.getAdd_time())) {
-                            helper.setText(R.id.time, item.getAddtime());
-                    }
+                        helper.setText(R.id.time, item.getAddtime().split(" ")[0]).setText(R.id.time_hour, item.getAddtime().split(" ")[1]);
                     helper.setText(R.id.deal, item.getStatus_name());
                     helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).setText(R.id.num, item.getOne_xnb() )
-                            .setText(R.id.mum,  new BigDecimal(String.valueOf(item.getMum())).stripTrailingZeros().toPlainString());
+                            .setText(R.id.mum,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                     if (item.getType() .equals("1")) {
                         helper.setText(R.id.type, R.string.buy).setText(R.id.deal_type, R.string.buy);
                         helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))

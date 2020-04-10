@@ -636,10 +636,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             @Override
             public void afterTextChanged(Editable editable) {
                 if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
-                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
+                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")&& !editable.toString().equals(".")) {
                         double number = Double.valueOf(mPrice.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
-                        mCny.setText(new java.text.DecimalFormat("#.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
+                        mCny.setText(new java.text.DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
 //                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
@@ -754,10 +754,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             double price = Double.valueOf(mPrice.getText().toString().trim());
                             String resa = "0";
                             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(totalnum, 0.25)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(totalnum, 0.25)) + "";
                                 mNumber.setText(resa);
                             } else {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(number, 0.25)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(number, 0.25)) + "";
                                 mNumber.setText(resa);
                             }
                             Logger.i("<==>:CCC" + ArithUtil.div(ArithUtil.div(number, price), 0.25, 3) + "");
@@ -771,10 +771,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             double price = Double.valueOf(mPrice.getText().toString().trim());
                             String resa = "0";
                             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(totalnum, 0.5)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(totalnum, 0.5)) + "";
                                 mNumber.setText(resa);
                             } else {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(number, 0.5)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(number, 0.5)) + "";
                                 mNumber.setText(resa);
                             }
                             Logger.i("<==>:" + ArithUtil.div(ArithUtil.div(number, price), 0.5, 3) + "");
@@ -787,10 +787,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             double price = Double.valueOf(mPrice.getText().toString().trim());
                             String resa = "0";
                             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(totalnum, 0.75)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(totalnum, 0.75)) + "";
                                 mNumber.setText(resa);
                             } else {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(number, 0.75)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(number, 0.75)) + "";
                                 mNumber.setText(resa);
                             }
                         }
@@ -801,10 +801,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             double price = Double.valueOf(mPrice.getText().toString().trim());
                             String resa = "0";
                             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(totalnum, 1)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(totalnum, 1)) + "";
                                 mNumber.setText(resa);
                             } else {
-                                resa = new java.text.DecimalFormat("#.0000").format(ArithUtil.mul(number, 1)) + "";
+                                resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(number, 1)) + "";
                                 mNumber.setText(resa);
                             }
                             Logger.i("<==>:CCC" + ArithUtil.div(ArithUtil.div(number, price), 1, 3) + "");
@@ -1024,7 +1024,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     if (market_type.equals("0")) {
                         mPrice.setText(baseBean.getCurrentPrice());
                     } else {
-                        mPrice.setText(new java.text.DecimalFormat("#.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
+                        mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
                     }
                 } else {
                     mPrice.setText("0");
@@ -1068,7 +1068,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 if (market_type.equals("0")) {
                     mPrice.setText(baseBean.getCurrentPrice()+"");
                 } else {
-                    mPrice.setText(new java.text.DecimalFormat("#.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
+                    mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
                 }
                 if(EmptyUtils.isNotEmpty(mKeyong.getText().toString())){
                     double vou= Double.valueOf(mKeyong.getText().toString())/Double.valueOf(baseBean.getCurrentPrice());
@@ -1188,7 +1188,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             case R.id.deleteone:
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (market_type.equals("0")) {
-                        mPrice.setText(new java.text.DecimalFormat("#0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
+                        mPrice.setText(new java.text.DecimalFormat("00.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
                     }
                 } else {
                     startActivity(new Intent(mContext, LoginActivity.class));
@@ -1198,7 +1198,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             case R.id.addone:
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (market_type.equals("0")) {
-                        mPrice.setText(new java.text.DecimalFormat("#0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
+                        mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
                     }
 
                 } else {

@@ -140,7 +140,7 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
     }
 
     private void openScanCode() {
-        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+        IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setCaptureActivity(ScanActivity.class);
         intentIntegrator.initiateScan();
     }

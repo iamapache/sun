@@ -100,7 +100,10 @@ public class TabSellerActivity extends BaseNetActivity<SellerCoinPresenter> impl
     public void requestError(String msg) {
 
     }
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
     @Override
     public void requestSuccess(SellerCoin commonBean) {
         for (int j = 0; j < commonBean.getData().getPro_arr().size(); j++) {

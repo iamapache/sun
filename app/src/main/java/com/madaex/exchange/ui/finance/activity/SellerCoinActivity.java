@@ -30,6 +30,7 @@ import com.madaex.exchange.ui.finance.bean.TransaList;
 import com.madaex.exchange.ui.finance.contract.SellerCoinContract;
 import com.madaex.exchange.ui.finance.presenter.SellerCoinPresenter;
 import com.madaex.exchange.view.EditInputFilter;
+import com.orhanobut.logger.Logger;
 import com.wc.widget.dialog.IosDialog;
 
 import java.util.ArrayList;
@@ -245,6 +246,7 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ToastUtils.showToast("xxxxxxxxxxxxx");
         if (resultCode == Activity.RESULT_OK
                 && requestCode == CODE_REQUEST) {
             String wallets = data.getStringExtra("fee");
@@ -258,6 +260,7 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
                 if (resultCode == Activity.RESULT_OK) {
                     if (requestCode == REQUEST_CODE) {
                         String code = data.getStringExtra("data");
+                        Logger.i("<==>getStringExtra:" + code);
                         try {
                             if (TextUtils.isEmpty(code)) {
                                 IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -294,7 +297,7 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
     }
 
     private void openScanCode() {
-        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+        IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setCaptureActivity(ScanActivity.class);
         intentIntegrator.initiateScan();
     }

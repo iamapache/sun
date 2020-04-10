@@ -467,7 +467,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
     }
 
     private void openScanCode() {
-        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+        IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setCaptureActivity(ScanActivity.class);
         intentIntegrator.initiateScan();
     }

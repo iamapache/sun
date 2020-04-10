@@ -10,7 +10,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
-import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.SPUtils;
 
 import java.util.ArrayList;
@@ -48,12 +47,12 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         if(mDatas.get(getItemCount()-position-1 ).get(0)==0){
             holder.price.setText( "--");
         }else {
-            holder.price.setText( DataUtil.is9Length(mDatas.get(getItemCount()-position -1).get(0)+""));
+            holder.price.setText( mDatas.get(getItemCount()-position -1).get(0)+"");
         }
         if(mDatas.get(getItemCount()-position -1).get(1)==0){
             holder.number.setText( "--");
         }else {
-            holder.number.setText( DataUtil.is9Length(mDatas.get(getItemCount()-position -1).get(1)+""));
+            holder.number.setText( mDatas.get(getItemCount()-position -1).get(1)+"");
         }
         Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
         holder.itemView.setTag(mDatas.get(getItemCount()-position -1).get(0)+"");

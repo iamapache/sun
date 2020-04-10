@@ -202,12 +202,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#fffdbb"
             android:drawableLeft="@mipmap/kgf"
             android:drawablePadding="@dimen/d_5dp"
             android:padding="@dimen/d_8dp"
             android:text="@string/agreetrans"
-            android:textColor="@color/common_text_6"
+            android:textColor="#fffdbb"
             android:textSize="@dimen/d_12dp"/>
     <TextView
         android:visibility="gone"

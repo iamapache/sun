@@ -289,6 +289,16 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                         .setText(R.id.mum, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
                 TextView textView = helper.getView(R.id.name);
+                if (market_type.equals("0")) {
+                    helper.setGone(R.id.ll_delete, true);
+                }else {
+
+                    if (item.getType().equals("1")) {
+                        helper.setGone(R.id.ll_delete, true);
+                    }else {
+                        helper.setGone(R.id.ll_delete, false);
+                    }
+                }
                 if (item.getType().equals("1")) {
                     Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
                     rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
