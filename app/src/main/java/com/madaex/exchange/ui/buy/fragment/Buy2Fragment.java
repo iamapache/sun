@@ -807,8 +807,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                 resa = new java.text.DecimalFormat("0.0000").format(ArithUtil.mul(number, 1)) + "";
                                 mNumber.setText(resa);
                             }
-                            Logger.i("<==>:CCC" + ArithUtil.div(ArithUtil.div(number, price), 1, 3) + "");
-                            Logger.i("<==>:CCC" + ArithUtil.div(number, 1, 3) + "");
+                            Logger.i("<==>:CCC" + totalnum);
+                            Logger.i("<==>:CCC" +resa);
                         }
                         break;
                 }
@@ -1018,12 +1018,14 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
                 total = data.getData().getTwo_xnb();
                 if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
-                    double vou= Double.valueOf(data.getData().getTwo_xnb())/Double.valueOf(baseBean.getCurrentPrice());
-                    double  bili =vou*Double.valueOf(data.getData().getTrade_buy_fee());
-                    totalnum =vou-bili;
+
                     if (market_type.equals("0")) {
+                        double vou= Double.valueOf(data.getData().getTwo_xnb())/Double.valueOf(baseBean.getCurrentPrice());
+                        totalnum =vou;
                         mPrice.setText(baseBean.getCurrentPrice());
                     } else {
+                        double vou= Double.valueOf(data.getData().getTwo_xnb())/Double.valueOf(Double.valueOf(baseBean.getCurrentPrice() )+ Double.valueOf(rise_once));
+                        totalnum =vou;
                         mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
                     }
                 } else {
@@ -1071,9 +1073,14 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) )+ "");
                 }
                 if(EmptyUtils.isNotEmpty(mKeyong.getText().toString())){
-                    double vou= Double.valueOf(mKeyong.getText().toString())/Double.valueOf(baseBean.getCurrentPrice());
+                    double vou=0;
+                    if (market_type.equals("0")) {
+                         vou= Double.valueOf(mKeyong.getText().toString())/Double.valueOf(baseBean.getCurrentPrice());
+                    } else {
+                         vou= Double.valueOf(mKeyong.getText().toString())/Double.valueOf(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once)) ));
+                    }
                     double  bili =vou*Double.valueOf(trade_buy_fee);
-                    totalnum =vou-bili;
+                    totalnum =vou;
                 }
 
             } else {
