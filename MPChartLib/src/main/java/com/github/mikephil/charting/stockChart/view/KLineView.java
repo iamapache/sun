@@ -232,7 +232,7 @@ public class KLineView extends BaseView implements View.OnClickListener {
         axisLeftBar.setDrawGridLines(false);
         axisLeftBar.setDrawAxisLine(false);
         axisLeftBar.setTextColor(ContextCompat.getColor(mContext, R.color.label_text));
-        axisLeftBar.setDrawLabels(true);
+        axisLeftBar.setDrawLabels(false);
         axisLeftBar.setLabelCount(4, true);
         axisLeftBar.setValueLineInside(true);
         axisLeftBar.setPosition(landscape ? YAxis.YAxisLabelPosition.OUTSIDE_CHART : YAxis.YAxisLabelPosition.INSIDE_CHART);
@@ -363,15 +363,15 @@ public class KLineView extends BaseView implements View.OnClickListener {
                 });
 
                 //设置图表边距
-                float left_right = 0;
+                float left_right = 10;
                 if (landscape) {
                     float volwidth = Utils.calcTextWidth(mPaint, "###0.00");
                     float pricewidth = Utils.calcTextWidth(mPaint, NumberUtils.keepPrecision(data.getPreClosePrice() + "", precision) + "#");
-                    left_right = CommonUtil.dip2px(mContext, pricewidth > volwidth ? pricewidth : volwidth);
+//                    left_right = CommonUtil.dip2px(mContext, pricewidth > volwidth ? pricewidth : volwidth);
                     candleChart.setViewPortOffsets(left_right, CommonUtil.dip2px(mContext, 15), CommonUtil.dip2px(mContext, 5), 0);
                     barChart.setViewPortOffsets(left_right, CommonUtil.dip2px(mContext, 15), CommonUtil.dip2px(mContext, 5), CommonUtil.dip2px(mContext, 16));
                 } else {
-                    left_right = CommonUtil.dip2px(mContext, 5);
+//                    left_right = CommonUtil.dip2px(mContext, 5);
 //                candleChart.setViewPortOffsets(left_right, CommonUtil.dip2px(mContext, 15), CommonUtil.dip2px(mContext, 5), 0);
 //                barChart.setViewPortOffsets(left_right, CommonUtil.dip2px(mContext, 15), CommonUtil.dip2px(mContext, 5), CommonUtil.dip2px(mContext, 16));
                 }
