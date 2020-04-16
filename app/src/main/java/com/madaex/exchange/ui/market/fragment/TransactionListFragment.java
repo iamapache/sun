@@ -193,7 +193,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     }
 
     private void sendData(Map params) throws Exception {
-        Observable.interval(0, 47, TimeUnit.SECONDS)
+        Observable.interval(0, 12, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())

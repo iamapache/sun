@@ -1,8 +1,10 @@
 package com.madaex.exchange.ui.finance.vote.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
-import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
+import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.vote.bean.NOWVOTE;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
+import com.madaex.exchange.ui.finance.vote.bean.issue;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +22,11 @@ public class VoteCoinContract {
         void nodata(String msg);
         void requestError(String msg);
         void requestSuccess(String commonBean);
-        void sendViewSuccess(TransationInfo msg);
+        void sendViewSuccess(Asset msg);
+
+        void sendViewSuccess(issue commonBean);
+
+        void sendViewSuccess(NOWVOTE commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<VoteCoinContract.View> {
@@ -30,5 +36,8 @@ public class VoteCoinContract {
 
 
         void getGRC(Map body);
+
+        void go_issue(Map body);
+        void NOWVOTE(Map body);
     }
 }

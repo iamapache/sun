@@ -46,7 +46,6 @@ import com.madaex.exchange.websocket.WebSocketSubscriber;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -449,7 +448,7 @@ public class DealActivity extends BaseNetActivity<DealInfoPresenter> implements 
         mSellRmb.setText("≈¥" + baseBean.getSellRmb());
         mRate.setText(baseBean.getRiseRate());
         mHight.setText(baseBean.getHigh() + "");
-        mVolume.setText(new BigDecimal(baseBean.getVolumn().toString() ).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+ "");
+        mVolume.setText(DataUtil.thousand(baseBean.getVolumn(), mContext)+"");
         mLow.setText(baseBean.getLow() + "");
         bili.setText(baseBean.getRiseRate());
         if (baseBean.getRiseRate().contains("-")) {

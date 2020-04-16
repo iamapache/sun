@@ -99,6 +99,9 @@ public class ConstantUrl {
     //资产
     //资产列表
     public static String TRADE_ASSETS_LIST = "Trade.assets_list";
+
+    public static String VOTE_GO_ISSUE = "Vote.go_issue";
+    public static String VOTE_NOWVOTE = "Vote.nowVote";
     //提币的第一个页面
     public static String TRADE_CASH_COIN = "Trade.cash_coin";
 

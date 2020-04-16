@@ -181,7 +181,7 @@
     <string name="allread">All read</string>
     <string name="messagecenter">Message Center</string>
     <string name="Confirmationvote">Confirmation vote</string>
-    <string name="onebyone">One vote per MT and more than one MT per MT</string>
+    <string name="onebyone">One vote per USDT and more than one MT per USDT</string>
     <string name="rule">rule</string>
     <string name="Numbervoting">Number voting</string>
     <string name="castnumber">Cast Count：</string>

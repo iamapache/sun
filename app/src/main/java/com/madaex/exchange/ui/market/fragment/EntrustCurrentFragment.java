@@ -204,9 +204,9 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     helper.setGone(R.id.ll_line, false)
                             .setText(R.id.deal,
                             item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString() + "=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
-                    if (!TextUtils.isEmpty(item.getAdd_time())) {
-                        helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
-                    }
+//                    if (!TextUtils.isEmpty(item.getAdd_time())) {
+//                        helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
+//                    }
                     if (item.getStatus() == 2) {
                         helper.setGone(R.id.ll_revoke, true);
                         helper.setText(R.id.deal, item.getOne_xnb() +  "0=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
@@ -291,7 +291,9 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrustdetail3) {
                 @Override
                 protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
+                    if(EmptyUtils.isNotEmpty(item.getAddtime())){
                         helper.setText(R.id.time, item.getAddtime().split(" ")[0]).setText(R.id.time_hour, item.getAddtime().split(" ")[1]);
+                    }
                     helper.setText(R.id.deal, item.getStatus_name());
                     helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).setText(R.id.num, item.getOne_xnb() )
                             .setText(R.id.mum,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());

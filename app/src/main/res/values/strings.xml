@@ -180,7 +180,7 @@
     <string name="allread">全标已读</string>
     <string name="messagecenter">消息中心</string>
     <string name="Confirmationvote">确认投票</string>
-    <string name="onebyone">每一个MT可投一票，每次可投多个MT</string>
+    <string name="onebyone">每一个USDT可投一票，每次可投多个USDT</string>
     <string name="rule">规则</string>
     <string name="Numbervoting">投票数量</string>
     <string name="castnumber">可投票数：</string>

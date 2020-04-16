@@ -12,10 +12,13 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
-import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
+import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.vote.bean.NOWVOTE;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
+import com.madaex.exchange.ui.finance.vote.bean.issue;
 import com.madaex.exchange.ui.finance.vote.contract.VoteCoinContract;
 import com.madaex.exchange.ui.finance.vote.presenter.VoteCoinPresenter;
 import com.madaex.exchange.view.GlideImgManager;
@@ -86,23 +89,35 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     }
 
     private void getData() {
-//        TreeMap params = new TreeMap<>();
-//        params.put("act", ConstantUrl.FINANCE_C2C_VIEW);
-//        mPresenter.getGRC(DataUtil.sign(params));
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
+        mPresenter.getGRC(DataUtil.sign(params));
+        TreeMap params2 = new TreeMap<>();
+
+        if (mType == 1){
+            params2.put("act", ConstantUrl.VOTE_NOWVOTE);
+            params2.put("coinname", mResultBean.getCoinname());
+            mPresenter.NOWVOTE(DataUtil.sign(params2));
+        }else {
+            params2.put("act", ConstantUrl.VOTE_GO_ISSUE);
+            params2.put("id", mResultBean.getId());
+            mPresenter.go_issue(DataUtil.sign(params2));
+        }
     }
 
     @Override
     protected void initDatas() {
-        getData();
         mType = getIntent().getIntExtra("id", 1);
         mResultBean = getIntent().getParcelableExtra("bean");
+        getData();
+
         if (mType == 1) {
             mToolbarTitleTv.setText(getString(R.string.Confirmationvote));
             mSubmit.setText(getString(R.string.Confirmationvote));
             mBackground.setBackgroundResource(R.mipmap.bg_votecoin);
             mLlContent1.setVisibility(View.GONE);
             mLlContent2.setVisibility(View.GONE);
-            mName.setText("GRC");
+            mName.setText("USDT");
             mMyNum.setHint(getString(R.string.Numbervoting));
             mTextcotent.setText(R.string.castnumber);
         } else {
@@ -164,7 +179,7 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
         } else {
             params.put("act", ConstantUrl.MARKET_CONFIRM_PUBLIC);
             params.put("num", mMyNum.getText().toString().trim());
-            params.put("poid", mResultBean.getId());
+            params.put("id", mResultBean.getId());
             mPresenter.getData2(DataUtil.sign(params));
         }
     }
@@ -208,15 +223,27 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     }
 
     @Override
-    public void sendViewSuccess(TransationInfo msg) {
-//        mCount.setText(msg.getData().getCny() + "GRC");
+    public void sendViewSuccess(Asset commonBean) {
+        if (EmptyUtils.isNotEmpty(commonBean) && EmptyUtils.isNotEmpty(commonBean.getData())) {
+            mCount.setText(commonBean.getData().getAssets().getUsdt() + "USDT");
+        }
 //        if (EmptyUtils.isNotEmpty(mResultBean)) {
 //            if (mType == 1 && Double.valueOf(mResultBean.getAssumnum())!=0) {
-//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getAssumnum())), 2) + "");
-//                mName.setText("GRC");
+//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getAssets().getUsdt()), Double.valueOf(mResultBean.getAssumnum())), 2) + "");
+//                mName.setText("USDT");
 //            } else if (Double.valueOf(mResultBean.getIssue_price())!=0) {
-//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getCny()), Double.valueOf(mResultBean.getIssue_price())), 2) + mResultBean.getCoinname());
+//                mCastcount.setText(ArithUtil.round(ArithUtil.div(Double.valueOf(msg.getData().getAssets().getUsdt()), Double.valueOf(mResultBean.getIssue_price())), 2) + mResultBean.getCoinname());
 //            }
 //        }
+    }
+
+    @Override
+    public void sendViewSuccess(issue commonBean) {
+                mCastcount.setText(commonBean.getData().getQc_number()+ commonBean.getData().getCoinname());
+    }
+
+    @Override
+    public void sendViewSuccess(NOWVOTE commonBean) {
+        mCastcount.setText(commonBean.getData().getVote_num()+ commonBean.getData().getVote_unit());
     }
 }

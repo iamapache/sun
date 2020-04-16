@@ -10,9 +10,11 @@ import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
 import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
-import com.madaex.exchange.ui.common.SBData;
-import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
+import com.madaex.exchange.ui.common.DataBean;
+import com.madaex.exchange.ui.finance.bean.Asset;
+import com.madaex.exchange.ui.finance.vote.bean.NOWVOTE;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
+import com.madaex.exchange.ui.finance.vote.bean.issue;
 import com.madaex.exchange.ui.finance.vote.contract.VoteCoinContract;
 
 import java.util.Map;
@@ -78,22 +80,22 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     @Override
     public void getData2(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
-                .map(new Function<String, SBData>() {
+                .map(new Function<String, DataBean>() {
                     @Override
-                    public SBData apply(@NonNull String data) throws Exception {
+                    public DataBean apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        SBData commonBean = gson.fromJson(data, SBData.class);
+                        DataBean commonBean = gson.fromJson(data, DataBean.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<SBData>(mView, true) {
+                .subscribeWith(new CommonSubscriber<DataBean>(mView, true) {
                     @Override
-                    public void onNext(SBData commonBean) {
-                        if(commonBean.getCode()== Constant.RESPONSE_ERROR){
-                            mView.requestError(commonBean.getMsg()+"");
+                    public void onNext(DataBean commonBean) {
+                        if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestError(commonBean.getMessage()+"");
                         }else {
-                            mView.requestSuccess(commonBean.getMsg()+"");
+                            mView.requestSuccess(commonBean.getMessage()+"");
                         }
                     }
                 }));
@@ -102,18 +104,65 @@ public class VoteCoinPresenter extends RxPresenter<VoteCoinContract.View> implem
     @Override
     public void getGRC(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
-                .map(new Function<String, TransationInfo>() {
+                .map(new Function<String, Asset>() {
                     @Override
-                    public TransationInfo apply(@NonNull String data) throws Exception {
+                    public Asset apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        TransationInfo commonBean = gson.fromJson(data, TransationInfo.class);
+                        Asset commonBean = gson.fromJson(data, Asset.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<TransationInfo>(mView) {
+                .subscribeWith(new CommonSubscriber<Asset>(mView) {
                     @Override
-                    public void onNext(TransationInfo commonBean) {
+                    public void onNext(Asset commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else {
+                            mView.sendViewSuccess(commonBean);
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void go_issue(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, issue>() {
+                    @Override
+                    public issue apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        issue commonBean = gson.fromJson(data, issue.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<issue>(mView) {
+                    @Override
+                    public void onNext(issue commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else {
+                            mView.sendViewSuccess(commonBean);
+                        }
+                    }
+                }));
+    }
+
+    public void NOWVOTE(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, NOWVOTE>() {
+                    @Override
+                    public NOWVOTE apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        NOWVOTE commonBean = gson.fromJson(data, NOWVOTE.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<NOWVOTE>(mView) {
+                    @Override
+                    public void onNext(NOWVOTE commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
                         } else {

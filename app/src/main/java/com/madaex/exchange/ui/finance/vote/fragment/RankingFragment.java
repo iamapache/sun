@@ -17,9 +17,11 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.view.RecycleViewDivider;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
-import com.madaex.exchange.ui.finance.c2c.bean.TransationInfo;
+import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.vote.activity.RankingDetailActivity;
+import com.madaex.exchange.ui.finance.vote.bean.NOWVOTE;
 import com.madaex.exchange.ui.finance.vote.bean.VoteCoin;
+import com.madaex.exchange.ui.finance.vote.bean.issue;
 import com.madaex.exchange.ui.finance.vote.contract.VoteCoinContract;
 import com.madaex.exchange.ui.finance.vote.presenter.VoteCoinPresenter;
 import com.madaex.exchange.ui.mine.activity.LinkWebViewActivity;
@@ -209,7 +211,17 @@ public class RankingFragment extends BaseNetLazyFragment<VoteCoinPresenter> impl
     }
 
     @Override
-    public void sendViewSuccess(TransationInfo msg) {
+    public void sendViewSuccess(Asset msg) {
+
+    }
+
+    @Override
+    public void sendViewSuccess(issue commonBean) {
+
+    }
+
+    @Override
+    public void sendViewSuccess(NOWVOTE commonBean) {
 
     }
 
