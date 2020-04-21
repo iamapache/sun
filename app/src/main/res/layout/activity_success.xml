@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/msg"
+        android:textColor="@color/white"
         android:layout_marginTop="@dimen/d_15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

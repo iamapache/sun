@@ -15,9 +15,17 @@ public class DataBean {
 
     private int status;
     private String message;
-
+    private String msg;
     public int getStatus() {
         return status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public void setStatus(int status) {

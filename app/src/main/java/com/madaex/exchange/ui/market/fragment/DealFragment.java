@@ -841,10 +841,8 @@ public class DealFragment extends BaseNetDialogFragment<CoinPresenter> implement
 
         if (trans_type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
             mCurrentnumber.setText(data.getData().getTwo_xnb());
-            mTvFour.setText(data.getData().getOne_xnbd());
         } else {
             mCurrentnumber.setText(data.getData().getOne_xnb());
-            mTvFour.setText(data.getData().getTwo_xnbd());
         }
     }
 

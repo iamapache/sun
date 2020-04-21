@@ -45,6 +45,7 @@ import com.madaex.exchange.ui.market.activity.EntrustActivity;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
+import com.orhanobut.logger.Logger;
 import com.wc.widget.dialog.IosDialog;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +53,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -192,10 +194,33 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         params2.put("market_type", market_type);
         mPresenter.getJavaLineDetail(DataUtil.sign(params2));
     }
-
+    private void getMsgInfo() {
+        Logger.i("<==>:market_typemarket_typemarket_typemarket_type" + market_type);
+        if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+            if (market_type.equals("0")) {
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.TRADE_TRADE);
+                params.put("one_xnb", one_xnb);
+                params.put("two_xnb", two_xnb);
+                mPresenter.getMsgInfo(DataUtil.sign(params));
+            } else {
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.Contract_contractAssets);
+                params.put("one_xnb", one_xnb);
+                params.put("two_xnb", two_xnb);
+                mPresenter.getMsgInfo(DataUtil.sign(params));
+            }
+        }
+    }
     private void getdata() {
 
         linedetail();
+        getMsgInfo();
+
+
+    }
+
+    private void getHistory() {
         if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
             if (market_type.equals("0")) {
                 TreeMap params = new TreeMap<>();
@@ -225,8 +250,6 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 mPresenter.getDataenn(DataUtil.sign(params));
             }
         }
-
-
     }
 
     public void setFragment(FramnetBean framnetBean) {
@@ -282,7 +305,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
-                        .setText(R.id.createtime, item.getAddtime())
+                        .setText(R.id.createtime, new SimpleDateFormat("MM-dd HH:mm").format(
+                                new java.util.Date(Long.valueOf(item.getAddtime()))))
                         .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
                         .setText(R.id.coinprice, getString(R.string.amount) )
                         .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
@@ -294,9 +318,17 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 }else {
 
                     if (item.getType().equals("1")) {
-                        helper.setGone(R.id.ll_delete, true);
+                        if(buy_cancel_order==1){
+                            helper.setGone(R.id.ll_delete, false);
+                        }else {
+                            helper.setGone(R.id.ll_delete, true);
+                        }
                     }else {
-                        helper.setGone(R.id.ll_delete, false);
+                        if(sell_cancel_order==1){
+                            helper.setGone(R.id.ll_delete, false);
+                        }else {
+                            helper.setGone(R.id.ll_delete, true);
+                        }
                     }
                 }
                 if (item.getType().equals("1")) {
@@ -329,7 +361,6 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                     } else {
                         helper.setGone(R.id.ll_revoke, false);
                     }
-                    helper.setText(R.id.revoke, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getCancel_number())).stripTrailingZeros().toPlainString());
                 }
 
                 helper.getView(R.id.img_delete).
@@ -467,6 +498,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                 intent.setClass(mContext, EntrustActivity.class);
                 intent.putExtra(Constants.ONE_XNB, one_xnb);
                 intent.putExtra(Constants.TWO_XNB, two_xnb);
+                intent.putExtra("buy_cancel_order", buy_cancel_order);
+                intent.putExtra("sell_cancel_order", sell_cancel_order);
                 startActivityAfterLogin(intent);
                 break;
             case R.id.toolbar_left_btn_ll:
@@ -555,11 +588,18 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     public void requestToken(String baseBean) {
 
     }
-
+    private int buy_cancel_order=0;
+    private int sell_cancel_order=0;
 
     @Override
-    public void sendMsgSuccess(DealInfo msg) {
-
+    public void sendMsgSuccess(DealInfo data) {
+        if (market_type.equals("0")) {
+            getHistory();
+        } else {
+            getHistory();
+            buy_cancel_order =data.getData().getBuy_cancel_order();
+            sell_cancel_order=data.getData().getSell_cancel_order();
+        }
     }
 
     @Override

@@ -48,6 +48,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -156,10 +157,14 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
     public void initInjector() {
         getFragmentComponent().inject(this);
     }
+    private int buy_cancel_order=0;
+    private int sell_cancel_order=0;
 
     @Override
     protected void initView() {
         one_xnb = getArguments().getString(Constants.ONE_XNB);
+        buy_cancel_order = getActivity().getIntent().getIntExtra("buy_cancel_order",0);
+        sell_cancel_order = getActivity().getIntent().getIntExtra("sell_cancel_order",0);
         two_xnb = getArguments().getString(Constants.TWO_XNB);
         mEntrusttype = getArguments().getString(Constants.ENTRUSTCURRENT);
         if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
@@ -171,73 +176,62 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
-        if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust) {
+        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust2) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
-                        setText(R.id.num,  item.getOne_xnb() )
-                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
+                helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
+                        setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
+                        .setText(R.id.createtime, new SimpleDateFormat("MM-dd HH:mm").format(
+                                new java.util.Date(Long.valueOf(item.getAddtime()))))
+                        .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
+                        .setText(R.id.coinprice, getString(R.string.amount) )
+                        .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
+                        .setText(R.id.mum, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
-
-                helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
-
-
+                TextView textView = helper.getView(R.id.name);
                 if (market_type.equals("0")) {
-                    helper.setGone(R.id.img_delete, true);
+                    helper.setGone(R.id.ll_delete, true);
                 }else {
 
                     if (item.getType().equals("1")) {
-                        helper.setGone(R.id.img_delete, true);
+                        if(buy_cancel_order==1){
+                            helper.setGone(R.id.ll_delete, false);
+                        }else {
+                            helper.setGone(R.id.ll_delete, true);
+                        }
                     }else {
-                        helper.setGone(R.id.img_delete, false);
+                        if(sell_cancel_order==1){
+                            helper.setGone(R.id.ll_delete, false);
+                        }else {
+                            helper.setGone(R.id.ll_delete, true);
+                        }
                     }
                 }
+                if (item.getType().equals("1")) {
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
+                    rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
+                    textView.setCompoundDrawables(rightDrawable, null, null, null);  // left, top, right, bottom
+                }else {
+                    Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowdown);
+                    rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
+                    textView.setCompoundDrawables(rightDrawable, null, null, null);
+                }
+                helper.setText(R.id.type, item.getStatuss()).setText(R.id.deal_type, item.getStatuss());
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    helper.setGone(R.id.ll_line, false)
-                            .setText(R.id.deal,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
+                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
+                            .setGone(R.id.img_delete, true).setText(R.id.deal, item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
                     if (!TextUtils.isEmpty(item.getDeal()) || !TextUtils.isEmpty(item.getNum())) {
                         int pb = (int) (Double.valueOf(item.getDeal()) / Double.valueOf(item.getNum()));
                         progressBar.setProgress(pb);
                     }
                 } else {
-                    helper.setGone(R.id.ll_line, false)
-                            .setText(R.id.deal,
-                            item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString() + "=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
-//                    if (!TextUtils.isEmpty(item.getAdd_time())) {
-//                        helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
-//                    }
-                    if (item.getStatus() == 2) {
-                        helper.setGone(R.id.ll_revoke, true);
-                        helper.setText(R.id.deal, item.getOne_xnb() +  "0=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
-                    } else {
-                        helper.setGone(R.id.ll_revoke, false);
-                    }
-                    helper.setText(R.id.revoke, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getCancel_number())).stripTrailingZeros().toPlainString());
-                }
-                if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    if (item.getType().equals("1")) {
-                        helper.setText(R.id.type, R.string.buy).setText(R.id.deal_type, R.string.buy);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_red)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_red);
-                    } else if (item.getType().equals("2")) {
-                        helper.setText(R.id.type, R.string.seller).setText(R.id.deal_type, R.string.seller);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_green)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_green);
-                    }
-                } else {
-                    if (item.getType().equals("1")) {
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_red)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_red);
+                    helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
+                            .setGone(R.id.img_delete, false);
+                    helper.setText(R.id.revoke, item.getStatus_name());
+                    helper.setGone(R.id.ll_revoke, true);
+                    if(item.getStatus()==2){
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));
-                    } else if (item.getType().equals("2")) {
-
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
-                                .setTextColor(R.id.deal, getResources().getColor(R.color.common_green)).setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);
-                        setProgressDrawable(progressBar, R.drawable.progressbar_green);
+                    }else {
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_green));
                     }
                 }
@@ -262,14 +256,14 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                                             @Override
                                             public void onClick(IosDialog dialog, View v) {
                                                 dialog.dismiss();
-                                                if(market_type.equals("0")){
+                                                if (market_type.equals("0")) {
                                                     TreeMap params = new TreeMap<>();
                                                     params.put("act", ConstantUrl.TRADE_REVOKE);
                                                     params.put("one_xnb", item.getOne_xnb());
                                                     params.put("two_xnb", item.getTwo_xnb());
                                                     params.put("id", item.getId());
                                                     mPresenter.delete(DataUtil.sign(params));
-                                                }else {
+                                                } else {
                                                     TreeMap params = new TreeMap<>();
                                                     params.put("act", ConstantUrl.Contract_REVOKE);
                                                     params.put("one_xnb", item.getOne_xnb());
@@ -287,28 +281,6 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                         });
             }
         };
-        } else {
-            mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrustdetail3) {
-                @Override
-                protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
-                    if(EmptyUtils.isNotEmpty(item.getAddtime())){
-                        helper.setText(R.id.time, item.getAddtime().split(" ")[0]).setText(R.id.time_hour, item.getAddtime().split(" ")[1]);
-                    }
-                    helper.setText(R.id.deal, item.getStatus_name());
-                    helper.setText(R.id.price,  new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).setText(R.id.num, item.getOne_xnb() )
-                            .setText(R.id.mum,  new BigDecimal(String.valueOf(item.getDeal())).stripTrailingZeros().toPlainString());
-                    if (item.getType() .equals("1")) {
-                        helper.setText(R.id.type, R.string.buy).setText(R.id.deal_type, R.string.buy);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_red)).setTextColor(R.id.num, getResources().getColor(R.color.common_red))
-                              .setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_red);   ;
-                    } else if (item.getType() .equals("2")) {
-                        helper.setText(R.id.type, R.string.seller).setText(R.id.deal_type, R.string.seller);
-                        helper.setTextColor(R.id.price, getResources().getColor(R.color.common_green)).setTextColor(R.id.num, getResources().getColor(R.color.common_green))
-                              .setBackgroundRes(R.id.deal_type, R.drawable.rect_rounded_arc);    ;
-                    }
-                }
-            };
-        }
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

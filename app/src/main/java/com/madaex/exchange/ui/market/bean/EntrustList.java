@@ -49,6 +49,7 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
         private String price;
         private String num;
         private String type;
+        private String types;
         private String deal;
         private String mum;
         private String one_xnb;
@@ -61,6 +62,14 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
         private String status_name;
         public String getStatuss() {
             return statuss;
+        }
+
+        public String getTypes() {
+            return types;
+        }
+
+        public void setTypes(String types) {
+            this.types = types;
         }
 
         public String getStatus_name() {

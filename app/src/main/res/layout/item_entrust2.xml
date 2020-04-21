@@ -96,17 +96,15 @@
             android:id="@+id/ll_revoke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="@string/llations"
+                android:text="@string/Status"
                 android:textColor="@color/common_text_5"
-                android:textSize="14dp" />
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/revoke"
@@ -116,7 +114,7 @@
                 android:gravity="end"
                 android:maxLines="1"
                 android:textColor="@color/common_red"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 tools:text="0" />
         </LinearLayout>
     </LinearLayout>

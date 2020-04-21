@@ -1,15 +1,12 @@
 package com.madaex.exchange.ui.finance.vote.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseActivity;
-import com.madaex.exchange.ui.finance.c2c.activity.C2CTransationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,23 +54,23 @@ public class SuccessActivity extends BaseActivity {
         mMsg.setText(msg);
         if (status == 0) {
             mImg.setImageResource(R.mipmap.pay_error);
-            mLlContent.setVisibility(View.VISIBLE);
-            mGoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(mContext, C2CTransationActivity.class));
-                }
-            });
+//            mLlContent.setVisibility(View.VISIBLE);
+//            mGoto.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    startActivity(new Intent(mContext, C2CTransationActivity.class));
+//                }
+//            });
         } else {
 
         }
-        if (mType == 1) {
-            mText.setText(R.string.faily);
-            mGoto.setText(R.string.tips);
-        } else {
-            mText.setText(R.string.noGRC);
-            mGoto.setText(R.string.recharge);
-        }
+//        if (mType == 1) {
+//            mText.setText(R.string.faily);
+//            mGoto.setText(R.string.tips);
+//        } else {
+//            mText.setText(R.string.noGRC);
+//            mGoto.setText(R.string.recharge);
+//        }
     }
 
     @Override

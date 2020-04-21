@@ -9,9 +9,17 @@ package com.madaex.exchange.ui.common;
 public class SB2Data {
     private int status;
     private String data;
-
+    private String msg;
     public int getStatus() {
         return status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public void setStatus(int status) {

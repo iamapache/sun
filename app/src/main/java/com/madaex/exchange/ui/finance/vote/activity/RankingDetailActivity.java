@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.vote.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -70,6 +71,12 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     LinearLayout mLlContent2;
     @BindView(R.id.textcotent)
     TextView mTextcotent;
+    @BindView(R.id.nameone)
+    TextView mNameone;
+    @BindView(R.id.nametwo)
+    TextView mNametwo;
+    @BindView(R.id.asset)
+    TextView mAsset;
     private VoteCoin.DataBean mResultBean;
     int mType;
 
@@ -89,16 +96,16 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     }
 
     private void getData() {
-        TreeMap params = new TreeMap<>();
-        params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
-        mPresenter.getGRC(DataUtil.sign(params));
+//        TreeMap params = new TreeMap<>();
+//        params.put("act", ConstantUrl.FINANCE_C2C_VIEW);
+//        mPresenter.getGRC(DataUtil.sign(params));
         TreeMap params2 = new TreeMap<>();
 
-        if (mType == 1){
+        if (mType == 1) {
             params2.put("act", ConstantUrl.VOTE_NOWVOTE);
             params2.put("coinname", mResultBean.getCoinname());
             mPresenter.NOWVOTE(DataUtil.sign(params2));
-        }else {
+        } else {
             params2.put("act", ConstantUrl.VOTE_GO_ISSUE);
             params2.put("id", mResultBean.getId());
             mPresenter.go_issue(DataUtil.sign(params2));
@@ -197,35 +204,35 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
     @Override
     public void requestError(String msg) {
         ToastUtils.showToast(msg);
-//        Intent intent =getIntent();
-//        intent.setClass(mContext, SuccessActivity.class);
-//        intent.putExtra("status", 0);
-//        if (mType == 1) {
-//            intent.putExtra("msg", "投票失败");
-//        }else {
-//            intent.putExtra("msg", "参与失败");
-//        }
-//        startActivity(intent);
+        Intent intent =getIntent();
+        intent.setClass(mContext, SuccessActivity.class);
+        intent.putExtra("status", 0);
+        if (mType == 1) {
+            intent.putExtra("msg", msg);
+        }else {
+            intent.putExtra("msg", msg);
+        }
+        startActivity(intent);
     }
 
     @Override
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
-//        Intent intent =getIntent();
-//        intent.setClass(mContext, SuccessActivity.class);
-//        intent.putExtra("status", 1);
-//        if (mType == 1) {
-//            intent.putExtra("msg", "投票成功");
-//        }else {
-//            intent.putExtra("msg", "参与成功");
-//        }
-//        startActivity(intent);
+        Intent intent =getIntent();
+        intent.setClass(mContext, SuccessActivity.class);
+        intent.putExtra("status", 1);
+        if (mType == 1) {
+            intent.putExtra("msg", msg);
+        }else {
+            intent.putExtra("msg", msg);
+        }
+        startActivity(intent);
     }
 
     @Override
     public void sendViewSuccess(Asset commonBean) {
         if (EmptyUtils.isNotEmpty(commonBean) && EmptyUtils.isNotEmpty(commonBean.getData())) {
-            mCount.setText(commonBean.getData().getAssets().getUsdt() + "USDT");
+            mCount.setText(commonBean.getData().getAssets().getUsdt() + commonBean.getData().getExchange_coin());
         }
 //        if (EmptyUtils.isNotEmpty(mResultBean)) {
 //            if (mType == 1 && Double.valueOf(mResultBean.getAssumnum())!=0) {
@@ -239,11 +246,19 @@ public class RankingDetailActivity extends BaseNetActivity<VoteCoinPresenter> im
 
     @Override
     public void sendViewSuccess(issue commonBean) {
-                mCastcount.setText(commonBean.getData().getQc_number()+ commonBean.getData().getCoinname());
+        mAsset.setText(getString(R.string.Available) + ":" );
+        mCount.setText( commonBean.getData().getQc_number() + commonBean.getData().getBuycoin());
+        mCastcount.setText(commonBean.getData().getQc_number() + commonBean.getData().getCoinname());
+        mNameone.setText(commonBean.getData().getBuycoin());
+        mNametwo.setText(commonBean.getData().getBuycoin());
     }
 
     @Override
     public void sendViewSuccess(NOWVOTE commonBean) {
-        mCastcount.setText(commonBean.getData().getVote_num()+ commonBean.getData().getVote_unit());
+        mAsset.setText(getString(R.string.Yourasset));
+        mCount.setText( commonBean.getData().getVote_num() + commonBean.getData().getVote_unit());
+        mCastcount.setText(commonBean.getData().getVote_num() + "");
+        mNameone.setText(commonBean.getData().getVote_unit());
+        mNametwo.setText(commonBean.getData().getVote_unit());
     }
 }
