@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.util.SPUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import java.util.List;
  */
 public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
-    private List<List<Float>> mDatas=new ArrayList<>();
+    private List<List<BigDecimal>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
     private String market_type = "0";
@@ -43,12 +44,12 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder,  int position) {
         holder.name.setText(mContext.getResources().getString(R.string.buy) + (position+ 1)  );
-        if(mDatas.get(position).get(0)==0){
+        if(mDatas.get(position).get(0).floatValue()==0){
             holder.price.setText( "--");
         }else {
             holder.price.setText(mDatas.get(position).get(0)+"");
         }
-        if(mDatas.get(position).get(1)==0){
+        if(mDatas.get(position).get(1).floatValue()==0){
             holder.number.setText( "--");
         }else {
             holder.number.setText( mDatas.get(position).get(1)+"");
@@ -56,7 +57,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         holder.name.setTextColor(mContext.getResources().getColor(R.color.common_red) );
 
 
-        int vote = (int) (mDatas.get(position).get(1)/(2000)*100);
+        int vote = (int) (mDatas.get(position).get(1).floatValue()/(2000)*100);
         holder.mProgressBar.setProgress(vote);
         Log.d("onBindViewHolder", vote+"重连");
         holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg));
@@ -80,7 +81,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
         return holder;
     }
 
-    public void setNewData(List<List<Float>> datas) {
+    public void setNewData(List<List<BigDecimal>> datas) {
         mDatas.clear();
         this. mDatas=datas;
         notifyDataSetChanged();
@@ -103,7 +104,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
     }
     public static interface OnItemClickListener {
-        void onItemClick(List<Float> list);
+        void onItemClick(List<BigDecimal> list);
         void onItemLongClick(View view);
     }
     public OnItemClickListener  mItemClickListener;

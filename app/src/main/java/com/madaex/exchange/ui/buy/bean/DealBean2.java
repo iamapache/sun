@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.buy.bean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -22,8 +23,8 @@ public class DealBean2 {
     private String channel;
     private String dataType;
     private int timestamp;
-    private List<List<Float>> asks;
-    private List<List<Float>> bids;
+    private List<List<BigDecimal>> asks;
+    private List<List<BigDecimal>> bids;
 
     public String getChannel() {
         return channel;
@@ -49,19 +50,19 @@ public class DealBean2 {
         this.timestamp = timestamp;
     }
 
-    public List<List<Float>> getAsks() {
+    public List<List<BigDecimal>> getAsks() {
         return asks;
     }
 
-    public void setAsks(List<List<Float>> asks) {
+    public void setAsks(List<List<BigDecimal>> asks) {
         this.asks = asks;
     }
 
-    public List<List<Float>> getBids() {
+    public List<List<BigDecimal>> getBids() {
         return bids;
     }
 
-    public void setBids(List<List<Float>> bids) {
+    public void setBids(List<List<BigDecimal>> bids) {
         this.bids = bids;
     }
 }

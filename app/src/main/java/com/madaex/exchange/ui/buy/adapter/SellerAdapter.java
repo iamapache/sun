@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.util.SPUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import java.util.List;
  */
 public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHolder> {
 
-    private List<List<Float>> mDatas=new ArrayList<>();
+    private List<List<BigDecimal>> mDatas=new ArrayList<>();
     private Context mContext;
     private LayoutInflater inflater;
     private String market_type = "0";
@@ -44,19 +45,19 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
     public void onBindViewHolder(SellerAdapter.MyViewHolder holder, final int position) {
         holder.name.setText(mContext.getResources().getString(R.string.seller) + (getItemCount()-position )+ "" );
         holder.name.setTextColor(mContext.getResources().getColor(R.color.green) );
-        if(mDatas.get(getItemCount()-position-1 ).get(0)==0){
+        if(mDatas.get(getItemCount()-position-1 ).get(0).floatValue()==0){
             holder.price.setText( "--");
         }else {
             holder.price.setText( mDatas.get(getItemCount()-position -1).get(0)+"");
         }
-        if(mDatas.get(getItemCount()-position -1).get(1)==0){
+        if(mDatas.get(getItemCount()-position -1).get(1).floatValue()==0){
             holder.number.setText( "--");
         }else {
             holder.number.setText( mDatas.get(getItemCount()-position -1).get(1)+"");
         }
         Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
         holder.itemView.setTag(mDatas.get(getItemCount()-position -1).get(0)+"");
-        int vote = (int) (mDatas.get(getItemCount()-position -1).get(1)/(2000)*100);
+        int vote = (int) (mDatas.get(getItemCount()-position -1).get(1).floatValue()/(2000)*100);
         holder.mProgressBar.setProgress(vote);
         holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg2));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +78,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         final  SellerAdapter.MyViewHolder holder= new SellerAdapter.MyViewHolder(view);
         return holder;
     }
-    public void setNewData(List<List<Float>> datas) {
+    public void setNewData(List<List<BigDecimal>> datas) {
         mDatas.clear();
         this. mDatas=datas;
         Log.d("MainActivity", "setNewData");
@@ -99,7 +100,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
 
     }
     public static interface OnItemClickListener {
-        void onItemClick(List<Float> list);
+        void onItemClick(List<BigDecimal> list);
         void onItemLongClick(View view);
     }
     public SellerAdapter.OnItemClickListener mItemClickListener;
