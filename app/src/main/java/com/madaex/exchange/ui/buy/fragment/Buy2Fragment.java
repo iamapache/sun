@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -128,6 +126,14 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     RadioButton mContactTab;
     @BindView(R.id.settings_tab)
     RadioButton mSettingsTab;
+    @BindView(R.id.deletetwo)
+    TextView mDeletetwo;
+    @BindView(R.id.addtwo)
+    TextView mAddtwo;
+    @BindView(R.id.deleteone)
+    TextView mDeleteone;
+    @BindView(R.id.addone)
+    TextView mAddone;
     private String type;
     private String one_xnb = "";
     private String two_xnb = "";
@@ -225,8 +231,20 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             @Override
             public void onItemClick(List<BigDecimal> list) {
                 if (market_type.equals("0")) {
-                    mPrice.setText(list.get(0).toString());
+                    mPrice.setText(list.get(0).toPlainString());
                 } else {
+                    if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                        if (buy_price_lock == 1){
+
+                        }else {
+                            mPrice.setText(list.get(0).toPlainString());
+                        }
+                    }else {
+                        if (sell_price_lock == 1) {
+                        } else {
+                            mPrice.setText(list.get(0).toPlainString());
+                        }
+                    }
 
                 }
             }
@@ -246,15 +264,141 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             @Override
             public void onItemClick(List<BigDecimal> list) {
                 if (market_type.equals("0")) {
-                    mPrice.setText(list.get(0).toString());
+                    mPrice.setText(list.get(0).toPlainString());
                 } else {
+                    if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                        if (buy_price_lock == 1){
 
+                        }else {
+                            mPrice.setText(list.get(0).toPlainString());
+                        }
+                    }else {
+                        if (sell_price_lock == 1) {
+                        } else {
+                            mPrice.setText(list.get(0).toPlainString());
+                        }
+                    }
                 }
             }
 
             @Override
             public void onItemLongClick(View view) {
 
+            }
+        });
+
+
+        mAddone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                    if (market_type.equals("0")) {
+                        mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
+                    } else {
+                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                            if (buy_price_lock == 1) {
+                                mPrice.setEnabled(false);
+                            } else {
+                                mPrice.setEnabled(true);
+                                mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
+
+                            }
+                        }else {
+                            if (sell_price_lock == 1) {
+                                mPrice.setEnabled(false);
+                            } else {
+                                mPrice.setEnabled(true);
+                                mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
+                            }
+                        }
+
+                    }
+
+                } else {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                }
+            }
+        });
+
+        mDeleteone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                    if (market_type.equals("0")) {
+                        mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
+                    } else {
+                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                            if (buy_price_lock == 1) {
+                                mPrice.setEnabled(false);
+                            } else {
+                                mPrice.setEnabled(true);
+                                mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
+
+                            }
+                        }else {
+                            if (sell_price_lock == 1) {
+                                mPrice.setEnabled(false);
+                            } else {
+                                mPrice.setEnabled(true);
+                                mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
+                            }
+                        }
+                    }
+                } else {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                }
+            }
+        });
+
+        mAddtwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                    if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                    }else {
+                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                            if (buy_num_lock == 1) {
+                            } else {
+                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                            }
+                        }else {
+                            if (sell_num_lock == 1) {
+                            } else {
+                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                            }
+                        }
+
+                    }
+
+                } else {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                }
+            }
+        });
+
+
+        mDeletetwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                    if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
+                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                    }
+                    if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                        if (buy_num_lock == 1) {
+                        } else {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                        }
+                    }else {
+                        if (sell_num_lock == 1) {
+                        } else {
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                        }
+                    }
+                } else {
+                    startActivity(new Intent(mContext, LoginActivity.class));
+                }
             }
         });
 //        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -307,22 +451,22 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
 
-    private List<DepthDataBean> getBuyDepthList2(List<List<BigDecimal>> lists) {
+    private List<DepthDataBean> getBuyDepthList2(List<List<Float>> lists) {
         Log.v("depthList", lists.size() + "");
         List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<BigDecimal>> listList = lists.subList(0, 50);
+            List<List<Float>> listList = lists.subList(0, 50);
 
             double account = 0;
             for (int i = 0; i < listList.size(); i++) {
-                account = account + listList.get(i).get(0).floatValue();
-                depthList.add(new DepthDataBean(listList.get(i).get(0).floatValue(),
-                        listList.get(i).get(1).floatValue()));
+                account = account + listList.get(i).get(0);
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0).floatValue(),
-                        lists.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1)));
             }
         }
 
@@ -338,30 +482,30 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     }
 
-    private List<DepthDataBean> getBuyDepthList3(List<List<BigDecimal>> buy, List<List<BigDecimal>> sell) {
+    private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
         List<DepthDataBean> depthList = new ArrayList<>();
         if (buy.size() >= 50 && sell.size() >= 50) {
-            List<List<BigDecimal>> listList = buy.subList(0, 49);
-            List<List<BigDecimal>> listList2 = sell.subList(0, 49);
+            List<List<Float>> listList = buy.subList(0, 49);
+            List<List<Float>> listList2 = sell.subList(0, 49);
             double account = 0;
             double account2 = 0;
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                 for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0).doubleValue();
-                    account2 = account2 + listList.get(i).get(0).doubleValue();
+                    account = account + listList.get(i).get(0);
+                    account2 = account2 + listList.get(i).get(0);
 
                 }
                 for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0).doubleValue();
+                    account = account + listList2.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0).doubleValue();
+                    account = account + listList.get(i).get(0);
                 }
                 for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0).doubleValue();
-                    account2 = account2 + listList2.get(j).get(0).doubleValue();
+                    account = account + listList2.get(j).get(0);
+                    account2 = account2 + listList2.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             }
@@ -371,21 +515,21 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             double account2 = 0;
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                 for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0).doubleValue();
-                    account2 = account2 + buy.get(i).get(0).doubleValue();
+                    account = account + buy.get(i).get(0);
+                    account2 = account2 + buy.get(i).get(0);
 
                 }
                 for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0).doubleValue();
+                    account = account + sell.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0).doubleValue();
+                    account = account + buy.get(i).get(0);
                 }
                 for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0).doubleValue();
-                    account2 = account2 + sell.get(j).get(0).doubleValue();
+                    account = account + sell.get(j).get(0);
+                    account2 = account2 + sell.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             }
@@ -394,19 +538,19 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         return depthList;
     }
 
-    private List<DepthDataBean> getSellDepthList2(List<List<BigDecimal>> lists) {
+    private List<DepthDataBean> getSellDepthList2(List<List<Float>> lists) {
         List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<BigDecimal>> listList = lists.subList(0, 50);
+            List<List<Float>> listList = lists.subList(0, 50);
             Log.v("depthList", listList.size() + "");
             for (int i = 0; i < listList.size(); i++) {
-                depthList.add(new DepthDataBean(listList.get(i).get(0).floatValue(),
-                        listList.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0).floatValue(),
-                        lists.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1)));
             }
         }
 
@@ -591,92 +735,88 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Override
     protected void initView() {
 
-        mPrice.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (TextUtils.isEmpty(editable.toString())) {
-                    mCny.setText("￥0");
-                    return;
-                }
-                str = editable.toString();
-                if (!TextUtils.isEmpty(mNumber.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
-                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
-                        double number = Double.valueOf(mNumber.getText().toString().trim());
-                        double price = Double.valueOf(editable.toString());
-                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
-//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
-                    }
-                }
-
-                if (!TextUtils.isEmpty(editable.toString())) {
-                    if (!editable.toString().equals("0.") && Double.valueOf(editable.toString()) != 0) {
-//                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-//                            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString()), 2) + "").stripTrailingZeros().toPlainString());
-//                        } else {
-//                            mOneXnbd.setText(new BigDecimal(ArithUtil.round(ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
+//        mPrice.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if (TextUtils.isEmpty(editable.toString())) {
+//                    mCny.setText("￥0");
+//                    return;
+//                }
+//                str = editable.toString();
+//                if (!TextUtils.isEmpty(mNumber.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+//                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
+//                        double number = Double.valueOf(mNumber.getText().toString().trim());
+//                        double price = Double.valueOf(editable.toString());
+//                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
+////                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+//                    }
+//                }
+//
+//                if (!TextUtils.isEmpty(editable.toString())) {
+//                    if (!editable.toString().equals("0.") && Double.valueOf(editable.toString()) != 0) {
+////                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+////                            mOneXnbd.setText(new BigDecimal(ArithUtil.div(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString()), 2) + "").stripTrailingZeros().toPlainString());
+////                        } else {
+////                            mOneXnbd.setText(new BigDecimal(ArithUtil.round(ArithUtil.mul(Double.valueOf(mOneXnb.getText().toString()), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
+////                        }
+//                        if (baseBean != null && baseBean.getSellRmb() != null && baseBean.getCurrentPrice() != null && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
+//                            mCny.setText("￥" + new BigDecimal(ArithUtil.round(ArithUtil.mul(ArithUtil.div(Double.valueOf(baseBean.getSellRmb()),
+//                                    Double.valueOf(baseBean.getCurrentPrice()), 2), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
 //                        }
-                        if (baseBean != null && baseBean.getSellRmb() != null && baseBean.getCurrentPrice() != null && Double.valueOf(baseBean.getCurrentPrice()) != 0) {
-                            mCny.setText("￥" + new BigDecimal(ArithUtil.round(ArithUtil.mul(ArithUtil.div(Double.valueOf(baseBean.getSellRmb()),
-                                    Double.valueOf(baseBean.getCurrentPrice()), 2), Double.valueOf(editable.toString())), 2) + "").stripTrailingZeros().toPlainString());
-                        }
-                    }
-                }
-            }
-        });
-        mNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
-                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !editable.toString().equals(".")) {
-                        double number = Double.valueOf(mPrice.getText().toString().trim());
-                        double price = Double.valueOf(editable.toString());
-                        mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
-//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
-                    }
-                }
-            }
-        });
+//                    }
+//                }
+//            }
+//        });
+//        mNumber.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+//                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !editable.toString().equals(".")) {
+//                        double number = Double.valueOf(mPrice.getText().toString().trim());
+//                        double price = Double.valueOf(editable.toString());
+//                        mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
+////                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+//                    }
+//                }
+//            }
+//        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mBuyrecyclerview.setLayoutManager(linearLayoutManager);
 
-        mBuyAdapter = new BuyAdapter(mContext);
-        mBuyrecyclerview.setAdapter(mBuyAdapter);
-        mBuyrecyclerview.setHasFixedSize(true);
-        mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(List<BigDecimal> list) {
-                if (market_type.equals("0")) {
-                    mPrice.setText(list.get(0).toString());
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onItemLongClick(View view) {
-
-            }
-        });
+//        mBuyAdapter = new BuyAdapter(mContext);
+//        mBuyrecyclerview.setAdapter(mBuyAdapter);
+//        mBuyrecyclerview.setHasFixedSize(true);
+//        mBuyAdapter.setItemClickListener(new BuyAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(List<BigDecimal> list) {
+//                    mPrice.setText(list.get(0).toString());
+//            }
+//
+//            @Override
+//            public void onItemLongClick(View view) {
+//
+//            }
+//        });
 //        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(mContext);
 //        linearLayoutManager1.setOrientation(LinearLayoutManager.VERTICAL);
 //        mSellerrecyclerview.setLayoutManager(linearLayoutManager1);
@@ -877,7 +1017,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         sendSocket();
 
 
-        getMsgInfo();
+//        getMsgInfo();
     }
 
     private long mLastClickTime = 0;
@@ -1010,8 +1150,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
     private String total = "0";
-    private int buy_price_lock=0;
-    private int sell_price_lock=0;
+    private int buy_price_lock = 0;
+    private int sell_price_lock = 0;
+    private int buy_num_lock= 0;
+    private int sell_num_lock= 0;
     @Override
     public void sendMsgSuccess(DealInfo data) {
         mCny.setText("0");
@@ -1023,37 +1165,48 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
 
                 mKeyong.setText(data.getData().getTwo_xnb());
-
+                rise_once = data.getData().getRise_once() + "";
                 total = data.getData().getTwo_xnb();
                 if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
                     if (market_type.equals("0")) {
-                        rise_once = "0";
                         double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                         totalnum = vou;
                         mPrice.setText(baseBean.getCurrentPrice());
+                        getPrice();
                     } else {
                         if (data.getData().getBuy_price_lock() == 1) {
                             buy_price_lock = data.getData().getBuy_price_lock();
-                            rise_once = data.getData().getBuy_price_change() + "";
                             mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getBuy_price_change())) + "");
                             mPrice.setEnabled(false);
+                            mAddone.setEnabled(false);
+                            mDeleteone.setEnabled(false);
+                            getPrice();
                         } else {
                             buy_price_lock = data.getData().getBuy_price_lock();
                             mPrice.setText(baseBean.getCurrentPrice());
-                            rise_once = "0";
                             mPrice.setEnabled(true);
+                            mAddone.setEnabled(true);
+                            mDeleteone.setEnabled(true);
+                            getPrice();
                         }
                         if (data.getData().getBuy_num_lock() == 1) {
+                            buy_num_lock=data.getData().getBuy_num_lock();
                             mNumber.setEnabled(false);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getBuy_price_change());
                             totalnum = vou;
                             mTabRadioGroup.check(mSettingsTab.getId());
                             disableRadioGroup(mTabRadioGroup);
+                            mAddtwo.setEnabled(false);
+                            mDeletetwo.setEnabled(false);
                         } else {
+                            buy_num_lock=data.getData().getBuy_num_lock();
                             mNumber.setEnabled(true);
+                            mAddtwo.setEnabled(true);
+                            mDeletetwo.setEnabled(true);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                             totalnum = vou;
                             enableRadioGroup(mTabRadioGroup);
+                            getPrice();
                         }
                     }
                 }
@@ -1069,36 +1222,49 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             } else {
                 mKeyong.setText(data.getData().getOne_xnb());
                 total = data.getData().getOne_xnb();
+                rise_once = data.getData().getRise_once() + "";
                 if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
                     if (market_type.equals("0")) {
-                        rise_once = "0";
                         double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                         totalnum = vou;
                         mPrice.setText(baseBean.getCurrentPrice());
+                        getPrice();
                     } else {
                         if (data.getData().getSell_price_lock() == 1) {
                             sell_price_lock = data.getData().getSell_price_lock();
-                            rise_once = data.getData().getSell_price_change() + "";
                             mPrice.setEnabled(false);
+                            mAddone.setEnabled(false);
+                            mDeleteone.setEnabled(false);
+                            getPrice();
                             mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getSell_price_change())) + "");
                         } else {
                             sell_price_lock = data.getData().getSell_price_lock();
                             mPrice.setEnabled(true);
-                            rise_once = "0";
+                            mAddone.setEnabled(true);
+                            mDeleteone.setEnabled(true);
+
                             mPrice.setText(baseBean.getCurrentPrice());
+                            getPrice();
                         }
                         if (data.getData().getSell_num_lock() == 1) {
-
+                            sell_num_lock=data.getData().getSell_num_lock();
                             mNumber.setEnabled(false);
+                            mAddtwo.setEnabled(false);
+                            mDeletetwo.setEnabled(false);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getSell_price_change());
                             totalnum = vou;
                             mTabRadioGroup.check(mSettingsTab.getId());
                             disableRadioGroup(mTabRadioGroup);
                         } else {
+                            sell_num_lock=data.getData().getSell_num_lock();
                             mNumber.setEnabled(true);
+                            mAddtwo.setEnabled(true);
+                            mDeletetwo.setEnabled(true);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                             totalnum = vou;
+
                             enableRadioGroup(mTabRadioGroup);
+                            getPrice();
                         }
 //                        mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getSell_price_change()) )+ "");
                     }
@@ -1112,6 +1278,19 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                mPrice.setText(baseBean.getCurrentPrice());
 //            }
             }
+
+        }
+    }
+
+    private void getPrice() {
+        double number = Double.valueOf(total);
+        String resa = "0";
+        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+            resa = new DecimalFormat("0.0000").format(ArithUtil.mul(totalnum, 0.75)) + "";
+            mNumber.setText(resa);
+        } else {
+            resa = new DecimalFormat("0.0000").format(ArithUtil.mul(number, 0.75)) + "";
+            mNumber.setText(resa);
         }
     }
 
@@ -1137,28 +1316,27 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             mGuzhi.setText("￥" + baseBean.getSellRmb().toString());
 
 
-                if (market_type.equals("0")) {
-                    mPrice.setText(baseBean.getCurrentPrice() + "");
+            if (market_type.equals("0")) {
+                mPrice.setText(baseBean.getCurrentPrice() + "");
+            } else {
+                if (sell_price_lock == 1) {
+                    mPrice.setEnabled(false);
+                    mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))) + "");
                 } else {
-                    if (sell_price_lock == 1) {
-                        mPrice.setEnabled(false);
-                        mPrice.setText(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))) + "");
-                    } else {
-                        mPrice.setEnabled(true);
-                        rise_once = "0";
-                        mPrice.setText(baseBean.getCurrentPrice());
-                    }
+                    mPrice.setEnabled(true);
+                    mPrice.setText(baseBean.getCurrentPrice());
                 }
-                if (EmptyUtils.isNotEmpty(mKeyong.getText().toString())) {
-                    double vou = 0;
-                    if (market_type.equals("0")) {
-                        vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(baseBean.getCurrentPrice());
-                    } else {
-                        vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(new java.text.DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))));
-                    }
-                    double bili = vou * Double.valueOf(trade_buy_fee);
-                    totalnum = vou;
+            }
+            if (EmptyUtils.isNotEmpty(mKeyong.getText().toString())) {
+                double vou = 0;
+                if (market_type.equals("0")) {
+                    vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(baseBean.getCurrentPrice());
+                } else {
+                    vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))));
                 }
+                double bili = vou * Double.valueOf(trade_buy_fee);
+                totalnum = vou;
+            }
 
             if (baseBean.getRiseRate().contains("-")) {
                 if ((mContext instanceof Activity)) {
@@ -1171,7 +1349,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
                 }
             }
-//            getMsgInfo();
+            getMsgInfo();
         }
     }
 
@@ -1252,54 +1430,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         return strResult;
     }
 
-    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change, R.id.deletetwo, R.id.deleteone, R.id.addone, R.id.addtwo})
+    @OnClick({R.id.tv_deal, R.id.ll_gears, R.id.ll_depth, R.id.change})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.deletetwo:
-                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
-                    }
-
-                } else {
-                    startActivity(new Intent(mContext, LoginActivity.class));
-                }
-
-                break;
-            case R.id.deleteone:
-                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    if (market_type.equals("0")) {
-                        mPrice.setText(new DecimalFormat("00.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
-                    }
-                } else {
-                    startActivity(new Intent(mContext, LoginActivity.class));
-                }
-
-                break;
-            case R.id.addone:
-                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    if (market_type.equals("0")) {
-                        mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
-                    }
-
-                } else {
-                    startActivity(new Intent(mContext, LoginActivity.class));
-                }
-
-                break;
-            case R.id.addtwo:
-                if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                    if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
-                    }
-
-                } else {
-                    startActivity(new Intent(mContext, LoginActivity.class));
-                }
-
-                break;
-
-
             case R.id.tv_deal:
                 submit();
                 break;

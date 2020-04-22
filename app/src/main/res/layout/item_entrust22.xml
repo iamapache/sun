@@ -88,38 +88,43 @@
                     tools:text="0" />
 
             </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_revoke"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="@string/Status"
-                android:textColor="@color/common_text_5"
-                android:textSize="12dp" />
-
-            <TextView
-                android:id="@+id/revoke"
+            <LinearLayout
+                android:id="@+id/ll_revoke"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/d_5dp"
-                android:gravity="end"
-                android:maxLines="1"
-                android:textColor="@color/common_red"
-                android:textSize="12dp"
-                tools:text="0" />
-        </LinearLayout>
-    </LinearLayout>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@string/Status"
+                    android:textColor="@color/common_text_5"
+                    android:textSize="12dp" />
 
+                <TextView
+                    android:id="@+id/revoke"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/d_5dp"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:textColor="@color/common_red"
+                    android:textSize="12dp"
+                    tools:text="0" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_marginTop="@dimen/d_3dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_1dp"
+        android:background="@color/common_ggray"/>
     <LinearLayout
         android:id="@+id/ll_content"
         android:layout_width="match_parent"

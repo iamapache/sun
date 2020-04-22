@@ -142,6 +142,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 
     @Override
     protected void initDatas() {
+        sendRequest(false);
     }
 
 
@@ -285,7 +286,20 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                         Gson gson = new Gson();
                         update commonBean = gson.fromJson(result, update.class);
                         UIData uiData;
-                        if (!commonBean.getData().getIs_update().equals("0")) {
+                        if (commonBean.getData().getIs_update().equals("2")) {
+                            if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
+                                uiData = UIData
+                                        .create()
+                                        .setDownloadUrl(commonBean.getData().getUrl())
+                                        .setTitle(commonBean.getData().getTitle())
+                                        .setUPDATE(commonBean.getData().getIs_update())
+                                        .setContent(commonBean.getData().getLog());
+                                return uiData;
+                            } else {
+
+                                return null;
+                            }
+                        } else  if (commonBean.getData().getIs_update().equals("1")) {
                             if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
                                 uiData = UIData
                                         .create()
@@ -327,7 +341,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     private NotificationBuilder createCustomNotification() {
         return NotificationBuilder.create()
                 .setRingtone(true)
-                .setIcon(R.mipmap.ic_launcher)
+                .setIcon(R.mipmap.logo)
                 .setTicker(mContext.getString(R.string.appupdate))
                 .setContentTitle(mContext.getString(R.string.load))
                 .setContentText(mContext.getString(R.string.appupdate));

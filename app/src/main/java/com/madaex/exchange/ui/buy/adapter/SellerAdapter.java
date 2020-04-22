@@ -63,9 +63,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(market_type.equals("0")) {
                     mItemClickListener.onItemClick(mDatas.get(getItemCount()-position -1));
-                }
             }
         });
     }
@@ -78,9 +76,17 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         final  SellerAdapter.MyViewHolder holder= new SellerAdapter.MyViewHolder(view);
         return holder;
     }
-    public void setNewData(List<List<BigDecimal>> datas) {
+    public void setNewData(List<List<Float>> datas) {
         mDatas.clear();
-        this. mDatas=datas;
+        List<List<BigDecimal>> listList =new ArrayList<>();
+        for(List<Float> floats:datas){
+            List<BigDecimal> bigDecimals = new ArrayList<>();
+            for(Float aFloat:floats){
+                bigDecimals.add(new BigDecimal(Float.toString(aFloat)));
+            }
+            listList.add(bigDecimals);
+        }
+        this. mDatas=listList;
         Log.d("MainActivity", "setNewData");
         notifyDataSetChanged();
     }

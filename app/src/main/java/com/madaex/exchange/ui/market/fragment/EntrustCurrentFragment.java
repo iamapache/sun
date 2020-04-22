@@ -176,7 +176,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
-        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust2) {
+        mAdapter = new BaseQuickAdapter<EntrustList.DataBean, BaseViewHolder>(R.layout.item_entrust22) {
             @Override
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).

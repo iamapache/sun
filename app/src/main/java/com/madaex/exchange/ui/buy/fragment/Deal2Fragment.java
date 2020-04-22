@@ -355,11 +355,11 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                     if (!TextUtils.isEmpty(item.getAdd_time())) {
                         helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
                     }
-                    if (item.getStatus() == 2) {
-                        helper.setGone(R.id.ll_revoke, true);
-                        helper.setText(R.id.deal, item.getOne_xnb() + "0=" + item.getTwo_xnb() + new BigDecimal(String.valueOf(item.getDeal_money())).stripTrailingZeros().toPlainString());
-                    } else {
-                        helper.setGone(R.id.ll_revoke, false);
+                    helper.setGone(R.id.ll_revoke, false);
+                    if(item.getStatus()==2){
+                        helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));
+                    }else {
+                        helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_green));
                     }
                 }
 

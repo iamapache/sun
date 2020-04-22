@@ -273,22 +273,22 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
     }
 
 
-    private List<DepthDataBean> getBuyDepthList2(List<List<BigDecimal>> lists) {
+    private List<DepthDataBean> getBuyDepthList2(List<List<Float>> lists) {
         Log.v("depthList", lists.size() + "");
         List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<BigDecimal>> listList = lists.subList(0, 50);
+            List<List<Float>> listList = lists.subList(0, 50);
 
             double account = 0;
             for (int i = 0; i < listList.size(); i++) {
-                account = account + listList.get(i).get(0).doubleValue();
-                depthList.add(new DepthDataBean(listList.get(i).get(0).floatValue(),
-                        listList.get(i).get(1).floatValue()));
+                account = account + listList.get(i).get(0);
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0).floatValue(),
-                        lists.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1)));
             }
         }
 
@@ -304,30 +304,30 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
 
     }
 
-    private List<DepthDataBean> getBuyDepthList3(List<List<BigDecimal>> buy, List<List<BigDecimal>> sell) {
+    private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
         List<DepthDataBean> depthList = new ArrayList<>();
         if (buy.size() >= 50 && sell.size() >= 50) {
-            List<List<BigDecimal>> listList = buy.subList(0, 49);
-            List<List<BigDecimal>> listList2 = sell.subList(0, 49);
+            List<List<Float>> listList = buy.subList(0, 49);
+            List<List<Float>> listList2 = sell.subList(0, 49);
             double account = 0;
             double account2 = 0;
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                 for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0).doubleValue();
-                    account2 = account2 + listList.get(i).get(0).doubleValue();
+                    account = account + listList.get(i).get(0);
+                    account2 = account2 + listList.get(i).get(0);
 
                 }
                 for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0).doubleValue();
+                    account = account + listList2.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0).doubleValue();
+                    account = account + listList.get(i).get(0);
                 }
                 for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0).doubleValue();
-                    account2 = account2 + listList2.get(j).get(0).doubleValue();
+                    account = account + listList2.get(j).get(0);
+                    account2 = account2 + listList2.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             }
@@ -337,21 +337,21 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
             double account2 = 0;
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                 for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0).doubleValue();
-                    account2 = account2 + buy.get(i).get(0).doubleValue();
+                    account = account + buy.get(i).get(0);
+                    account2 = account2 + buy.get(i).get(0);
 
                 }
                 for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0).doubleValue();
+                    account = account + sell.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             } else {
                 for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0).doubleValue();
+                    account = account + buy.get(i).get(0);
                 }
                 for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0).doubleValue();
-                    account2 = account2 + sell.get(j).get(0).doubleValue();
+                    account = account + sell.get(j).get(0);
+                    account2 = account2 + sell.get(j).get(0);
                 }
                 mBili.setText(bs(account2, account) + "%");
             }
@@ -360,19 +360,19 @@ public class BuyFragment extends BaseNetLazyFragment<DealPresenter> implements D
         return depthList;
     }
 
-    private List<DepthDataBean> getSellDepthList2(List<List<BigDecimal>> lists) {
+    private List<DepthDataBean> getSellDepthList2(List<List<Float>> lists) {
         List<DepthDataBean> depthList = new ArrayList<>();
         if (lists.size() >= 50) {
-            List<List<BigDecimal>> listList = lists.subList(0, 50);
+            List<List<Float>> listList = lists.subList(0, 50);
             Log.v("depthList", listList.size() + "");
             for (int i = 0; i < listList.size(); i++) {
-                depthList.add(new DepthDataBean(listList.get(i).get(0).floatValue(),
-                        listList.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(listList.get(i).get(0),
+                        listList.get(i).get(1)));
             }
         } else {
             for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0).floatValue(),
-                        lists.get(i).get(1).floatValue()));
+                depthList.add(new DepthDataBean(lists.get(i).get(0),
+                        lists.get(i).get(1)));
             }
         }
 

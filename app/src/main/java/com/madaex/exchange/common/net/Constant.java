@@ -1,7 +1,5 @@
 package com.madaex.exchange.common.net;
 
-import com.madaex.exchange.BuildConfig;
-
 /**
  * 项目：  frame
  * 类名：  Constant.java
@@ -10,9 +8,9 @@ import com.madaex.exchange.BuildConfig;
  */
 public class Constant {
 
-    public static final String HTTP = BuildConfig.DEBUG ? "http://alsc.uoou.net/": "https://www.vcoin.be/" ;//http://192.168.2.117/appapi/
+    public static final String HTTP = false ? "http://alsc.uoou.net/": "https://www.vcoin.be/" ;//http://192.168.2.117/appapi/
 
-    public static final String Websocket = BuildConfig.DEBUG ?  "ws://47.56.143.229:8888":"ws://sock.vcoin.be:8888" ;
+    public static final String Websocket = false ?  "ws://47.56.143.229:8888":"ws://sock.vcoin.be:8888" ;
 
     public static final String JAVA_HTTP = "http://123.58.34.198/";
 
@@ -39,5 +37,5 @@ public class Constant {
     public static final String APP_APIS = "appapi";
 
     public static final String LOGIN = "market/getMarket";
-    public static final String IMG_BASE_URL =  BuildConfig.DEBUG ? "http://alsc.uoou.net/": "https://www.vcoin.be/";
+    public static final String IMG_BASE_URL =  false ? "http://alsc.uoou.net/": "https://www.vcoin.be/";
 }
