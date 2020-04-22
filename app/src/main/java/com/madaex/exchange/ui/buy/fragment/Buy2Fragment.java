@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -735,32 +737,32 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     @Override
     protected void initView() {
 
-//        mPrice.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if (TextUtils.isEmpty(editable.toString())) {
-//                    mCny.setText("￥0");
-//                    return;
-//                }
-//                str = editable.toString();
-//                if (!TextUtils.isEmpty(mNumber.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
-//                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
-//                        double number = Double.valueOf(mNumber.getText().toString().trim());
-//                        double price = Double.valueOf(editable.toString());
-//                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
-////                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
-//                    }
-//                }
-//
+        mPrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TextUtils.isEmpty(editable.toString())) {
+                    mCny.setText("￥0");
+                    return;
+                }
+                str = editable.toString();
+                if (!TextUtils.isEmpty(mNumber.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
+                        double number = Double.valueOf(mNumber.getText().toString().trim());
+                        double price = Double.valueOf(editable.toString());
+                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+                    }
+                }
+
 //                if (!TextUtils.isEmpty(editable.toString())) {
 //                    if (!editable.toString().equals("0.") && Double.valueOf(editable.toString()) != 0) {
 ////                        if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
@@ -774,30 +776,30 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                        }
 //                    }
 //                }
-//            }
-//        });
-//        mNumber.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
-//                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !editable.toString().equals(".")) {
-//                        double number = Double.valueOf(mPrice.getText().toString().trim());
-//                        double price = Double.valueOf(editable.toString());
-//                        mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
-////                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
-//                    }
-//                }
-//            }
-//        });
+            }
+        });
+        mNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!TextUtils.isEmpty(mPrice.getText().toString().trim()) && !TextUtils.isEmpty(editable.toString())) {
+                    if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !editable.toString().equals(".")) {
+                        double number = Double.valueOf(mPrice.getText().toString().trim());
+                        double price = Double.valueOf(editable.toString());
+                        mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
+//                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
+                    }
+                }
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
