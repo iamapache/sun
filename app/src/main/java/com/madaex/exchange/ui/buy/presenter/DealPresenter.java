@@ -93,6 +93,7 @@ public class DealPresenter extends RxPresenter<DealContract.View> implements Dea
                     public void onNext(DealInfo commonBean) {
                         Logger.i("<==>2222222222222");
                         if(commonBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestError( "");
                         }else if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.sendMsgSuccess(commonBean);
                         }

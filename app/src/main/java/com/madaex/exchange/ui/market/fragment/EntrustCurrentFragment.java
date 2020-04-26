@@ -29,6 +29,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.DateUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
@@ -36,7 +37,6 @@ import com.madaex.exchange.common.view.CustomPopWindow;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
-import com.madaex.exchange.ui.market.activity.EntrustDetailActivity;
 import com.madaex.exchange.ui.market.bean.EntrustDetail;
 import com.madaex.exchange.ui.market.bean.EntrustList;
 import com.madaex.exchange.ui.market.contract.EntrustContract;
@@ -48,8 +48,8 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -181,8 +181,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
-                        .setText(R.id.createtime, new SimpleDateFormat("MM-dd HH:mm").format(
-                                new java.util.Date(Long.valueOf(item.getAddtime()))))
+                        .setText(R.id.createtime, DateUtil.dateToString(new Date(item.getAddtime()*1000),DateUtil.FORMAT_DATE_TIME))
                         .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
                         .setText(R.id.coinprice, getString(R.string.amount) )
                         .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
@@ -192,20 +191,11 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                 if (market_type.equals("0")) {
                     helper.setGone(R.id.ll_delete, true);
                 }else {
-
-                    if (item.getType().equals("1")) {
-                        if(buy_cancel_order==1){
+                        if(item.getCancel_order_hide()==1){
                             helper.setGone(R.id.ll_delete, false);
                         }else {
                             helper.setGone(R.id.ll_delete, true);
                         }
-                    }else {
-                        if(sell_cancel_order==1){
-                            helper.setGone(R.id.ll_delete, false);
-                        }else {
-                            helper.setGone(R.id.ll_delete, true);
-                        }
-                    }
                 }
                 if (item.getType().equals("1")) {
                     Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
@@ -285,17 +275,17 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mEntrusttype.equals(ConstantUrl.ENTRUSTCURRENT)) {
-                    EntrustList.DataBean item = (EntrustList.DataBean) adapter.getItem(position);
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, EntrustDetailActivity.class);
-                    intent.putExtra("bean", item);
-                    intent.putExtra("market_type", market_type);
-                    if (item.getType().equals("1")) {
-                        intent.putExtra("type", 1);
-                    } else if (item.getType().equals("2")) {
-                        intent.putExtra("type", 2);
-                    }
-                    startActivityForResult(intent, 250);
+//                    EntrustList.DataBean item = (EntrustList.DataBean) adapter.getItem(position);
+//                    Intent intent = new Intent();
+//                    intent.setClass(mContext, EntrustDetailActivity.class);
+//                    intent.putExtra("bean", item);
+//                    intent.putExtra("market_type", market_type);
+//                    if (item.getType().equals("1")) {
+//                        intent.putExtra("type", 1);
+//                    } else if (item.getType().equals("2")) {
+//                        intent.putExtra("type", 2);
+//                    }
+//                    startActivityForResult(intent, 250);
                 }
             }
         });

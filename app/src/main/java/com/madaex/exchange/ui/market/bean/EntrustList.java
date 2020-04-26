@@ -43,7 +43,7 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
          * one_xnb : ETH
          * two_xnb : GRC
          */
-        private String addtime;
+        private long addtime;
         private String add_time;
         private String id;
         private String price;
@@ -60,6 +60,17 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
         private String deal_money;
         private String cancel_number;
         private String status_name;
+
+        private int cancel_order_hide;
+
+        public int getCancel_order_hide() {
+            return cancel_order_hide;
+        }
+
+        public void setCancel_order_hide(int cancel_order_hide) {
+            this.cancel_order_hide = cancel_order_hide;
+        }
+
         public String getStatuss() {
             return statuss;
         }
@@ -108,11 +119,11 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
             this.status = status;
         }
 
-        public String getAddtime() {
+        public long getAddtime() {
             return addtime;
         }
 
-        public void setAddtime(String addtime) {
+        public void setAddtime(long addtime) {
             this.addtime = addtime;
         }
 
@@ -195,7 +206,7 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(this.addtime);
+            dest.writeLong(this.addtime);
             dest.writeString(this.add_time);
             dest.writeString(this.id);
             dest.writeString(this.price);
@@ -212,7 +223,7 @@ public class EntrustList extends CommonBaseBean implements Parcelable {
         }
 
         protected DataBean(Parcel in) {
-            this.addtime = in.readString();
+            this.addtime = in.readLong();
             this.add_time = in.readString();
             this.id = in.readString();
             this.price = in.readString();

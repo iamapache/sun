@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -146,7 +147,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     LinearLayout mLlDepth;
     @BindView(R.id.tv_gears)
     TextView mTvGears;
-
+    @BindView(R.id.swiperefreshlayout)
+    SwipeRefreshLayout mSwiperefreshlayout;
     BuyAdapter mBuyAdapter;
 
     SellerAdapter mSellerAdapter;
@@ -403,6 +405,13 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 }
             }
         });
+
+        mSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                linedetail();
+            }
+        });
 //        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -640,8 +649,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     void srtData(Home baseBean) {
         if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
             this.baseBean = baseBean;
-
-
             mCoinname.setText(baseBean.getRiseRate());
             baibili.setText("￥" + baseBean.getSellRmb());
             mGuzhi.setText(baseBean.getSellRmb().toString());
@@ -758,7 +765,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
                         double number = Double.valueOf(mNumber.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
+                        double key =  Double.valueOf(mKeyong.getText().toString().trim());
                         mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
+                        mNumber.setText(ArithUtil.round(ArithUtil.mul(key, price), 4) + "");
 //                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
@@ -778,6 +787,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                }
             }
         });
+
+
+
         mNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
@@ -1148,6 +1160,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void requestError(String msg) {
+        mSwiperefreshlayout.setRefreshing(false);
         ToastUtils.showToast(msg);
     }
 
@@ -1158,6 +1171,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     private int sell_num_lock= 0;
     @Override
     public void sendMsgSuccess(DealInfo data) {
+        mSwiperefreshlayout.setRefreshing(false);
         mCny.setText("0");
         if (EmptyUtils.isNotEmpty(data.getData()) && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(data.getData())) {
             trade_sell_fee = data.getData().getTrade_sell_fee();
@@ -1174,6 +1188,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                         totalnum = vou;
                         mPrice.setText(baseBean.getCurrentPrice());
+                        mTabRadioGroup.check(mContactTab.getId());
                         getPrice();
                     } else {
                         if (data.getData().getBuy_price_lock() == 1) {
@@ -1182,6 +1197,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mPrice.setEnabled(false);
                             mAddone.setEnabled(false);
                             mDeleteone.setEnabled(false);
+                            mTabRadioGroup.check(mContactTab.getId());
                             getPrice();
                         } else {
                             buy_price_lock = data.getData().getBuy_price_lock();
@@ -1189,6 +1205,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mPrice.setEnabled(true);
                             mAddone.setEnabled(true);
                             mDeleteone.setEnabled(true);
+                            mTabRadioGroup.check(mContactTab.getId());
                             getPrice();
                         }
                         if (data.getData().getBuy_num_lock() == 1) {
@@ -1231,6 +1248,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         totalnum = vou;
                         mPrice.setText(baseBean.getCurrentPrice());
                         getPrice();
+                        mTabRadioGroup.check(mContactTab.getId());
                     } else {
                         if (data.getData().getSell_price_lock() == 1) {
                             sell_price_lock = data.getData().getSell_price_lock();
@@ -1238,13 +1256,14 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mAddone.setEnabled(false);
                             mDeleteone.setEnabled(false);
                             getPrice();
+                            mTabRadioGroup.check(mContactTab.getId());
                             mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getSell_price_change())) + "");
                         } else {
                             sell_price_lock = data.getData().getSell_price_lock();
                             mPrice.setEnabled(true);
                             mAddone.setEnabled(true);
                             mDeleteone.setEnabled(true);
-
+                            mTabRadioGroup.check(mContactTab.getId());
                             mPrice.setText(baseBean.getCurrentPrice());
                             getPrice();
                         }
@@ -1357,22 +1376,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-        if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
-            this.baseBean = baseBean;
-            mLast.setText(baseBean.getCurrentPrice().toString());
-            mCoinname.setText(baseBean.getRiseRate());
-            baibili.setText("￥" + baseBean.getSellRmb());
-            mGuzhi.setText(baseBean.getSellRmb().toString());
-            mPrice.setText(baseBean.getCurrentPrice());
-
-            if (baseBean.getRiseRate().contains("-")) {
-                mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
-                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
-            } else {
-                mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
-            }
-//            getMsgInfo();
+        if (EmptyUtils.isNotEmpty(baseBean) ) {
+            setDetailSuccess(baseBean);
         }
 
 
