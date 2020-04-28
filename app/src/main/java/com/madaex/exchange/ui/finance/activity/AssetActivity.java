@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -23,8 +24,10 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.adapter.RecyclerviewAdapter;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.Recharge;
+import com.madaex.exchange.ui.finance.bean.auth_check;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
+import com.madaex.exchange.ui.mine.activity.AuthenticationActivity;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -42,7 +45,7 @@ import butterknife.OnClick;
 
 public class AssetActivity extends BaseNetActivity<AssetPresenter> implements AssetContract.View {
     ArrayList<Asset.DataBean.XnbListBean> testBeans = new ArrayList<>();
-//    BaseQuickAdapter mAdapter;
+    //    BaseQuickAdapter mAdapter;
     @BindView(R.id.recyclerview)
     RecyclerView mRecyclerview;
     @BindView(R.id.cny)
@@ -57,11 +60,14 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     CheckBox mCbNumber;
     private Handler handler = new Handler();
     private RecyclerviewAdapter mAdapter;
-    private boolean isshow =false;
+    private boolean isshow = false;
     @BindView(R.id.toolbar_title_tv)
     TextView mTitleView;
     @BindView(R.id.gone)
     ImageView mGone;
+    Asset.DataBean.XnbListBean mXnbListBean = new Asset.DataBean.XnbListBean();
+    String wallet_type = "0";
+
 
     @Override
     protected int getLayoutId() {
@@ -76,13 +82,23 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     @Override
     protected void initView() {
         String xnb_name = getIntent().getStringExtra("title");
-        mTitleView.setText( xnb_name);
+        mTitleView.setText(xnb_name);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
-      String wallet_type = getIntent().getStringExtra("wallet_type");
-        mAdapter = new RecyclerviewAdapter(this,testBeans,wallet_type);
+        wallet_type = getIntent().getStringExtra("wallet_type");
+        mAdapter = new RecyclerviewAdapter(this, testBeans, wallet_type);
         mRecyclerview.setAdapter(mAdapter);
+        mAdapter.setItemOnClickInterface(new RecyclerviewAdapter.ItemOnClickInterface() {
+            @Override
+            public void onItemClick(Asset.DataBean.XnbListBean item, String wallet_type) {
+                mXnbListBean = item;
+                TreeMap params = new TreeMap<>();
+                params.put("act", "User.user_auth_check");
+                mPresenter.user_auth_check(DataUtil.sign(params));
+
+            }
+        });
 //        mAdapter = new BaseQuickAdapter<Asset.DataBean.XnbListBean, BaseViewHolder>(R.layout.item_asset, testBeans) {
 //            @Override
 //            protected void convert(BaseViewHolder helper, final Asset.DataBean.XnbListBean item) {
@@ -154,16 +170,16 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
             }
         });
 
-        mCbNumber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+        mCbNumber.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     isshow = true;
-                    mAdapter.filter(mSearchAsset.getText().toString(),isshow);
-                }else{
+                    mAdapter.filter(mSearchAsset.getText().toString(), isshow);
+                } else {
                     isshow = false;
-                    mAdapter.filter(mSearchAsset.getText().toString(),isshow);
+                    mAdapter.filter(mSearchAsset.getText().toString(), isshow);
                 }
             }
         });
@@ -180,17 +196,19 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mAdapter.filter(editable.toString(),isshow);
+                mAdapter.filter(editable.toString(), isshow);
             }
         });
 
 
     }
+
     private boolean isgone = false;
+
     private void getData() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_ASSETS_LIST);
-        params.put("wallet_type",getIntent().getStringExtra("wallet_type"));
+        params.put("wallet_type", getIntent().getStringExtra("wallet_type"));
         mPresenter.getData(DataUtil.sign(params));
     }
 
@@ -231,12 +249,12 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         mSwiperefreshlayout.setRefreshing(false);
 //        mAdapter.setNewData(commonBean.getData().getXnb_list());
 
-        if(EmptyUtils.isNotEmpty(commonBean.getData().getXnb_list())) {
+        if (EmptyUtils.isNotEmpty(commonBean.getData().getXnb_list())) {
             testBeans.clear();
             testBeans.addAll(commonBean.getData().getXnb_list());
             mAdapter.notifyDataSetChanged();
         }
-        if(EmptyUtils.isNotEmpty(commonBean.getData().getGen_assets())){
+        if (EmptyUtils.isNotEmpty(commonBean.getData().getGen_assets())) {
             mCny.setText("" + commonBean.getData().getGen_assets().getUsdt() + "");
             mDollar.setText("≈￥" + commonBean.getData().getGen_assets().getRmb() + "");
         }
@@ -244,12 +262,12 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
             @Override
             public void onClick(View v) {
                 if (isgone) {
-                    isgone =false;
+                    isgone = false;
                     mCny.setText("" + commonBean.getData().getAssets().getUsdt() + "");
                     mDollar.setText("≈￥" + commonBean.getData().getAssets().getRmb() + "");
                     mGone.setImageResource(R.mipmap.denglu_zy);
                 } else {
-                    isgone =true;
+                    isgone = true;
                     mCny.setText("***********");
                     mDollar.setText("***********");
                     mGone.setImageResource(R.mipmap.denglu_by);
@@ -261,5 +279,25 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     @Override
     public void requestRecharge(Recharge commonBean) {
 
+    }
+
+    @Override
+    public void requestSuccess(auth_check commonBean) {
+        if (commonBean.getData().getIs_auth() == 0) {
+            startActivity(new Intent(mContext, AuthenticationActivity.class));
+        } else {
+            if (mXnbListBean.getIs_support_cash() == 1) {
+                Intent intent = new Intent();
+                intent.setClass(mContext, TabSellerActivity.class);
+                intent.putExtra("xnb", mXnbListBean.getCoin_id() + "");
+                intent.putExtra("xnb_name", mXnbListBean.getXnb_name());
+                intent.putExtra("wallet_type", wallet_type);
+                intent.putExtra("coin_id", mXnbListBean.getCoin_id() + "");
+                mContext.startActivity(intent);
+            } else if (mXnbListBean.getIs_support_cash() == 2) {
+                ToastUtils.showToast(R.string.comingsoon);
+
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.finance.contract;
 import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.Recharge;
+import com.madaex.exchange.ui.finance.bean.auth_check;
 
 import java.util.Map;
 
@@ -22,11 +23,16 @@ public class AssetContract {
         void requestSuccess(Asset commonBean);
 
         void requestRecharge(Recharge commonBean);
+
+        void requestSuccess(auth_check commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<AssetContract.View> {
         void getData(Map body);
 
         void cash_recharge(Map body);
+
+
+        void user_auth_check(Map body);
     }
 }

@@ -12,6 +12,7 @@ import com.madaex.exchange.ui.common.CommonBaseBean;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.Recharge;
+import com.madaex.exchange.ui.finance.bean.auth_check;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 
 import java.util.Map;
@@ -103,6 +104,32 @@ public class AssetPresenter extends RxPresenter<AssetContract.View> implements A
                                 mView.requestRecharge(commonBean);
                             }
 
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void user_auth_check(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, auth_check>() {
+                    @Override
+                    public auth_check apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        auth_check commonBaseBean = gson.fromJson(data, auth_check.class);
+                            return commonBaseBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<auth_check>(mView,true) {
+                    @Override
+                    public void onNext(auth_check commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
+                        } else {
+                            mView.requestSuccess(commonBean);
                         }
                     }
                 }));

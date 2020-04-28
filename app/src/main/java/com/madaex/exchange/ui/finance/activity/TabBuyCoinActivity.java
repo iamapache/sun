@@ -14,6 +14,7 @@ import com.madaex.exchange.ui.adapter.TitleStatePagerAdapter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.Recharge;
+import com.madaex.exchange.ui.finance.bean.auth_check;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 
@@ -122,5 +123,10 @@ public class TabBuyCoinActivity extends BaseNetActivity<AssetPresenter> implemen
 
         mVp.setAdapter(mAdapter);
         mStl.setViewPager(mVp);
+    }
+
+    @Override
+    public void requestSuccess(auth_check commonBean) {
+
     }
 }

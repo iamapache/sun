@@ -14,6 +14,7 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.QrCode;
 import com.madaex.exchange.ui.finance.bean.Recharge;
+import com.madaex.exchange.ui.finance.bean.auth_check;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 
@@ -130,6 +131,11 @@ public class BuyCoinActivity extends BaseNetLazyFragment<AssetPresenter> impleme
 
     @Override
     public void requestRecharge(Recharge commonBean) {
+
+    }
+
+    @Override
+    public void requestSuccess(auth_check commonBean) {
 
     }
 

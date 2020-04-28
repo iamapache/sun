@@ -16,7 +16,6 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.finance.activity.BillActivity;
 import com.madaex.exchange.ui.finance.activity.TabBuyCoinActivity;
-import com.madaex.exchange.ui.finance.activity.TabSellerActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.orhanobut.logger.Logger;
 
@@ -88,19 +87,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
         holder.mLlSellercoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (item.getIs_support_cash()==1) {
-                    Intent intent = new Intent();
-                    intent.setClass(mContext, TabSellerActivity.class);
-                    intent.putExtra("xnb", item.getCoin_id()+"");
-                    intent.putExtra("xnb_name", item.getXnb_name());
-                    intent.putExtra("wallet_type", wallet_type);
-                    intent.putExtra("coin_id", item.getCoin_id()+"");
-                    mContext.startActivity(intent);
-                } else if (item.getIs_support_cash()==2) {
-                    ToastUtils.showToast(R.string.comingsoon);
 
-                }
-
+                itemOnClickInterface.onItemClick(item,wallet_type);
             }
         });
         holder.mLlBill.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +172,13 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
             }
         };
     }
-
+    private ItemOnClickInterface itemOnClickInterface;
+    public interface ItemOnClickInterface {
+        void onItemClick(Asset.DataBean.XnbListBean item, String wallet_type);
+    }
+    public void setItemOnClickInterface(ItemOnClickInterface itemOnClickInterface) {
+        this.itemOnClickInterface = itemOnClickInterface;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
