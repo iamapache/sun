@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.mine.bean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class HotCoin {
 
         private String name;
         private String change;
-        private double new_price1;
+        private BigDecimal new_price1;
         private int status;
 
         public String getName() {
@@ -72,11 +73,11 @@ public class HotCoin {
             this.change = change;
         }
 
-        public double getNew_price1() {
+        public BigDecimal getNew_price1() {
             return new_price1;
         }
 
-        public void setNew_price1(double new_price1) {
+        public void setNew_price1(BigDecimal new_price1) {
             this.new_price1 = new_price1;
         }
 

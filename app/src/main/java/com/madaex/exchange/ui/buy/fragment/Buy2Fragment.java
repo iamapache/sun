@@ -154,7 +154,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     SellerAdapter mSellerAdapter;
     String str = "";
     Home baseBean = new Home();
-
+private boolean refresh = false;
     public static Buy2Fragment newInstance(String string, String one_xnb, String two_xnb) {
         Buy2Fragment fragment = null;
         if (fragment == null) {
@@ -409,7 +409,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         mSwiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                refresh = true;
+                cacelSocket();
                 linedetail();
+
             }
         });
 //        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -1162,6 +1165,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     public void requestError(String msg) {
         mSwiperefreshlayout.setRefreshing(false);
         ToastUtils.showToast(msg);
+        if(refresh){
+            refresh = false;
+            sendSocket();
+        }
     }
 
     private String total = "0";
@@ -1171,6 +1178,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     private int sell_num_lock= 0;
     @Override
     public void sendMsgSuccess(DealInfo data) {
+        if(refresh){
+            refresh = false;
+            sendSocket();
+        }
         mSwiperefreshlayout.setRefreshing(false);
         mCny.setText("0");
         if (EmptyUtils.isNotEmpty(data.getData()) && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(data.getData())) {

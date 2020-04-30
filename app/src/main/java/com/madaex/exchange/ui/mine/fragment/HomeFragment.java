@@ -129,7 +129,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         mAdapter = new BaseQuickAdapter<HotCoin.DataBean, BaseViewHolder>(R.layout.item_hotcoin, testBeans) {
             @Override
             protected void convert(BaseViewHolder helper, final HotCoin.DataBean item) {
-                helper.setText(R.id.name, item.getName()).setText(R.id.time, item.getNew_price1() + "")
+                helper.setText(R.id.name, item.getName()).setText(R.id.time, item.getNew_price1().toPlainString() + "")
                         .setText(R.id.address, item.getChange());
                 if (item.getChange().contains("-")) {
                     helper.setTextColor(R.id.time, mContext.getResources().getColor(R.color.common_green));
@@ -363,7 +363,7 @@ boolean iszhang = true;
             @Override
             public void onClick(View v) {
                 String URL2 ="";
-                String URL ="http://alsc.uoou.net/appapi/index/notice?lang=";
+                String URL =Constant.HTTP+"appapi/index/notice?lang=";
                 int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
                 if(languageType==2){
                     URL2=URL+"zh-cn";
