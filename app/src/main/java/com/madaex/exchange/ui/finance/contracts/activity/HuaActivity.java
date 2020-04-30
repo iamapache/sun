@@ -49,6 +49,8 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     TextView mAll;
     @BindView(R.id.toolbar_title_tv)
     TextView mTitleView;
+    @BindView(R.id.sbsil)
+    TextView mSbsil;
     private String type = "coin_to_contract";
 
     @Override
@@ -105,11 +107,13 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
                     mCoin.setText(getString(R.string.Contracthy));
                     mContract.setText(getString(R.string.Coin));
                     mUsablebalance.setText(commonBean.getData().getCon_assets() + "");
+                    mSbsil.setText(R.string.contractBalance);
                 } else {
                     flag = true;
                     type = "coin_to_contract";
                     mCoin.setText(getString(R.string.Coin));
                     mContract.setText(getString(R.string.Contracthy));
+                    mSbsil.setText(getString(R.string.UsableBalance));
                     mUsablebalance.setText(commonBean.getData().getGen_assets() + "");
                 }
 

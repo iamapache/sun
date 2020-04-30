@@ -1355,7 +1355,6 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 } else {
                     vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))));
                 }
-                double bili = vou * Double.valueOf(trade_buy_fee);
                 totalnum = vou;
             }
 

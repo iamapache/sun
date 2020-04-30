@@ -230,12 +230,12 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
-
                             <TextView
                                 android:layout_width="@dimen/d_10dp"
                                 android:layout_height="@dimen/d_10dp"
                                 android:layout_marginRight="7dp"
-                                android:background="@color/common_green" />
+                                android:background="@color/common_red"/>
+
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -244,12 +244,12 @@
                                 android:text="@string/buy"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/d_9dp" />
-
                             <TextView
                                 android:layout_width="@dimen/d_10dp"
                                 android:layout_height="@dimen/d_10dp"
                                 android:layout_marginRight="7dp"
-                                android:background="@color/common_red"/>
+                                android:background="@color/common_green" />
+
 
 
                             <TextView

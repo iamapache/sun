@@ -41,6 +41,7 @@ import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
+import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.RegexUtil;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
@@ -174,7 +175,9 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         super.onDestroyView();
         unbinder.unbind();
     }
+
     private int selectedLanguage;
+
     @Override
     protected void lazyLoad() {
         if (!isPrepared || !isVisible) {
@@ -286,39 +289,41 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                         Gson gson = new Gson();
                         update commonBean = gson.fromJson(result, update.class);
                         UIData uiData;
-                        if (commonBean.getData().getIs_update().equals("2")) {
-                            if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
-                                uiData = UIData
-                                        .create()
-                                        .setDownloadUrl(commonBean.getData().getUrl())
-                                        .setTitle(commonBean.getData().getTitle())
-                                        .setUPDATE(commonBean.getData().getIs_update())
-                                        .setContent(commonBean.getData().getLog());
-                                return uiData;
-                            } else {
+                        if (EmptyUtils.isNotEmpty(commonBean.getData())&&commonBean.getStatus()==1) {
+                            if (commonBean.getData().getIs_update().equals("2")) {
+                                if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
+                                    uiData = UIData
+                                            .create()
+                                            .setDownloadUrl(commonBean.getData().getUrl())
+                                            .setTitle(commonBean.getData().getTitle())
+                                            .setUPDATE(commonBean.getData().getIs_update())
+                                            .setContent(commonBean.getData().getLog());
+                                    return uiData;
+                                } else {
 
+                                    return null;
+                                }
+                            } else if (commonBean.getData().getIs_update().equals("1")) {
+                                if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
+                                    uiData = UIData
+                                            .create()
+                                            .setDownloadUrl(commonBean.getData().getUrl())
+                                            .setTitle(commonBean.getData().getTitle())
+                                            .setUPDATE(commonBean.getData().getIs_update())
+                                            .setContent(commonBean.getData().getLog());
+                                    return uiData;
+                                } else {
+
+                                    return null;
+                                }
+                            } else {
+                                if (showmsg) {
+                                    ToastUtils.showToast(getString(R.string.nonewversion));
+                                }
                                 return null;
                             }
-                        } else  if (commonBean.getData().getIs_update().equals("1")) {
-                            if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
-                                uiData = UIData
-                                        .create()
-                                        .setDownloadUrl(commonBean.getData().getUrl())
-                                        .setTitle(commonBean.getData().getTitle())
-                                        .setUPDATE(commonBean.getData().getIs_update())
-                                        .setContent(commonBean.getData().getLog());
-                                return uiData;
-                            } else {
-
-                                return null;
-                            }
-                        } else {
-                            if (showmsg) {
-                                ToastUtils.showToast(getString(R.string.nonewversion));
-                            }
-                            return null;
                         }
-
+                        return null;
                     }
 
                     @Override

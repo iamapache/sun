@@ -79,6 +79,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     @BindView(R.id.toolbar_title_tv)
     TextView mToolbarTitleTv;
     Unbinder unbinder;
+    @BindView(R.id.Priceus)
+    TextView mPriceus;
     private List<String> mTitleList = new ArrayList<>();
     private List<Fragment> mViewList = new ArrayList<>();
     private String[] mTitles_2 = new String[2];
@@ -135,6 +137,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         one_xnb = SPUtils.getString(Constants.ONE_XNB, "BAT");
         two_xnb = SPUtils.getString(Constants.TWO_XNB, "ETH");
         mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
+        mPriceus.setText(getString(R.string.price)+"("+two_xnb+")");
         int str = (int) getArguments().get(Constants.ARGS);
         fragment1 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_BUY, one_xnb, two_xnb);
         fragment2 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_SELLER, one_xnb, two_xnb);
@@ -195,6 +198,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         params2.put("market_type", market_type);
         mPresenter.getJavaLineDetail(DataUtil.sign(params2));
     }
+
     private void getMsgInfo() {
         Logger.i("<==>:market_typemarket_typemarket_typemarket_type" + market_type);
         if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
@@ -213,6 +217,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             }
         }
     }
+
     private void getdata() {
 
         linedetail();
@@ -306,20 +311,20 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             protected void convert(BaseViewHolder helper, final EntrustList.DataBean item) {
                 helper.setText(R.id.price, new BigDecimal(String.valueOf(item.getPrice())).stripTrailingZeros().toPlainString()).
                         setText(R.id.num, item.getOne_xnb() + new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString())
-                        .setText(R.id.createtime, DateUtil.dateToString(new Date(item.getAddtime()*1000),DateUtil.FORMAT_DATE_TIME))
+                        .setText(R.id.createtime, DateUtil.dateToString(new Date(item.getAddtime() * 1000), DateUtil.FORMAT_DATE_TIME))
                         .setText(R.id.coinname, getString(R.string.price) + "(" + item.getTwo_xnb() + ")")
-                        .setText(R.id.coinprice, getString(R.string.amount) )
+                        .setText(R.id.coinprice, getString(R.string.amount))
                         .setText(R.id.name, item.getOne_xnb() + "/" + item.getTwo_xnb())
                         .setText(R.id.mum, new BigDecimal(String.valueOf(item.getNum())).stripTrailingZeros().toPlainString());
                 ProgressBar progressBar = helper.getView(R.id.preview_progressBar);
                 TextView textView = helper.getView(R.id.name);
                 if (market_type.equals("0")) {
                     helper.setGone(R.id.ll_delete, true);
-                }else {
+                } else {
 
-                    if(item.getCancel_order_hide()==1){
+                    if (item.getCancel_order_hide() == 1) {
                         helper.setGone(R.id.ll_delete, false);
-                    }else {
+                    } else {
                         helper.setGone(R.id.ll_delete, true);
                     }
                 }
@@ -327,7 +332,7 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                     Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowup);
                     rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
                     textView.setCompoundDrawables(rightDrawable, null, null, null);  // left, top, right, bottom
-                }else {
+                } else {
                     Drawable rightDrawable = getResources().getDrawable(R.mipmap.arrowdown);
                     rightDrawable.setBounds(0, 0, rightDrawable.getMinimumWidth(), rightDrawable.getMinimumHeight());  // left, top, right, bottom
                     textView.setCompoundDrawables(rightDrawable, null, null, null);
@@ -348,9 +353,9 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
                         helper.setText(R.id.time, item.getAdd_time().split(" ")[0]).setText(R.id.time_hour, item.getAdd_time().split(" ")[1]);
                     }
                     helper.setGone(R.id.ll_revoke, false);
-                    if(item.getStatus()==2){
+                    if (item.getStatus() == 2) {
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));
-                    }else {
+                    } else {
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_green));
                     }
                 }
@@ -523,17 +528,16 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             market_type = event.getHeyue();
             pageNum = 1;
             isRefresh = true;
+            mPriceus.setText(getString(R.string.price)+"("+two_xnb+")");
             getdata();
             mToolbarTitleTv.setText(one_xnb + "/" + two_xnb);
-        }
-
-        else  if (event != null && event.getCode() == Constants.ENTRUST) {
+        } else if (event != null && event.getCode() == Constants.ENTRUST) {
             pageNum = 1;
             isRefresh = true;
             pageNum = 1;
             isRefresh = true;
             getdata();
-        }else if (event != null && event.getCode() == Constants.LOGINSUCCESS) {
+        } else if (event != null && event.getCode() == Constants.LOGINSUCCESS) {
             pageNum = 1;
             isRefresh = true;
             pageNum = 1;
@@ -580,8 +584,9 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
     public void requestToken(String baseBean) {
 
     }
-    private int buy_cancel_order=0;
-    private int sell_cancel_order=0;
+
+    private int buy_cancel_order = 0;
+    private int sell_cancel_order = 0;
 
     @Override
     public void sendMsgSuccess(DealInfo data) {
@@ -589,8 +594,8 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
             getHistory();
         } else {
             getHistory();
-            buy_cancel_order =data.getData().getBuy_cancel_order();
-            sell_cancel_order=data.getData().getSell_cancel_order();
+            buy_cancel_order = data.getData().getBuy_cancel_order();
+            sell_cancel_order = data.getData().getSell_cancel_order();
         }
     }
 

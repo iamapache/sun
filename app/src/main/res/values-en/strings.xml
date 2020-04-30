@@ -598,4 +598,6 @@
     <string name="carry">Carry</string>
     <string name="orders">orders</string>
     <string name="Priceus">Price(USDT)</string>
+    <string name="contractBalance">Contract Balance：</string>
+    <string name="Warmreminder">Warm reminder</string>
 </resources>

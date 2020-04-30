@@ -246,7 +246,6 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ToastUtils.showToast("xxxxxxxxxxxxx");
         if (resultCode == Activity.RESULT_OK
                 && requestCode == CODE_REQUEST) {
             String wallets = data.getStringExtra("fee");

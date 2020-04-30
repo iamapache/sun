@@ -571,4 +571,6 @@
     <string name="carry">可提</string>
     <string name="orders">限价单</string>
     <string name="Priceus">价格(USDT)</string>
+    <string name="contractBalance">合约账户可用余额：</string>
+    <string name="Warmreminder">温馨提醒</string>
 </resources>

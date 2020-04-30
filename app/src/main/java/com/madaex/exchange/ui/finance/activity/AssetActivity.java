@@ -1,8 +1,11 @@
 package com.madaex.exchange.ui.finance.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,6 +31,7 @@ import com.madaex.exchange.ui.finance.bean.auth_check;
 import com.madaex.exchange.ui.finance.contract.AssetContract;
 import com.madaex.exchange.ui.finance.presenter.AssetPresenter;
 import com.madaex.exchange.ui.mine.activity.AuthenticationActivity;
+import com.wc.widget.dialog.IosDialog;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -284,7 +288,27 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
     @Override
     public void requestSuccess(auth_check commonBean) {
         if (commonBean.getData().getIs_auth() == 0) {
-            startActivity(new Intent(mContext, AuthenticationActivity.class));
+
+            Dialog dialog = new IosDialog.Builder(this).setTitle(getString(R.string.Warmreminder)).setTitleColor(ContextCompat.getColor(mContext, R.color.common_text_1)).setTitleSize(20)
+                    .setMessage(commonBean.getData().getMessage()).setMessageColor(ContextCompat.getColor(mContext, R.color.common_red)).setMessageSize(14)
+                    .setNegativeButtonColor(Color.GRAY)
+                    .setNegativeButtonSize(18)
+                    .setNegativeButton(getString(R.string.cancel), new IosDialog.OnClickListener() {
+                        @Override
+                        public void onClick(IosDialog dialog, View v) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .setPositiveButtonColor(ContextCompat.getColor(mContext, R.color.common_bule))
+                    .setPositiveButtonSize(18)
+                    .setPositiveButton(getString(R.string.sure), new IosDialog.OnClickListener() {
+                        @Override
+                        public void onClick(IosDialog dialog, View v) {
+                            startActivity(new Intent(mContext, AuthenticationActivity.class));
+                            dialog.dismiss();
+                        }
+                    }).build();
+            dialog.show();
         } else {
             if (mXnbListBean.getIs_support_cash() == 1) {
                 Intent intent = new Intent();
@@ -298,6 +322,7 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
                 ToastUtils.showToast(R.string.comingsoon);
 
             }
+
         }
     }
 }
