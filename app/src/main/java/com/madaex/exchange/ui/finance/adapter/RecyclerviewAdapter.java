@@ -74,7 +74,7 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                     intent.putExtra("wallet_type", wallet_type);
                     mContext.startActivity(intent);
                 } else if (item.getIs_recharge() == 0) {
-                    ToastUtils.showToast("该币暂时不能充值");
+                    ToastUtils.showToast(item.getIs_recharge_not_open_tips()+"");
 //                    Intent intent = new Intent();
 //                    intent.setClass(mContext, BuyBillActivity.class);
 //                    intent.putExtra("address", item.getAddress());

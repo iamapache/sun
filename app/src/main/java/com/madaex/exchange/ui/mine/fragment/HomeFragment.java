@@ -56,11 +56,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.google.zxing.integration.android.IntentIntegrator.REQUEST_CODE;
 
@@ -265,13 +271,8 @@ boolean iszhang = true;
 
     @Override
     protected void initDatas() {
-        TreeMap params = new TreeMap<>();
-        mPresenter.getData(DataUtil.sign(params));
-        mPresenter.load(DataUtil.sign(params));
-        TreeMap params2 = new TreeMap<>();
-        params2.put("act", ConstantUrl.MARKET_GETHOTCOIN);
-        mPresenter.update(DataUtil.sign(params2));
 
+        sendData();
         getListLine();
 
         if (TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
@@ -280,7 +281,38 @@ boolean iszhang = true;
             mTologin.setText(R.string.islogin);
         }
     }
+    private void sendData(){
+        Observable.interval(0, 20, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(this.bindToLifecycle())
+                .subscribe(new Observer<Long>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        TreeMap params = new TreeMap<>();
+                        mPresenter.getData(DataUtil.sign(params));
+                        mPresenter.load(DataUtil.sign(params));
+                        TreeMap params2 = new TreeMap<>();
+                        params2.put("act", ConstantUrl.MARKET_GETHOTCOIN);
+                        mPresenter.update(DataUtil.sign(params2));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
     private void getListLine() {
         TreeMap params3 = new TreeMap<>();
         params3.put("act", ConstantUrl.TRADE_HOME_INDEX);

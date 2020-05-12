@@ -164,6 +164,24 @@ public class Asset extends CommonBaseBean {
             private int is_recharge;
             private int is_support_cash;
             private String type;
+            private String is_support_cash_not_open_tips;
+            private String is_recharge_not_open_tips;
+
+            public String getIs_support_cash_not_open_tips() {
+                return is_support_cash_not_open_tips;
+            }
+
+            public void setIs_support_cash_not_open_tips(String is_support_cash_not_open_tips) {
+                this.is_support_cash_not_open_tips = is_support_cash_not_open_tips;
+            }
+
+            public String getIs_recharge_not_open_tips() {
+                return is_recharge_not_open_tips;
+            }
+
+            public void setIs_recharge_not_open_tips(String is_recharge_not_open_tips) {
+                this.is_recharge_not_open_tips = is_recharge_not_open_tips;
+            }
 
             public String getFrozen() {
                 return frozen;

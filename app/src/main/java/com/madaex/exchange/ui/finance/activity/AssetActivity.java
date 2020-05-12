@@ -96,10 +96,15 @@ public class AssetActivity extends BaseNetActivity<AssetPresenter> implements As
         mAdapter.setItemOnClickInterface(new RecyclerviewAdapter.ItemOnClickInterface() {
             @Override
             public void onItemClick(Asset.DataBean.XnbListBean item, String wallet_type) {
-                mXnbListBean = item;
-                TreeMap params = new TreeMap<>();
-                params.put("act", "User.user_auth_check");
-                mPresenter.user_auth_check(DataUtil.sign(params));
+                if (item.getIs_support_cash() == 1) {
+                    mXnbListBean = item;
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", "User.user_auth_check");
+                    mPresenter.user_auth_check(DataUtil.sign(params));
+                } else if (item.getIs_support_cash() == 0) {
+                    ToastUtils.showToast(item.getIs_support_cash_not_open_tips()+"");
+                }
+
 
             }
         });
