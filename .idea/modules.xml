@@ -6,11 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="sun/app" />
       <module fileurl="file://$PROJECT_DIR$/dialog/dialog.iml" filepath="$PROJECT_DIR$/dialog/dialog.iml" group="sun/dialog" />
       <module fileurl="file://$PROJECT_DIR$/sun.iml" filepath="$PROJECT_DIR$/sun.iml" group="sun" />
-      <module fileurl="file://$PROJECT_DIR$/MPChartLib/sun-MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/sun-MPChartLib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/sun-app.iml" filepath="$PROJECT_DIR$/app/sun-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dialog/sun-dialog.iml" filepath="$PROJECT_DIR$/dialog/sun-dialog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/versionchecklib/sun-versionchecklib.iml" filepath="$PROJECT_DIR$/versionchecklib/sun-versionchecklib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/test-sun.iml" filepath="$PROJECT_DIR$/test-sun.iml" />
       <module fileurl="file://$PROJECT_DIR$/versionchecklib/versionchecklib.iml" filepath="$PROJECT_DIR$/versionchecklib/versionchecklib.iml" group="sun/versionchecklib" />
     </modules>
   </component>

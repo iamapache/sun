@@ -66,6 +66,8 @@ import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -154,7 +156,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     SellerAdapter mSellerAdapter;
     String str = "";
     Home baseBean = new Home();
-private boolean refresh = false;
+    private boolean refresh = false;
+
     public static Buy2Fragment newInstance(String string, String one_xnb, String two_xnb) {
         Buy2Fragment fragment = null;
         if (fragment == null) {
@@ -238,12 +241,12 @@ private boolean refresh = false;
                     mPrice.setText(list.get(0).toPlainString());
                 } else {
                     if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                        if (buy_price_lock == 1){
+                        if (buy_price_lock == 1) {
 
-                        }else {
+                        } else {
                             mPrice.setText(list.get(0).toPlainString());
                         }
-                    }else {
+                    } else {
                         if (sell_price_lock == 1) {
                         } else {
                             mPrice.setText(list.get(0).toPlainString());
@@ -271,12 +274,12 @@ private boolean refresh = false;
                     mPrice.setText(list.get(0).toPlainString());
                 } else {
                     if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                        if (buy_price_lock == 1){
+                        if (buy_price_lock == 1) {
 
-                        }else {
+                        } else {
                             mPrice.setText(list.get(0).toPlainString());
                         }
-                    }else {
+                    } else {
                         if (sell_price_lock == 1) {
                         } else {
                             mPrice.setText(list.get(0).toPlainString());
@@ -307,7 +310,7 @@ private boolean refresh = false;
                                 mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
 
                             }
-                        }else {
+                        } else {
                             if (sell_price_lock == 1) {
                                 mPrice.setEnabled(false);
                             } else {
@@ -339,7 +342,7 @@ private boolean refresh = false;
                                 mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
 
                             }
-                        }else {
+                        } else {
                             if (sell_price_lock == 1) {
                                 mPrice.setEnabled(false);
                             } else {
@@ -360,13 +363,13 @@ private boolean refresh = false;
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
                         mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
-                    }else {
+                    } else {
                         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                             if (buy_num_lock == 1) {
                             } else {
                                 mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
                             }
-                        }else {
+                        } else {
                             if (sell_num_lock == 1) {
                             } else {
                                 mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
@@ -394,7 +397,7 @@ private boolean refresh = false;
                         } else {
                             mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
                         }
-                    }else {
+                    } else {
                         if (sell_num_lock == 1) {
                         } else {
                             mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
@@ -413,6 +416,14 @@ private boolean refresh = false;
                 cacelSocket();
                 linedetail();
 
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        sendSocket();
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(task, 3000);//2秒后执行TimeTask的run方法
             }
         });
 //        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -464,6 +475,10 @@ private boolean refresh = false;
 //                });
     }
 
+    public void refresh() {
+        onCreate(null);
+        mSwiperefreshlayout.setRefreshing(false);
+    }
 
     private List<DepthDataBean> getBuyDepthList2(List<List<Float>> lists) {
         Log.v("depthList", lists.size() + "");
@@ -768,7 +783,7 @@ private boolean refresh = false;
                     if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.")) {
                         double number = Double.valueOf(mNumber.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
-                        double key =  Double.valueOf(mKeyong.getText().toString().trim());
+                        double key = Double.valueOf(mKeyong.getText().toString().trim());
                         mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
                         mNumber.setText(ArithUtil.round(ArithUtil.mul(key, price), 4) + "");
 //                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
@@ -790,7 +805,6 @@ private boolean refresh = false;
 //                }
             }
         });
-
 
 
         mNumber.addTextChangedListener(new TextWatcher() {
@@ -1165,7 +1179,7 @@ private boolean refresh = false;
     public void requestError(String msg) {
         mSwiperefreshlayout.setRefreshing(false);
         ToastUtils.showToast(msg);
-        if(refresh){
+        if (refresh) {
             refresh = false;
             sendSocket();
         }
@@ -1174,11 +1188,12 @@ private boolean refresh = false;
     private String total = "0";
     private int buy_price_lock = 0;
     private int sell_price_lock = 0;
-    private int buy_num_lock= 0;
-    private int sell_num_lock= 0;
+    private int buy_num_lock = 0;
+    private int sell_num_lock = 0;
+
     @Override
     public void sendMsgSuccess(DealInfo data) {
-        if(refresh){
+        if (refresh) {
             refresh = false;
             sendSocket();
         }
@@ -1220,7 +1235,7 @@ private boolean refresh = false;
                             getPrice();
                         }
                         if (data.getData().getBuy_num_lock() == 1) {
-                            buy_num_lock=data.getData().getBuy_num_lock();
+                            buy_num_lock = data.getData().getBuy_num_lock();
                             mNumber.setEnabled(false);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getBuy_price_change());
                             totalnum = vou;
@@ -1229,7 +1244,7 @@ private boolean refresh = false;
                             mAddtwo.setEnabled(false);
                             mDeletetwo.setEnabled(false);
                         } else {
-                            buy_num_lock=data.getData().getBuy_num_lock();
+                            buy_num_lock = data.getData().getBuy_num_lock();
                             mNumber.setEnabled(true);
                             mAddtwo.setEnabled(true);
                             mDeletetwo.setEnabled(true);
@@ -1279,7 +1294,7 @@ private boolean refresh = false;
                             getPrice();
                         }
                         if (data.getData().getSell_num_lock() == 1) {
-                            sell_num_lock=data.getData().getSell_num_lock();
+                            sell_num_lock = data.getData().getSell_num_lock();
                             mNumber.setEnabled(false);
                             mAddtwo.setEnabled(false);
                             mDeletetwo.setEnabled(false);
@@ -1288,7 +1303,7 @@ private boolean refresh = false;
                             mTabRadioGroup.check(mSettingsTab.getId());
                             disableRadioGroup(mTabRadioGroup);
                         } else {
-                            sell_num_lock=data.getData().getSell_num_lock();
+                            sell_num_lock = data.getData().getSell_num_lock();
                             mNumber.setEnabled(true);
                             mAddtwo.setEnabled(true);
                             mDeletetwo.setEnabled(true);
@@ -1386,7 +1401,7 @@ private boolean refresh = false;
 
     @Override
     public void requestDetailSuccess(Home baseBean) {
-        if (EmptyUtils.isNotEmpty(baseBean) ) {
+        if (EmptyUtils.isNotEmpty(baseBean)) {
             setDetailSuccess(baseBean);
         }
 
@@ -1779,6 +1794,8 @@ private boolean refresh = false;
         WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
-
+        if (mSwiperefreshlayout != null) {
+            mSwiperefreshlayout.setRefreshing(false);
+        }
     }
 }

@@ -112,7 +112,7 @@ public class TabSellerActivity extends BaseNetActivity<SellerCoinPresenter> impl
             if(commonBean.getData().getIs_arr()==1){
                 mFragments.add(SellerCoinActivity.newInstance(false,commonBean.getData().getPro_arr().get(j),commonBean));
             }else {
-                mFragments.add(SellerCoinActivity.newInstance(true,getIntent().getStringExtra("xnb_name"),commonBean));
+                mFragments.add(SellerCoinActivity.newInstance(true,commonBean.getData().getPro_arr().get(j),commonBean));
             }
         }
         if(commonBean.getData().getIs_arr()==1){

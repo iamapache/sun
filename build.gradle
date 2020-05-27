@@ -5,9 +5,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven { url 'https://jitpack.io' }
     }
     dependencies {
@@ -23,9 +20,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
         maven { url 'https://jitpack.io' }
         flatDir {         //<------添加三行
             dirs 'libs'   //<------

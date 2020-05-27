@@ -100,12 +100,13 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
     }
     String str;
     SellerCoin sellerCoin ;
+    String xnb_name="";
     @Override
     protected void initDatas() {
          sellerCoin =   getArguments().getParcelable("address");
-        String xnb_name = getArguments().getString("xnb_name");
+         xnb_name = getArguments().getString("xnb_name");
         mCointype.setText(xnb_name);
-
+        Logger.i("<==>encryptByPublicKey:" + xnb_name);
         mTvAmount.setText(sellerCoin.getData().getXnb_num());
         mTvKgf.setText(sellerCoin.getData().getXnb_fee().get(0) + "");
         zc_min = Double.valueOf(sellerCoin.getData().getZc_min());
@@ -200,7 +201,7 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
                         intent.putExtra("pass", mTvTranspassword.getText().toString().trim());
                         intent.putExtra("fee", mTvKgf.getText().toString().trim());
                         intent.putExtra("isCheck", mTogglebutton.isChecked());
-                        intent.putExtra("protocol", sellerCoin.getData().getPro_arr().get(0)+"");
+                        intent.putExtra("protocol", xnb_name+"");
                         startActivity(intent);
                         dialog.dismiss();
 

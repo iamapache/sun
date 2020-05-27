@@ -7,7 +7,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -63,9 +62,6 @@ import com.madaex.exchange.ui.mine.bean.update;
 import com.madaex.exchange.ui.mine.contract.MineContract;
 import com.madaex.exchange.ui.mine.presenter.MinePresenter;
 import com.madaex.exchange.update.BaseDialog;
-import com.madaex.exchange.update.utils.AppUpdateUtils;
-import com.madaex.exchange.update.utils.ColorUtil;
-import com.madaex.exchange.update.utils.DrawableUtil;
 import com.madaex.exchange.update.view.NumberProgressBar;
 import com.orhanobut.logger.Logger;
 
@@ -364,12 +360,18 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 TextView textView = baseDialog.findViewById(R.id.tv_update_info);
                 LinearLayout ll_close = baseDialog.findViewById(R.id.ll_close);
                 Button button = baseDialog.findViewById(R.id.versionchecklib_version_dialog_commit);
+                Button btn_ok = baseDialog.findViewById(R.id.btn_ok);
                 TextView tv_title = baseDialog.findViewById(R.id.tv_title);
                 textView.setText(versionBundle.getContent());
                 tv_title.setText(String.format(getString(R.string.upgradetoversion), versionBundle.getTitle()));
                 if (versionBundle.getUPDATE().equals("1")) {
                     baseDialog.setCanceledOnTouchOutside(true);
-
+                    btn_ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            baseDialog.cancel();
+                        }
+                    });
                     ll_close.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -378,6 +380,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                     });
                 } else if (versionBundle.getUPDATE().equals("2")) {
                     ll_close.setVisibility(View.GONE);
+                    btn_ok.setVisibility(View.GONE);
                     baseDialog.setCanceledOnTouchOutside(false);
                     baseDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                         @Override
@@ -392,9 +395,6 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                         }
                     });
                 }
-                int mDefaultColor = 0xffe94339;
-                button.setBackgroundDrawable(DrawableUtil.getDrawable(AppUpdateUtils.dip2px(4, getActivity()), mDefaultColor));
-                button.setTextColor(ColorUtil.isTextColorDark(mDefaultColor) ? Color.BLACK : Color.WHITE);
                 return baseDialog;
             }
         };

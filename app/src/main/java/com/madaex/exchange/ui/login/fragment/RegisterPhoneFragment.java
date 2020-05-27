@@ -270,16 +270,9 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
             ToastUtils.showToast(getString(R.string.input_phone));
             return;
         }
-        if( mTvAddresscode.getText().toString().trim().equals("+86")){
-            if (!RegexUtil.isMobileNumber(mPhone.getText().toString())) {
+        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
                 ToastUtils.showToast(getString(R.string.input_phone_ok));
                 return;
-            }
-        }else {
-            if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return;
-            }
         }
 
         if (TextUtils.isEmpty(mPassword.getText().toString())) {

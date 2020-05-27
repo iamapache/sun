@@ -213,10 +213,10 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 
     @Override
     public void nodata(String msg) {
-        mMoney1.setText("￥ 0.0");
-        mMoney2.setText("￥ 0.0");
-        mMoney3.setText("￥ 0.0");
-        mMoney4.setText("￥ 0.0");
+        mMoney1.setText(" 0.0");
+        mMoney2.setText(" 0.0");
+        mMoney3.setText(" 0.0");
+        mMoney4.setText(" 0.0");
         mCny.setText("￥ 0.0");
 //        initChart(1,
 //                1,
@@ -227,10 +227,10 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 
     @Override
     public void requestError(String msg) {
-        mMoney1.setText("￥ 0.0");
-        mMoney2.setText("￥ 0.0");
-        mMoney3.setText("￥ 0.0");
-        mMoney4.setText("￥ 0.0");
+        mMoney1.setText(" 0.0");
+        mMoney2.setText(" 0.0");
+        mMoney3.setText(" 0.0");
+        mMoney4.setText(" 0.0");
         mCny.setText("￥ 0.0");
 //        initChart(1,
 //                1,
@@ -256,7 +256,7 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 
 
 
-            mMoney1.setText("￥" + commonBean.getData().getCoin_hot().get(0).getValue());
+            mMoney1.setText(commonBean.getData().getCoin_hot().get(0).getValue());
 
 
 
@@ -269,19 +269,19 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
 
             if(commonBean.getData().getCoin_hot().size()>1){
                 mName2.setText(commonBean.getData().getCoin_hot().get(1).getName());
-                mMoney2.setText("￥" + commonBean.getData().getCoin_hot().get(1).getValue());
+                mMoney2.setText( commonBean.getData().getCoin_hot().get(1).getValue());
                 mBili2.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(1).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
             }
             if(commonBean.getData().getCoin_hot().size()>2){
                 mName3.setText(commonBean.getData().getCoin_hot().get(2).getName());
-                mMoney3.setText("￥" + commonBean.getData().getCoin_hot().get(2).getValue());
+                mMoney3.setText(commonBean.getData().getCoin_hot().get(2).getValue());
                 mBili3.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(2).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");
             }
 //            mBili2.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(1).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
 //            mBili3.setText(df.format((Double.valueOf(commonBean.getData().getCoin_hot().get(2).getValue())* 1.0)/(Double.valueOf(commonBean.getData().getAssets().getUsdt())* 1.0)));
             if(commonBean.getData().getCoin_hot().size()>3){
                 mName4.setText(commonBean.getData().getCoin_hot().get(3).getName());
-                mMoney4.setText("￥" + commonBean.getData().getCoin_hot().get(3).getValue());
+                mMoney4.setText(commonBean.getData().getCoin_hot().get(3).getValue());
                 mBili4.setText(new BigDecimal(commonBean.getData().getCoin_hot().get(3).getPrecent()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()+"%");}
 //            initChart(Float.valueOf(commonBean.getData().getCoin_hot().get(0).getValue()),
 //                    Float.valueOf(commonBean.getData().getCoin_hot().get(1).getValue()),

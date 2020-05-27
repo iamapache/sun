@@ -17,7 +17,7 @@
             android:id="@+id/iv_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/top_5"/>
+            android:src="@mipmap/beijing"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,29 +52,41 @@
                     android:textSize="14sp"/>
             </ScrollView>
 
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_marginTop="25dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-            <Button
-                android:id="@id/versionchecklib_version_dialog_commit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:minHeight="40dp"
-                android:text="@string/upgrade"
-                android:background="@color/background_dark"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"/>
+
+
+
 
             <Button
                 android:id="@+id/btn_ok"
+                android:gravity="center"
+                android:minHeight="40dp"
+                android:layout_weight="1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="忽略此版本"
+                android:layout_height="40dp"
+                android:text="暂不更新"
+                android:background="@mipmap/zanbugengxin"
                 android:textColor="#666"
-                android:textSize="14sp"
-                android:visibility="gone"/>
+                android:textSize="15sp"/>
 
+    <Button
+        android:id="@id/versionchecklib_version_dialog_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_weight="1"
+        android:background="@mipmap/lijigengxin"
+        android:gravity="center"
+        android:text="@string/upgrade"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+</LinearLayout>
             <com.madaex.exchange.update.view.NumberProgressBar
                 android:id="@+id/npb"
                 style="@style/UpdateAppNumberProgressBar_Red"
@@ -86,6 +98,7 @@
 
         <LinearLayout
             android:id="@+id/ll_close"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

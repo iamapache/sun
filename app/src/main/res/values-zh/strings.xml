@@ -359,7 +359,7 @@
     <string name="comingsoon">暂未开放，敬请期待</string>
     <string name="newv">最新</string>
     <string name="upgradetoversion">是否升级到%s版本？</string>
-    <string name="upgrade">升级</string>
+    <string name="upgrade">立即更新</string>
     <string name="numberapplication">申请数量</string>
     <string name="submitok">确认提交</string>
     <string name="Immediateapplication">立即申请</string>

@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.util.RegexUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.common.util.ViewUtil;
 import com.madaex.exchange.common.view.TimerText;
@@ -229,16 +228,9 @@ public class ForgetPasswordPhoneFragment extends BaseNetLazyFragment<CommonPrese
             ToastUtils.showToast(getString(R.string.input_phone));
             return ;
         }
-        if( mTvAddresscode.getText().toString().trim().equals("+86")){
-            if (!RegexUtil.isMobileNumber(mPhone.getText().toString())) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return;
-            }
-        }else {
-            if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return;
-            }
+        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return;
         }
         if(TextUtils.isEmpty(mPassword.getText().toString())) {
             ToastUtils.showToast(getString(R.string.input_pwd));
@@ -269,16 +261,9 @@ public class ForgetPasswordPhoneFragment extends BaseNetLazyFragment<CommonPrese
             ToastUtils.showToast(getString(R.string.input_phone));
             return false;
         }
-        if( mTvAddresscode.getText().toString().trim().equals("+86")){
-            if (!RegexUtil.isMobileNumber(mPhone.getText().toString())) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return false;
-            }
-        }else {
-            if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return false;
-            }
+        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return false;
         }
         return true;
     }
