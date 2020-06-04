@@ -600,4 +600,7 @@
     <string name="Priceus">Price(USDT)</string>
     <string name="contractBalance">Contract Balance：</string>
     <string name="Warmreminder">Warm reminder</string>
+    <string name="scuccess">scuccess</string>
+    <string name="alscseller">Alsc release sell</string>
+    <string name="shifangSell">Sell</string>
 </resources>

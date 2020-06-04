@@ -357,19 +357,7 @@
                             android:orientation="horizontal">
 
 
-                            <TextView
-                                android:layout_width="@dimen/d_10dp"
-                                android:layout_height="@dimen/d_10dp"
-                                android:layout_marginRight="7dp"
-                                android:background="@drawable/rect_rounded_arc" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="7dp"
-                                android:text="@string/buy"
-                                android:textColor="#A3AEBA"
-                                android:textSize="@dimen/d_9dp" />
 
                             <TextView
                                 android:layout_width="@dimen/d_10dp"
@@ -383,6 +371,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="4dp"
                                 android:text="@string/seller"
+                                android:textColor="#A3AEBA"
+                                android:textSize="@dimen/d_9dp" />
+                            <TextView
+                                android:layout_width="@dimen/d_10dp"
+                                android:layout_height="@dimen/d_10dp"
+                                android:layout_marginRight="7dp"
+                                android:background="@drawable/rect_rounded_arc" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="7dp"
+                                android:text="@string/buy"
                                 android:textColor="#A3AEBA"
                                 android:textSize="@dimen/d_9dp" />
                         </LinearLayout>

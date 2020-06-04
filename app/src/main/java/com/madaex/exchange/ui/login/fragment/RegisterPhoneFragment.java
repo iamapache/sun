@@ -103,7 +103,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
 
     @Override
     protected void initDatas() {
-        if(getActivity().getIntent().hasExtra("invit")){
+        if (getActivity().getIntent().hasExtra("invit")) {
             String str = getActivity().getIntent().getStringExtra("invit");
             mRecommend.setText(str);
         }
@@ -119,7 +119,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
                     params.put("type", "1");
 
                     params.put("mobile", mPhone.getText().toString().trim());
-                    params.put("areaCode",  mTvAddresscode.getText().toString().trim());
+                    params.put("areaCode", mTvAddresscode.getText().toString().trim());
                     mPresenter.getMsgCode(DataUtil.sign(params));
                 }
             }
@@ -260,7 +260,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
         if (resultCode == Activity.RESULT_OK
                 && requestCode == CODE_REQUEST) {
             String bean = data.getStringExtra("data");
-            mTvAddresscode.setText("+"+bean);
+            mTvAddresscode.setText("+" + bean);
         }
 
     }
@@ -270,9 +270,13 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
             ToastUtils.showToast(getString(R.string.input_phone));
             return;
         }
-        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return;
+        if (18 < mPhone.getText().toString().length()) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return ;
+        }
+        if (mPhone.getText().toString().length() < 5) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return ;
         }
 
         if (TextUtils.isEmpty(mPassword.getText().toString())) {
@@ -297,7 +301,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
         params.put("verify_code", mCode.getText().toString().trim());
         params.put("verify_encode", verify_encode);
         params.put("regtype", "mobile");
-        params.put("areaCode",  mTvAddresscode.getText().toString().trim());
+        params.put("areaCode", mTvAddresscode.getText().toString().trim());
         params.put("mobile", mPhone.getText().toString().trim());
         params.put("password", mPassword.getText().toString().trim());
         params.put("invit", mRecommend.getText().toString().trim());
@@ -340,7 +344,7 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
                 params.put("verify_code", mCode.getText().toString().trim());
                 params.put("verify_encode", verify_encode);
                 params.put("regtype", "mobile");
-                params.put("areaCode",  mTvAddresscode.getText().toString().trim());
+                params.put("areaCode", mTvAddresscode.getText().toString().trim());
                 params.put("mobile", mPhone.getText().toString().trim());
                 params.put("password", mPassword.getText().toString().trim());
                 params.put("invit", mRecommend.getText().toString().trim());
@@ -362,16 +366,13 @@ public class RegisterPhoneFragment extends BaseNetLazyFragment<CommonPresenter> 
             ToastUtils.showToast(getString(R.string.input_phone));
             return false;
         }
-        if( mTvAddresscode.getText().toString().trim().equals("+86")){
-            if (!RegexUtil.isMobileNumber(mPhone.getText().toString())) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return false;
-            }
-        }else {
-            if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
-                ToastUtils.showToast(getString(R.string.input_phone_ok));
-                return false;
-            }
+        if (18 < mPhone.getText().toString().length()) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return false;
+        }
+        if (mPhone.getText().toString().length() < 5) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return false;
         }
         return true;
     }

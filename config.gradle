@@ -11,8 +11,8 @@ ext {
             applicationId    : "com.madaex.gdc",
             minSdkVersion    : 16,
             targetSdkVersion : 27,
-            versionCode      : 7,
-            versionName      : "1.7"
+            versionCode      : 9,
+            versionName      : "1.9"
     ]
 
     def dependVersion = [

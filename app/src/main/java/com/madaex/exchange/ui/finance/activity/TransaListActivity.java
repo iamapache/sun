@@ -12,7 +12,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.view.RecycleViewDivider;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.bean.TransaList;
 import com.madaex.exchange.ui.finance.contract.TransaContract;
@@ -73,8 +72,9 @@ public class TransaListActivity extends BaseNetActivity <TransaPreaenter> implem
                 } else {
                     helper.setText(R.id.name, "+"+item.getNum()+item.getCoinname());
                 }
-                helper.setText(R.id.time, item.getAddtime())
-                        .setText(R.id.address, item.getUsername());
+                    helper .setText(R.id.deal, item.getStatus());
+                helper.setText(R.id.createtime, item.getAddtime())
+                        .setText(R.id.mum, item.getFee());
                 helper.getView(R.id.ll_item).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -86,8 +86,6 @@ public class TransaListActivity extends BaseNetActivity <TransaPreaenter> implem
                 });
             }
         };
-        mRecyclerview.addItemDecoration(new RecycleViewDivider(
-                mContext, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.white)));
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

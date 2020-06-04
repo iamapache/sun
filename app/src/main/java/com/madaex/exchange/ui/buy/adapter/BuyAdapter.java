@@ -2,7 +2,6 @@ package com.madaex.exchange.ui.buy.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +58,7 @@ public class BuyAdapter extends  RecyclerView.Adapter<BuyAdapter.MyViewHolder> {
 
         int vote = (int) (mDatas.get(position).get(1).floatValue()/(2000)*100);
         holder.mProgressBar.setProgress(vote);
-        Log.d("onBindViewHolder", vote+"重连");
+//        Log.d("onBindViewHolder", vote+"重连");
         holder.mProgressBar.setProgressDrawable(mContext.getResources().getDrawable(R.drawable.progressbar_bg));
         holder.itemView.setTag(mDatas.get(position).get(0)+"");
         holder.itemView.setOnClickListener(new View.OnClickListener() {

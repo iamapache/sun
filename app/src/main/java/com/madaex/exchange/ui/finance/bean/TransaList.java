@@ -46,9 +46,26 @@ public class TransaList extends CommonBaseBean {
         private String status;
         private String username;
         private String coinname;
-
+        private String new_price1;
+        private String fee;
         public String getUsername() {
             return username;
+        }
+
+        public String getFee() {
+            return fee;
+        }
+
+        public void setFee(String fee) {
+            this.fee = fee;
+        }
+
+        public String getNew_price1() {
+            return new_price1;
+        }
+
+        public void setNew_price1(String new_price1) {
+            this.new_price1 = new_price1;
         }
 
         public void setUsername(String username) {

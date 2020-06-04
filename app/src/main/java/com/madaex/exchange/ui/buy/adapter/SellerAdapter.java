@@ -55,7 +55,7 @@ public class SellerAdapter extends  RecyclerView.Adapter<SellerAdapter.MyViewHol
         }else {
             holder.number.setText( mDatas.get(getItemCount()-position -1).get(1)+"");
         }
-        Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
+//        Log.d("onBindViewHolder2", mDatas.get(position).get(0)+"重连");
         holder.itemView.setTag(mDatas.get(getItemCount()-position -1).get(0)+"");
         int vote = (int) (mDatas.get(getItemCount()-position -1).get(1).floatValue()/(2000)*100);
         holder.mProgressBar.setProgress(vote);

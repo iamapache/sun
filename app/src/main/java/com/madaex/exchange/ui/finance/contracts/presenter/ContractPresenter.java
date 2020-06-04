@@ -242,6 +242,33 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
     }
 
     @Override
+    public void shifangseller(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, CommonDataBean>() {
+                    @Override
+                    public CommonDataBean apply(@NonNull String data) throws Exception {
+                        Logger.i("<====>paramsStr:" + data);
+                        Gson gson = new Gson();
+                        CommonDataBean CommonDataBean = gson.fromJson(data, CommonDataBean.class);
+                        return CommonDataBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
+                    @Override
+                    public void onNext(CommonDataBean CommonDataBean) {
+                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
+                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                            mView.onUnLogin();
+                        }else {
+                            mView.requestSuccess(CommonDataBean.getMessage());
+                        }
+                    }
+                }));
+    }
+
+    @Override
     public void getUSDTinfo(Map body) {
         addSubscribe((Disposable) rxApi.getTestResult(body)
                 .map(new Function<String, USDTinfo>() {

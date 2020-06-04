@@ -180,7 +180,7 @@ public class SellerCoinActivity extends BaseNetLazyFragment<SellerCoinPresenter>
 //        }
         String xnb_name = getArguments().getString("xnb_name");
         Dialog dialog = new IosDialog.Builder(getActivity()).setTitle(getString(R.string.oksellerbill) + "?").setTitleColor(ContextCompat.getColor(mContext, R.color.common_text_1)).setTitleSize(20)
-                .setMessage(getString(R.string.money) + xnb_name + mTvNumber.getText().toString().trim()).setMessageColor(ContextCompat.getColor(mContext, R.color.common_red)).setMessageSize(14)
+                .setMessage(getString(R.string.money)  + mTvNumber.getText().toString().trim()).setMessageColor(ContextCompat.getColor(mContext, R.color.common_red)).setMessageSize(14)
                 .setNegativeButtonColor(Color.GRAY)
                 .setNegativeButtonSize(18)
                 .setNegativeButton(getString(R.string.cancel), new IosDialog.OnClickListener() {

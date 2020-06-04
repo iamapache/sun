@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +14,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
-import com.madaex.exchange.common.view.RecycleViewDivider;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.bean.BillList;
 import com.madaex.exchange.ui.finance.contract.BillContract;
@@ -67,23 +67,30 @@ getActivityComponent().inject(this);
         mAdapter = new BaseQuickAdapter<BillList.DataBean.ListBean, BaseViewHolder>(R.layout.item_bill) {
             @Override
             protected void convert(BaseViewHolder helper, BillList.DataBean.ListBean item) {
-                helper.setText(R.id.time1, item.getAddtime().split(" ")[0])
-                        .setText(R.id.time2, item.getAddtime().split(" ")[1]).setText(R.id.number, item.getAdd_subtract()+item.getNum())
+                helper.setText(R.id.type_name, item.getType_name())
+                        .setText(R.id.time, item.getAddtime()).setText(R.id.number, item.getAdd_subtract()+item.getNum())
                         .setText(R.id.cointype, item.getCoin_ename())
-                        .setText(R.id.type, item.getType_name());
+                        .setText(R.id.state, item.getStatus_name());
+                if(item.getState()==0){
+                    helper.setTextColor(R.id.state, getResources().getColor(R.color.chuli));
+                }else if(item.getState()==1){
+                    helper.setTextColor(R.id.state, getResources().getColor(R.color.depth_buy_line));
+                }else if(item.getState()==2){
+                    helper.setTextColor(R.id.state, getResources().getColor(R.color.shibai));
+                }
             }
         };
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                Intent intent = new Intent();
-//                intent.setClass(mContext, BillDetailActivity.class);
-//                intent.putExtra("bean",(BillList.DataBean) mAdapter.getItem(position));
-//                startActivity(intent);
+                Intent intent = new Intent();
+                intent.setClass(mContext, BillDetailActivity.class);
+                intent.putExtra("bean",(BillList.DataBean.ListBean) adapter.getItem(position));
+                startActivity(intent);
             }
         });
-        mRecyclerview.addItemDecoration(new RecycleViewDivider(
-                mContext, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.common_ggray)));
+//        mRecyclerview.addItemDecoration(new RecycleViewDivider(
+//                mContext, LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.common_ggray)));
         mAdapter.setEmptyView(R.layout.view_empty_bill, (ViewGroup) mRecyclerview.getParent());
         mRecyclerview.setAdapter(mAdapter);
 

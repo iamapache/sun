@@ -129,7 +129,7 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
         mPresenter.bills(DataUtil.sign(params));
     }
 
-    @OnClick({R.id.toolbar_left_btn_ll,R.id.submit,R.id.allrecords})
+    @OnClick({R.id.toolbar_left_btn_ll,R.id.submit,R.id.allrecords,R.id.shifangseller})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.toolbar_left_btn_ll:
@@ -146,6 +146,13 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
                 Intent intent =  getIntent();
                 intent.setClass(mContext, AllHistoryActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.shifangseller:
+                Intent intent2 =  getIntent();
+                intent2.setClass(mContext, ShifangSellerActivity.class);
+                intent2.putExtra("mavail",mAvail.getText().toString().trim());
+                startActivity(intent2);
                 break;
         }
     }

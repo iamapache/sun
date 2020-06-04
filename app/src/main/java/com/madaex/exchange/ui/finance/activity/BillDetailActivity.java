@@ -30,6 +30,8 @@ public class BillDetailActivity extends BaseActivity {
     TextView mBillTime;
     @BindView(R.id.bill_type)
     TextView mBillType;
+    @BindView(R.id.bill_sattus)
+    TextView mBillSattus;
 
     @Override
     protected int getLayoutId() {
@@ -57,12 +59,13 @@ public class BillDetailActivity extends BaseActivity {
 
     @Override
     protected void initDatas() {
-        BillList.DataBean bean = getIntent().getParcelableExtra("bean");
-//        mBillDealtype.setText(bean.getRemark());
-//        mNumber.setText(bean.getType()+bean.getFee());
-//        mBillMoney.setText(bean.getMum_a());
-//        mBillTime.setText(bean.getAddtime());
-//        mBillType.setText(bean.getCoinname());
+        BillList.DataBean.ListBean item = getIntent().getParcelableExtra("bean");
+        mBillDealtype.setText(item.getType_name());
+        mNumber.setText(item.getCoin_ename()+item.getAdd_subtract()+item.getNum());
+        mBillMoney.setText(item.getMum_a());
+        mBillTime.setText(item.getAddtime());
+        mBillType.setText(item.getRemark());
+        mBillSattus.setText(item.getStatus_name());
     }
 
     @Override

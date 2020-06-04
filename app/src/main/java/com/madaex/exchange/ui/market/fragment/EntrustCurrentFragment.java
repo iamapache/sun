@@ -128,7 +128,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
 
             params.put("one_xnb", one_xnb);
             params.put("two_xnb", two_xnb);
-            params.put("status", status);
+            params.put("type", status);
             params.put("curPage", pageNum+"");
             mPresenter.getData(DataUtil.sign(params));
         }else {
@@ -141,7 +141,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
 
             params.put("one_xnb", one_xnb);
             params.put("two_xnb", two_xnb);
-            params.put("status", status);
+            params.put("type", status);
             params.put("curPage", pageNum+"");
             mPresenter.getData(DataUtil.sign(params));
         }

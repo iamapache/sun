@@ -3,6 +3,7 @@ package com.madaex.exchange.ui.finance.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,13 @@ public class BillList implements Parcelable {
 
     /**
      * status : 1
-     * data : {"list":[{"id":"282","userid":"314","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"315","num":"111.00","addtime":"2019-05-24 16:27","status_name":"成功"},{"id":"87","userid":"315","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"314","num":"111.00","addtime":"2019-05-24 16:27","status_name":"成功"},{"id":"281","userid":"314","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"315","num":"100.00","addtime":"2019-05-24 14:32","status_name":"成功"},{"id":"86","userid":"315","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"314","num":"100.00","addtime":"2019-05-24 14:32","status_name":"成功"},{"id":"280","userid":"20000044","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"316","num":"777.00","addtime":"2019-05-24 11:44","status_name":"成功"},{"id":"85","userid":"316","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"20000044","num":"777.00","addtime":"2019-05-24 11:44","status_name":"成功"},{"id":"279","userid":"316","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"20000044","num":"158.00","addtime":"2019-05-24 11:41","status_name":"成功"},{"id":"84","userid":"20000044","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"316","num":"158.00","addtime":"2019-05-24 11:41","status_name":"成功"},{"id":"278","userid":"20000044","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"316","num":"1.00","addtime":"2019-05-24 11:14","status_name":"成功"},{"id":"83","userid":"316","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"20000044","num":"1.00","addtime":"2019-05-24 11:14","status_name":"成功"}],"total":4}
+     * data : {"list":[{"coin_ename":"USDT","type_name":"币币转合约","other_id":"","num":"1000.00000","mum_a":"4000.00000","addtime":"2020-06-03 18:19:56","status_name":"待处理","state":0,"remark":"币币转合约","id":27146,"add_subtract":"-"}],"total":1}
+     * message : 操作成功
      */
 
     private int status;
     private DataBean data;
+    private String message;
 
     public int getStatus() {
         return status;
@@ -38,10 +41,18 @@ public class BillList implements Parcelable {
         this.data = data;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public static class DataBean implements Parcelable {
         /**
-         * list : [{"id":"282","userid":"314","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"315","num":"111.00","addtime":"2019-05-24 16:27","status_name":"成功"},{"id":"87","userid":"315","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"314","num":"111.00","addtime":"2019-05-24 16:27","status_name":"成功"},{"id":"281","userid":"314","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"315","num":"100.00","addtime":"2019-05-24 14:32","status_name":"成功"},{"id":"86","userid":"315","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"314","num":"100.00","addtime":"2019-05-24 14:32","status_name":"成功"},{"id":"280","userid":"20000044","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"316","num":"777.00","addtime":"2019-05-24 11:44","status_name":"成功"},{"id":"85","userid":"316","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"20000044","num":"777.00","addtime":"2019-05-24 11:44","status_name":"成功"},{"id":"279","userid":"316","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"20000044","num":"158.00","addtime":"2019-05-24 11:41","status_name":"成功"},{"id":"84","userid":"20000044","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"316","num":"158.00","addtime":"2019-05-24 11:41","status_name":"成功"},{"id":"278","userid":"20000044","coin_ename":"GRC","add_subtract":"-","type_name":"提币","other_id":"316","num":"1.00","addtime":"2019-05-24 11:14","status_name":"成功"},{"id":"83","userid":"316","coin_ename":"GRC","add_subtract":"+","type_name":"充币","other_id":"20000044","num":"1.00","addtime":"2019-05-24 11:14","status_name":"成功"}]
-         * total : 4
+         * list : [{"coin_ename":"USDT","type_name":"币币转合约","other_id":"","num":"1000.00000","mum_a":"4000.00000","addtime":"2020-06-03 18:19:56","status_name":"待处理","state":0,"remark":"币币转合约","id":27146,"add_subtract":"-"}]
+         * total : 1
          */
 
         private int total;
@@ -65,42 +76,30 @@ public class BillList implements Parcelable {
 
         public static class ListBean implements Parcelable {
             /**
-             * id : 282
-             * userid : 314
-             * coin_ename : GRC
+             * coin_ename : USDT
+             * type_name : 币币转合约
+             * other_id :
+             * num : 1000.00000
+             * mum_a : 4000.00000
+             * addtime : 2020-06-03 18:19:56
+             * status_name : 待处理
+             * state : 0
+             * remark : 币币转合约
+             * id : 27146
              * add_subtract : -
-             * type_name : 提币
-             * other_id : 315
-             * num : 111.00
-             * addtime : 2019-05-24 16:27
-             * status_name : 成功
              */
 
-            private String id;
-            private String userid;
             private String coin_ename;
-            private String add_subtract;
             private String type_name;
             private String other_id;
             private String num;
+            private String mum_a;
             private String addtime;
             private String status_name;
-
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public String getUserid() {
-                return userid;
-            }
-
-            public void setUserid(String userid) {
-                this.userid = userid;
-            }
+            private int state;
+            private String remark;
+            private int id;
+            private String add_subtract;
 
             public String getCoin_ename() {
                 return coin_ename;
@@ -108,14 +107,6 @@ public class BillList implements Parcelable {
 
             public void setCoin_ename(String coin_ename) {
                 this.coin_ename = coin_ename;
-            }
-
-            public String getAdd_subtract() {
-                return add_subtract;
-            }
-
-            public void setAdd_subtract(String add_subtract) {
-                this.add_subtract = add_subtract;
             }
 
             public String getType_name() {
@@ -142,6 +133,14 @@ public class BillList implements Parcelable {
                 this.num = num;
             }
 
+            public String getMum_a() {
+                return mum_a;
+            }
+
+            public void setMum_a(String mum_a) {
+                this.mum_a = mum_a;
+            }
+
             public String getAddtime() {
                 return addtime;
             }
@@ -158,6 +157,38 @@ public class BillList implements Parcelable {
                 this.status_name = status_name;
             }
 
+            public int getState() {
+                return state;
+            }
+
+            public void setState(int state) {
+                this.state = state;
+            }
+
+            public String getRemark() {
+                return remark;
+            }
+
+            public void setRemark(String remark) {
+                this.remark = remark;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getAdd_subtract() {
+                return add_subtract;
+            }
+
+            public void setAdd_subtract(String add_subtract) {
+                this.add_subtract = add_subtract;
+            }
+
             @Override
             public int describeContents() {
                 return 0;
@@ -165,30 +196,34 @@ public class BillList implements Parcelable {
 
             @Override
             public void writeToParcel(Parcel dest, int flags) {
-                dest.writeString(this.id);
-                dest.writeString(this.userid);
                 dest.writeString(this.coin_ename);
-                dest.writeString(this.add_subtract);
                 dest.writeString(this.type_name);
                 dest.writeString(this.other_id);
                 dest.writeString(this.num);
+                dest.writeString(this.mum_a);
                 dest.writeString(this.addtime);
                 dest.writeString(this.status_name);
+                dest.writeInt(this.state);
+                dest.writeString(this.remark);
+                dest.writeInt(this.id);
+                dest.writeString(this.add_subtract);
             }
 
             public ListBean() {
             }
 
             protected ListBean(Parcel in) {
-                this.id = in.readString();
-                this.userid = in.readString();
                 this.coin_ename = in.readString();
-                this.add_subtract = in.readString();
                 this.type_name = in.readString();
                 this.other_id = in.readString();
                 this.num = in.readString();
+                this.mum_a = in.readString();
                 this.addtime = in.readString();
                 this.status_name = in.readString();
+                this.state = in.readInt();
+                this.remark = in.readString();
+                this.id = in.readInt();
+                this.add_subtract = in.readString();
             }
 
             public static final Creator<ListBean> CREATOR = new Creator<ListBean>() {
@@ -212,7 +247,7 @@ public class BillList implements Parcelable {
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             dest.writeInt(this.total);
-            dest.writeTypedList(this.list);
+            dest.writeList(this.list);
         }
 
         public DataBean() {
@@ -220,7 +255,8 @@ public class BillList implements Parcelable {
 
         protected DataBean(Parcel in) {
             this.total = in.readInt();
-            this.list = in.createTypedArrayList(ListBean.CREATOR);
+            this.list = new ArrayList<ListBean>();
+            in.readList(this.list, ListBean.class.getClassLoader());
         }
 
         public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
@@ -245,6 +281,7 @@ public class BillList implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.status);
         dest.writeParcelable(this.data, flags);
+        dest.writeString(this.message);
     }
 
     public BillList() {
@@ -253,6 +290,7 @@ public class BillList implements Parcelable {
     protected BillList(Parcel in) {
         this.status = in.readInt();
         this.data = in.readParcelable(DataBean.class.getClassLoader());
+        this.message = in.readString();
     }
 
     public static final Creator<BillList> CREATOR = new Creator<BillList>() {

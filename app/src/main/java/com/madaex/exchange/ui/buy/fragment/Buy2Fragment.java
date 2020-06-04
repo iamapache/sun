@@ -66,8 +66,6 @@ import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.TreeMap;
 
 import butterknife.BindView;
@@ -413,17 +411,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             @Override
             public void onRefresh() {
                 refresh = true;
-                cacelSocket();
+                cacelSocket2();
                 linedetail();
 
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        sendSocket();
-                    }
-                };
-                Timer timer = new Timer();
-                timer.schedule(task, 3000);//2秒后执行TimeTask的run方法
             }
         });
 //        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -1179,10 +1169,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     public void requestError(String msg) {
         mSwiperefreshlayout.setRefreshing(false);
         ToastUtils.showToast(msg);
-        if (refresh) {
-            refresh = false;
-            sendSocket();
-        }
+//        if (refresh) {
+//            refresh = false;
+//            sendSocket();
+//        }
     }
 
     private String total = "0";
@@ -1193,10 +1183,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     @Override
     public void sendMsgSuccess(DealInfo data) {
-        if (refresh) {
-            refresh = false;
-            sendSocket();
-        }
+//        if (refresh) {
+//            refresh = false;
+//            sendSocket();
+//        }
         mSwiperefreshlayout.setRefreshing(false);
         mCny.setText("0");
         if (EmptyUtils.isNotEmpty(data.getData()) && EmptyUtils.isNotEmpty(data.getData().getRise_once()) && EmptyUtils.isNotEmpty(data.getData())) {
@@ -1794,6 +1784,24 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
 //        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
+        if (mSwiperefreshlayout != null) {
+            mSwiperefreshlayout.setRefreshing(false);
+        }
+    }
+
+    private void cacelSocket2() {
+
+        SocketBean socketBean = new SocketBean();
+        socketBean.setEvent("cancelChannel");
+        socketBean.setMarket_type(market_type);
+        socketBean.setChannel(one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth");
+        Log.d("<==>", new Gson().toJson(socketBean));
+//        mServerConnection.sendMessage(new Gson().toJson(socketBean));
+//        channel = one_xnb.toLowerCase() + two_xnb.toLowerCase() + "_depth";
+        WebSocketHandler.getDefault().send(new Gson().toJson(socketBean));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean));
+//        RxWebSocket.asyncSend(Constant.Websocket, new Gson().toJson(socketBean2));
+        sendSocket();
         if (mSwiperefreshlayout != null) {
             mSwiperefreshlayout.setRefreshing(false);
         }

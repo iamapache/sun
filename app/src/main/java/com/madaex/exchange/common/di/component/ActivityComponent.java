@@ -33,6 +33,7 @@ import com.madaex.exchange.ui.finance.contracts.activity.HuaActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.HuaRecordActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.OpenContractActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.OtherTransferActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.ShifangSellerActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.TransferActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankAddActivity;
 import com.madaex.exchange.ui.finance.pay.activity.BankEditActivity;
@@ -161,4 +162,6 @@ public interface ActivityComponent {
     void inject(TabBuyCoinActivity tabBuyCoinActivity);
 
     void inject(TabSellerActivity tabSellerActivity);
+
+    void inject(ShifangSellerActivity shifangSellerActivity);
 }

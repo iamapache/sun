@@ -45,6 +45,10 @@
     <color name="depth_selector">#DA30343C</color>
     <color name="gray_line">#F0F0F0</color>
 
+
+    <color name="chuli">#FBB03B</color>
+    <color name="shibai">#D4273E</color>
+
     <color name="key_ok_color">#1280FA</color>
     <color name="key_ok_color_pressed">#0174f2</color>
 

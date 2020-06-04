@@ -267,4 +267,5 @@ public class ConstantUrl {
     public static String Userlevel_add = "Userlevel.add";
 
     public static String Trade_transfer_bills = "Trade.transfer_bills";
+    public static Object TradeRelease_release="TradeRelease.release";
 }

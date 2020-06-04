@@ -54,5 +54,8 @@ public class ContractContract {
         void wallet_info(Map body);
 
         void gethuaRecord(Map body);
+
+
+        void shifangseller(Map body);
     }
 }

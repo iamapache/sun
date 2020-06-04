@@ -113,7 +113,7 @@
         <activity android:name=".ui.finance.contracts.activity.AllHistoryActivity"/>
         <activity android:name=".ui.finance.contracts.activity.OpenContractActivity"/>
         <activity android:name=".ui.finance.contracts.activity.HuaActivity"/>
-
+        <activity android:name=".ui.finance.contracts.activity.ShifangSellerActivity"/>
         <activity android:name=".ui.finance.contracts.activity.HuaRecordActivity"/>
 
         <!-- 银行卡 -->
