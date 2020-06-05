@@ -1156,10 +1156,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
         mNumber.setText("");
-        getMsgInfo();
-        Event event = new Event();
-        event.setCode(Constants.ENTRUST);
-        EventBus.getDefault().post(event);
+        handler.sendEmptyMessageDelayed(0, 2000);
+
+
         if (dialog != null) {
             dialog.dismiss();
         }
@@ -1577,9 +1576,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
         @Override
         public void handleMessage(Message msg) {
             // 处理从子线程发送过来的消息
-            DealBean2 mDesignates = (DealBean2) msg.obj;
+
             int i = msg.what;
             if (i == 1) {
+                DealBean2 mDesignates = (DealBean2) msg.obj;
                 if (mBuyAdapter != null && mSellerAdapter != null) {
                     if (mDesignates != null && channel.equals(mDesignates.getChannel())) {
                         if (mDesignates != null) {
@@ -1688,6 +1688,11 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         }
                     }
                 }
+            }else if(i == 0){
+                getMsgInfo();
+                Event event = new Event();
+                event.setCode(Constants.ENTRUST);
+                EventBus.getDefault().post(event);
             }
         }
     };

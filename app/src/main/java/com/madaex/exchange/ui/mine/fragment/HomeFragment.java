@@ -282,7 +282,7 @@ boolean iszhang = true;
         }
     }
     private void sendData(){
-        Observable.interval(0, 20, TimeUnit.SECONDS)
+        Observable.interval(0, 120, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())

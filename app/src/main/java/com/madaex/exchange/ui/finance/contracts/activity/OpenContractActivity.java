@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.Html;
@@ -156,6 +157,7 @@ public class OpenContractActivity extends BaseNetActivity<ContractPresenter> imp
     @Override
     public void requestSuccess(String commonBean) {
         ToastUtils.showToast(commonBean);
+        setResult(Activity.RESULT_OK);
         finish();
     }
 

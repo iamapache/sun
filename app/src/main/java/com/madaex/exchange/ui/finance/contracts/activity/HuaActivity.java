@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -188,6 +189,8 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             dialog.dismiss();
         }
         ToastUtils.showToast(commonBean);
+        setResult(Activity.RESULT_OK);
+        finish();
     }
 
     @Override

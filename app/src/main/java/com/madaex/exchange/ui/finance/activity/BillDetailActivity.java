@@ -66,6 +66,14 @@ public class BillDetailActivity extends BaseActivity {
         mBillTime.setText(item.getAddtime());
         mBillType.setText(item.getRemark());
         mBillSattus.setText(item.getStatus_name());
+
+        if(item.getState()==0){
+            mBillSattus.setTextColor(getResources().getColor(R.color.chuli));
+        }else if(item.getState()==1){
+            mBillSattus.setTextColor(getResources().getColor(R.color.depth_buy_line));
+        }else if(item.getState()==2){
+            mBillSattus.setTextColor(getResources().getColor(R.color.shibai));
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -109,7 +110,7 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
             public void onRefresh() {
                 pageNum = 1;
                 isRefresh =true;
-                getData();
+                initDatas();
             }
         });
         mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
@@ -152,10 +153,20 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
                 Intent intent2 =  getIntent();
                 intent2.setClass(mContext, ShifangSellerActivity.class);
                 intent2.putExtra("mavail",mAvail.getText().toString().trim());
-                startActivity(intent2);
+                startActivityForResult(intent2,1);
                 break;
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            initDatas();
+        }
+    }
+
     @Override
     protected void initDatas() {
         getData();
@@ -184,14 +195,14 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
             intent.putExtra("market_name",commonBean.getData().getMarket_name());
         }
         intent.setClass(mContext, OpenContractActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
     @Override
     public void requestSuccess(String commonBean) {
 
         Intent intent =  getIntent();
         intent.setClass(mContext, HuaActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
 
     @Override

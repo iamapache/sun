@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,11 +72,16 @@ public class ShifangSellerActivity extends BaseNetActivity<ContractPresenter> im
                 finish();
                 break;
             case R.id.submit:
-                TreeMap params = new TreeMap<>();
-                params.put("act", ConstantUrl.TradeRelease_release);
-                params.put("id", mParcelableExtra.getWallet_id() + "");
-                params.put("num", mNumber.getText().toString().trim() + "");
-                mPresenter.shifangseller(DataUtil.sign(params));
+                if(Double.valueOf(mNumber.getText().toString().trim())==0){
+                    ToastUtils.showToast(R.string.quantitynotsufficient);
+                }else {
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", ConstantUrl.TradeRelease_release);
+                    params.put("id", mParcelableExtra.getWallet_id() + "");
+                    params.put("num", mNumber.getText().toString().trim() + "");
+                    mPresenter.shifangseller(DataUtil.sign(params));
+                }
+
                 break;
         }
     }
@@ -93,6 +99,7 @@ public class ShifangSellerActivity extends BaseNetActivity<ContractPresenter> im
     @Override
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
@@ -122,8 +129,8 @@ public class ShifangSellerActivity extends BaseNetActivity<ContractPresenter> im
     }
 
     @Override
-    public void requestErrorcontract(String s) {
-
+    public void requestErrorcontract(String msg) {
+        ToastUtils.showToast(msg);
     }
 
     @Override

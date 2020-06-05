@@ -63,7 +63,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                         } else if (commonBean.getStatus() == -1) {
 
                             mView.nodata("");
-                        } else {
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -93,7 +93,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                         } else if (commonBean.getStatus() == -1) {
 
                             mView.nodata("");
-                        } else {
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -123,7 +123,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestError("");
                         } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        } else {
+                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -153,7 +153,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestErrorcontract(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        }else {
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(CommonDataBean.getMessage());
                         }
                     }
@@ -180,7 +180,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestErrorcontract(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        }else {
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(CommonDataBean.getMessage());
                         }
                     }
@@ -207,7 +207,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestErrorcontract(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        }else {
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(CommonDataBean);
                         }
                     }
@@ -234,7 +234,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestErrorcontract(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        }else {
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(CommonDataBean);
                         }
                     }
@@ -261,7 +261,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                             mView.requestErrorcontract(CommonDataBean.getMessage()+"");
                         }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.onUnLogin();
-                        }else {
+                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(CommonDataBean.getMessage());
                         }
                     }
