@@ -287,30 +287,35 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                         UIData uiData;
                         if (EmptyUtils.isNotEmpty(commonBean.getData())&&commonBean.getStatus()==1) {
                             if (commonBean.getData().getIs_update().equals("2")) {
-                                if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
-                                    uiData = UIData
-                                            .create()
-                                            .setDownloadUrl(commonBean.getData().getUrl())
-                                            .setTitle(commonBean.getData().getTitle())
-                                            .setUPDATE(commonBean.getData().getIs_update())
-                                            .setContent(commonBean.getData().getLog());
-                                    return uiData;
-                                } else {
+                                if(!TextUtils.isEmpty(commonBean.getData().getNumber())){
+                                    if (Double.valueOf(commonBean.getData().getNumber()) > AppUtils.getVerCode(mContext)) {
+                                        uiData = UIData
+                                                .create()
+                                                .setDownloadUrl(commonBean.getData().getUrl())
+                                                .setTitle(commonBean.getData().getTitle())
+                                                .setUPDATE(commonBean.getData().getIs_update())
+                                                .setContent(commonBean.getData().getLog());
+                                        return uiData;
+                                    } else {
 
-                                    return null;
+                                        return null;
+                                    }
                                 }
-                            } else if (commonBean.getData().getIs_update().equals("1")) {
-                                if (Double.valueOf(commonBean.getData().getTitle()) > AppUtils.getVerCode(mContext)) {
-                                    uiData = UIData
-                                            .create()
-                                            .setDownloadUrl(commonBean.getData().getUrl())
-                                            .setTitle(commonBean.getData().getTitle())
-                                            .setUPDATE(commonBean.getData().getIs_update())
-                                            .setContent(commonBean.getData().getLog());
-                                    return uiData;
-                                } else {
 
-                                    return null;
+                            } else if (commonBean.getData().getIs_update().equals("1")) {
+                                if(!TextUtils.isEmpty(commonBean.getData().getNumber())) {
+                                    if (Double.valueOf(commonBean.getData().getNumber()) > AppUtils.getVerCode(mContext)) {
+                                        uiData = UIData
+                                                .create()
+                                                .setDownloadUrl(commonBean.getData().getUrl())
+                                                .setTitle(commonBean.getData().getTitle())
+                                                .setUPDATE(commonBean.getData().getIs_update())
+                                                .setContent(commonBean.getData().getLog());
+                                        return uiData;
+                                    } else {
+
+                                        return null;
+                                    }
                                 }
                             } else {
                                 if (showmsg) {
@@ -363,7 +368,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 Button btn_ok = baseDialog.findViewById(R.id.btn_ok);
                 TextView tv_title = baseDialog.findViewById(R.id.tv_title);
                 textView.setText(versionBundle.getContent());
-                tv_title.setText(String.format(getString(R.string.upgradetoversion), versionBundle.getTitle()));
+                tv_title.setText( versionBundle.getTitle());
                 if (versionBundle.getUPDATE().equals("1")) {
                     baseDialog.setCanceledOnTouchOutside(true);
                     btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -409,7 +414,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 LinearLayout ll_close = baseDialog.findViewById(R.id.ll_close);
                 TextView tv_title = baseDialog.findViewById(R.id.tv_title);
                 textView.setText(versionBundle.getContent());
-                tv_title.setText(String.format(getString(R.string.upgradetoversion), versionBundle.getTitle()));
+                tv_title.setText( versionBundle.getTitle());
                 if (versionBundle.getUPDATE().equals("1")) {
                     baseDialog.setCanceledOnTouchOutside(true);
                 } else if (versionBundle.getUPDATE().equals("2")) {
@@ -546,20 +551,24 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
         });
         SPUtils.putString(Constants.USERNAME, user.getData().getName());
         SPUtils.putString("userid", user.getData().getUserid());
-        if (RegexUtil.isInteger(user.getData().getUsername())) {
-            SPUtils.putBoolean(Constants.ISMOBILE, true);
-        } else {
-            SPUtils.putBoolean(Constants.ISMOBILE, false);
+        if(!TextUtils.isEmpty(user.getData().getUsername())){
+            if (RegexUtil.isInteger(user.getData().getUsername())) {
+                SPUtils.putBoolean(Constants.ISMOBILE, true);
+            } else {
+                SPUtils.putBoolean(Constants.ISMOBILE, false);
+            }
         }
-        if (user.getData().getIdcardauth() == 1) {
-            SPUtils.putBoolean(Constants.has_bank, true);
-        } else {
-            SPUtils.putBoolean(Constants.has_bank, false);
-        }
-        if (user.getData().getHas_paypassword().equals("1")) {
-            SPUtils.putBoolean(Constants.has_paypassword, true);
-        } else {
-            SPUtils.putBoolean(Constants.has_paypassword, false);
+            if (user.getData().getIdcardauth() == 1) {
+                SPUtils.putBoolean(Constants.has_bank, true);
+            } else {
+                SPUtils.putBoolean(Constants.has_bank, false);
+            }
+        if(!TextUtils.isEmpty(user.getData().getHas_paypassword())) {
+            if (user.getData().getHas_paypassword().equals("1")) {
+                SPUtils.putBoolean(Constants.has_paypassword, true);
+            } else {
+                SPUtils.putBoolean(Constants.has_paypassword, false);
+            }
         }
     }
 

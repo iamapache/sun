@@ -67,7 +67,7 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                     public void onNext(Urlbean commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError(commonBean.getMessage() + "");
-                        } else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
 
                             mView.requestService(commonBean);
                         }
@@ -101,7 +101,7 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                         } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(commonBean.getData()+"");
-                        }else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestSuccess(commonBean);
                         }
                     }
@@ -126,7 +126,7 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                         } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(commonBean.getMessage()+"");
-                        }else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestMessageCountSuccess(commonBean.getData().getTotal()+"");
                         }
                     }
@@ -151,7 +151,7 @@ public class MinePresenter extends RxPresenter<MineContract.View> implements Min
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                         } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
                             mView.nodata(commonBean.getData()+"");
-                        }else {
+                        } else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
                             mView.requestupdate(commonBean);
                         }
                     }

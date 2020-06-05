@@ -61,7 +61,7 @@ android {
             // 移除无用的resource文件
             shrinkResources false
             signingConfig signingConfigs.release
-            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
@@ -74,7 +74,7 @@ android {
             // 移除无用的resource文件
             shrinkResources false
             signingConfig signingConfigs.debug
-            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -91,9 +91,9 @@ android {
             def date = new Date()
             def formattedDate = date.format('yyyy-MM-dd')
             if (variant.buildType.name.equals('release')) {
-                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
+                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_正式${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
             } else if (variant.buildType.name.equals('debug')) {
-                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
+                fileName = "${formattedDate}_${variant.mergedFlavor.versionName}_测试${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
             }
             outputFileName = fileName;
         }

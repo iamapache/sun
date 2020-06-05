@@ -40,8 +40,17 @@ public class update extends CommonBaseBean {
         private String url;
         private String log;
         private String title;
+        private String number;
         public String getIs_update() {
             return is_update;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
         }
 
         public String getTitle() {
