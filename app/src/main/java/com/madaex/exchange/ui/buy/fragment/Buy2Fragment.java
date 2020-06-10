@@ -503,58 +503,62 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
         List<DepthDataBean> depthList = new ArrayList<>();
-        if (buy.size() >= 50 && sell.size() >= 50) {
-            List<List<Float>> listList = buy.subList(0, 49);
-            List<List<Float>> listList2 = sell.subList(0, 49);
-            double account = 0;
-            double account2 = 0;
-            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0);
-                    account2 = account2 + listList.get(i).get(0);
+        try {
 
+            if (buy.size() >= 50 && sell.size() >= 50) {
+                List<List<Float>> listList = buy.subList(0, 49);
+                List<List<Float>> listList2 = sell.subList(0, 49);
+                double account = 0;
+                double account2 = 0;
+                if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                    for (int i = 0; i < listList.size(); i++) {
+                        account = account + listList.get(i).get(0);
+                        account2 = account2 + listList.get(i).get(0);
+
+                    }
+                    for (int j = 0; j < listList2.size(); j++) {
+                        account = account + listList2.get(j).get(0);
+                    }
+                    mBili.setText(bs(account2, account) + "%");
+                } else {
+                    for (int i = 0; i < listList.size(); i++) {
+                        account = account + listList.get(i).get(0);
+                    }
+                    for (int j = 0; j < listList2.size(); j++) {
+                        account = account + listList2.get(j).get(0);
+                        account2 = account2 + listList2.get(j).get(0);
+                    }
+                    mBili.setText(bs(account2, account) + "%");
                 }
-                for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0);
-                }
-                mBili.setText(bs(account2, account) + "%");
+
             } else {
-                for (int i = 0; i < listList.size(); i++) {
-                    account = account + listList.get(i).get(0);
-                }
-                for (int j = 0; j < listList2.size(); j++) {
-                    account = account + listList2.get(j).get(0);
-                    account2 = account2 + listList2.get(j).get(0);
-                }
-                mBili.setText(bs(account2, account) + "%");
-            }
+                double account = 0;
+                double account2 = 0;
+                if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
+                    for (int i = 0; i < buy.size(); i++) {
+                        account = account + buy.get(i).get(0);
+                        account2 = account2 + buy.get(i).get(0);
 
-        } else {
-            double account = 0;
-            double account2 = 0;
-            if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
-                for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0);
-                    account2 = account2 + buy.get(i).get(0);
-
+                    }
+                    for (int j = 0; j < sell.size(); j++) {
+                        account = account + sell.get(j).get(0);
+                    }
+                    mBili.setText(bs(account2, account) + "%");
+                } else {
+                    for (int i = 0; i < buy.size(); i++) {
+                        account = account + buy.get(i).get(0);
+                    }
+                    for (int j = 0; j < sell.size(); j++) {
+                        account = account + sell.get(j).get(0);
+                        account2 = account2 + sell.get(j).get(0);
+                    }
+                    mBili.setText(bs(account2, account) + "%");
                 }
-                for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0);
-                }
-                mBili.setText(bs(account2, account) + "%");
-            } else {
-                for (int i = 0; i < buy.size(); i++) {
-                    account = account + buy.get(i).get(0);
-                }
-                for (int j = 0; j < sell.size(); j++) {
-                    account = account + sell.get(j).get(0);
-                    account2 = account2 + sell.get(j).get(0);
-                }
-                mBili.setText(bs(account2, account) + "%");
             }
+            return depthList;
+        } catch (Exception e) {
+            return depthList;
         }
-
-        return depthList;
     }
 
     private List<DepthDataBean> getSellDepthList2(List<List<Float>> lists) {
@@ -1344,48 +1348,56 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
     public void setDetailSuccess(Home baseBean) {
-        this.baseBean = baseBean;
-        if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
-            mLast.setText(baseBean.getCurrentPrice());
-            mCoinname.setText(baseBean.getRiseRate());
-            baibili.setText("￥" + baseBean.getSellRmb());
-            mGuzhi.setText("￥" + baseBean.getSellRmb().toString());
+        try {
+            this.baseBean = baseBean;
+            if (EmptyUtils.isNotEmpty(baseBean) && EmptyUtils.isNotEmpty(baseBean.getCurrentPrice())) {
+                mLast.setText(baseBean.getCurrentPrice() + "");
+                mCoinname.setText(baseBean.getRiseRate() + "");
+                baibili.setText("￥" + baseBean.getSellRmb() + "");
+                mGuzhi.setText("￥" + baseBean.getSellRmb().toString());
 
 
-            if (market_type.equals("0")) {
-                mPrice.setText(baseBean.getCurrentPrice() + "");
-            } else {
-                if (sell_price_lock == 1) {
-                    mPrice.setEnabled(false);
-                    mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))) + "");
-                } else {
-                    mPrice.setEnabled(true);
-                    mPrice.setText(baseBean.getCurrentPrice());
-                }
-            }
-            if (EmptyUtils.isNotEmpty(mKeyong.getText().toString())) {
-                double vou = 0;
                 if (market_type.equals("0")) {
-                    vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(baseBean.getCurrentPrice());
+                    mPrice.setText(baseBean.getCurrentPrice() + "");
                 } else {
-                    vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))));
+                    if (sell_price_lock == 1) {
+                        mPrice.setEnabled(false);
+                        mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))) + "");
+                    } else {
+                        mPrice.setEnabled(true);
+                        mPrice.setText(baseBean.getCurrentPrice());
+                    }
                 }
-                totalnum = vou;
-            }
+                if (EmptyUtils.isNotEmpty(mKeyong.getText().toString())) {
+                    double vou = 0;
+                    if (market_type.equals("0")) {
+                        vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(baseBean.getCurrentPrice());
+                    } else {
+                        vou = Double.valueOf(mKeyong.getText().toString()) / Double.valueOf(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + Double.valueOf(rise_once))));
+                    }
+                    totalnum = vou;
+                }
 
-            if (baseBean.getRiseRate().contains("-")) {
-                if ((mContext instanceof Activity)) {
-                    mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
-                    mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                if (baseBean.getRiseRate().contains("-")) {
+                    if ((mContext instanceof Activity)) {
+                        mLast.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                        mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_green));
+                    }
+                } else {
+                    if ((mContext instanceof Activity)) {
+                        mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                        mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
+                    }
                 }
-            } else {
-                if ((mContext instanceof Activity)) {
-                    mLast.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                    mCoinname.setTextColor(mContext.getResources().getColor(R.color.common_red));
-                }
+                getMsgInfo();
             }
-            getMsgInfo();
+        } catch (Exception e) {
+            mLast.setText("0");
+            mCoinname.setText("0");
+            baibili.setText("￥" + "0");
+            mGuzhi.setText("￥" + "0");
         }
+
     }
 
     @Override
@@ -1688,7 +1700,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         }
                     }
                 }
-            }else if(i == 0){
+            } else if (i == 0) {
                 getMsgInfo();
                 Event event = new Event();
                 event.setCode(Constants.ENTRUST);
