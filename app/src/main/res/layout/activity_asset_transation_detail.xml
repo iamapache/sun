@@ -195,7 +195,7 @@
                 android:layout_marginLeft="@dimen/d_34dp"
                 android:textColor="@color/title_color"
                 android:textSize="14dp"
-                android:text="@string/subsuccess"/>
+                tools:text="@string/subsuccess"/>
 
         </LinearLayout>
 

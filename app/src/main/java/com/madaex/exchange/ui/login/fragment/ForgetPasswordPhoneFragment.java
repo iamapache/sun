@@ -23,6 +23,7 @@ import com.madaex.exchange.ui.common.CommonContract;
 import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.common.CommonPresenter;
 import com.madaex.exchange.ui.constant.ConstantUrl;
+import com.madaex.exchange.ui.mine.activity.RegionActivity;
 
 import java.util.TreeMap;
 
@@ -208,7 +209,9 @@ public class ForgetPasswordPhoneFragment extends BaseNetLazyFragment<CommonPrese
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_addresscode:
-
+                Intent intent2 = new Intent(getActivity(), RegionActivity.class);
+                intent2.putExtra("areastatus", 1);
+                startActivityForResult(intent2, CODE_REQUEST);
                 break;
             case R.id.img_clear:
                 mPhone.setText("");
@@ -228,10 +231,15 @@ public class ForgetPasswordPhoneFragment extends BaseNetLazyFragment<CommonPrese
             ToastUtils.showToast(getString(R.string.input_phone));
             return ;
         }
-        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
+        if (18 < mPhone.getText().toString().length()) {
             ToastUtils.showToast(getString(R.string.input_phone_ok));
-            return;
+            return ;
         }
+        if (mPhone.getText().toString().length() < 5) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return ;
+        }
+
         if(TextUtils.isEmpty(mPassword.getText().toString())) {
             ToastUtils.showToast(getString(R.string.input_pwd));
             return ;
@@ -261,7 +269,11 @@ public class ForgetPasswordPhoneFragment extends BaseNetLazyFragment<CommonPrese
             ToastUtils.showToast(getString(R.string.input_phone));
             return false;
         }
-        if (18>mPhone.getText().toString().length()||mPhone.getText().toString().length()<5) {
+        if (18 < mPhone.getText().toString().length()) {
+            ToastUtils.showToast(getString(R.string.input_phone_ok));
+            return false;
+        }
+        if (mPhone.getText().toString().length() < 5) {
             ToastUtils.showToast(getString(R.string.input_phone_ok));
             return false;
         }

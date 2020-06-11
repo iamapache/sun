@@ -75,6 +75,13 @@ public class TransaListActivity extends BaseNetActivity <TransaPreaenter> implem
                     helper .setText(R.id.deal, item.getStatus());
                 helper.setText(R.id.createtime, item.getAddtime())
                         .setText(R.id.mum, item.getFee());
+                if(item.getState()==0){
+                    helper.setTextColor(R.id.deal, getResources().getColor(R.color.chuli));
+                }else if(item.getState()==1){
+                    helper.setTextColor(R.id.deal, getResources().getColor(R.color.depth_buy_line));
+                }else if(item.getState()==2){
+                    helper.setTextColor(R.id.deal, getResources().getColor(R.color.shibai));
+                }
                 helper.getView(R.id.ll_item).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

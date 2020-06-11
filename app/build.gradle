@@ -24,7 +24,7 @@ android {
         versionCode rootProject.ext.android2.versionCode
         versionName rootProject.ext.android2.versionName
         multiDexEnabled true
-        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_name"]
+        flavorDimensions "app"
         ndk {
             // 设置支持的SO库架构
             abiFilters 'armeabi', 'x86'
@@ -76,6 +76,8 @@ android {
             signingConfig signingConfigs.debug
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
         }
     }
 
@@ -98,15 +100,38 @@ android {
             outputFileName = fileName;
         }
     }
-    flavorDimensions "default"
+
     productFlavors {
-        sun {}
+        dev {
+//            // 每个环境包名不同
+//            applicationId "com.lyl.dev"
+//            // 动态添加 string.xml 字段；
+//            // 注意，这里是添加，在 string.xml 不能有这个字段，会重名！！！
+//            resValue "bool", "isrRank", 'false'
+//            // 动态修改 常量 字段
+//            buildConfigField "String", "ENVIRONMENT", '"dev"'
+//            // 修改 AndroidManifest.xml 里渠道变量
+//            manifestPlaceholders = [
+//                    UMENG_CHANNEL_VALUE: "prod",
+//                    app_icon           : "@drawable/ic_launcher",
+//                    app_name           : "@string/app_namexx",
+//            ]
+        }
+        stage {
+//            applicationId "com.lyl.stage"
+//
+//            resValue "bool", "isrRank", 'true'
+//
+//            buildConfigField "String", "ENVIRONMENT", '"stage"'
+//
+//            manifestPlaceholders = [
+//                    UMENG_CHANNEL_VALUE: "prod",
+//                    app_icon           : "@drawable/ic_launcher",
+//                    app_name           : "@string/app_namexx",
+//            ]
+        }
     }
 
-    //批量配置
-    productFlavors.all { flavor ->
-        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-    }
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'

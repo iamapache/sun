@@ -135,7 +135,7 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
         mAdapter = new BaseQuickAdapter<HotCoin.DataBean, BaseViewHolder>(R.layout.item_hotcoin, testBeans) {
             @Override
             protected void convert(BaseViewHolder helper, final HotCoin.DataBean item) {
-                helper.setText(R.id.name, item.getName()).setText(R.id.time, item.getNew_price1().toPlainString() + "")
+                helper.setText(R.id.name, item.getName()).setText(R.id.time, item.getNew_price1() + "")
                         .setText(R.id.address, item.getChange());
                 if (item.getChange().contains("-")) {
                     helper.setTextColor(R.id.time, mContext.getResources().getColor(R.color.common_green));
@@ -282,7 +282,7 @@ boolean iszhang = true;
         }
     }
     private void sendData(){
-        Observable.interval(0, 120, TimeUnit.SECONDS)
+        Observable.interval(0, 60, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(this.bindToLifecycle())

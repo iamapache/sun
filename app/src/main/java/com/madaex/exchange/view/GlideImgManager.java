@@ -98,7 +98,7 @@ public class GlideImgManager {
 
     public static void loadImage(Context context, final File file, final ImageView imageView) {
         Glide.with(context)
-                .load(file)
+                .load(file).fitCenter()
                 .into(imageView);
     }
 

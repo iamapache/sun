@@ -28,6 +28,7 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/android_p_network_security_config"
+        tools:replace="android:label"
         android:theme="@style/AppTheme_Default">
         <meta-data
             android:name="android.max_aspect"

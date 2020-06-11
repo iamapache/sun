@@ -48,8 +48,17 @@ public class TransaList extends CommonBaseBean {
         private String coinname;
         private String new_price1;
         private String fee;
+        private int state;
         public String getUsername() {
             return username;
+        }
+
+        public int getState() {
+            return state;
+        }
+
+        public void setState(int state) {
+            this.state = state;
         }
 
         public String getFee() {

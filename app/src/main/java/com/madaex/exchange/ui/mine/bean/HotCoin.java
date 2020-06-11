@@ -1,6 +1,5 @@
 package com.madaex.exchange.ui.mine.bean;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -12,12 +11,12 @@ import java.util.List;
 public class HotCoin {
     /**
      * status : 1
-     * data : [{"name":"ALSC/USDT","change":"-4.13%","new_price1":5.4983,"status":0},{"name":"ETH/USDT","change":"1.51%","new_price1":139.29,"status":1},{"name":"BAT/USDT","change":"-0.42%","new_price1":0.1908,"status":0},{"name":"OMG/USDT","change":"0.23%","new_price1":0.6497,"status":1},{"name":"SNT/USDT","change":"-0.03%","new_price1":0.009127,"status":0}]
-     * message : 操作成功
+     * msg : 成功
+     * data : [{"change":"-3.21%","new_price1":"0.00004065","status":0,"name":"WTC/BTC"},{"change":"0%","new_price1":"0.00001967","status":0,"name":"HTT/BTC"},{"change":"-0.04%","new_price1":"0.094221","status":0,"name":"USDD/USDT"},{"change":"0%","new_price1":"0.000386","status":0,"name":"USDD/ETH"},{"change":"0%","new_price1":"0.00000965","status":0,"name":"USDD/BTC"}]
      */
 
     private int status;
-    private String message;
+    private String msg;
     private List<DataBean> data;
 
     public int getStatus() {
@@ -28,12 +27,12 @@ public class HotCoin {
         this.status = status;
     }
 
-    public String getMessage() {
-        return message;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public List<DataBean> getData() {
@@ -46,24 +45,16 @@ public class HotCoin {
 
     public static class DataBean {
         /**
-         * name : ALSC/USDT
-         * change : -4.13%
-         * new_price1 : 5.4983
+         * change : -3.21%
+         * new_price1 : 0.00004065
          * status : 0
+         * name : WTC/BTC
          */
 
-        private String name;
         private String change;
-        private BigDecimal new_price1;
+        private String new_price1;
         private int status;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
+        private String name;
 
         public String getChange() {
             return change;
@@ -73,11 +64,11 @@ public class HotCoin {
             this.change = change;
         }
 
-        public BigDecimal getNew_price1() {
+        public String getNew_price1() {
             return new_price1;
         }
 
-        public void setNew_price1(BigDecimal new_price1) {
+        public void setNew_price1(String new_price1) {
             this.new_price1 = new_price1;
         }
 
@@ -87,6 +78,14 @@ public class HotCoin {
 
         public void setStatus(int status) {
             this.status = status;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }

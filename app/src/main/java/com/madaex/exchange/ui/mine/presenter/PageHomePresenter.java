@@ -81,7 +81,7 @@ public class PageHomePresenter extends RxPresenter<PageHomeContract.View> implem
                     @Override
                     public void onNext(HotCoin commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
-                            mView.nodata(commonBean.getMessage()+"");
+                            mView.nodata(commonBean.getMsg()+"");
                         }else  if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS){
                             mView.requestHotcoin(commonBean);
                         }

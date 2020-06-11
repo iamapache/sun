@@ -473,23 +473,27 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     private List<DepthDataBean> getBuyDepthList2(List<List<Float>> lists) {
         Log.v("depthList", lists.size() + "");
         List<DepthDataBean> depthList = new ArrayList<>();
-        if (lists.size() >= 50) {
-            List<List<Float>> listList = lists.subList(0, 50);
+        try {
+            if (lists.size() >= 50) {
+                List<List<Float>> listList = lists.subList(0, 50);
 
-            double account = 0;
-            for (int i = 0; i < listList.size(); i++) {
-                account = account + listList.get(i).get(0);
-                depthList.add(new DepthDataBean(listList.get(i).get(0),
-                        listList.get(i).get(1)));
+                double account = 0;
+                for (int i = 0; i < listList.size(); i++) {
+                    account = account + listList.get(i).get(0);
+                    depthList.add(new DepthDataBean(listList.get(i).get(0),
+                            listList.get(i).get(1)));
+                }
+            } else {
+                for (int i = 0; i < lists.size(); i++) {
+                    depthList.add(new DepthDataBean(lists.get(i).get(0),
+                            lists.get(i).get(1)));
+                }
             }
-        } else {
-            for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0),
-                        lists.get(i).get(1)));
-            }
+
+            return depthList;
+        } catch (Exception e) {
+            return depthList;
         }
-
-        return depthList;
     }
 
     public int bs(double a, double b) {
@@ -563,21 +567,25 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 
     private List<DepthDataBean> getSellDepthList2(List<List<Float>> lists) {
         List<DepthDataBean> depthList = new ArrayList<>();
-        if (lists.size() >= 50) {
-            List<List<Float>> listList = lists.subList(0, 50);
-            Log.v("depthList", listList.size() + "");
-            for (int i = 0; i < listList.size(); i++) {
-                depthList.add(new DepthDataBean(listList.get(i).get(0),
-                        listList.get(i).get(1)));
+        try {
+            if (lists.size() >= 50) {
+                List<List<Float>> listList = lists.subList(0, 50);
+                Log.v("depthList", listList.size() + "");
+                for (int i = 0; i < listList.size(); i++) {
+                    depthList.add(new DepthDataBean(listList.get(i).get(0),
+                            listList.get(i).get(1)));
+                }
+            } else {
+                for (int i = 0; i < lists.size(); i++) {
+                    depthList.add(new DepthDataBean(lists.get(i).get(0),
+                            lists.get(i).get(1)));
+                }
             }
-        } else {
-            for (int i = 0; i < lists.size(); i++) {
-                depthList.add(new DepthDataBean(lists.get(i).get(0),
-                        lists.get(i).get(1)));
-            }
-        }
 
-        return depthList;
+            return depthList;
+        } catch (Exception e) {
+            return depthList;
+        }
     }
 
     @Override

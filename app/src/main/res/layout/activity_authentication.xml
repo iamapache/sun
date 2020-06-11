@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.madaex.exchange.common.view.CustomToolBar
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         app:left_tv_visible="true"
         app:title_color="@color/white"
         app:title_text="@string/oneVerification"
-        app:title_visible="true"/>
+        app:title_visible="true" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -31,12 +31,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="34dp"
+                android:layout_height="15dp"
                 android:layout_marginLeft="@dimen/d_15dp"
                 android:gravity="center_vertical"
-                android:text="@string/Pleaseinformation"
                 android:textColor="@color/common_text_6"
-                android:textSize="@dimen/d_14dp"/>
+                android:textSize="@dimen/d_14dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,10 +48,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/d_15dp"
-                    android:text="@string/Identificationarea"
                     android:maxLines="1"
+                    android:text="@string/Identificationarea"
                     android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_16dp"/>
+                    android:textSize="@dimen/d_16dp" />
 
 
                 <TextView
@@ -62,51 +61,61 @@
                     android:layout_marginLeft="@dimen/d_15dp"
                     android:layout_marginRight="@dimen/d_15dp"
                     android:drawableRight="@mipmap/icon_right"
-                    android:paddingLeft="@dimen/d_13dp"
                     android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/d_13dp"
                     android:text="@string/china"
                     android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_16dp"/>
+                    android:textSize="@dimen/d_16dp" />
 
             </LinearLayout>
 
             <LinearLayout
-
+                android:id="@+id/ll_3"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/d_44dp"
-                android:layout_marginTop="@dimen/d_1dp"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content">
+
 
                 <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/d_15dp"
-                    android:text="@string/Idname"
-                    android:maxLines="1"
-                    android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_16dp"/>
-
-
-                <EditText
-                    android:id="@+id/tv_username"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="34dp"
                     android:layout_marginLeft="@dimen/d_15dp"
-                    android:background="@null"
-                    android:hint="@string/entryidname"
-                    android:textColor="@color/common_text_1"
-                    android:textColorHint="@color/colorCutOffSide"
-                    android:textSize="@dimen/d_16dp"/>
+                    android:gravity="center_vertical"
+                    android:text="上传身份证照片"
+                    android:textColor="@color/common_title_unbg"
+                    android:textSize="@dimen/d_14dp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_cardtop"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/cardtop" />
+
+                    <ImageView
+                        android:id="@+id/img_cardbottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@mipmap/cardbottom" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_1"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <LinearLayout
@@ -114,7 +123,37 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:background="@color/white"
+                    android:gravity="center_vertical">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_15dp"
+                        android:maxLines="1"
+                        android:text="@string/Idname"
+                        android:textColor="@color/common_text_1"
+                        android:textSize="@dimen/d_16dp" />
+
+
+                    <EditText
+                        android:id="@+id/tv_username"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/d_15dp"
+                        android:background="@null"
+                        android:hint="@string/entryidname"
+                        android:textColor="@color/common_text_1"
+                        android:textColorHint="@color/colorCutOffSide"
+                        android:textSize="@dimen/d_16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_44dp"
+                    android:layout_marginTop="@dimen/d_1dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -124,7 +163,7 @@
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:text="@string/name"
                         android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
 
                     <EditText
@@ -136,7 +175,7 @@
                         android:hint="@string/entryyourname"
                         android:textColor="@color/common_text_1"
                         android:textColorHint="@color/colorCutOffSide"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
                 </LinearLayout>
 
@@ -154,7 +193,7 @@
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:text="@string/familyname"
                         android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
 
                     <EditText
@@ -166,49 +205,11 @@
                         android:hint="@string/lastname"
                         android:textColor="@color/common_text_1"
                         android:textColorHint="@color/colorCutOffSide"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/d_44dp"
-                android:layout_marginTop="@dimen/d_1dp"
-                android:gravity="center_vertical">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/d_15dp"
-                    android:text="@string/IDNumber"
-                    android:maxLines="1"
-                    android:textColor="@color/common_text_1"
-                    android:textSize="@dimen/d_16dp"/>
-
-
-                <EditText
-                    android:id="@+id/tv_cardnumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/d_15dp"
-                    android:background="@null"
-                    android:hint="@string/entryidnumber"
-                    android:textColor="@color/common_text_1"
-                    android:textColorHint="@color/colorCutOffSide"
-                    android:textSize="@dimen/d_16dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
@@ -219,9 +220,48 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/d_15dp"
+                        android:maxLines="1"
+                        android:text="@string/IDNumber"
+                        android:textColor="@color/common_text_1"
+                        android:textSize="@dimen/d_16dp" />
+
+
+                    <EditText
+                        android:id="@+id/tv_cardnumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/d_15dp"
+                        android:background="@null"
+                        android:hint="@string/entryidnumber"
+                        android:textColor="@color/common_text_1"
+                        android:textColorHint="@color/colorCutOffSide"
+                        android:textSize="@dimen/d_16dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_44dp"
+                    android:layout_marginTop="@dimen/d_1dp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/d_15dp"
                         android:text="@string/detailedaddress"
                         android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
 
                     <EditText
@@ -233,16 +273,16 @@
                         android:hint="@string/entrydetaladd"
                         android:textColor="@color/common_text_1"
                         android:textColorHint="@color/colorCutOffSide"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <TextView
 
@@ -251,7 +291,7 @@
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:text="@string/city"
                         android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
 
                     <EditText
@@ -263,16 +303,16 @@
                         android:hint="@string/entrycity"
                         android:textColor="@color/common_text_1"
                         android:textColorHint="@color/colorCutOffSide"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/d_44dp"
                     android:layout_marginTop="@dimen/d_1dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <TextView
 
@@ -281,7 +321,7 @@
                         android:layout_marginLeft="@dimen/d_15dp"
                         android:text="@string/postalcode"
                         android:textColor="@color/common_text_1"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
 
                     <EditText
@@ -293,18 +333,20 @@
                         android:hint="@string/entryyouzcode"
                         android:textColor="@color/common_text_1"
                         android:textColorHint="@color/colorCutOffSide"
-                        android:textSize="@dimen/d_16dp"/>
+                        android:textSize="@dimen/d_16dp" />
 
                 </LinearLayout>
+
+
             </LinearLayout>
 
             <Button
                 android:id="@+id/submit"
                 style="@style/ButtonStyle"
-                android:background="@mipmap/bg_login"
-                android:textColor="#523D17"
                 android:layout_marginTop="@dimen/d_30dp"
-                android:text="@string/submitok"/>
+                android:background="@mipmap/bg_login"
+                android:text="@string/submitok"
+                android:textColor="#523D17" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

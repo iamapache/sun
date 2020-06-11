@@ -285,9 +285,9 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                         Gson gson = new Gson();
                         update commonBean = gson.fromJson(result, update.class);
                         UIData uiData;
-                        if (EmptyUtils.isNotEmpty(commonBean.getData())&&commonBean.getStatus()==1) {
+                        if (EmptyUtils.isNotEmpty(commonBean.getData()) && commonBean.getStatus() == 1) {
                             if (commonBean.getData().getIs_update().equals("2")) {
-                                if(!TextUtils.isEmpty(commonBean.getData().getNumber())){
+                                if (!TextUtils.isEmpty(commonBean.getData().getNumber())) {
                                     if (Double.valueOf(commonBean.getData().getNumber()) > AppUtils.getVerCode(mContext)) {
                                         uiData = UIData
                                                 .create()
@@ -303,7 +303,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                 }
 
                             } else if (commonBean.getData().getIs_update().equals("1")) {
-                                if(!TextUtils.isEmpty(commonBean.getData().getNumber())) {
+                                if (!TextUtils.isEmpty(commonBean.getData().getNumber())) {
                                     if (Double.valueOf(commonBean.getData().getNumber()) > AppUtils.getVerCode(mContext)) {
                                         uiData = UIData
                                                 .create()
@@ -368,7 +368,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 Button btn_ok = baseDialog.findViewById(R.id.btn_ok);
                 TextView tv_title = baseDialog.findViewById(R.id.tv_title);
                 textView.setText(versionBundle.getContent());
-                tv_title.setText( versionBundle.getTitle());
+                tv_title.setText(versionBundle.getTitle());
                 if (versionBundle.getUPDATE().equals("1")) {
                     baseDialog.setCanceledOnTouchOutside(true);
                     btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -414,7 +414,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                 LinearLayout ll_close = baseDialog.findViewById(R.id.ll_close);
                 TextView tv_title = baseDialog.findViewById(R.id.tv_title);
                 textView.setText(versionBundle.getContent());
-                tv_title.setText( versionBundle.getTitle());
+                tv_title.setText(versionBundle.getTitle());
                 if (versionBundle.getUPDATE().equals("1")) {
                     baseDialog.setCanceledOnTouchOutside(true);
                 } else if (versionBundle.getUPDATE().equals("2")) {
@@ -446,11 +446,11 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     }
 
     private void goAu() {
-        if (TextUtils.isEmpty(SPUtils.getString(Constants.USERNAME))) {
+//        if (TextUtils.isEmpty(SPUtils.getString(Constants.USERNAME))) {
             startActivityAfterLogin(new Intent(mContext, AuthenticationActivity.class));
-        } else {
-            ToastUtils.showToast(getString(R.string.alVerification));
-        }
+//        } else {
+//            ToastUtils.showToast(getString(R.string.alVerification));
+//        }
 
     }
 
@@ -538,37 +538,40 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
 
     @Override
     public void requestSuccess(User user) {
-        mUsername.setText(getString(R.string.userid) + user.getData().getUserid());
-        SPUtils.putString(Constants.MOBILE, user.getData().getUsername());
-        mark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboard2 = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData2 = ClipData.newPlainText(null, user.getData().getUserid());
-                clipboard2.setPrimaryClip(clipData2);
-                ToastUtils.showToast(getString(R.string.copyaddress));
+        try {
+            mUsername.setText(getString(R.string.userid) + user.getData().getUserid());
+            SPUtils.putString(Constants.MOBILE, user.getData().getUsername());
+            mark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard2 = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipData2 = ClipData.newPlainText(null, user.getData().getUserid());
+                    clipboard2.setPrimaryClip(clipData2);
+                    ToastUtils.showToast(getString(R.string.copyaddress));
+                }
+            });
+            SPUtils.putString(Constants.USERNAME, user.getData().getName());
+            SPUtils.putString("userid", user.getData().getUserid());
+            if (!TextUtils.isEmpty(user.getData().getUsername())) {
+                if (RegexUtil.isInteger(user.getData().getUsername())) {
+                    SPUtils.putBoolean(Constants.ISMOBILE, true);
+                } else {
+                    SPUtils.putBoolean(Constants.ISMOBILE, false);
+                }
             }
-        });
-        SPUtils.putString(Constants.USERNAME, user.getData().getName());
-        SPUtils.putString("userid", user.getData().getUserid());
-        if(!TextUtils.isEmpty(user.getData().getUsername())){
-            if (RegexUtil.isInteger(user.getData().getUsername())) {
-                SPUtils.putBoolean(Constants.ISMOBILE, true);
-            } else {
-                SPUtils.putBoolean(Constants.ISMOBILE, false);
-            }
-        }
             if (user.getData().getIdcardauth() == 1) {
                 SPUtils.putBoolean(Constants.has_bank, true);
             } else {
                 SPUtils.putBoolean(Constants.has_bank, false);
             }
-        if(!TextUtils.isEmpty(user.getData().getHas_paypassword())) {
-            if (user.getData().getHas_paypassword().equals("1")) {
-                SPUtils.putBoolean(Constants.has_paypassword, true);
-            } else {
-                SPUtils.putBoolean(Constants.has_paypassword, false);
+            if (!TextUtils.isEmpty(user.getData().getHas_paypassword())) {
+                if (user.getData().getHas_paypassword().equals("1")) {
+                    SPUtils.putBoolean(Constants.has_paypassword, true);
+                } else {
+                    SPUtils.putBoolean(Constants.has_paypassword, false);
+                }
             }
+        } catch (Exception e) {
         }
     }
 

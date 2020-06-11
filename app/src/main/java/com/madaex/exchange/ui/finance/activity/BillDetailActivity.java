@@ -61,7 +61,7 @@ public class BillDetailActivity extends BaseActivity {
     protected void initDatas() {
         BillList.DataBean.ListBean item = getIntent().getParcelableExtra("bean");
         mBillDealtype.setText(item.getType_name());
-        mNumber.setText(item.getCoin_ename()+item.getAdd_subtract()+item.getNum());
+        mNumber.setText(item.getAdd_subtract()+item.getNum()+item.getCoin_ename());
         mBillMoney.setText(item.getMum_a());
         mBillTime.setText(item.getAddtime());
         mBillType.setText(item.getRemark());
