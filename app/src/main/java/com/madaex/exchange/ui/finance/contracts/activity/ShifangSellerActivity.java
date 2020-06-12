@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
@@ -72,14 +73,16 @@ public class ShifangSellerActivity extends BaseNetActivity<ContractPresenter> im
                 finish();
                 break;
             case R.id.submit:
-                if(Double.valueOf(mNumber.getText().toString().trim())==0){
-                    ToastUtils.showToast(R.string.quantitynotsufficient);
-                }else {
-                    TreeMap params = new TreeMap<>();
-                    params.put("act", ConstantUrl.TradeRelease_release);
-                    params.put("id", mParcelableExtra.getWallet_id() + "");
-                    params.put("num", mNumber.getText().toString().trim() + "");
-                    mPresenter.shifangseller(DataUtil.sign(params));
+                if (AppUtils.isFastClick2()) {
+                    if (Double.valueOf(mNumber.getText().toString().trim()) == 0) {
+                        ToastUtils.showToast(R.string.quantitynotsufficient);
+                    } else {
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", ConstantUrl.TradeRelease_release);
+                        params.put("id", mParcelableExtra.getWallet_id() + "");
+                        params.put("num", mNumber.getText().toString().trim() + "");
+                        mPresenter.shifangseller(DataUtil.sign(params));
+                    }
                 }
 
                 break;

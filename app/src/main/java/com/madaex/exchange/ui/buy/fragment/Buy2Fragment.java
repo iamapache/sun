@@ -26,6 +26,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetLazyFragment;
+import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.ArithUtil;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
@@ -1168,6 +1169,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
         mNumber.setText("");
+        mPrice.setText("");
         handler.sendEmptyMessageDelayed(0, 2000);
 
 
@@ -1475,7 +1477,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_deal:
-                submit();
+                if (AppUtils.isFastClick()) {
+                    submit();
+                }
+
                 break;
             case R.id.ll_gears:
                 showGearsPopMenu();

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
@@ -112,7 +113,9 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validate();
+                if (AppUtils.isFastClick2()) {
+                    validate();
+                }
             }
         });
     }

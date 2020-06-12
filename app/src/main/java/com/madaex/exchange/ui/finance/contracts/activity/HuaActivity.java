@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.common.util.ToastUtils;
@@ -120,7 +121,9 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
                 break;
             case R.id.submit:
-                validate();
+                if (AppUtils.isFastClick2()) {
+                    validate();
+                }
                 break;
         }
     }
