@@ -27,7 +27,9 @@ import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
+import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 import com.madaex.exchange.ui.finance.pay.contract.WayContract;
 import com.madaex.exchange.ui.finance.pay.presenter.WayPresenter;
 import com.madaex.exchange.ui.mine.activity.LinkWebViewActivity;
@@ -239,6 +241,26 @@ public class ZFBActivity extends BaseNetActivity<WayPresenter> implements WayCon
 
     @Override
     public void requestPayWaySuccess(String commonBean) {
+
+    }
+
+    @Override
+    public void uploadIdcardSuccess(UploadIdcard commonBean) {
+
+    }
+
+    @Override
+    public void uploadIdcardSuccess2(UploadIdcard commonBean) {
+
+    }
+
+    @Override
+    public void requestidcardImgCheckError(String msg) {
+
+    }
+
+    @Override
+    public void idcardImgCheck(ImgCheck commonBean) {
 
     }
 }

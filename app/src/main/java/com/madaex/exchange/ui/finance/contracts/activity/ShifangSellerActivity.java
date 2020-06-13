@@ -83,6 +83,8 @@ public class ShifangSellerActivity extends BaseNetActivity<ContractPresenter> im
                         params.put("num", mNumber.getText().toString().trim() + "");
                         mPresenter.shifangseller(DataUtil.sign(params));
                     }
+                }else {
+                    ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
 
                 break;

@@ -149,6 +149,8 @@ public class BaseApplication extends Application {
 //            return;
 //        }
 //        LeakCanary.install(this);
+
+
     }
 
     public static OkHttpClient.Builder setCertificates(OkHttpClient.Builder client) {

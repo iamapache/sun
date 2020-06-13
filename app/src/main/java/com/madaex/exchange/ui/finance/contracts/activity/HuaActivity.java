@@ -123,6 +123,8 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             case R.id.submit:
                 if (AppUtils.isFastClick2()) {
                     validate();
+                }else {
+                    ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
                 break;
         }
@@ -131,6 +133,11 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     private void validate() {
         if (TextUtils.isEmpty(mAccounts.getText().toString())) {
             ToastUtils.showToast(getString(R.string.pTransferaccounts));
+            return;
+        }
+        if (Double.valueOf(mAccounts.getText().toString())<=0) {
+
+            ToastUtils.showToast(getString(R.string.Quantitybe0));
             return;
         }
         if (EmptyUtils.isNotEmpty(commonBean)) {

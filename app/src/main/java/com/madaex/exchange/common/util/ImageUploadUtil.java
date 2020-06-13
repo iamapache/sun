@@ -1,5 +1,7 @@
 package com.madaex.exchange.common.util;
 
+import com.madaex.exchange.ui.mine.bean.ImgBean;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +21,19 @@ import okhttp3.RequestBody;
 
 public class ImageUploadUtil {
 
-    public static MultipartBody filesToMultipartBody(List<String> files) {
+    public static MultipartBody filesToMultipartBody(List<ImgBean> files) {
         MultipartBody.Builder builder = new MultipartBody.Builder();
         for (int i = 0; i < files.size(); i++) {
-            File file = new File(files.get(i));
+            File file = new File(files.get(i).getFile());
             // TODO: 16-4-2  这里为了简单起见，没有判断file的类型
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-            builder.addFormDataPart("img", file.getName(), requestBody);
+            if(files.get(i).getType()==1){
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+                builder.addFormDataPart("face_img", file.getName(), requestBody);
+            }else {
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+                builder.addFormDataPart("back_img", file.getName(), requestBody);
+            }
+
         }
 
         builder.setType(MultipartBody.FORM);
@@ -47,14 +55,34 @@ public class ImageUploadUtil {
         return multipartBody;
     }
 
-    public static List<MultipartBody.Part> filesToMultipartBodyParts(List<File> files) {
+    public static List<MultipartBody.Part> filesToMultipartBodyParts(List<ImgBean> files) {
         List<MultipartBody.Part> parts = new ArrayList<>(files.size());
-        for (File file : files) {
+        for (int i = 0; i < files.size(); i++) {
+            File file = new File(files.get(i).getFile());
+            //        File file = new File(pathList.get(0));
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+// MultipartBody.Part  和后端约定好Key，这里的partName是用image
+
             // TODO: 16-4-2  这里为了简单起见，没有判断file的类型
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
-            parts.add(part);
+            if(files.get(i).getType()==1){
+                MultipartBody.Part multipartBody =
+                        MultipartBody.Part.createFormData("face_img", file.getName(), requestFile);
+                parts.add(multipartBody);
+            }else {
+                MultipartBody.Part multipartBody =
+                        MultipartBody.Part.createFormData("back_img", file.getName(), requestFile);
+                parts.add(multipartBody);
+            }
+
         }
+
+//        for (File file : files) {
+//            // TODO: 16-4-2  这里为了简单起见，没有判断file的类型
+//            RequestBody requestBody = RequestBody.create(MediaType.parse("image/png"), file);
+//            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
+//            parts.add(part);
+//        }
         return parts;
     }
 

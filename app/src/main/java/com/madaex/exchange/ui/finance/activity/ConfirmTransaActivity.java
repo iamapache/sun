@@ -115,6 +115,8 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
             public void onClick(View v) {
                 if (AppUtils.isFastClick2()) {
                     validate();
+                }else {
+                    ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
             }
         });

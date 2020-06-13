@@ -1,7 +1,9 @@
 package com.madaex.exchange.ui.finance.pay.contract;
 
 import com.madaex.exchange.common.base.BaseContract;
+import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
+import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -22,6 +24,11 @@ public class WayContract {
         void requestSuccess(Payway commonBean);
 
         void requestPayWaySuccess(String commonBean);
+
+        void uploadIdcardSuccess(UploadIdcard commonBean);
+        void uploadIdcardSuccess2(UploadIdcard commonBean);
+        void requestidcardImgCheckError(String msg);
+        void idcardImgCheck(ImgCheck commonBean);
     }
 
     public interface Presenter extends BaseContract.BasePresenter<WayContract.View> {
@@ -31,5 +38,7 @@ public class WayContract {
         void getPayWay(Map body);
         void edit(Map body);
         void saveUserHeadImage(Map body, ArrayList<String> pathList);
+        void saveUserHeadImage2(Map body, ArrayList<String> pathList);
+        void uploadIdcard(Map body);
     }
 }

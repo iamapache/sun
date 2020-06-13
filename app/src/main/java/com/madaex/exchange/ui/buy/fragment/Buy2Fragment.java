@@ -1479,6 +1479,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             case R.id.tv_deal:
                 if (AppUtils.isFastClick()) {
                     submit();
+                }else {
+                    ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
 
                 break;

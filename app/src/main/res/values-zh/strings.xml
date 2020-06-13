@@ -576,4 +576,7 @@
     <string name="scuccess">成功</string>
     <string name="alscseller">ALSC释放卖出</string>
     <string name="shifangSell">挂单卖出</string>
+    <string name="IDcardpicture">请上传正确的身份证图片</string>
+    <string name="Quantitybe0">数量不能为0</string>
+    <string name="Cannotclick">请勿重复点击</string>
 </resources>

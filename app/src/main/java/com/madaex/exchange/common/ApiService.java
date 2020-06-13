@@ -3,6 +3,7 @@ package com.madaex.exchange.common;
 
 import com.madaex.exchange.common.net.Constant;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -14,6 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
@@ -61,8 +63,11 @@ public interface ApiService {
 //    Observable<String> saveUserHeadImage(@Part("data") RequestBody bodys, @Part MultipartBody.Part file);
     @POST(Constant.APP_APIS)
     @Multipart
-    Observable<String> saveUserHeadImage(@FieldMap Map<String, String> map, @Part MultipartBody.Part file);
+    Observable<String> saveUserHeadImage(@PartMap Map<String, String> map, @Part MultipartBody.Part file);
 
+    @Multipart
+    @POST(Constant.APP_APIS)
+    Observable<String> saveUserHeadImage2(@PartMap  Map<String, String> map, @Part List<MultipartBody.Part> file);
     @Streaming
     @GET
     Observable<ResponseBody> download(@Url String url);

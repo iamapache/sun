@@ -18,7 +18,9 @@ import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
+import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
+import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 import com.madaex.exchange.ui.finance.pay.contract.WayContract;
 import com.madaex.exchange.ui.finance.pay.presenter.WayPresenter;
 import com.madaex.exchange.view.GlideImgManager;
@@ -111,12 +113,41 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
 
     }
 
+    @Override
+    public void uploadIdcardSuccess(UploadIdcard commonBean) {
+        mDatalist.clear();
+        mDatalist.add(commonBean.getData().getUrl());
+    }
+
+    @Override
+    public void uploadIdcardSuccess2(UploadIdcard commonBean) {
+        mDatalist2.clear();
+        mDatalist2.add(commonBean.getData().getUrl());
+    }
+
+    @Override
+    public void requestidcardImgCheckError(String msg) {
+        ToastUtils.showToast(getString(R.string.IDcardpicture));
+    }
+
+    @Override
+    public void idcardImgCheck(ImgCheck commonBean) {
+
+        if(commonBean.getData().isFace_img_check()&&commonBean.getData().isBack_img_check()){
+            Event event = new Event();
+            event.setCode(Constants.MINE);
+            EventBus.getDefault().post(event);
+            finish();
+        }else {
+            ToastUtils.showToast(getString(R.string.IDcardpicture));
+        }
+    }
+
 
     @Override
     public void requestError(String msg) {
         ToastUtils.showToast(msg);
     }
-
 
 
     @Override
@@ -126,7 +157,7 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tv_location, R.id.submit, R.id.toolbar_left_btn_ll,R.id.img_cardtop, R.id.img_cardbottom})
+    @OnClick({R.id.tv_location, R.id.submit, R.id.toolbar_left_btn_ll, R.id.img_cardtop, R.id.img_cardbottom})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_location:
@@ -157,6 +188,8 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
     }
 
     private List<String> mDatalist = new ArrayList<>();
+    private List<String> mDatalist2 = new ArrayList<>();
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK
@@ -179,10 +212,13 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
                     List<String> photos = (List<String>) data.getExtras().getSerializable("photos");
                     //path是选择拍照或者图片的地址数组
                     //处理代码
-                    mDatalist.clear();
-                    mDatalist.addAll(photos);
+//                    mDatalist.clear();
+//                    mDatalist.add(new ImgBean(1,photos.get(0)));
 //                    mImgCardtop.setBackground(null);
-                    GlideImgManager.loadImage(mContext, new File(mDatalist.get(0)), mImgCardtop);
+                    GlideImgManager.loadImage(mContext, new File(photos.get(0)), mImgCardtop);
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", "Userauth.uploadIdcard");
+                    mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) photos);
                 }
                 break;
             case 23:
@@ -190,10 +226,13 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
                     List<String> photos = (List<String>) data.getExtras().getSerializable("photos");
                     //path是选择拍照或者图片的地址数组
                     //处理代码
-                    mDatalist.clear();
-                    mDatalist.addAll(photos);
+//                    mDatalist.clear();
+//                    mDatalist.add(new ImgBean(2,photos.get(0)));
 //                    mImgCardbottom.setBackground(null);
-                    GlideImgManager.loadImage(mContext, new File(mDatalist.get(0)), mImgCardbottom);
+                    GlideImgManager.loadImage(mContext, new File(photos.get(0)), mImgCardbottom);
+                    TreeMap params = new TreeMap<>();
+                    params.put("act", "Userauth.uploadIdcard");
+                    mPresenter.saveUserHeadImage2(DataUtil.sign(params), (ArrayList<String>) photos);
                 }
                 break;
             default:
@@ -201,17 +240,27 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private void validate() {
         if (mTvLocation.getText().toString().trim().equals(getString(R.string.china))) {
             if (EmptyUtils.isEmpty(mDatalist)) {
                 ToastUtils.showToast(R.string.selectpicture);
                 return;
             }
+            if (EmptyUtils.isEmpty(mDatalist2)) {
+                ToastUtils.showToast(R.string.selectpicture);
+                return;
+            }
             TreeMap params = new TreeMap<Object, Object>();
-            params.put("act", ConstantUrl.USER_PAYMENTADD);
+            params.put("act", "Userauth.idcardImgCheck");
             params.put("user_id", SPUtils.getString(Constants.TOKEN, ""));
-            params.put("type", 2 + "");
-            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
+
+
+            params.put("face_img", mDatalist.get(0) + "");
+            params.put("back_img", mDatalist2.get(0) + "");
+
+            mPresenter.uploadIdcard(DataUtil.sign2(params));
+
         } else {
             if (TextUtils.isEmpty(mTvUsername.getText().toString())) {
                 ToastUtils.showToast(getString(R.string.entryidname));
@@ -226,11 +275,11 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
             params.put("country", mTvLocation.getText().toString().trim());
             params.put("truename", mTvUsername.getText().toString().trim());
             params.put("idcard", mTvCardnumber.getText().toString().trim());
-//        params.put("firstname", mUser.getText().toString().trim());
-//        params.put("lastname", mName.getText().toString().trim());
-//        params.put("address", mAddress.getText().toString().trim());
-//        params.put("city", mCity.getText().toString().trim());
-//        params.put("postalcode", mPostcode.getText().toString().trim());
+////        params.put("firstname", mUser.getText().toString().trim());
+////        params.put("lastname", mName.getText().toString().trim());
+////        params.put("address", mAddress.getText().toString().trim());
+////        params.put("city", mCity.getText().toString().trim());
+////        params.put("postalcode", mPostcode.getText().toString().trim());
             mPresenter.getData(DataUtil.sign2(params));
         }
 

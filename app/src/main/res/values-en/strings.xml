@@ -602,4 +602,7 @@
     <string name="scuccess">scuccess</string>
     <string name="alscseller">Alsc release sell</string>
     <string name="shifangSell">Sell</string>
+    <string name="IDcardpicture">Please upload the correct </string>
+    <string name="Quantitybe0">Quantity cannot be 0</string>
+    <string name="Cannotclick">Do not click again</string>
 </resources>

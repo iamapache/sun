@@ -8,11 +8,12 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.Base64Utils;
-import com.madaex.exchange.common.util.rsa;
+import com.madaex.exchange.common.util.BitmapUtil2;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.common.CommonDataBean;
+import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
+import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 import com.madaex.exchange.ui.finance.pay.contract.WayContract;
 import com.orhanobut.logger.Logger;
 
@@ -177,34 +178,96 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     @Override
     public void saveUserHeadImage(Map body, ArrayList<String> pathList) {
 //        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
-        File file = new File(pathList.get(0));
+        File file = new File(BitmapUtil2.compressImage(pathList.get(0)));
+
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
 // MultipartBody.Part  和后端约定好Key，这里的partName是用image
         MultipartBody.Part multipartBody =
-                MultipartBody.Part.createFormData("img", file.getName(), requestFile);
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
         addSubscribe((Disposable) rxApi.saveUserHeadImage(body, multipartBody)
-                .map(new Function<String, CommonBean>() {
+                .map(new Function<String, UploadIdcard>() {
                     @Override
-                    public CommonBean apply(@NonNull String data) throws Exception {
-                        String paramsStr = new String(rsa.decryptPublicKey(Base64Utils.decode(data), rsa.PUBLIC_KEY));
-                        Logger.i("<==>data:" + paramsStr);
+                    public UploadIdcard apply(@NonNull String data) throws Exception {
                         Gson gson = new Gson();
-                        CommonBean commonBean = gson.fromJson(paramsStr, CommonBean.class);
+                        UploadIdcard commonBean = gson.fromJson(data, UploadIdcard.class);
                         return commonBean;
                     }
                 })
                 .compose(new DefaultTransformer2())
-                .subscribeWith(new CommonSubscriber<CommonBean>(mView, true) {
+                .subscribeWith(new CommonSubscriber<UploadIdcard>(mView, true) {
                     @Override
-                    public void onNext(CommonBean commonBean) {
+                    public void onNext(UploadIdcard commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError(commonBean.getMessage() + "");
                         } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                         } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
-                            mView.requestSuccess(commonBean.getMessage() + "");
+                            mView.uploadIdcardSuccess(commonBean);
                         }
                     }
                 }));
+    }
+    @Override
+    public void saveUserHeadImage2(Map body, ArrayList<String> pathList) {
+//        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
+        File file = new File(BitmapUtil2.compressImage(pathList.get(0)));
+
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+// MultipartBody.Part  和后端约定好Key，这里的partName是用image
+        MultipartBody.Part multipartBody =
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        addSubscribe((Disposable) rxApi.saveUserHeadImage(body, multipartBody)
+                .map(new Function<String, UploadIdcard>() {
+                    @Override
+                    public UploadIdcard apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        UploadIdcard commonBean = gson.fromJson(data, UploadIdcard.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<UploadIdcard>(mView, true) {
+                    @Override
+                    public void onNext(UploadIdcard commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError(commonBean.getMessage() + "");
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
+                            mView.uploadIdcardSuccess2(commonBean);
+                        }
+                    }
+                }));
+    }
+    @Override
+    public void uploadIdcard(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult2(body)
+                .map(new Function<String, ImgCheck>() {
+                    @Override
+                    public ImgCheck apply(@NonNull String data) throws Exception {
+                        Logger.i("<====>paramsStr:" + data);
+                        Gson gson = new Gson();
+                        ImgCheck CommonDataBean = gson.fromJson(data, ImgCheck.class);
+                        return CommonDataBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<ImgCheck>(mView, true) {
+                    @Override
+                    public void onNext(ImgCheck CommonDataBean) {
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestidcardImgCheckError(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
+//                            mView.requestidcardImgCheckError(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
+                            mView.idcardImgCheck(CommonDataBean);
+                        }
+                    }
+                }));
+    }
+
+    private RequestBody convertToRequestBody(String param){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain"), param);
+        return requestBody;
     }
 }

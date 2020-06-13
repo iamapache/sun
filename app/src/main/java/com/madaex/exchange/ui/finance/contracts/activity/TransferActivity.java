@@ -15,7 +15,6 @@ import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
-import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
@@ -92,10 +91,6 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bills.DataBean.ItemBean item = (Bills.DataBean.ItemBean) adapter.getItem(position);
-                Intent intent =  getIntent();
-                intent.setClass(mContext, C2CEntrustDetailActivity.class);
-                startActivity(intent);
             }
         });
 
