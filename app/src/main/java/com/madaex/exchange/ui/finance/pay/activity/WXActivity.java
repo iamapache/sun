@@ -183,7 +183,7 @@ public class WXActivity extends BaseNetActivity<WayPresenter> implements WayCont
             params.put("user_id", SPUtils.getString(Constants.TOKEN, ""));
             params.put("account", "");
             params.put("type", 1 + "");
-            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
+//            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
         } else {
 
             TreeMap params = new TreeMap<Object, Object>();
@@ -191,7 +191,7 @@ public class WXActivity extends BaseNetActivity<WayPresenter> implements WayCont
             params.put("user_id", SPUtils.getString(Constants.TOKEN, ""));
             params.put("account", "");
             params.put("type", 1 + "");
-            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
+//            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
         }
 
 

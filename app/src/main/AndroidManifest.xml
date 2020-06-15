@@ -68,7 +68,7 @@
         <activity android:name=".ui.market.activity.MessageDetailActivity"/>
         <activity android:name=".ui.market.activity.DealActivity"
             />
-
+        <activity android:name="com.madaex.exchange.ui.idcardcamera.camera.CameraActivity"/>
         <activity android:name=".ui.market.activity.EntrustActivity"/>
         <activity android:name=".ui.market.activity.EntrustDetailActivity"/>
         <activity android:name=".ui.market.activity.KLineActivity"

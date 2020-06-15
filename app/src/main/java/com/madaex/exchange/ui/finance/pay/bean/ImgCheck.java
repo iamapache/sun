@@ -47,22 +47,22 @@ public class ImgCheck {
          * back_img_check : false
          */
 
-        private boolean face_img_check;
-        private boolean back_img_check;
+        private String face_img_check;
+        private String back_img_check;
 
-        public boolean isFace_img_check() {
+        public String isFace_img_check() {
             return face_img_check;
         }
 
-        public void setFace_img_check(boolean face_img_check) {
+        public void setFace_img_check(String face_img_check) {
             this.face_img_check = face_img_check;
         }
 
-        public boolean isBack_img_check() {
+        public String isBack_img_check() {
             return back_img_check;
         }
 
-        public void setBack_img_check(boolean back_img_check) {
+        public void setBack_img_check(String back_img_check) {
             this.back_img_check = back_img_check;
         }
     }

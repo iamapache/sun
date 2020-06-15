@@ -8,7 +8,6 @@ import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.rx.CommonSubscriber;
 import com.madaex.exchange.common.rx.DefaultTransformer2;
 import com.madaex.exchange.common.rx.RxPresenter;
-import com.madaex.exchange.common.util.BitmapUtil2;
 import com.madaex.exchange.ui.common.CommonBean;
 import com.madaex.exchange.ui.common.CommonDataBean;
 import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
@@ -18,7 +17,6 @@ import com.madaex.exchange.ui.finance.pay.contract.WayContract;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -176,9 +174,9 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
     }
 
     @Override
-    public void saveUserHeadImage(Map body, ArrayList<String> pathList) {
+    public void saveUserHeadImage(Map body, String pathList) {
 //        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
-        File file = new File(BitmapUtil2.compressImage(pathList.get(0)));
+        File file = new File(pathList);
 
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -208,9 +206,9 @@ public class WayPresenter extends RxPresenter<WayContract.View> implements WayCo
                 }));
     }
     @Override
-    public void saveUserHeadImage2(Map body, ArrayList<String> pathList) {
+    public void saveUserHeadImage2(Map body, String pathList) {
 //        MultipartBody multipartBody = ImageUploadUtil.filesToMultipartBody(pathList);
-        File file = new File(BitmapUtil2.compressImage(pathList.get(0)));
+        File file = new File(pathList);
 
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);

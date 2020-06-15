@@ -5,7 +5,6 @@ import com.madaex.exchange.ui.finance.pay.bean.ImgCheck;
 import com.madaex.exchange.ui.finance.pay.bean.Payway;
 import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -37,8 +36,8 @@ public class WayContract {
         void delete(Map body);
         void getPayWay(Map body);
         void edit(Map body);
-        void saveUserHeadImage(Map body, ArrayList<String> pathList);
-        void saveUserHeadImage2(Map body, ArrayList<String> pathList);
+        void saveUserHeadImage(Map body, String pathList);
+        void saveUserHeadImage2(Map body, String pathList);
         void uploadIdcard(Map body);
     }
 }

@@ -23,8 +23,9 @@ import com.madaex.exchange.ui.finance.pay.bean.Payway;
 import com.madaex.exchange.ui.finance.pay.bean.UploadIdcard;
 import com.madaex.exchange.ui.finance.pay.contract.WayContract;
 import com.madaex.exchange.ui.finance.pay.presenter.WayPresenter;
+import com.madaex.exchange.ui.idcardcamera.camera.IDCardCamera;
 import com.madaex.exchange.view.GlideImgManager;
-import com.zzti.fengyongge.imagepicker.PhotoSelectorActivity;
+import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -133,12 +134,17 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
     @Override
     public void idcardImgCheck(ImgCheck commonBean) {
 
-        if(commonBean.getData().isFace_img_check()&&commonBean.getData().isBack_img_check()){
+        if(commonBean.getData().isFace_img_check().equals("true")&&commonBean.getData().isBack_img_check().equals("true")){
             Event event = new Event();
             event.setCode(Constants.MINE);
             EventBus.getDefault().post(event);
             finish();
-        }else {
+        }else if(commonBean.getData().isFace_img_check().equals("0")&&commonBean.getData().isBack_img_check().equals("0")){
+            Event event = new Event();
+            event.setCode(Constants.MINE);
+            EventBus.getDefault().post(event);
+            finish();
+        }else{
             ToastUtils.showToast(getString(R.string.IDcardpicture));
         }
     }
@@ -173,16 +179,18 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
                 finish();
                 break;
             case R.id.img_cardtop:
-                Intent intenttop = new Intent(AuthenticationActivity.this, PhotoSelectorActivity.class);
-                intenttop.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intenttop.putExtra("limit", 1);//number是选择图片的数量
-                startActivityForResult(intenttop, 22);
+//                Intent intenttop = new Intent(AuthenticationActivity.this, PhotoSelectorActivity.class);
+//                intenttop.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                intenttop.putExtra("limit", 1);//number是选择图片的数量
+//                startActivityForResult(intenttop, 22);
+                IDCardCamera.create(this).openCamera(IDCardCamera.TYPE_IDCARD_FRONT);
                 break;
             case R.id.img_cardbottom:
-                Intent intent2 = new Intent(AuthenticationActivity.this, PhotoSelectorActivity.class);
-                intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent2.putExtra("limit", 1);//number是选择图片的数量
-                startActivityForResult(intent2, 23);
+//                Intent intent2 = new Intent(AuthenticationActivity.this, PhotoSelectorActivity.class);
+//                intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                intent2.putExtra("limit", 1);//number是选择图片的数量
+//                startActivityForResult(intent2, 23);
+                IDCardCamera.create(this).openCamera(IDCardCamera.TYPE_IDCARD_BACK);
                 break;
         }
     }
@@ -206,19 +214,31 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
                 mLl3.setVisibility(View.GONE);
             }
         }
-        switch (requestCode) {
-            case 22:
+        switch (resultCode) {
+            case IDCardCamera.RESULT_CODE:
                 if (data != null) {
-                    List<String> photos = (List<String>) data.getExtras().getSerializable("photos");
+//                    List<String> photos = (List<String>) data.getExtras().getSerializable("photos");
                     //path是选择拍照或者图片的地址数组
                     //处理代码
 //                    mDatalist.clear();
 //                    mDatalist.add(new ImgBean(1,photos.get(0)));
 //                    mImgCardtop.setBackground(null);
-                    GlideImgManager.loadImage(mContext, new File(photos.get(0)), mImgCardtop);
-                    TreeMap params = new TreeMap<>();
-                    params.put("act", "Userauth.uploadIdcard");
-                    mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) photos);
+
+                }
+                final String path = IDCardCamera.getImagePath(data);
+                Logger.i("<==>pathpath:" + path);
+                if (!TextUtils.isEmpty(path)) {
+                    if (requestCode == IDCardCamera.TYPE_IDCARD_FRONT) { //身份证正面
+                        GlideImgManager.loadImage(mContext, new File(path), mImgCardtop);
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", "Userauth.uploadIdcard");
+                        mPresenter.saveUserHeadImage(DataUtil.sign(params), path);
+                    } else if (requestCode == IDCardCamera.TYPE_IDCARD_BACK) {  //身份证反面
+                        GlideImgManager.loadImage(mContext, new File(path), mImgCardbottom);
+                        TreeMap params = new TreeMap<>();
+                        params.put("act", "Userauth.uploadIdcard");
+                        mPresenter.saveUserHeadImage2(DataUtil.sign(params), path);
+                    }
                 }
                 break;
             case 23:
@@ -229,10 +249,7 @@ public class AuthenticationActivity extends BaseNetActivity<WayPresenter> implem
 //                    mDatalist.clear();
 //                    mDatalist.add(new ImgBean(2,photos.get(0)));
 //                    mImgCardbottom.setBackground(null);
-                    GlideImgManager.loadImage(mContext, new File(photos.get(0)), mImgCardbottom);
-                    TreeMap params = new TreeMap<>();
-                    params.put("act", "Userauth.uploadIdcard");
-                    mPresenter.saveUserHeadImage2(DataUtil.sign(params), (ArrayList<String>) photos);
+
                 }
                 break;
             default:

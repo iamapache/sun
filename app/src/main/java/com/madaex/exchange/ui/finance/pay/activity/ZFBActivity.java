@@ -192,7 +192,7 @@ public class ZFBActivity extends BaseNetActivity<WayPresenter> implements WayCon
             params.put("user_id", SPUtils.getString(Constants.TOKEN, ""));
             params.put("account", mEtZfb.getText().toString().trim());
             params.put("type", 2 + "");
-            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
+//            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
         } else {
 
             TreeMap params = new TreeMap<Object, Object>();
@@ -200,7 +200,7 @@ public class ZFBActivity extends BaseNetActivity<WayPresenter> implements WayCon
             params.put("user_id", SPUtils.getString(Constants.TOKEN, ""));
             params.put("account", mEtZfb.getText().toString().trim());
             params.put("type", 2 + "");
-            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
+//            mPresenter.saveUserHeadImage(DataUtil.sign(params), (ArrayList<String>) mDatalist);
         }
     }
 
