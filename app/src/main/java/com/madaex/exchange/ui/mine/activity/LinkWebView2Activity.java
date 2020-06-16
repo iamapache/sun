@@ -149,7 +149,7 @@ public class LinkWebView2Activity extends BaseActivity {
     private void getSnapshot() {
         requestPermission();
         Bitmap bitmap = getViewBitmap(mWebview);
-        savePhotoToSDCard(bitmap, "/sdcard/file", "img");
+        savePhotoToSDCard(bitmap, "/sdcard", "img");
 //        try {
 //            String fileName = Environment.getExternalStorageDirectory().getPath() + "/shareImage.jpg";
 //            FileOutputStream fos = new FileOutputStream(fileName);

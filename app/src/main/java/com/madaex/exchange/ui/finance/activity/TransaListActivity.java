@@ -79,7 +79,7 @@ public class TransaListActivity extends BaseNetActivity <TransaPreaenter> implem
                     helper.setTextColor(R.id.deal, getResources().getColor(R.color.chuli));
                 }else if(item.getState()==1){
                     helper.setTextColor(R.id.deal, getResources().getColor(R.color.depth_buy_line));
-                }else if(item.getState()==2){
+                }else if(item.getState()==3){
                     helper.setTextColor(R.id.deal, getResources().getColor(R.color.shibai));
                 }
                 helper.getView(R.id.ll_item).setOnClickListener(new View.OnClickListener() {

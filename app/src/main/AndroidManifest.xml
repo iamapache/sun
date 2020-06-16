@@ -106,7 +106,7 @@
         <activity android:name=".ui.finance.transfer.activity.NcListActivity"/>
 
 
-
+        <activity android:name=".ui.finance.contracts.activity.ReinvestmentActivity"/>
 
         <activity android:name=".ui.finance.contracts.activity.ContractActivity"/>
         <activity android:name=".ui.finance.contracts.activity.TransferActivity"/>

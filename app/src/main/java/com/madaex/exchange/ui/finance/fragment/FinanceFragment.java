@@ -29,7 +29,6 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.finance.activity.AssetActivity;
 import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
-import com.madaex.exchange.ui.finance.bank.activity.BankListActivity;
 import com.madaex.exchange.ui.finance.bean.Asset;
 import com.madaex.exchange.ui.finance.bean.Recharge;
 import com.madaex.exchange.ui.finance.bean.auth_check;
@@ -167,7 +166,8 @@ public class FinanceFragment extends BaseNetLazyFragment<AssetPresenter> impleme
                 startActivityAfterLogin(intent11);
                 break;
             case R.id.ll_bank:
-                startActivityAfterLogin(new Intent(mContext, BankListActivity.class));
+                ToastUtils.showToast(getString(R.string.comingsoon));
+//                startActivityAfterLogin(new Intent(mContext, BankListActivity.class));
 //                startActivityAfterLogin(new Intent(mContext, WayActivity.class));
 //                Intent intent2 = new Intent();
 //                intent2.setClass(mContext, AssetActivity.class);

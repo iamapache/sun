@@ -119,7 +119,7 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
         params.put("wallet_id", mParcelableExtra.getWallet_id() + "");
         mPresenter.bills(DataUtil.sign(params));
     }
-    @OnClick({R.id.toolbar_left_btn_ll,R.id.submit,R.id.allrecords})
+    @OnClick({R.id.toolbar_left_btn_ll,R.id.submit,R.id.allrecords,R.id.shifangseller})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.toolbar_left_btn_ll:
@@ -139,6 +139,13 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
                     startActivity(intent);
                 }
 
+                break;
+            case R.id.shifangseller:
+                Intent intent2 =  getIntent();
+                intent2.setClass(mContext, ReinvestmentActivity.class);
+
+                intent2.putExtra("mavail",mAvail.getText().toString().trim());
+                startActivityForResult(intent2,1);
                 break;
         }
     }

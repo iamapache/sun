@@ -120,6 +120,13 @@ public class TransationDetailActivity extends BaseNetActivity<C2CTransationPrese
         mSubmissiontime.setText(commonBean.getData().getAddtime());
         mChulitime.setText(commonBean.getData().getEndtime());
         mChulistaus.setText(commonBean.getData().getStatus());
+        if(commonBean.getData().getState()==0){
+            mChulistaus.setTextColor(getResources().getColor(R.color.chuli));
+        }else if(commonBean.getData().getState()==1){
+            mChulistaus.setTextColor(getResources().getColor(R.color.depth_buy_line));
+        }else if(commonBean.getData().getState()==3){
+            mChulistaus.setTextColor(getResources().getColor(R.color.shibai));
+        }
     }
 
     @Override

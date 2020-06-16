@@ -56,9 +56,17 @@ public class TransationDetail {
         private String mum;
         private String fee;
         private String status;
-
+        private int state;
         public String getId() {
             return id;
+        }
+
+        public int getState() {
+            return state;
+        }
+
+        public void setState(int state) {
+            this.state = state;
         }
 
         public void setId(String id) {

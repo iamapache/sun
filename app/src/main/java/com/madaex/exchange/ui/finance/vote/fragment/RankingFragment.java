@@ -125,9 +125,9 @@ public class RankingFragment extends BaseNetLazyFragment<VoteCoinPresenter> impl
                     GlideImgManager.loadImage(mContext, item.getImg(), (ImageView) helper.getView(R.id.img_bank));
                     helper.setText(R.id.votegoto, item.getStatus());
                     if (item.getStatus().equals(getString(R.string.Tovote)) || item.getStatus().equals(getString(R.string.goconfirm)) || item.getStatus().equals(getString(R.string.Immediateapplication))) {
-                        helper.setBackgroundRes(R.id.votegoto, R.drawable.common_button_shape);
+                        helper.setBackgroundRes(R.id.votegoto, R.mipmap.bg_login);
                     } else {
-                        helper.setBackgroundRes(R.id.votegoto, R.drawable.common_button_shape);
+                        helper.setBackgroundRes(R.id.votegoto, R.mipmap.bg_login);
                     }
                     helper.getView(R.id.votedetail).setOnClickListener(new View.OnClickListener() {
                         @Override

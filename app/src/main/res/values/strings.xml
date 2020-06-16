@@ -580,4 +580,7 @@
     <string name="IDcardpicture">请上传正确的身份证图片</string>
     <string name="Quantitybe0">数量不能为0</string>
     <string name="Cannotclick">请勿重复点击</string>
+    <string name="latestversion">此版本最新版本</string>
+    <string name="Reinvestment">复投</string>
+    <string name="sures">确认</string>
 </resources>

@@ -319,7 +319,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                 }
                             } else {
                                 if (showmsg) {
-                                    ToastUtils.showToast(getString(R.string.nonewversion));
+                                    ToastUtils.showToast(getString(R.string.latestversion));
                                 }
                                 return null;
                             }
@@ -330,7 +330,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                     @Override
                     public void onRequestVersionFailure(String message) {
                         if (showmsg) {
-                            ToastUtils.showToast(getString(R.string.nonewversion));
+                            ToastUtils.showToast(getString(R.string.latestversion));
                         }
                     }
                 });
@@ -446,7 +446,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     }
 
     private void goAu() {
-        if (SPUtils.getBoolean(Constants.has_bank,false)) {
+        if (!SPUtils.getBoolean(Constants.has_bank,false)) {
             startActivityAfterLogin(new Intent(mContext, AuthenticationActivity.class));
         } else {
             ToastUtils.showToast(getString(R.string.alVerification));

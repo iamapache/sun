@@ -605,4 +605,7 @@
     <string name="IDcardpicture">Please upload the correct </string>
     <string name="Quantitybe0">Quantity cannot be 0</string>
     <string name="Cannotclick">Do not click again</string>
+    <string name="latestversion">The latest version of this version</string>
+    <string name="Reinvestment">Reinvestment</string>
+    <string name="sures">sure</string>
 </resources>
