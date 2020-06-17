@@ -4,6 +4,10 @@ bugly {
     appId = 'dbd9e14990'
     appKey = '08eb10c1-0f24-47f4-ba56-8ffee2a9546b'
 }
+def getVersionCode(boolean flag) {  //获取APP版本号
+    String today = new Date().format("yyyyMMdd")
+    Integer.parseInt(today)
+}
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
@@ -16,12 +20,11 @@ configurations.all {
 }
 android {
     compileSdkVersion rootProject.ext.android2.compileSdkVersion
-
     defaultConfig {
         applicationId rootProject.ext.android2.applicationId
         minSdkVersion rootProject.ext.android2.minSdkVersion
         targetSdkVersion rootProject.ext.android2.targetSdkVersion
-        versionCode rootProject.ext.android2.versionCode
+        versionCode getVersionCode(false)
         versionName rootProject.ext.android2.versionName
         multiDexEnabled true
         flavorDimensions "app"

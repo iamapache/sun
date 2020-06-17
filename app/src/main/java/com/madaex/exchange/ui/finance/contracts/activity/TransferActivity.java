@@ -1,5 +1,6 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -196,6 +197,13 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            initDatas();
+        }
+    }
     @Override
     public void requestSuccess(Bills commonBean) {
         mSwiperefreshlayout.setRefreshing(false);

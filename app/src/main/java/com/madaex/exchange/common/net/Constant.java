@@ -12,7 +12,7 @@ public class Constant {
 
     public static final String HTTP = BuildConfig.DEBUG ? "http://alsc.uoou.net/" : "https://www.vcoin.be/";//http://192.168.2.117/appapi/
 
-    public static final String Websocket = BuildConfig.DEBUG ? "ws://47.56.143.229:8888" : "ws://sock.vcoin.be:8888";
+    public static final String Websocket = BuildConfig.DEBUG ? "ws://alsc.uoou.net:8888" : "ws://sock.vcoin.be:8888";
 
     public static final String JAVA_HTTP = "http://123.58.34.198/";
 

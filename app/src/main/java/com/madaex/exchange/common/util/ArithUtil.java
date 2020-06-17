@@ -91,9 +91,8 @@ public class ArithUtil {
             throw new IllegalArgumentException(
                     "The scale must be a positive integer or zero");
         }
-        if(v2==0){
-            throw new IllegalArgumentException(
-                    "The scale must be a positive integer or zero");
+        if(v2==0||v1==0){
+            return 0;
         }
         BigDecimal b1 = new BigDecimal(Double.toString(v1));
         BigDecimal b2 = new BigDecimal(Double.toString(v2));
@@ -110,6 +109,9 @@ public class ArithUtil {
         if(scale<0){
             throw new IllegalArgumentException(
                     "The scale must be a positive integer or zero");
+        }
+        if(v==0){
+            return 0;
         }
         BigDecimal b = new BigDecimal(Double.toString(v));
         BigDecimal one = new BigDecimal("1");
