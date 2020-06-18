@@ -583,4 +583,5 @@
     <string name="latestversion">此版本最新版本</string>
     <string name="Reinvestment">复投</string>
     <string name="sures">确认</string>
+    <string name="alscbb">ALSC只支持币币转合约</string>
 </resources>

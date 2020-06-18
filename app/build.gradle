@@ -228,4 +228,6 @@ dependencies {
     //我们再添加这个依赖，下面有说明
     implementation 'com.github.VictorAlbertos.Jolyglot:gson:0.0.3'
     implementation 'com.dhh:rxLife2:1.2.0'
+    implementation("com.squareup.okio:okio:1.13.0")
+
 }

@@ -15,6 +15,7 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
+import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
@@ -75,6 +76,7 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     @Override
     protected void initView() {
         mParcelableExtra = getIntent().getParcelableExtra("bean");
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
@@ -153,6 +155,12 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     @Override
     protected void initDatas() {
         getData();
+        getDATA2();
+
+
+    }
+
+    private void getDATA2() {
         mTitleView.setText( mParcelableExtra.getXnb_name());
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.Trade_contract_coin_info);
@@ -201,7 +209,11 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == Activity.RESULT_OK){
-            initDatas();
+            pageNum = 1;
+            isRefresh =true;
+            getData();
+            getDATA2();
+            ToastUtils.showToast("onActivityResult");
         }
     }
     @Override
@@ -222,14 +234,14 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
             intent.putExtra("market_name",commonBean.getData().getMarket_name());
         }
         intent.setClass(mContext, OpenContractActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
     @Override
     public void requestSuccess(String commonBean) {
 //        ToastUtils.showToast(commonBean);
         Intent intent =  getIntent();
         intent.setClass(mContext, HuaActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,1);
     }
     private void setData(boolean isRefresh, List data) {
         pageNum++;

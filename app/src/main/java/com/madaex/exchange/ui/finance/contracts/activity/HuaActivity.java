@@ -3,9 +3,12 @@ package com.madaex.exchange.ui.finance.contracts.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
@@ -53,6 +56,8 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     TextView mTitleView;
     @BindView(R.id.sbsil)
     TextView mSbsil;
+    @BindView(R.id.imageView)
+    ImageView mImageView;
     private String type = "coin_to_contract";
 
     @Override
@@ -76,7 +81,35 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     protected void initDatas() {
         mParcelableExtra = getIntent().getParcelableExtra("bean");
         mTitleView.setText(mParcelableExtra.getXnb_name() + getString(R.string.Transferh));
-
+        if (mParcelableExtra.getXnb_name().equals("USDT")) {
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (flag) {
+                        flag = false;
+                        type = "contract_to_coin";
+                        mCoin.setText(getString(R.string.Contracthy));
+                        mContract.setText(getString(R.string.Coin));
+                        mUsablebalance.setText(commonBean.getData().getCon_assets() + "");
+                        mSbsil.setText(R.string.contractBalance);
+                    } else {
+                        flag = true;
+                        type = "coin_to_contract";
+                        mCoin.setText(getString(R.string.Coin));
+                        mContract.setText(getString(R.string.Contracthy));
+                        mSbsil.setText(getString(R.string.UsableBalance));
+                        mUsablebalance.setText(commonBean.getData().getGen_assets() + "");
+                    }
+                }
+            });
+        } else {
+            mImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtils.showToast(getString(R.string.alscbb));
+                }
+            });
+        }
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.Trade_transfer_wallet_info);
         params.put("wallet_id", mParcelableExtra.getWallet_id() + "");
@@ -99,31 +132,13 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
     private boolean flag = true;
 
-    @OnClick({R.id.imageView, R.id.submit})
+    @OnClick({ R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.imageView:
-                if (flag) {
-                    flag = false;
-                    type = "contract_to_coin";
-                    mCoin.setText(getString(R.string.Contracthy));
-                    mContract.setText(getString(R.string.Coin));
-                    mUsablebalance.setText(commonBean.getData().getCon_assets() + "");
-                    mSbsil.setText(R.string.contractBalance);
-                } else {
-                    flag = true;
-                    type = "coin_to_contract";
-                    mCoin.setText(getString(R.string.Coin));
-                    mContract.setText(getString(R.string.Contracthy));
-                    mSbsil.setText(getString(R.string.UsableBalance));
-                    mUsablebalance.setText(commonBean.getData().getGen_assets() + "");
-                }
-
-                break;
             case R.id.submit:
                 if (AppUtils.isFastClick2()) {
                     validate();
-                }else {
+                } else {
                     ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
                 break;
@@ -135,7 +150,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             ToastUtils.showToast(getString(R.string.pTransferaccounts));
             return;
         }
-        if (Double.valueOf(mAccounts.getText().toString())<=0) {
+        if (Double.valueOf(mAccounts.getText().toString()) <= 0) {
 
             ToastUtils.showToast(getString(R.string.Quantitybe0));
             return;
@@ -199,10 +214,17 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             dialog.dismiss();
         }
         ToastUtils.showToast(commonBean);
-        setResult(Activity.RESULT_OK);
-        finish();
-    }
 
+        handler.sendEmptyMessageDelayed(0, 1000);
+    }
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            setResult(Activity.RESULT_OK);
+            finish();
+            super.handleMessage(msg);
+        }
+    };
     @Override
     public void requestSuccess(ContractAsset commonBean) {
 

@@ -163,6 +163,8 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == Activity.RESULT_OK){
+            pageNum = 1;
+            isRefresh =true;
             initDatas();
         }
     }

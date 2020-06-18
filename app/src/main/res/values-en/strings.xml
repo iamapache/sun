@@ -608,4 +608,5 @@
     <string name="latestversion">The latest version of this version</string>
     <string name="Reinvestment">Reinvestment</string>
     <string name="sures">sure</string>
+    <string name="alscbb">Alsc only supports currency to contract conversion</string>
 </resources>
