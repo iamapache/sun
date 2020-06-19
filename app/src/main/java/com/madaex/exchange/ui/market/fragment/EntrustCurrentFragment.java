@@ -221,6 +221,7 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                     helper.setGone(R.id.ll_revoke, true);
                     if(item.getStatus()==2){
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));
+                        helper .setText(R.id.mum, item.getCancel_number());
                     }else {
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_green));
                     }

@@ -15,7 +15,6 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
-import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
@@ -105,13 +104,6 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
                 getData();
             }
         });
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                isRefresh =false;
-                getData();
-            }
-        }, mRecyclerview);
     }
 
     private void getData() {
@@ -213,17 +205,13 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
             isRefresh =true;
             getData();
             getDATA2();
-            ToastUtils.showToast("onActivityResult");
         }
     }
     @Override
     public void requestSuccess(Bills commonBean) {
         mSwiperefreshlayout.setRefreshing(false);
         if (commonBean != null) {
-            setData(isRefresh, commonBean.getData().getList());
-
-        } else {
-            mAdapter.setEnableLoadMore(true);
+            mAdapter.setNewData(commonBean.getData().getList());
         }
     }
 

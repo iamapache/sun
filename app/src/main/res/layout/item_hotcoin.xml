@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="0"
+        android:maxLength="8"
         android:layout_marginTop="2dp"
         android:textColor="@color/common_red"
         android:textSize="15dp" />
@@ -35,6 +36,7 @@
         android:drawablePadding="@dimen/d_5dp"
         android:gravity="center"
         android:text="0"
+
         android:layout_marginTop="2dp"
         android:textColor="@color/common_red"
         android:textSize="12dp" />

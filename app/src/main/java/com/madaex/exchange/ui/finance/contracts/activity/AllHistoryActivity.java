@@ -1,6 +1,5 @@
 package com.madaex.exchange.ui.finance.contracts.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,7 +15,6 @@ import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.ui.constant.ConstantUrl;
-import com.madaex.exchange.ui.finance.c2c.activity.C2CEntrustDetailActivity;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
@@ -92,9 +90,9 @@ public class AllHistoryActivity extends BaseNetActivity<ContractPresenter> imple
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Bills.DataBean.ItemBean item = (Bills.DataBean.ItemBean) adapter.getItem(position);
-                Intent intent = new Intent(mContext, C2CEntrustDetailActivity.class);
-                startActivity(intent);
+//                Bills.DataBean.ItemBean item = (Bills.DataBean.ItemBean) adapter.getItem(position);
+//                Intent intent = new Intent(mContext, C2CEntrustDetailActivity.class);
+//                startActivity(intent);
             }
         });
 

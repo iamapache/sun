@@ -21,7 +21,6 @@ import com.madaex.exchange.ui.buy.bean.Event;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.constant.Constants;
 import com.madaex.exchange.ui.login.activity.LoginActivity;
-import com.madaex.exchange.ui.market.activity.DealActivity;
 import com.madaex.exchange.ui.market.bean.FramnetBean;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.view.GlideImgManager;
@@ -429,14 +428,14 @@ public class KineQuickAdapter extends BaseQuickAdapter<Home, BaseViewHolder> {
                 @Override
                 public void singleClickListener() {
                     Intent intent = new Intent();
-                    intent.setClass(mContext, DealActivity.class);
-                    intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
-                    intent.putExtra("collect", item.getCollection());
-                    intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
-                    intent.putExtra("market_type", item.getMarket_type()+"");
-                    intent.putExtra(Constants.INFO, parentposition);
-                    intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
-                    mContext.startActivity(intent);
+//                    intent.setClass(mContext, DealActivity.class);
+//                    intent.putExtra("one_xnb", item.getCurrentype().toUpperCase());
+//                    intent.putExtra("collect", item.getCollection());
+//                    intent.putExtra("two_xnb", item.getExchangeType().toUpperCase());
+//                    intent.putExtra("market_type", item.getMarket_type()+"");
+//                    intent.putExtra(Constants.INFO, parentposition);
+//                    intent.putExtra(Constants.INFO_CHILD, helper.getAdapterPosition());
+//                    mContext.startActivity(intent);
                 }
             });
             RetrofitHelper.getKLineAPI().getKLineResult(DataUtil.sign(params3)).compose(new DefaultTransformer2())

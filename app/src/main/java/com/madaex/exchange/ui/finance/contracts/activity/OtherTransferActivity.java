@@ -113,13 +113,6 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
                 initDatas();
             }
         });
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                isRefresh =false;
-                getData();
-            }
-        }, mRecyclerview);
     }
     private void getData() {
         TreeMap params = new TreeMap<Object, Object>();
@@ -245,10 +238,7 @@ public class OtherTransferActivity extends BaseNetActivity<ContractPresenter> im
     public void requestSuccess(Bills commonBean) {
         mSwiperefreshlayout.setRefreshing(false);
         if (commonBean != null) {
-            setData(isRefresh, commonBean.getData().getList());
-
-        } else {
-            mAdapter.setEnableLoadMore(true);
+            mAdapter.setNewData(commonBean.getData().getList());
         }
     }
 

@@ -403,7 +403,6 @@ public class LinkWebViewActivity extends BaseActivity {
                 mWebview.loadUrl(mUrl + "&lang=" + str);
             }
         }
-        Log.v("OkHttp", mUrl);
     }
 
     @Override
