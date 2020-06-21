@@ -31,10 +31,9 @@
 
         <TextView
             android:id="@+id/number"
-            android:layout_width="wrap_content"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/d_20dp"
-            android:layout_weight="1"
             android:gravity="end"
             android:text=""
             android:textColor="@color/green"

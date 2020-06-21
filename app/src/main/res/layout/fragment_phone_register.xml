@@ -140,7 +140,7 @@
                     android:background="@drawable/code_shape"
                     android:gravity="center"
                     android:padding="7dp"
-                    android:textColor="#FBB03B"
+                    android:textColor="#EFC680"
                     android:textSize="12sp"
                     app:default_text="@string/get_code"/>
             </LinearLayout>

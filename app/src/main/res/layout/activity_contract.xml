@@ -35,7 +35,7 @@
                 android:layout_margin="12dp"
                 android:background="@color/common_black"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="10dp">
 
 
                 <LinearLayout

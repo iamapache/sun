@@ -95,7 +95,6 @@
                                 android:id="@+id/today"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:maxLength="6"
                                 android:maxLines="1"
                                 android:text="0"
                                 android:textColor="#fffbb03b"
@@ -132,7 +131,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:maxLength="6"
                                 android:maxLines="1"
                                 android:text="0"
                                 android:textColor="@color/white"
@@ -177,7 +175,6 @@
                                 android:id="@+id/tomorrow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:maxLength="6"
                                 android:maxLines="1"
                                 android:text="0"
                                 android:textColor="#fffbb03b"
@@ -215,7 +212,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:maxLength="6"
                                 android:text="0"
                                 android:textColor="@color/white"
                                 android:textSize="12dp" />
@@ -341,8 +337,9 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/common_black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -365,7 +362,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
 
-                    android:drawableRight="@mipmap/icon_right"
+                    android:drawableRight="@mipmap/icon_huang"
                     android:drawablePadding="5dp"
                     android:gravity="end"
                     android:text="@string/AllRecords"
@@ -375,6 +372,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:background="@color/common_black"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/d_44dp"
                 android:gravity="center_vertical">
@@ -410,6 +408,7 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerview"
+                android:background="@color/common_black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />

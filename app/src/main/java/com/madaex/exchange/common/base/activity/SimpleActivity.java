@@ -196,7 +196,7 @@ public abstract class SimpleActivity extends AppCompatActivity {
             setTranslucentStatus(true);
             tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.colorTheme2);
+            tintManager.setStatusBarTintResource(R.color.colorTheme);
         }
     }
 

@@ -156,7 +156,7 @@
             android:background="@drawable/code_shape"
             android:padding="7dp"
             android:text="@string/get_code"
-            android:textColor="#FBB03B"
+            android:textColor="#EFC680"
             android:textSize="12sp"
             app:default_text="@string/get_code" />
     </LinearLayout>

@@ -22,7 +22,7 @@
         app:title_text="@string/alscseller"
         app:title_visible="true" />
     <LinearLayout
-
+android:background="@mipmap/beijingsellerbuy"
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:gravity="center"

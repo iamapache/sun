@@ -48,6 +48,7 @@ import com.madaex.exchange.ui.mine.presenter.PageHomePresenter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -375,6 +376,15 @@ boolean iszhang = true;
         banner.setIndicatorGravity(BannerConfig.CENTER);
         //banner设置方法全部调用完毕时最后调用
         banner.start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent intent0 = new Intent(mContext, LinkWebViewActivity.class);
+                intent0.putExtra(LinkWebViewActivity.WEB_TITLE, user.getData().get(position).getTitle());
+                intent0.putExtra(LinkWebViewActivity.WEB_URL, user.getData().get(position).getUrl());
+                startActivity(intent0);
+            }
+        });
     }
 
     @Override
