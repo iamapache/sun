@@ -297,7 +297,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                                 .setContent(commonBean.getData().getLog());
                                         return uiData;
                                     } else {
-
+                                        ToastUtils.showToast(getString(R.string.latestversion));
                                         return null;
                                     }
                                 }
@@ -313,7 +313,9 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                                 .setContent(commonBean.getData().getLog());
                                         return uiData;
                                     } else {
-
+                                        if (showmsg) {
+                                            ToastUtils.showToast(getString(R.string.latestversion));
+                                        }
                                         return null;
                                     }
                                 }
@@ -322,6 +324,10 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                     ToastUtils.showToast(getString(R.string.latestversion));
                                 }
                                 return null;
+                            }
+                        }else {
+                            if (showmsg) {
+                                ToastUtils.showToast(getString(R.string.latestversion));
                             }
                         }
                         return null;

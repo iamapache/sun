@@ -3,9 +3,17 @@ apply from: "config.gradle"
 buildscript {
 
     repositories {
-        google()
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            name 'aliyun'
+        }
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/google/'
+            name 'aliyun-google'
+        }
         jcenter()
         maven { url 'https://jitpack.io' }
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
@@ -18,9 +26,17 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+            name 'aliyun'
+        }
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/google/'
+            name 'aliyun-google'
+        }
         jcenter()
         maven { url 'https://jitpack.io' }
+
         flatDir {         //<------添加三行
             dirs 'libs'   //<------
         }

@@ -217,7 +217,11 @@ public class EntrustCurrentFragment extends BaseNetLazyFragment<EntrustPresenter
                 } else {
                     helper.setGone(R.id.ll_line, false).setGone(R.id.ll_history, false)
                             .setGone(R.id.img_delete, false);
-                    helper.setText(R.id.revoke, item.getStatus_name());
+                    if(item.getStatus()==1) {
+                        helper.setText(R.id.revoke, R.string.Closed);
+                    }else{
+                        helper.setText(R.id.revoke, R.string.Cancelled);
+                    }
                     helper.setGone(R.id.ll_revoke, true);
                     if(item.getStatus()==2){
                         helper.setTextColor(R.id.revoke, getResources().getColor(R.color.common_red));

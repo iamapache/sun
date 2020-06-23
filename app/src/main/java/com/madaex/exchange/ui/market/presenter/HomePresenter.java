@@ -162,7 +162,7 @@ public class HomePresenter extends RxPresenter<HomeContract.View> implements Hom
                 .subscribeWith(new CommonSubscriber<CommonBaseBean>(mView, true) {
                     @Override
                     public void onNext(CommonBaseBean commonBean) {
-                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(commonBean.getMsg() + "");
                         } else {
                             mView.requestError(commonBean.getMsg() + "");

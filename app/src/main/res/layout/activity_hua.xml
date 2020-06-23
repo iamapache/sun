@@ -138,6 +138,7 @@
                 android:layout_marginLeft="@dimen/d_15dp"
                 android:layout_weight="1"
                 android:background="@null"
+                android:inputType="number"
                 android:hint="@string/pTransferaccounts"
                 android:textColor="@color/common_text_1"
                 android:textColorHint="@color/colorCutOffSide"

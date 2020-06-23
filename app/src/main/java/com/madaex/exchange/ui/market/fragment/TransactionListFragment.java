@@ -267,8 +267,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     @Override
     public void requestError(String msg) {
         ToastUtils.showToast(msg);
-        mCurrentPosition = -1;
-        getData();
+
     }
 
     @Override
@@ -279,7 +278,28 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     @Override
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
+        mCurrentPosition = -1;
+        String str = getArguments().getString(Constants.ARGS);
+        TreeMap params = new TreeMap<>();
+        params.put("act", ConstantUrl.TRADE_HOME_INDEX);
+        params.put("name", str);
+        if (str.equalsIgnoreCase(getString(R.string.favorites))) {
+            if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
+                try {
+                    sendData(DataUtil.sign(params));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+//            mPresenter.getData(DataUtil.sign(params));
 
+            try {
+                sendData(DataUtil.sign(params));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -311,6 +331,7 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
 
     @Override
     public void doSomeThing(Home item) {
+        mCurrentPosition = -1;
         HashMap params = new HashMap<>();
         params.put("act", ConstantUrl.TRADE_IS_COLLECTION);
         params.put("one_xnb", item.getCurrentype());

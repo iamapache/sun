@@ -609,4 +609,6 @@
     <string name="Reinvestment">Reinvestment</string>
     <string name="sures">sure</string>
     <string name="alscbb">Alsc only supports currency to contract conversion</string>
+    <string name="Closed">Closed</string>
+    <string name="Cancelled">Cancelled</string>
 </resources>

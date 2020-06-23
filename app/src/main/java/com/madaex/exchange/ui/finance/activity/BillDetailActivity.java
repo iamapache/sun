@@ -64,7 +64,7 @@ public class BillDetailActivity extends BaseActivity {
         mNumber.setText(item.getAdd_subtract()+item.getNum()+item.getCoin_ename());
         mBillMoney.setText(item.getMum_a());
         mBillTime.setText(item.getAddtime());
-        mBillType.setText(item.getRemark());
+        mBillType.setText(item.getType_name());
         mBillSattus.setText(item.getStatus_name());
 
         if(item.getState()==0){

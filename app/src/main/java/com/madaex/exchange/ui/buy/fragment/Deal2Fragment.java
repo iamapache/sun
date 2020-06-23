@@ -141,6 +141,22 @@ public class Deal2Fragment extends BaseNetLazyFragment<CoinPresenter> implements
         int str = (int) getArguments().get(Constants.ARGS);
         fragment1 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_BUY, one_xnb, two_xnb);
         fragment2 = Buy2Fragment.newInstance(ConstantUrl.TRANS_TYPE_SELLER, one_xnb, two_xnb);
+        fragment1.setRefreshLister(new Buy2Fragment.RefreshLister() {
+            @Override
+            public void Refresh(String string) {
+                pageNum = 1;
+                isRefresh = true;
+                getHistory();
+            }
+        });
+        fragment2.setRefreshLister(new Buy2Fragment.RefreshLister() {
+            @Override
+            public void Refresh(String string) {
+                pageNum = 1;
+                isRefresh = true;
+                getHistory();
+            }
+        });
         mViewList.add(fragment1);
         mViewList.add(fragment2);
 

@@ -238,7 +238,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             public void onItemClick(List<BigDecimal> list) {
                 if (market_type.equals("0")) {
                     mPrice.setText(list.get(0).toPlainString());
-                } else {
+                } else if (EmptyUtils.isNotEmpty(mPrice.getText().toString())){
                     if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                         if (buy_price_lock == 1) {
 
@@ -271,7 +271,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             public void onItemClick(List<BigDecimal> list) {
                 if (market_type.equals("0")) {
                     mPrice.setText(list.get(0).toPlainString());
-                } else {
+                } else if (EmptyUtils.isNotEmpty(mPrice.getText().toString())) {
                     if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                         if (buy_price_lock == 1) {
 
@@ -300,7 +300,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (market_type.equals("0")) {
                         mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) + Double.valueOf(rise_once))) + "");
-                    } else {
+                    } else if (EmptyUtils.isNotEmpty(mPrice.getText().toString())){
                         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                             if (buy_price_lock == 1) {
                                 mPrice.setEnabled(false);
@@ -332,7 +332,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (market_type.equals("0")) {
                         mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(mPrice.getText().toString()) - Double.valueOf(rise_once))) + "");
-                    } else {
+                    } else if (EmptyUtils.isNotEmpty(mPrice.getText().toString())){
                         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                             if (buy_price_lock == 1) {
                                 mPrice.setEnabled(false);
@@ -361,17 +361,17 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-//                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
-                    } else {
+                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                    } else if (EmptyUtils.isNotEmpty(mNumber.getText().toString())) {
                         if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                             if (buy_num_lock == 1) {
                             } else {
-//                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
                             }
                         } else {
                             if (sell_num_lock == 1) {
                             } else {
-//                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
+                                mNumber.setText((Double.valueOf(mNumber.getText().toString()) + 1) + "");
                             }
                         }
 
@@ -389,17 +389,17 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
                     if (EmptyUtils.isNotEmpty(mNumber.getText().toString()) && strResult(mNumber.getText().toString())) {
-//                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                        mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
                     }
                     if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
                         if (buy_num_lock == 1) {
                         } else {
-//                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
                         }
                     } else {
                         if (sell_num_lock == 1) {
                         } else {
-//                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
+                            mNumber.setText((Double.valueOf(mNumber.getText().toString()) - 1) + "");
                         }
                     }
                 } else {
@@ -414,56 +414,21 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 refresh = true;
                 cacelSocket2();
                 linedetail();
-
+                mRefreshLister.Refresh("");
             }
         });
-//        mSellerAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                List<String> list = (List<String>) adapter.getItem(position);
-//                mEtPrice.setText(list.get(0).toString());
-//            }
-//        });
-//        RxWebSocket.get(Constant.Websocket)
-//                .compose(RxLife.with(this).<WebSocketInfo>bindToLifecycle())
-//                .subscribe(new WebSocketSubscriber() {
-//                    @Override
-//                    public void onOpen(@NonNull WebSocket webSocket) {
-//                        Log.d("MainActivity", "onOpen1:");
-//                        mWebSocket = webSocket;
-//                    }
-//
-//                    @Override
-//                    protected void onMessage(String message) {
-//
-//                        if (TextUtils.isEmpty(message) || message.equals("hello")) {
-//                            return;
-//                        }
-//                        Log.i("BuyFragment", message);
-//                        if (currentBackPressedTime < BACK_PRESSED_INTERVAL) {
-//                            currentBackPressedTime++;
-//                        } else {
-//                            currentBackPressedTime = 0;
-//                            new Thread(new Runnable() {
-//
-//                                @Override
-//                                public void run() {
-//                                    DealBean2 mDesignates = JSON.parseObject(message, DealBean2.class);
-//                                    Message messages = Message.obtain();
-//                                    messages.obj = mDesignates;
-//                                    messages.what = 1;
-//                                    handler.sendMessage(messages);//将message对象发送出去
-//                                }
-//                            }).start();
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    protected void onReconnect() {
-//                        Log.d("MainActivity", "重连");
-//                    }
-//                });
+    }
+    RefreshLister mRefreshLister;
+    public interface RefreshLister {
+        void Refresh(String string);
+    }
+
+    public RefreshLister getRefreshLister() {
+        return mRefreshLister;
+    }
+
+    public void setRefreshLister(RefreshLister refreshLister) {
+        mRefreshLister = refreshLister;
     }
 
     public void refresh() {
@@ -498,12 +463,15 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
     }
 
     public int bs(double a, double b) {
-        if (b == 0) {
+        try {
+            if (b == 0) {
+                return 0;
+            } else {
+                return (int) ((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue()) * 100);
+            }
+        } catch (Exception e) {
             return 0;
-        } else {
-            return (int) ((new BigDecimal((float) a / b).setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue()) * 100);
         }
-
     }
 
     private List<DepthDataBean> getBuyDepthList3(List<List<Float>> buy, List<List<Float>> sell) {
@@ -787,8 +755,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         double number = Double.valueOf(mNumber.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
                         double key = Double.valueOf(mKeyong.getText().toString().trim());
-                        mCny.setText(ArithUtil.round(ArithUtil.mul(number, price), 4) + "");
-//                        mNumber.setText(ArithUtil.round(ArithUtil.mul(key, price), 4) + "");
+                        mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4) + ""));
+                        mNumber.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.div(key, price), 4) + ""));
 //                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
@@ -826,7 +794,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                     if (!mPrice.getText().toString().trim().equals("0.") && !editable.toString().equals("0.") && !editable.toString().equals(".")) {
                         double number = Double.valueOf(mPrice.getText().toString().trim());
                         double price = Double.valueOf(editable.toString());
+                        double key = Double.valueOf(mKeyong.getText().toString().trim());
                         mCny.setText(new DecimalFormat("0.0000").format(ArithUtil.round(ArithUtil.mul(number, price), 4)));
+//                        mNumber.setText(ArithUtil.round(ArithUtil.div(key, number), 4) + "");
 //                        mOrderBuyFee.setText((ArithUtil.round(ArithUtil.mul(number, price) * 0.003, 2) + ""));
                     }
                 }
@@ -1226,7 +1196,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mPrice.setEnabled(false);
                             mAddone.setEnabled(false);
                             mDeleteone.setEnabled(false);
-//                            mTabRadioGroup.check(mContactTab.getId());
+                            mTabRadioGroup.check(mContactTab.getId());
                             getPrice();
                         } else {
                             buy_price_lock = data.getData().getBuy_price_lock();
@@ -1234,7 +1204,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mPrice.setEnabled(true);
                             mAddone.setEnabled(true);
                             mDeleteone.setEnabled(true);
-//                            mTabRadioGroup.check(mContactTab.getId());
+                            mTabRadioGroup.check(mContactTab.getId());
                             getPrice();
                         }
                         if (data.getData().getBuy_num_lock() == 1) {
@@ -1242,8 +1212,8 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mNumber.setEnabled(false);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getBuy_price_change());
                             totalnum = vou;
-//                            mTabRadioGroup.check(mSettingsTab.getId());
-//                            disableRadioGroup(mTabRadioGroup);
+                            mTabRadioGroup.check(mSettingsTab.getId());
+                            disableRadioGroup(mTabRadioGroup);
                             mAddtwo.setEnabled(false);
                             mDeletetwo.setEnabled(false);
                         } else {
@@ -1253,7 +1223,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mDeletetwo.setEnabled(true);
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(baseBean.getCurrentPrice());
                             totalnum = vou;
-//                            enableRadioGroup(mTabRadioGroup);
+                            enableRadioGroup(mTabRadioGroup);
                             getPrice();
                         }
                     }
@@ -1277,7 +1247,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                         totalnum = vou;
 //                        mPrice.setText(baseBean.getCurrentPrice());
                         getPrice();
-//                        mTabRadioGroup.check(mContactTab.getId());
+                        mTabRadioGroup.check(mContactTab.getId());
                     } else {
                         if (data.getData().getSell_price_lock() == 1) {
                             sell_price_lock = data.getData().getSell_price_lock();
@@ -1285,14 +1255,14 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             mAddone.setEnabled(false);
                             mDeleteone.setEnabled(false);
                             getPrice();
-//                            mTabRadioGroup.check(mContactTab.getId());
+                            mTabRadioGroup.check(mContactTab.getId());
 //                            mPrice.setText(new DecimalFormat("0.000000").format((Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getSell_price_change())) + "");
                         } else {
                             sell_price_lock = data.getData().getSell_price_lock();
                             mPrice.setEnabled(true);
                             mAddone.setEnabled(true);
                             mDeleteone.setEnabled(true);
-//                            mTabRadioGroup.check(mContactTab.getId());
+                            mTabRadioGroup.check(mContactTab.getId());
 //                            mPrice.setText(baseBean.getCurrentPrice());
                             getPrice();
                         }
@@ -1402,10 +1372,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 getMsgInfo();
             }
         } catch (Exception e) {
-            mLast.setText("0");
-            mCoinname.setText("0");
-            baibili.setText("￥" + "0");
-            mGuzhi.setText("￥" + "0");
+//            mLast.setText("0");
+//            mCoinname.setText("0");
+//            baibili.setText("￥" + "0");
+//            mGuzhi.setText("￥" + "0");
         }
 
     }
@@ -1479,7 +1449,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             case R.id.tv_deal:
                 if (AppUtils.isFastClick2()) {
                     submit();
-                }else {
+                } else {
                     ToastUtils.showToast(getString(R.string.Cannotclick));
                 }
 
@@ -1675,13 +1645,13 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
 //                                    mDesignates.getAsks().add(0,arrayList2);
 //                                }
                                 if (mDesignates.getAsks().size() >= 8) {
-                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 8));
+                                    mSellerAdapter.setNewData(mDesignates.getAsks().subList(0, 10));
 
                                 } else {
                                     mSellerAdapter.setNewData(mDesignates.getAsks());
                                 }
                                 if (mDesignates.getBids().size() >= 8) {
-                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 8));
+                                    mBuyAdapter.setNewData(mDesignates.getBids().subList(0, 10));
                                 } else {
 
 

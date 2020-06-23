@@ -168,8 +168,7 @@ public class ConfirmTransaActivity extends BaseNetActivity<ConfirmTransaPresente
         params.put("protocol", getIntent().getStringExtra("protocol"));
         params.put("is_platform", getIntent().getBooleanExtra("isCheck", false) == false ? 0 + "" : 1 + "");
         mPresenter.getData(DataUtil.sign(params));
-        mSubmit.setClickable(false);
-        mSubmit.setBackgroundResource(R.drawable.common_button_shape);
+        mSubmit.setVisibility(View.GONE);
     }
 
     @Override

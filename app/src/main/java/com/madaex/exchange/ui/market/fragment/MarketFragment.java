@@ -100,10 +100,15 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_HOME_INDEX_TOP);
         mPresenter.getTitleData(DataUtil.sign(params));
+        getMessageCount();
+    }
+
+    private void getMessageCount() {
         TreeMap params2 = new TreeMap<>();
         params2.put("act", ConstantUrl.USER_NEWS_TOTAL);
         mPresenter.getMessageCount(DataUtil.sign(params2));
     }
+
     @Override
     protected void initDatas() {
 
@@ -131,14 +136,13 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
                 intent.putExtra("market", "ada_GRC");
                 intent.putExtra("one_xnb", "ada");
                 intent.putExtra("two_xnb", "GRC");
-                startActivity(intent);
+                startActivityForResult(intent,250);
                 break;
             case R.id.img_popview:
                 showPopMenu();
                 break;
         }
     }
-
     private void openScanCode() {
         IntentIntegrator intentIntegrator = IntentIntegrator.forSupportFragment(this);
         intentIntegrator.setCaptureActivity(ScanActivity.class);
@@ -188,6 +192,11 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
         startActivityAfterLogin(new Intent(mContext, AccountManagerActivity.class));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getMessageCount();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -209,6 +218,9 @@ public class MarketFragment extends BaseNetLazyFragment<HomePresenter> implement
                             if (!TextUtils.isEmpty(code)) {
                             }
                         }
+                    }else
+                    if (requestCode == 250) {
+                        getMessageCount();
                     }
                 }
             } catch (Exception e) {
