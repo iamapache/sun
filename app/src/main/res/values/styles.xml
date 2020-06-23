@@ -176,8 +176,8 @@
     <style name="ButtonStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/d_44dp</item>
-        <item name="android:layout_marginLeft">@dimen/d_15dp</item>
-        <item name="android:layout_marginRight">@dimen/d_15dp</item>
+        <item name="android:layout_marginLeft">@dimen/d_20dp</item>
+        <item name="android:layout_marginRight">@dimen/d_20dp</item>
         <item name="android:background">@drawable/common_button_shape</item>
     </style>
 

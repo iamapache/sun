@@ -452,7 +452,7 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     }
 
     private void goAu() {
-        if (!SPUtils.getBoolean(Constants.has_bank,false)) {
+        if (SPUtils.getBoolean(Constants.has_bank,false)) {
             startActivityAfterLogin(new Intent(mContext, AuthenticationActivity.class));
         } else {
             ToastUtils.showToast(getString(R.string.alVerification));
