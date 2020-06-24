@@ -1593,7 +1593,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mBuyAdapter.setNewData(mDesignates.getBids());
                                 }
                                 getBuyDepthList3(mDesignates.getBids(), mDesignates.getAsks());
-                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())&& EmptyUtils.isNotEmpty(depthView)) {
                                     depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                                 }
 
@@ -1610,7 +1610,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mBuyAdapter.setNewData(mDesignates.getBids());
                                 }
                                 getBuyDepthList3(mDesignates.getBids(), mDesignates.getAsks());
-                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())&& EmptyUtils.isNotEmpty(depthView)) {
                                     depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                                 }
 
@@ -1658,7 +1658,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mBuyAdapter.setNewData(mDesignates.getBids());
                                 }
                                 getBuyDepthList3(mDesignates.getBids(), mDesignates.getAsks());
-                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())&& EmptyUtils.isNotEmpty(depthView)) {
                                     depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                                 }
 
@@ -1675,7 +1675,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                                     mBuyAdapter.setNewData(mDesignates.getBids());
                                 }
                                 getBuyDepthList3(mDesignates.getBids(), mDesignates.getAsks());
-                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())) {
+                                if (EmptyUtils.isNotEmpty(mDesignates.getAsks()) && EmptyUtils.isNotEmpty(mDesignates.getBids())&& EmptyUtils.isNotEmpty(depthView)) {
                                     depthView.setData(getBuyDepthList2(mDesignates.getBids()), getSellDepthList2(mDesignates.getAsks()));
                                 }
 

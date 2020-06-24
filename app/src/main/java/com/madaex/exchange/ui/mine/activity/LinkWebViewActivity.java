@@ -34,6 +34,7 @@ import com.madaex.exchange.common.base.activity.BaseActivity;
 import com.madaex.exchange.common.languagelib.LanguageType;
 import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.util.SPUtils;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -395,14 +396,16 @@ public class LinkWebViewActivity extends BaseActivity {
                 mWebview.loadUrl(mUrl + "?lang=" + str + "&type=" + intent.getIntExtra("type", 1));
             }
         } else if (intent.getIntExtra("type", 3) == 3) {
-            mWebview.loadUrl(mUrl);
+            mWebview.loadUrl(mUrl+ "?lang=" + str);
         } else {
             if (status == 0) {
                 mWebview.loadUrl(mUrl + "?lang=" + str);
             } else {
-                mWebview.loadUrl(mUrl + "&lang=" + str);
+                mWebview.loadUrl(mUrl + "?lang=" + str);
             }
+
         }
+        Logger.i("<==>:33" + mUrl + "?lang=" + str);
     }
 
     @Override
@@ -448,6 +451,7 @@ public class LinkWebViewActivity extends BaseActivity {
          */
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Logger.i("<==>:shouldOverrideUrlLoading" + url);
             view.loadUrl(url);
             return true;
         }

@@ -297,7 +297,9 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
                                                 .setContent(commonBean.getData().getLog());
                                         return uiData;
                                     } else {
-                                        ToastUtils.showToast(getString(R.string.latestversion));
+                                        if (showmsg) {
+                                            ToastUtils.showToast(getString(R.string.latestversion));
+                                        }
                                         return null;
                                     }
                                 }
@@ -448,11 +450,12 @@ public class MineFragment extends BaseNetLazyFragment<MinePresenter> implements 
     }
 
     private void goSafe() {
+
         startActivityAfterLogin(new Intent(mContext, SafeActivity.class));
     }
 
     private void goAu() {
-        if (SPUtils.getBoolean(Constants.has_bank,false)) {
+        if (!SPUtils.getBoolean(Constants.has_bank,false)) {
             startActivityAfterLogin(new Intent(mContext, AuthenticationActivity.class));
         } else {
             ToastUtils.showToast(getString(R.string.alVerification));
