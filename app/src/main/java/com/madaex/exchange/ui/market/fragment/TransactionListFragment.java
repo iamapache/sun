@@ -279,27 +279,39 @@ public class TransactionListFragment extends BaseNetLazyFragment<HomePresenter> 
     public void requestSuccess(String msg) {
         ToastUtils.showToast(msg);
         mCurrentPosition = -1;
+
         String str = getArguments().getString(Constants.ARGS);
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.TRADE_HOME_INDEX);
         params.put("name", str);
-        if (str.equalsIgnoreCase(getString(R.string.favorites))) {
-            if (!TextUtils.isEmpty(SPUtils.getString(Constants.TOKEN, ""))) {
-                try {
-                    sendData(DataUtil.sign(params));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        RetrofitHelper.getKLineAPI()
+                .getTestResult(DataUtil.sign(params)).map(new Function<String, HomeData>() {
+            @Override
+            public HomeData apply(@NonNull String data) throws Exception {
+                Gson gson = new Gson();
+                HomeData commonBean = gson.fromJson(data, HomeData.class);
+                return commonBean;
             }
-        } else {
-//            mPresenter.getData(DataUtil.sign(params));
+        })
+                .compose(bindToLifecycle())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DefaultSubscriber<HomeData>() {
+                    @Override
+                    public void onError(ResponeThrowable e) {
 
-            try {
-                sendData(DataUtil.sign(params));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+                    }
+
+                    @Override
+                    public void onNext(HomeData commonBean) {
+                        requestSuccess(commonBean.getData());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override

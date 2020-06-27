@@ -1176,6 +1176,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
             trade_sell_fee = data.getData().getTrade_sell_fee();
             trade_buy_fee = data.getData().getTrade_buy_fee();
         }
+        mTodayTab.setChecked(false);
+        mRecordTab.setChecked(false);
+        mContactTab.setChecked(false);
+        mSettingsTab.setChecked(false);
         if (EmptyUtils.isNotEmpty(data.getData())) {
             if (type.equals(ConstantUrl.TRANS_TYPE_BUY)) {
 
@@ -1213,7 +1217,7 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                             double vou = Double.valueOf(data.getData().getTwo_xnb()) / Double.valueOf(Double.valueOf(baseBean.getCurrentPrice()) + data.getData().getBuy_price_change());
                             totalnum = vou;
 //                            mTabRadioGroup.check(mSettingsTab.getId());
-//                            disableRadioGroup(mTabRadioGroup);
+
                             mAddtwo.setEnabled(false);
                             mDeletetwo.setEnabled(false);
                         } else {
@@ -1336,7 +1340,10 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 baibili.setText("￥" + baseBean.getSellRmb() + "");
                 mGuzhi.setText("￥" + baseBean.getSellRmb().toString());
 
-
+                mTodayTab.setChecked(false);
+                mRecordTab.setChecked(false);
+                mContactTab.setChecked(false);
+                mSettingsTab.setChecked(false);
                 if (market_type.equals("0")) {
                     mPrice.setText(baseBean.getCurrentPrice() + "");
                 } else {
