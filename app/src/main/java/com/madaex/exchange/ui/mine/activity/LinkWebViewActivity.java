@@ -390,22 +390,24 @@ public class LinkWebViewActivity extends BaseActivity {
         }
 
         if (intent.hasExtra("type")) {
+            Logger.i("<==>:111" + mUrl + "?lang=" + str);
             if (status == 0) {
                 mWebview.loadUrl(mUrl + "?lang=" + str + "&type=" + intent.getIntExtra("type", 1));
             } else {
                 mWebview.loadUrl(mUrl + "?lang=" + str + "&type=" + intent.getIntExtra("type", 1));
             }
         } else if (intent.getIntExtra("type", 3) == 3) {
-            mWebview.loadUrl(mUrl+ "?lang=" + str);
+            Logger.i("<==>:22" + mUrl + "?lang=" + str);
+            mWebview.loadUrl(mUrl+ "&lang=" + str);
         } else {
             if (status == 0) {
                 mWebview.loadUrl(mUrl + "?lang=" + str);
             } else {
                 mWebview.loadUrl(mUrl + "?lang=" + str);
             }
-
+            Logger.i("<==>:33" + mUrl + "?lang=" + str);
         }
-        Logger.i("<==>:33" + mUrl + "?lang=" + str);
+
     }
 
     @Override

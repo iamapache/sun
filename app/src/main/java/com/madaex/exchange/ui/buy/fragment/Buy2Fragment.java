@@ -414,7 +414,9 @@ public class Buy2Fragment extends BaseNetLazyFragment<DealPresenter> implements 
                 refresh = true;
                 cacelSocket2();
                 linedetail();
-                mRefreshLister.Refresh("");
+                if(mRefreshLister!=null){
+                    mRefreshLister.Refresh("");
+                }
             }
         });
     }

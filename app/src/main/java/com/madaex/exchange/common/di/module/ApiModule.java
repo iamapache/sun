@@ -8,9 +8,11 @@ import com.madaex.exchange.common.ApiService;
 import com.madaex.exchange.common.base.BaseApplication;
 import com.madaex.exchange.common.net.Constant;
 import com.madaex.exchange.common.progress.ProgressResponseBody;
+import com.madaex.exchange.common.util.EncryptUtils;
 import com.madaex.exchange.common.util.NetWorkUtil;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -28,10 +30,13 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okio.Buffer;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -272,6 +277,31 @@ public class ApiModule {
             return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body()))
                     .build();
+        }
+    }
+
+    public class RequestEncryptInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            RequestBody body = request.body();
+            Buffer buffer = new Buffer();
+            body.writeTo(buffer);
+            Charset charset = Charset.forName("UTF-8");
+            MediaType contentType = body.contentType();
+            if (contentType != null) {
+                charset = contentType.charset(charset);
+            }
+            String paramsStr = buffer.readString(charset);
+            try {
+                paramsStr = EncryptUtils.encryptMD2ToString(paramsStr);
+            } catch (Exception e) {
+            }
+            RequestBody requestBody = RequestBody.create(MediaType.parse("text/plain; charset=utf-8"), paramsStr);
+            request = request.newBuilder()
+                    .post(requestBody)
+                    .build();
+            return chain.proceed(request);
         }
     }
 }
