@@ -7,25 +7,31 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.madaex.exchange.R;
 import com.madaex.exchange.common.base.activity.BaseNetActivity;
+import com.madaex.exchange.common.languagelib.LanguageType;
+import com.madaex.exchange.common.languagelib.MultiLanguageUtil;
 import com.madaex.exchange.common.util.AppUtils;
 import com.madaex.exchange.common.util.DataUtil;
 import com.madaex.exchange.common.util.EmptyUtils;
+import com.madaex.exchange.common.util.SPUtils;
 import com.madaex.exchange.common.util.ToastUtils;
 import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
 import com.madaex.exchange.ui.finance.contracts.presenter.ContractPresenter;
 import com.madaex.exchange.ui.mine.activity.TransactionPasswordActivity;
+import com.madaex.exchange.update.BaseDialog;
 import com.madaex.exchange.view.PayPassDialog;
 import com.madaex.exchange.view.PayPassView;
 
@@ -92,6 +98,8 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
                         mContract.setText(getString(R.string.Coin));
                         mUsablebalance.setText(commonBean.getData().getCon_assets() + "");
                         mSbsil.setText(R.string.contractBalance);
+
+
                     } else {
                         flag = true;
                         type = "coin_to_contract";
@@ -110,6 +118,10 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
                 }
             });
         }
+        wallet_info();
+    }
+
+    private void wallet_info() {
         TreeMap params = new TreeMap<>();
         params.put("act", ConstantUrl.Trade_transfer_wallet_info);
         params.put("wallet_id", mParcelableExtra.getWallet_id() + "");
@@ -132,10 +144,11 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
     private boolean flag = true;
 
-    @OnClick({ R.id.submit})
+    @OnClick({R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.submit:
+
                 if (AppUtils.isFastClick2()) {
                     validate();
                 } else {
@@ -156,7 +169,14 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             return;
         }
         if (EmptyUtils.isNotEmpty(commonBean)) {
-            payDialog();
+            if(flag){
+                payDialog();
+            }else {
+                TreeMap params = new TreeMap<>();
+                params.put("act", ConstantUrl.TradeRelease_isOpenHole);
+                mPresenter.isOpenHole(DataUtil.sign(params));
+            }
+
         }
     }
 
@@ -217,6 +237,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
 
         handler.sendEmptyMessageDelayed(0, 1000);
     }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -225,6 +246,7 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             super.handleMessage(msg);
         }
     };
+
     @Override
     public void requestSuccess(ContractAsset commonBean) {
 
@@ -262,6 +284,56 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
     @Override
     public void requestSuccess(Bills commonBean) {
 
+    }
+
+    @Override
+    public void requestSuccess(OpenHole commonBean) {
+        if (commonBean.getData().getIs_open()) {
+            BaseDialog baseDialog = new BaseDialog(mContext, R.style.UpdateAppDialog, R.layout.dialog_heidong);
+            Button btn_no = baseDialog.findViewById(R.id.btn_no);
+            Button btn_ok = baseDialog.findViewById(R.id.btn_ok);
+            ImageView textView = baseDialog.findViewById(R.id.iv_top);
+            int languageType = SPUtils.getInt(MultiLanguageUtil.SAVE_LANGUAGE, LanguageType.LANGUAGE_CHINESE_SIMPLIFIED);
+            if(languageType==2){
+                textView.setBackgroundResource(R.mipmap.bg_kaihole);
+            }else if(languageType==1){
+                textView.setBackgroundResource(R.mipmap.bg_kaihole_en);
+            }else {
+                textView.setBackgroundResource(R.mipmap.bg_kaihole);
+            }
+            baseDialog.show();
+
+            btn_no.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    baseDialog.dismiss();
+                }
+            });
+            btn_ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = getIntent();
+                    intent.setClass(mContext, OpenHoleActivity.class);
+                    intent.putExtra("num", mAccounts.getText().toString() + "");
+                    startActivityForResult(intent,200);
+                    baseDialog.dismiss();
+                }
+            });
+        }else {
+            payDialog();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            mAccounts.setText("");
+            wallet_info();
+            setResult(Activity.RESULT_OK);
+
+        }
     }
 
     @Override

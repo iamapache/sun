@@ -13,6 +13,7 @@ import com.madaex.exchange.ui.common.DataBean;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
@@ -63,7 +64,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                         } else if (commonBean.getStatus() == -1) {
 
                             mView.nodata("");
-                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -93,7 +94,7 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                         } else if (commonBean.getStatus() == -1) {
 
                             mView.nodata("");
-                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -121,9 +122,9 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                     public void onNext(AlscInfo commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(commonBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }
@@ -149,11 +150,11 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                 .subscribeWith(new CommonSubscriber<DataBean>(mView, true) {
                     @Override
                     public void onNext(DataBean CommonDataBean) {
-                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestErrorcontract(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(CommonDataBean.getMessage());
                         }
                     }
@@ -176,11 +177,11 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                 .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
                     public void onNext(CommonDataBean CommonDataBean) {
-                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestErrorcontract(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(CommonDataBean.getMessage());
                         }
                     }
@@ -203,11 +204,11 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                 .subscribeWith(new CommonSubscriber<WalletInfo>(mView, true) {
                     @Override
                     public void onNext(WalletInfo CommonDataBean) {
-                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestErrorcontract(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(CommonDataBean);
                         }
                     }
@@ -230,11 +231,11 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                 .subscribeWith(new CommonSubscriber<Bills>(mView, true) {
                     @Override
                     public void onNext(Bills CommonDataBean) {
-                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestErrorcontract(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(CommonDataBean);
                         }
                     }
@@ -257,12 +258,41 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                 .subscribeWith(new CommonSubscriber<CommonDataBean>(mView, true) {
                     @Override
                     public void onNext(CommonDataBean CommonDataBean) {
-                        if(CommonDataBean.getStatus()== Constant.RESPONSE_ERROR){
-                            mView.requestErrorcontract(CommonDataBean.getMessage()+"");
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        if (CommonDataBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestErrorcontract(CommonDataBean.getMessage() + "");
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else  if(CommonDataBean.getStatus()== Constant.RESPONSE_SUCCESS){
+                        } else if (CommonDataBean.getStatus() == Constant.RESPONSE_SUCCESS) {
                             mView.requestSuccess(CommonDataBean.getMessage());
+                        }
+                    }
+                }));
+    }
+
+    @Override
+    public void isOpenHole(Map body) {
+        addSubscribe((Disposable) rxApi.getTestResult(body)
+                .map(new Function<String, OpenHole>() {
+                    @Override
+                    public OpenHole apply(@NonNull String data) throws Exception {
+                        Gson gson = new Gson();
+                        OpenHole commonBean = gson.fromJson(data, OpenHole.class);
+                        return commonBean;
+                    }
+                })
+                .compose(new DefaultTransformer2())
+                .subscribeWith(new CommonSubscriber<OpenHole>(mView, true) {
+                    @Override
+                    public void onNext(OpenHole commonBean) {
+                        if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
+                            mView.requestError("");
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
+                            mView.onUnLogin();
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_SUCCESS) {
+                            if (mView != null) {
+                                mView.requestSuccess(commonBean);
+                            }
+
                         }
                     }
                 }));
@@ -285,9 +315,9 @@ public class ContractPresenter extends RxPresenter<ContractContract.View> implem
                     public void onNext(USDTinfo commonBean) {
                         if (commonBean.getStatus() == Constant.RESPONSE_ERROR) {
                             mView.requestError("");
-                        } else  if(commonBean.getStatus()== Constant.RESPONSE_EXCEPTION){
+                        } else if (commonBean.getStatus() == Constant.RESPONSE_EXCEPTION) {
                             mView.onUnLogin();
-                        }else {
+                        } else {
                             if (mView != null) {
                                 mView.requestSuccess(commonBean);
                             }

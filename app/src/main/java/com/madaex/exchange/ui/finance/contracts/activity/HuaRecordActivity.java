@@ -16,6 +16,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
@@ -222,6 +223,11 @@ public class HuaRecordActivity extends BaseNetActivity<ContractPresenter> implem
         } else {
             mAdapter.setEnableLoadMore(true);
         }
+    }
+
+    @Override
+    public void requestSuccess(OpenHole commonBean) {
+
     }
 
 

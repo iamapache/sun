@@ -24,6 +24,7 @@ import com.madaex.exchange.ui.finance.contracts.adapter.ContractRecyclerviewAdap
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
@@ -203,6 +204,11 @@ public class ContractActivity extends BaseNetActivity<ContractPresenter> impleme
 
     @Override
     public void requestSuccess(Bills commonBean) {
+
+    }
+
+    @Override
+    public void requestSuccess(OpenHole commonBean) {
 
     }
 

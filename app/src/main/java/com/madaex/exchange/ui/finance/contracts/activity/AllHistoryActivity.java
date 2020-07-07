@@ -18,6 +18,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
@@ -280,6 +281,11 @@ public class AllHistoryActivity extends BaseNetActivity<ContractPresenter> imple
                 onSinglePicker2(commonBean);
             }
         });
+    }
+
+    @Override
+    public void requestSuccess(OpenHole commonBean) {
+
     }
 
     private void setData(boolean isRefresh, List data) {

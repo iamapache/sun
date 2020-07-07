@@ -585,4 +585,11 @@
     <string name="alscbb">ALSC只支持币币转合约</string>
     <string name="Closed">已成交</string>
     <string name="Cancelled">已撤单</string>
+    <string name="blackholes">您没有转入黑洞数量</string>
+    <string name="OutTotal">转出累积</string>
+    <string name="InTotal">转入累积</string>
+    <string name="Blackholeopens">黑洞开启</string>
+    <string name="Difference">黑洞差额</string>
+    <string name="TransferIn">本次转入</string>
+    <string name="Notransfer">暂不划转</string>
 </resources>

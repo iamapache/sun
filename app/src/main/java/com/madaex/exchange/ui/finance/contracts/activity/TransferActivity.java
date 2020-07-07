@@ -19,6 +19,7 @@ import com.madaex.exchange.ui.constant.ConstantUrl;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 import com.madaex.exchange.ui.finance.contracts.contract.ContractContract;
@@ -213,6 +214,11 @@ public class TransferActivity extends BaseNetActivity<ContractPresenter> impleme
         if (commonBean != null) {
             mAdapter.setNewData(commonBean.getData().getList());
         }
+    }
+
+    @Override
+    public void requestSuccess(OpenHole commonBean) {
+
     }
 
     @Override

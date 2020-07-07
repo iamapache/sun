@@ -264,6 +264,10 @@ public class ConstantUrl {
     public static String Trade_is_open_contract_trade = "Trade.is_open_contract_trade";
 
     public static String Trade_contract_transfer = "Trade.contract_transfer";
+    public static String TradeRelease_isOpenHole = "TradeRelease.isOpenHole";
+    public static String TradeRelease_blackHoleInfo = "TradeRelease.blackHoleInfo";
+    public static String TradeRelease_transferToBlackHole = "TradeRelease.transferToBlackHole";
+
     public static String Userlevel_add = "Userlevel.add";
 
     public static String Trade_transfer_bills = "Trade.transfer_bills";

@@ -611,4 +611,11 @@
     <string name="alscbb">Alsc only supports currency to contract conversion</string>
     <string name="Closed">Closed</string>
     <string name="Cancelled">Cancelled</string>
+    <string name="blackholes">You didnt turn in the number of </string>
+    <string name="OutTotal">Transfer Out Total</string>
+    <string name="InTotal">Transfer In Total</string>
+    <string name="Blackholeopens">Black hole opens</string>
+    <string name="Difference">Difference</string>
+    <string name="TransferIn">Transfer In</string>
+    <string name="Notransfer">No transfer time</string>
 </resources>

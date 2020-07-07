@@ -32,6 +32,7 @@ import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.HuaActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.HuaRecordActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.OpenContractActivity;
+import com.madaex.exchange.ui.finance.contracts.activity.OpenHoleActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.OtherTransferActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.ReinvestmentActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.ShifangSellerActivity;
@@ -167,4 +168,6 @@ public interface ActivityComponent {
     void inject(ShifangSellerActivity shifangSellerActivity);
 
     void inject(ReinvestmentActivity reinvestmentActivity);
+
+    void inject(OpenHoleActivity openHoleActivity);
 }

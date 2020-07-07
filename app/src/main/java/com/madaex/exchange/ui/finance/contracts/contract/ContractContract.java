@@ -4,6 +4,7 @@ import com.madaex.exchange.common.base.BaseContract;
 import com.madaex.exchange.ui.finance.contracts.bean.AlscInfo;
 import com.madaex.exchange.ui.finance.contracts.bean.Bills;
 import com.madaex.exchange.ui.finance.contracts.bean.ContractAsset;
+import com.madaex.exchange.ui.finance.contracts.bean.OpenHole;
 import com.madaex.exchange.ui.finance.contracts.bean.USDTinfo;
 import com.madaex.exchange.ui.finance.contracts.bean.WalletInfo;
 
@@ -34,7 +35,7 @@ public class ContractContract {
         void requestSuccess(AlscInfo commonBean);
 
         void requestSuccess(Bills commonBean);
-
+        void requestSuccess(OpenHole commonBean);
         void requestErrorcontract(String s);
     }
 
@@ -57,5 +58,8 @@ public class ContractContract {
 
 
         void shifangseller(Map body);
+
+
+        void isOpenHole(Map body);
     }
 }
