@@ -593,4 +593,6 @@
     <string name="Difference">黑洞差额</string>
     <string name="TransferIn">本次转入</string>
     <string name="Notransfer">暂不划转</string>
+    <string name="Unread">未读</string>
+    <string name="Read">已读</string>
 </resources>

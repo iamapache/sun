@@ -618,4 +618,6 @@
     <string name="Difference">Difference</string>
     <string name="TransferIn">Transfer In</string>
     <string name="Notransfer">No transfer time</string>
+    <string name="Unread">Unread</string>
+    <string name="Read">Read</string>
 </resources>

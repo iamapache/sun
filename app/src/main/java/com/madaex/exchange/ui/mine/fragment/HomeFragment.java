@@ -33,6 +33,7 @@ import com.madaex.exchange.ui.finance.address.activity.ScanActivity;
 import com.madaex.exchange.ui.finance.contracts.activity.ContractActivity;
 import com.madaex.exchange.ui.finance.vote.activity.VoteCoinActivity;
 import com.madaex.exchange.ui.login.activity.RegisterActivity;
+import com.madaex.exchange.ui.market.activity.MessageListActivity;
 import com.madaex.exchange.ui.market.adapter.KineQuickAdapter;
 import com.madaex.exchange.ui.market.bean.Home;
 import com.madaex.exchange.ui.market.bean.HomeData;
@@ -105,7 +106,8 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
     LinearLayout today_tab;
     @BindView(R.id.record_tab)
     LinearLayout record_tab;
-
+    @BindView(R.id.noticelist)
+    ImageView noticelist;
     public static HomeFragment newInstance(String string) {
         HomeFragment fragment = null;
         if (fragment == null) {
@@ -207,7 +209,12 @@ public class HomeFragment extends BaseNetLazyFragment<PageHomePresenter> impleme
                 startActivityAfterLogin(new Intent(mContext, AccountManagerActivity.class));
             }
         });
-
+        noticelist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityAfterLogin(new Intent(mContext, MessageListActivity.class));
+            }
+        });
         today_tab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

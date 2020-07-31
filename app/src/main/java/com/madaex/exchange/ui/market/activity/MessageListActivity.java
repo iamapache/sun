@@ -23,6 +23,8 @@ import com.madaex.exchange.ui.mine.activity.LinkWebViewActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,11 +63,14 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
         mAdapter = new BaseQuickAdapter<Message.DataBean, BaseViewHolder>(R.layout.item_message, mDataBeans) {
             @Override
             protected void convert(BaseViewHolder helper, final Message.DataBean item) {
-                helper.setText(R.id.number, item.getTitle()).setText(R.id.type, item.getAdd_time());
+                helper.setText(R.id.number, item.getTitle()).setText(R.id.type, item.getAdd_time()).setText(R.id.text, filterChinese(item.getText()));
                 TextView textView = helper.getView(R.id.time1);
+                TextView status = helper.getView(R.id.status);
                 if (item.getIs_read() == 0) {
+                    status.setText(R.string.Unread);
                     textView.setBackgroundResource(R.drawable.rect_rounded_red);
                 } else {
+                    status.setText(R.string.Read);
                     textView.setBackgroundResource(R.drawable.rect_rounded_white);
                 }
             }
@@ -95,6 +100,12 @@ public class MessageListActivity extends BaseNetActivity<MessagePresenter> imple
         mAdapter.setEmptyView(top);
     }
 
+    public static String filterChinese(String str) {
+        String regEx = "[^\\u4E00-\\u9FA5]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher matcher = p.matcher(str);
+        return matcher.replaceAll("").trim();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

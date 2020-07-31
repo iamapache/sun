@@ -332,7 +332,11 @@ public class HuaActivity extends BaseNetActivity<ContractPresenter> implements C
             mAccounts.setText("");
             wallet_info();
             setResult(Activity.RESULT_OK);
-
+            flag = true;
+            type = "coin_to_contract";
+            mCoin.setText(getString(R.string.Coin));
+            mContract.setText(getString(R.string.Contracthy));
+            mSbsil.setText(getString(R.string.UsableBalance));
         }
     }
 

@@ -60,8 +60,8 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="144dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,9 +86,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:text="新币上线,ALSC将于08.10正式发布"
                     android:textColor="#ffffffff"
                     android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/noticelist"
+                    android:layout_width="@dimen/d_22dp"
+                    android:layout_height="@dimen/d_22dp"
+                    android:src="@mipmap/mark_list" />
             </LinearLayout>
 
             <LinearLayout
@@ -107,21 +114,21 @@
                     android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:gravity="center"
-                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center">
 
                     <TextView
-                        android:background="@drawable/rect_rounded_huang"
                         android:layout_width="5dp"
-                        android:layout_height="5dp" />
+                        android:layout_height="5dp"
+                        android:background="@drawable/rect_rounded_huang" />
 
                     <TextView
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
                         android:layout_marginLeft="6dp"
-                        android:background="@drawable/rect_rounded_green"
-                        android:layout_width="5dp"
-                        android:layout_height="5dp" />
+                        android:background="@drawable/rect_rounded_green" />
                 </LinearLayout>
 
 

@@ -63,6 +63,8 @@ public class OpenHoleActivity extends BaseNetActivity<OpenHolePresenter> impleme
 
     @Override
     protected void initView() {
+        String num = getIntent().getStringExtra("num");
+        mNewBlackNum.setText(num);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerview.setLayoutManager(linearLayoutManager);
@@ -157,7 +159,7 @@ public class OpenHoleActivity extends BaseNetActivity<OpenHolePresenter> impleme
     public void requestSuccess(OpenHoleDestail commonBean) {
         this.commonBean = commonBean;
         mDifference.setText(commonBean.getData().getDifference());
-        mNewBlackNum.setText(commonBean.getData().getNew_black_num());
+
         mZrTotal.setText(commonBean.getData().getZr_total());
         mZcTotal.setText(commonBean.getData().getZc_total());
         mSwiperefreshlayout.setRefreshing(false);

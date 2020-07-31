@@ -57,9 +57,17 @@ public class Message {
         private int id;
         private String add_time;
         private String title;
-
+        private String text;
         public int getIs_read() {
             return is_read;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
         }
 
         public void setIs_read(int is_read) {
