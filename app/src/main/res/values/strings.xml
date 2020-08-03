@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VCOIN</string>
+    <string name="app_name">TOPA</string>
 
     <string name="item_onetran">交易</string>
     <string name="exit_tips">再按一次退出程序</string>
@@ -199,7 +199,7 @@
     <string name="internaltransfer">内部转账</string>
     <string name="agreetrans">同意内部账号之间的转账不走区块链，0手续费0确认，急速到账</string>
     <string name="entrycardid">请输入您的证件号码（非必填）</string>
-    <string name="mdxieyi">我已阅读并同意《VCOIN用户服务协议》</string>
+    <string name="mdxieyi">我已阅读并同意《TOPA用户服务协议》</string>
     <string name="cancellations">全部撤单</string>
     <string name="close">关闭</string>
     <string name="Checkdelegate">查看委托</string>

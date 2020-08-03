@@ -8,11 +8,11 @@ ext {
     android2 = [
             compileSdkVersion: 27,
             buildToolsVersion: '27.0.0',
-            applicationId    : "com.madaex.gdc",
+            applicationId    : "com.madaex.topa",
             minSdkVersion    : 16,
             targetSdkVersion : 27,
             versionCode      : 20200615,
-            versionName      : "2.1"
+            versionName      : "1.0.0"
     ]
 
     def dependVersion = [

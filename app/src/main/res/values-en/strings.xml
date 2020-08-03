@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="welcomemt">Welcome to VCOIN</string>
+    <string name="welcomemt">Welcome to TOPA</string>
     <string name="item_home">Home</string>
-    <string name="app_name">VCOIN</string>
+    <string name="app_name">TOPA</string>
     <string name="exit_tips">Press exit procedure again</string>
     <string name="item_onetran">Trading</string>
     <string name="item_market">Market</string>
@@ -36,7 +36,7 @@
     <!--邮箱注册-->
     <string name="input_email">Your Email Address</string>
 
-    <string name="register_agreement">I agreed VCOIN Agreement</string>
+    <string name="register_agreement">I agreed TOPA Agreement</string>
 
     <!--财务中心-->
     <string name="finance_center">Funds（%1$s）</string>
@@ -65,7 +65,7 @@
     <string name="transa_pwdset">Transaction Password</string>
     <string name="pwdnosume">Inconsistent password</string>
     <string name="china">China</string>
-    <string name="agreetmt">agreed to the terms of VCOIN Agreement</string>
+    <string name="agreetmt">agreed to the terms of TOPA Agreement</string>
     <string name="second">second</string>
 
     <string name="setting_language_auto">跟随系统</string>
@@ -198,7 +198,7 @@
     <string name="internaltransfer">internal transfer</string>
     <string name="agreetrans">Agree that the transfer between internal accounts will not go through the blockchain, 0 commission charge and 0 confirmation, and it will be sent to the account immediately</string>
     <string name="entrycardid">Please enter your identification number</string>
-    <string name="mdxieyi">I agreed VCOIN Agreement《Matthew user service agreement》</string>
+    <string name="mdxieyi">I agreed TOPA Agreement《Matthew user service agreement》</string>
     <string name="cancellations">All cancellations</string>
     <string name="close">Close</string>
     <string name="Checkdelegate">Checkde legate</string>
